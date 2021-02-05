@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Aren.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JS内置类型null,undefined,boolean,number,string,symbol数字类型属于浮点类型，没有整型。NaN属于number类型，NaN不等于自身。let a &#x3D; 111 &#x2F;&#x2F;这只是字面量，不是number类型a.toString()&#x2F;&#x2F;使用时候才会转换为对象类型JS对象（Object）是引用类型，在使用过程中会遇到浅拷贝和深拷贝的问题。let a &#x3D; {name:’F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端进阶之道">
+<meta property="og:url" content="http://yoursite.com/2020/12/04/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E4%B9%8B%E9%81%93/index.html">
+<meta property="og:site_name" content="DarylWXC的博客">
+<meta property="og:description" content="JS内置类型null,undefined,boolean,number,string,symbol数字类型属于浮点类型，没有整型。NaN属于number类型，NaN不等于自身。let a &#x3D; 111 &#x2F;&#x2F;这只是字面量，不是number类型a.toString()&#x2F;&#x2F;使用时候才会转换为对象类型JS对象（Object）是引用类型，在使用过程中会遇到浅拷贝和深拷贝的问题。let a &#x3D; {name:’F">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-04T07:21:26.000Z">
+<meta property="article:modified_time" content="2020-12-09T06:01:34.000Z">
+<meta property="article:author" content="DarylWxc">
+<meta property="article:tag" content="前端学习">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/04/前端进阶之道/"/>
+
+
+
+
+
+  <title>前端进阶之道 | DarylWXC的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DarylWXC的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E4%B9%8B%E9%81%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端进阶之道</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-04T15:21:26+08:00">
+                2020-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.7k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  20 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JS内置类型"><a href="#JS内置类型" class="headerlink" title="JS内置类型"></a>JS内置类型</h1><p>null,undefined,boolean,number,string,symbol<br>数字类型属于浮点类型，没有整型。NaN属于number类型，NaN不等于自身。<br>let a = 111 //这只是字面量，不是number类型<br>a.toString()//使用时候才会转换为对象类型<br>JS对象（Object）是引用类型，在使用过程中会遇到浅拷贝和深拷贝的问题。<br>let a = {name:’FE’}    let b = a<br>b.name=’EF’  console.log(a.name) //EF</p>
+<h1 id="Typeof"><a href="#Typeof" class="headerlink" title="Typeof"></a>Typeof</h1><p>typeof对于基本类型，除了null都可以显示正确的类型。<br>typeof对于对象，除了函数都会显示object<br>typeof null //  ‘object’<br>变量的正确类型获取：Object.prototype.toString.call(xx)//获取[object Type]</p>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>转Boolean:在条件判断时，除了undefined，null，false，NaN，’’,0,-0,其他所有值都转为true，包括所有对象。</p>
+<h1 id="对象转基本类型"><a href="#对象转基本类型" class="headerlink" title="对象转基本类型"></a>对象转基本类型</h1><p>首先调用valueOf,调用toString,方法可以重写<br>重写Symbol.toPrimitive,该方法在转基本类型时调用优先级最高<br>let a = {<br>valueOf(){return 0;},<br>toString(){return ‘1’;},<br><a href>Symbol.toPrimitive</a>{return 2;}<br>}</p>
+<h1 id="四则运算符"><a href="#四则运算符" class="headerlink" title="四则运算符"></a>四则运算符</h1><p>+（加法）：其中一方是字符串类型，就会转另一个为字符串。<br>其他运算，只要一方是数字，另一方就转为数字。<br>加法运算会触发三只类型转换，将值转换为原始值，转换为数字，转换为字符串。<br>== 操作符：<br>undefined == undefined //true<br>Null == Null //true<br>NaN == Nan //false<br>+0 == -0 //true<br>a == b //引用同一对象时相等<br>null == undefined //true<br>comparison x(Number) == ToNumber y(String)//对比类型返回此结果<br>ToNumber x(String) == y(Number)<br>ToNumber x(Boolean) == y<br>x == ToNumber y(Boolean)<br>x(String/Number) == ToPrimitive y(Object)<br>ToPrimitive x(Object) == y(String/Number)</p>
+<hr>
+<p>[ ] == ! [ ] // -&gt;true<br>// [ ]转成true，取反为false<br>[ ] == false<br>// 根据 x == ToNumber y(Boolean)<br>[ ] == 0<br>//根据ToPrimitive x(Object) == y(Number)<br>ToPrimitive([ ]) == 0<br>// [ ].toString() -&gt; ‘ ‘<br>‘ ‘ == 0<br>//根据ToNumber x(String) == y<br>0 == 0 // -&gt; true</p>
+<h1 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h1><p>1.如果是对象，通过toPrimitive转换对象来比较<br>2.如果是字符串，通过Unicode字符索引来比较</p>
+<h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>每个函数都有prototype属性，除了Function.prototype.bind(),该属性指向原型。<br>每个对象都有_proto_属性，指向创建该对象的构造函数的原型。其实这个指向了[[prototype]],但是[[prototype]]是内部属性，我们并不能访问到，所以用_proto_来访问。</p>
+<h1 id="new"><a href="#new" class="headerlink" title="new"></a>new</h1><p>1.新生成一个对象<br>2.链接到原型<br>3.绑定this<br>4.返回新对象<br>function create() {<br>    let obj = new Object() //创建一个空的对象<br>    let Con = [].shift.call(arguments) //获得构造函数<br>    obj.<strong>proto</strong> = Con.prototype //链接到原型<br>    let result = Con.apply(obj,arguments)//绑定this，执行构造函数<br>    return typeof result === ‘object’ ? result :obj//确保new出来的是个对象<br>}<br>创建对象，更推荐使用字面量的方式创建对象。使用new Object()需通过作用域链找Object<br>function Foo() {} // function就是个语法糖，内部等同于 new Function<br>let a = {b:1} //这个字面量内部也是使用了 new Object()<br>new 需要注意下运算符优先级<br>function Foo(){return this;}<br>Foo.getName = function (){console.log(‘1’);};<br>Foo.prototype.getName = function () {console.log(‘2’);};<br>new Foo.getName(); // -&gt;1<br>new Foo().getName(); // -&gt; 2<br>Foo()的优先级更大</p>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>instanceof可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的prototype。<br>手动实现instanceof:<br>function instanceof(left,right){<br>    //获得类型的原型<br>    let prototype = right.prototype<br>    //获得对象的原型<br>    left = left.<strong>proto</strong><br>    //判断对象的类型是否等于类型的原型<br>    while(true) {<br>       if(left === null)<br>          return false<br>       if(prototype === left)<br>          return true<br>       left = left.<strong>proto</strong><br>    }<br>}</p>
+<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><p>function foo(){console.log(this.a)}<br>var a = 1<br>foo()</p>
+<p>var obj = {a: 2,foo: foo}<br>obj.foo()<br>//以上两者情况’this’只依赖于调用函数前的对象，优先级是第二个情况大于第一个情况</p>
+<p>//以下情况是优先级最高的，’this’只会绑定在’c’上，不会被任何方式修改’this’指向<br>var c = new foo()<br>c.a = 3</p>
+<p>console.log(c.a)<br>// 还有种就是利用call，apply，bind改变this，最高优先级仅次于new<br>针对箭头函数<br>function a(){<br> return ()=&gt;{<br>    return ()=&gt;{<br>      console.log(this)<br>    }<br> }<br>}<br>console.log(a()()())<br>箭头函数没有this,这个函数只取决于他外面的第一个不是箭头函数的this，在这个例子中，因为调用a符合前面代码中的第一个情况，所以this是Window，并且this一旦绑定的上下文，就不会被任何代码改变。</p>
+<h1 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h1><p>执行JS代码由三种上下文<br>1.全局执行上下文<br>2.函数执行上下文<br>3.eval执行上下文<br>每个执行上下文中都有三个重要的属性<br>.变量对象（VO），包含变量、函数声明和函数的形参，该属性只能在全局上下文中访问<br>.作用域链（JS采用词法作用域，也就是说变量的作用域是在定义时就决定了）<br>.this<br>var a = 10<br>function foo(i){var b = 20}<br>foo()<br>上诉代码，执行栈中有两个上下文：全局上下文和函数foo上下文<br>stack=[globalContext,fooContext]<br>对于全局上下文来说，VO是这样的<br>globalContext.VO === globe<br>globalContext.VO = {<br>   a: undefined,<br>   foo:<Function>,<br>}<br>对于函数foo来说，VO不能访问，只能访问到活动对象（AO）<br>fooContext.VO === foo.AO<br>fooContext.AO {<br>   i: undefined<br>   b: undefined<br>   arguments:&lt;&gt;<br>}<br>//arguments是函数独有的对象(箭头函数没有)<br>//该对象是一个伪数组，有length属性且可以通过下标访问元素<br>//该对象中的callee属性代表函数本身<br>//caller属性代表函数的调用者<br>对于作用域链，可以把它理解成自身变量对象和上级变量对象的列表，通过[[Scope]]属性查找上级变量<br>fooContext.[[Scope]] = [globalContext.VO]<br>fooContext.Scope = fooContext.[[Scope]] + fooContext.VO<br>fooContext.Scope = [<br>    fooContext.VO,<br>    globalContext.VO<br>]<br>函数和变量提升：<br>生成执行上下文有两个阶段，第一个阶段是创建的阶段（创建VO），JS解释器会找出需要提升的变量和函数，并且给他们提前在内存中开辟好空间，函数的话会将整个函数存入内存中，变量只需要声明并且赋值为undefined，第二个阶段为代码执行阶段，可以提前使用。<br>在提升的过程中，相同的函数会覆盖上一个函数，并且函数优先于变量提升。<br>b() // b2<br>function b(){<br>   console.log(‘b1’)<br>}<br>function b(){<br>   console.log(‘b2’)<br>}<br>var会产生很多错误，所以ES6引入了let，let不能在声明前使用，let有提升，但未赋值，所以不能提前使用。<br>var foo = 1<br>(function foo(){<br>   foo = 10<br>   console.log(foo)<br>}()) // -&gt;f foo(){foo=10;console.log(foo)}<br>JS解释器遇到非匿名的立即执行函数时，会创建一个辅助的特定对象，然后将函数名称作为这个对象的属性，因此函数内部才可以访问到foo。但是这个值又是只读的，所以对它的赋值并不生效，所以打印的结果还是这个函数，并且外部的值也没有发生改变。</Function></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>闭包定义：函数A返回一个函数B，函数B使用A的变量，B成为闭包。<br>function A(){<br>   let a = 1<br>   function B(){<br>       console.log(a)<br>   }<br>   return B<br>}</p>
+<h1 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h1><p>let a = {<br>   age: 1<br>}<br>let b = a<br>a.age = 2<br>console.log(b.age) // 2 因为是引用，浅拷贝<br>浅拷贝：<br>1.通过Object.assign解决<br>let a = {age:1}<br>let b = Object.assign({},a)<br>a.age = 2<br>console.log(b.age) // 1<br>2.运算符(…)解决<br>let a = {age:1}<br>let b = {…a}<br>a.age = 2<br>console.log(b.age) // 1<br>浅拷贝对于二层对象引用无效<br>let a = {jobs:{first:’FE’}}<br>let b = {…a}<br>a.jobs.first = ‘native’<br>console.log(b.jobs.first) // native</p>
+<h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><p>1.通过JSON.parse(JSON.stringify(object))解决<br>let a = {jobs:{first:’FE’}}<br>let b = JSON.parse(JSON.stringfy(a))<br>a.jobs.first = ‘native’<br>console.log(b.jobs.first)<br>该方法有局限性:<br>会忽略undefined<br>会忽略symbol<br>不能序列化函数<br>不能解决循环引用的对象</p>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>// file a.js<br>export function a() {}<br>export function b() {}<br>// file b.js<br>export default function() {}</p>
+<p>import {a,b} from ‘./a.js’<br>import XXX from ‘./b.js’</p>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>// a.js<br>module.exports = {<br>   a:1<br>}<br>// or<br>exports.a = 1</p>
+<p>//b.js<br>var module = require(‘./a.js’)<br>module.a // -&gt;log 1</p>
+<p>var module = require(‘./a.js’)<br>module.a<br>// 这里其实包装了一层立即执行函数，这样就不会污染全局变量了<br>// 重要的是module这里，module是Node独有的一个变量<br>module.exports = {a:1}<br>//基本实现<br>var module = {exports:{} //exports是个空对象}<br>// 这个是为什么exports和module.exports用法相似的原因<br>var exports = module.exports<br>var load = function (module) {<br>   //导出的东西<br>  var a = 1<br>  module.exports = a<br>  return module.exports<br>};<br>module.exports和exports用法相似,但是无法直接赋值，无效果。<br>CommonJS和ES6中的模块化的两者区别是：<br>1.前者支持动态导入，也就是require(${path}/xx.js),后者目前不支持<br>2.前者是同步导入，因为用于服务端，文件在本地，同步导入即使卡住主线程影响也不大。后者是异步导入，因为用于浏览器，需要下载文件，如果也采用同步导入会对渲染有很大影响<br>3.前者在导出时都是值拷贝，就算导出的值变了，导入的值也不会改变，所以如果想更新值，必须重新导入一次。但是后者采用实时绑定的方式，导入导出的值都指向同一个内存地址，所以导入值会跟随导出值变化<br>后者会编译成require/exports来执行的</p>
+<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h1><h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><p>防抖和节流的作用都是防止函数多次调用。区别在于，假设一个用户一直触发这个函数，且每次触发函数的间隔小于wait，防抖的情况下只会调用一次，而节流的情况会每隔一定时间调用函数。<br>防抖实现：<br>const debounce = (func,wait=50) =&gt;{<br>    // 缓存一个定时器id<br>    let timer = 0<br>    // 这里返回的函数是每次用户实际调用的防抖函数<br>    // 如果已经设定过定时器了就清空上一次的定时器<br>    // 开始一个新的定时器，延迟执行用户传入的方法<br>    return function(…args) {<br>        if(timer) clearTimeout(timer)<br>        timer = setTimeout(() =&gt;{<br>           func.apply(this,args)<br>        },wait)<br>    }<br>}<br>// 这是一个简单版的防抖，只能在最后调用，一般防抖有immediate选项，表示是否立即调用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// 这个是用来获取当前时间戳的</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">now</span></span>() &#123;</span><br><span class="line">  <span class="built_in">return</span> +new Date()</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 防抖函数，返回函数连续调用时，空闲时间必须大于或等于 <span class="built_in">wait</span>，func 才会执行</span><br><span class="line"> *</span><br><span class="line"> * @param  &#123;<span class="keyword">function</span>&#125; func        回调函数</span><br><span class="line"> * @param  &#123;number&#125;   <span class="built_in">wait</span>        表示时间窗口的间隔</span><br><span class="line"> * @param  &#123;boolean&#125;  immediate   设置为ture时，是否立即调用函数</span><br><span class="line"> * @<span class="built_in">return</span> &#123;<span class="keyword">function</span>&#125;             返回客户调用函数</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">function</span> debounce (func, <span class="built_in">wait</span> = 50, immediate = <span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="built_in">let</span> timer, context, args</span><br><span class="line"></span><br><span class="line">  // 延迟执行函数</span><br><span class="line">  const later = () =&gt; setTimeout(() =&gt; &#123;</span><br><span class="line">    // 延迟函数执行完毕，清空缓存的定时器序号</span><br><span class="line">    timer = null</span><br><span class="line">    // 延迟执行的情况下，函数会在延迟函数中执行</span><br><span class="line">    // 使用到之前缓存的参数和上下文</span><br><span class="line">    <span class="keyword">if</span> (!immediate) &#123;</span><br><span class="line">      func.apply(context, args)</span><br><span class="line">      context = args = null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="built_in">wait</span>)</span><br><span class="line"></span><br><span class="line">  // 这里返回的函数是每次实际调用的函数</span><br><span class="line">  <span class="built_in">return</span> <span class="keyword">function</span>(...params) &#123;</span><br><span class="line">    // 如果没有创建延迟执行函数（later），就创建一个</span><br><span class="line">    <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">      timer = later()</span><br><span class="line">      // 如果是立即执行，调用函数</span><br><span class="line">      // 否则缓存参数和调用上下文</span><br><span class="line">      <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">        func.apply(this, params)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        context = this</span><br><span class="line">        args = params</span><br><span class="line">      &#125;</span><br><span class="line">    // 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个</span><br><span class="line">    // 这样做延迟函数会重新计时</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">      timer = later()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h1><p>防抖动和节流本质是不一样的。防抖动是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * underscore 节流函数，返回函数连续调用时，func 执行频率限定为 次 / <span class="built_in">wait</span></span><br><span class="line"> *</span><br><span class="line"> * @param  &#123;<span class="keyword">function</span>&#125;   func      回调函数</span><br><span class="line"> * @param  &#123;number&#125;     <span class="built_in">wait</span>      表示时间窗口的间隔</span><br><span class="line"> * @param  &#123;object&#125;     options   如果想忽略开始函数的的调用，传入&#123;leading: <span class="literal">false</span>&#125;。</span><br><span class="line"> *                                如果想忽略结尾函数的调用，传入&#123;trailing: <span class="literal">false</span>&#125;</span><br><span class="line"> *                                两者不能共存，否则函数不能执行</span><br><span class="line"> * @<span class="built_in">return</span> &#123;<span class="keyword">function</span>&#125;             返回客户调用函数</span><br><span class="line"> */</span><br><span class="line">_.throttle = <span class="keyword">function</span>(func, <span class="built_in">wait</span>, options) &#123;</span><br><span class="line">    var context, args, result;</span><br><span class="line">    var timeout = null;</span><br><span class="line">    // 之前的时间戳</span><br><span class="line">    var previous = 0;</span><br><span class="line">    // 如果 options 没传则设为空对象</span><br><span class="line">    <span class="keyword">if</span> (!options) options = &#123;&#125;;</span><br><span class="line">    // 定时器回调函数</span><br><span class="line">    var later = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">      // 如果设置了 leading，就将 previous 设为 0</span><br><span class="line">      // 用于下面函数的第一个 <span class="keyword">if</span> 判断</span><br><span class="line">      previous = options.leading === <span class="literal">false</span> ? 0 : _.now();</span><br><span class="line">      // 置空一是为了防止内存泄漏，二是为了下面的定时器判断</span><br><span class="line">      timeout = null;</span><br><span class="line">      result = func.apply(context, args);</span><br><span class="line">      <span class="keyword">if</span> (!timeout) context = args = null;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">return</span> <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">      // 获得当前时间戳</span><br><span class="line">      var now = _.now();</span><br><span class="line">      // 首次进入前者肯定为 <span class="literal">true</span></span><br><span class="line">	  // 如果需要第一次不执行函数</span><br><span class="line">	  // 就将上次时间戳设为当前的</span><br><span class="line">      // 这样在接下来计算 remaining 的值时会大于0</span><br><span class="line">      <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now;</span><br><span class="line">      // 计算剩余时间</span><br><span class="line">      var remaining = <span class="built_in">wait</span> - (now - previous);</span><br><span class="line">      context = this;</span><br><span class="line">      args = arguments;</span><br><span class="line">      // 如果当前调用已经大于上次调用时间 + <span class="built_in">wait</span></span><br><span class="line">      // 或者用户手动调了时间</span><br><span class="line"> 	  // 如果设置了 trailing，只会进入这个条件</span><br><span class="line">	  // 如果没有设置 leading，那么第一次会进入这个条件</span><br><span class="line">	  // 还有一点，你可能会觉得开启了定时器那么应该不会进入这个 <span class="keyword">if</span> 条件了</span><br><span class="line">	  // 其实还是会进入的，因为定时器的延时</span><br><span class="line">	  // 并不是准确的时间，很可能你设置了2秒</span><br><span class="line">	  // 但是他需要2.2秒才触发，这时候就会进入这个条件</span><br><span class="line">      <span class="keyword">if</span> (remaining &lt;= 0 || remaining &gt; <span class="built_in">wait</span>) &#123;</span><br><span class="line">        // 如果存在定时器就清理掉否则会调用二次回调</span><br><span class="line">        <span class="keyword">if</span> (timeout) &#123;</span><br><span class="line">          clearTimeout(timeout);</span><br><span class="line">          timeout = null;</span><br><span class="line">        &#125;</span><br><span class="line">        previous = now;</span><br><span class="line">        result = func.apply(context, args);</span><br><span class="line">        <span class="keyword">if</span> (!timeout) context = args = null;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</span><br><span class="line">        // 判断是否设置了定时器和 trailing</span><br><span class="line">	    // 没有的话就开启一个定时器</span><br><span class="line">        // 并且不能不能同时设置 leading 和 trailing</span><br><span class="line">        timeout = setTimeout(later, remaining);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>function MyData(){}<br>MyData.prototype.test = function (){<br>    return this.getTime()<br>}<br>let d = new Date()<br>Object.setPrototypeOf(d,MyData,prototype)<br>Object.setPrototypeOf(MyData.prototype,Date.prototype)<br>先创建父类实例=&gt;改变实例原先的<strong>proto</strong>转而连接到子类的prototype =&gt;子类的prototype的<strong>proto</strong>改为父类的prototype</p>
+<h1 id="apply-call-bind区别"><a href="#apply-call-bind区别" class="headerlink" title="apply,call,bind区别"></a>apply,call,bind区别</h1><p>call和apply都是为了解决改变this的指向。作用都是相同的，只是传参的方式不同。<br>除了第一个参数外，call可以接受一个参数列表，apply只接受一个参数数组。<br>let a = {value:1}<br>function getValue(name,age){<br>    console.log(name)<br>    console.log(age)<br>    console.log(this.value)<br>}<br>getValue.call(a,’yck’,’24’)<br>getValue.apply(a,[‘yck’,’24’])<br>模拟实现call和apply<br>不传入第一个参数，默认为window<br>改变了this指向，让新的对象可以执行该函数。那么思路是否可以变成给新的对象添加一个函数，然后在执行完以后删除？<br>Call：<br>Function.prototype.myCall = function (context) {<br>  var context = context || window<br>  // 给 context 添加一个属性<br>  // getValue.call(a, ‘yck’, ‘24’) =&gt; a.fn = getValue<br>  context.fn = this<br>  // 将 context 后面的参数取出来<br>  var args = […arguments].slice(1)<br>  // getValue.call(a, ‘yck’, ‘24’) =&gt; a.fn(‘yck’, ‘24’)<br>  var result = context.fn(…args)<br>  // 删除 fn<br>  delete context.fn<br>  return result<br>}<br>Apply：<br>Function.prototype.myApply = function (context) {<br>  var context = context || window<br>  context.fn = this</p>
+<p>  var result<br>  // 需要判断是否存储第二个参数<br>  // 如果存在，就将第二个参数展开<br>  if (arguments[1]) {<br>    result = context.fn(…arguments[1])<br>  } else {<br>    result = context.fn()<br>  }</p>
+<p>  delete context.fn<br>  return result<br>}<br>bind：<br>Function.prototype.myBind = function (context) {<br>  if (typeof this !== ‘function’) {<br>    throw new TypeError(‘Error’)<br>  }<br>  var _this = this<br>  var args = […arguments].slice(1)<br>  // 返回一个函数<br>  return function F() {<br>    // 因为返回了一个函数，我们可以 new F()，所以需要判断<br>    if (this instanceof F) {<br>      return new _this(…args, …arguments)<br>    }<br>    return _this.apply(context, args.concat(…arguments))<br>  }<br>}</p>
+<h1 id="Promise实现"><a href="#Promise实现" class="headerlink" title="Promise实现"></a>Promise实现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">// 三种状态</span><br><span class="line">const PENDING = <span class="string">"pending"</span>;</span><br><span class="line">const RESOLVED = <span class="string">"resolved"</span>;</span><br><span class="line">const REJECTED = <span class="string">"rejected"</span>;</span><br><span class="line">// promise 接收一个函数参数，该函数会立即执行</span><br><span class="line"><span class="keyword">function</span> MyPromise(fn) &#123;</span><br><span class="line">  <span class="built_in">let</span> _this = this;</span><br><span class="line">  _this.currentState = PENDING;</span><br><span class="line">  _this.value = undefined;</span><br><span class="line">  // 用于保存 <span class="keyword">then</span> 中的回调，只有当 promise</span><br><span class="line">  // 状态为 pending 时才会缓存，并且每个实例至多缓存一个</span><br><span class="line">  _this.resolvedCallbacks = [];</span><br><span class="line">  _this.rejectedCallbacks = [];</span><br><span class="line"></span><br><span class="line">  _this.resolve = <span class="keyword">function</span> (value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value instanceof MyPromise) &#123;</span><br><span class="line">      // 如果 value 是个 Promise，递归执行</span><br><span class="line">      <span class="built_in">return</span> value.then(_this.resolve, _this.reject)</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(() =&gt; &#123; // 异步执行，保证执行顺序</span><br><span class="line">      <span class="keyword">if</span> (_this.currentState === PENDING) &#123;</span><br><span class="line">        _this.currentState = RESOLVED;</span><br><span class="line">        _this.value = value;</span><br><span class="line">        _this.resolvedCallbacks.forEach(cb =&gt; cb());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  _this.reject = <span class="keyword">function</span> (reason) &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123; // 异步执行，保证执行顺序</span><br><span class="line">      <span class="keyword">if</span> (_this.currentState === PENDING) &#123;</span><br><span class="line">        _this.currentState = REJECTED;</span><br><span class="line">        _this.value = reason;</span><br><span class="line">        _this.rejectedCallbacks.forEach(cb =&gt; cb());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  // 用于解决以下问题</span><br><span class="line">  // new Promise(() =&gt; throw Error(<span class="string">'error))</span></span><br><span class="line"><span class="string">  try &#123;</span></span><br><span class="line"><span class="string">    fn(_this.resolve, _this.reject);</span></span><br><span class="line"><span class="string">  &#125; catch (e) &#123;</span></span><br><span class="line"><span class="string">    _this.reject(e);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">MyPromise.prototype.then = function (onResolved, onRejected) &#123;</span></span><br><span class="line"><span class="string">  var self = this;</span></span><br><span class="line"><span class="string">  // 规范 2.2.7，then 必须返回一个新的 promise</span></span><br><span class="line"><span class="string">  var promise2;</span></span><br><span class="line"><span class="string">  // 规范 2.2.onResolved 和 onRejected 都为可选参数</span></span><br><span class="line"><span class="string">  // 如果类型不是函数需要忽略，同时也实现了透传</span></span><br><span class="line"><span class="string">  // Promise.resolve(4).then().then((value) =&gt; console.log(value))</span></span><br><span class="line"><span class="string">  onResolved = typeof onResolved === '</span><span class="keyword">function</span><span class="string">' ? onResolved : v =&gt; v;</span></span><br><span class="line"><span class="string">  onRejected = typeof onRejected === '</span><span class="keyword">function</span><span class="string">' ? onRejected : r =&gt; throw r;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  if (self.currentState === RESOLVED) &#123;</span></span><br><span class="line"><span class="string">    return (promise2 = new MyPromise(function (resolve, reject) &#123;</span></span><br><span class="line"><span class="string">      // 规范 2.2.4，保证 onFulfilled，onRjected 异步执行</span></span><br><span class="line"><span class="string">      // 所以用了 setTimeout 包裹下</span></span><br><span class="line"><span class="string">      setTimeout(function () &#123;</span></span><br><span class="line"><span class="string">        try &#123;</span></span><br><span class="line"><span class="string">          var x = onResolved(self.value);</span></span><br><span class="line"><span class="string">          resolutionProcedure(promise2, x, resolve, reject);</span></span><br><span class="line"><span class="string">        &#125; catch (reason) &#123;</span></span><br><span class="line"><span class="string">          reject(reason);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    &#125;));</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  if (self.currentState === REJECTED) &#123;</span></span><br><span class="line"><span class="string">    return (promise2 = new MyPromise(function (resolve, reject) &#123;</span></span><br><span class="line"><span class="string">      setTimeout(function () &#123;</span></span><br><span class="line"><span class="string">        // 异步执行onRejected</span></span><br><span class="line"><span class="string">        try &#123;</span></span><br><span class="line"><span class="string">          var x = onRejected(self.value);</span></span><br><span class="line"><span class="string">          resolutionProcedure(promise2, x, resolve, reject);</span></span><br><span class="line"><span class="string">        &#125; catch (reason) &#123;</span></span><br><span class="line"><span class="string">          reject(reason);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    &#125;));</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  if (self.currentState === PENDING) &#123;</span></span><br><span class="line"><span class="string">    return (promise2 = new MyPromise(function (resolve, reject) &#123;</span></span><br><span class="line"><span class="string">      self.resolvedCallbacks.push(function () &#123;</span></span><br><span class="line"><span class="string">        // 考虑到可能会有报错，所以使用 try/catch 包裹</span></span><br><span class="line"><span class="string">        try &#123;</span></span><br><span class="line"><span class="string">          var x = onResolved(self.value);</span></span><br><span class="line"><span class="string">          resolutionProcedure(promise2, x, resolve, reject);</span></span><br><span class="line"><span class="string">        &#125; catch (r) &#123;</span></span><br><span class="line"><span class="string">          reject(r);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      self.rejectedCallbacks.push(function () &#123;</span></span><br><span class="line"><span class="string">        try &#123;</span></span><br><span class="line"><span class="string">          var x = onRejected(self.value);</span></span><br><span class="line"><span class="string">          resolutionProcedure(promise2, x, resolve, reject);</span></span><br><span class="line"><span class="string">        &#125; catch (r) &#123;</span></span><br><span class="line"><span class="string">          reject(r);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    &#125;));</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">// 规范 2.3</span></span><br><span class="line"><span class="string">function resolutionProcedure(promise2, x, resolve, reject) &#123;</span></span><br><span class="line"><span class="string">  // 规范 2.3.1，x 不能和 promise2 相同，避免循环引用</span></span><br><span class="line"><span class="string">  if (promise2 === x) &#123;</span></span><br><span class="line"><span class="string">    return reject(new TypeError("Error"));</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  // 规范 2.3.2</span></span><br><span class="line"><span class="string">  // 如果 x 为 Promise，状态为 pending 需要继续等待否则执行</span></span><br><span class="line"><span class="string">  if (x instanceof MyPromise) &#123;</span></span><br><span class="line"><span class="string">    if (x.currentState === PENDING) &#123;</span></span><br><span class="line"><span class="string">      x.then(function (value) &#123;</span></span><br><span class="line"><span class="string">        // 再次调用该函数是为了确认 x resolve 的</span></span><br><span class="line"><span class="string">        // 参数是什么类型，如果是基本类型就再次 resolve</span></span><br><span class="line"><span class="string">        // 把值传给下个 then</span></span><br><span class="line"><span class="string">        resolutionProcedure(promise2, value, resolve, reject);</span></span><br><span class="line"><span class="string">      &#125;, reject);</span></span><br><span class="line"><span class="string">    &#125; else &#123;</span></span><br><span class="line"><span class="string">      x.then(resolve, reject);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    return;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  // 规范 2.3.3.3.3</span></span><br><span class="line"><span class="string">  // reject 或者 resolve 其中一个执行过得话，忽略其他的</span></span><br><span class="line"><span class="string">  let called = false;</span></span><br><span class="line"><span class="string">  // 规范 2.3.3，判断 x 是否为对象或者函数</span></span><br><span class="line"><span class="string">  if (x !== null &amp;&amp; (typeof x === "object" || typeof x === "function")) &#123;</span></span><br><span class="line"><span class="string">    // 规范 2.3.3.2，如果不能取出 then，就 reject</span></span><br><span class="line"><span class="string">    try &#123;</span></span><br><span class="line"><span class="string">      // 规范 2.3.3.1</span></span><br><span class="line"><span class="string">      let then = x.then;</span></span><br><span class="line"><span class="string">      // 如果 then 是函数，调用 x.then</span></span><br><span class="line"><span class="string">      if (typeof then === "function") &#123;</span></span><br><span class="line"><span class="string">        // 规范 2.3.3.3</span></span><br><span class="line"><span class="string">        then.call(</span></span><br><span class="line"><span class="string">          x,</span></span><br><span class="line"><span class="string">          y =&gt; &#123;</span></span><br><span class="line"><span class="string">            if (called) return;</span></span><br><span class="line"><span class="string">            called = true;</span></span><br><span class="line"><span class="string">            // 规范 2.3.3.3.1</span></span><br><span class="line"><span class="string">            resolutionProcedure(promise2, y, resolve, reject);</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          e =&gt; &#123;</span></span><br><span class="line"><span class="string">            if (called) return;</span></span><br><span class="line"><span class="string">            called = true;</span></span><br><span class="line"><span class="string">            reject(e);</span></span><br><span class="line"><span class="string">          &#125;</span></span><br><span class="line"><span class="string">        );</span></span><br><span class="line"><span class="string">      &#125; else &#123;</span></span><br><span class="line"><span class="string">        // 规范 2.3.3.4</span></span><br><span class="line"><span class="string">        resolve(x);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125; catch (e) &#123;</span></span><br><span class="line"><span class="string">      if (called) return;</span></span><br><span class="line"><span class="string">      called = true;</span></span><br><span class="line"><span class="string">      reject(e);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125; else &#123;</span></span><br><span class="line"><span class="string">    // 规范 2.3.4，x 为基本类型</span></span><br><span class="line"><span class="string">    resolve(x);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" rel="tag"># 前端学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/23/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="next" title="JavaScript高级程序设计">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/21/%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%A4%9A%E9%A1%B5%E9%9D%A2/" rel="prev" title="单页面和多页面">
+                单页面和多页面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Aren.jpg"
+                alt="DarylWxc" />
+            
+              <p class="site-author-name" itemprop="name">DarylWxc</p>
+              <p class="site-description motion-element" itemprop="description">每日提升一点点</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives/%7C%7Carchive">
+                <a href="/archives">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=485347116&auto=1&height=66"></iframe>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wxc" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1498368314@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-qq"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                CSDN博客链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/weixin_43898759" title="CSDN主页" target="_blank">CSDN主页</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS内置类型"><span class="nav-number">1.</span> <span class="nav-text">JS内置类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typeof"><span class="nav-number">2.</span> <span class="nav-text">Typeof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换"><span class="nav-number">3.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象转基本类型"><span class="nav-number">4.</span> <span class="nav-text">对象转基本类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四则运算符"><span class="nav-number">5.</span> <span class="nav-text">四则运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较运算符"><span class="nav-number">6.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">7.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#new"><span class="nav-number">8.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">9.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this"><span class="nav-number">10.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行上下文"><span class="nav-number">11.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">12.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深浅拷贝"><span class="nav-number">13.</span> <span class="nav-text">深浅拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深拷贝"><span class="nav-number">14.</span> <span class="nav-text">深拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块化"><span class="nav-number">15.</span> <span class="nav-text">模块化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CommonJS"><span class="nav-number">16.</span> <span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AMD"><span class="nav-number">17.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防抖"><span class="nav-number">18.</span> <span class="nav-text">防抖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节流"><span class="nav-number">19.</span> <span class="nav-text">节流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">20.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apply-call-bind区别"><span class="nav-number">21.</span> <span class="nav-text">apply,call,bind区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise实现"><span class="nav-number">22.</span> <span class="nav-text">Promise实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DarylWxc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Wxc</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">L·O·V·E</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" 
+color="0,0,0" opacity='1' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

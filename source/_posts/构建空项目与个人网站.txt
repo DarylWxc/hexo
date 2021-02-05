@@ -1,0 +1,46 @@
+右键git bash here 
+运行命令行npm install --global vue-cli //安装vue-cli脚手架
+vue init webpack (program-name) //项目名称
+设置Set up unit tests NO
+设置ESLint to lint your code? NO
+设置Setup e2e tests with Nightwatch? No
+npm---->npm install //自动安装环境
+
+cd进入或用编辑器打开，终端执行npm run dev。
+
+打开项目后，在config文件夹中的index.js文件里，将useEslint改为false。// 放置ESlint语法检测报错
+使用scss语法：执行命令行:
+1.npm install node-sass --save-dev
+2.npm install sass-loader --save-dev
+在webpack.base.conf.js文件中rules添加
+{
+    test: /\.scss$/,
+    loaders: ['style', 'css', 'sass']
+}
+由于sass-loader版本太高，在package.json中修改sass-loader版本为8.0以下
+但出现新问题node-sass 5.0与node-sass 4.0冲突，所以卸载原Sass：
+运行命令行npm uninstall node-sass
+安装对应版本sass：
+运行命令行npm install node-sass @4.x.x
+
+引入Element UI：
+运行命令行npm i element-ui -S
+在main.js文件中引入
+import Element from 'element-ui'
+Vue.use(Element)
+
+然后设计布局，采用侧边导航，两分。右边Header头部信息栏，body为展示。
+存在白边问题与高度过小问题，在index.html上加上
+html,body{margin:0,padding:0,height:100%}
+
+
+
+github本地配置name与email
+打开.git文件夹
+打开config文件，编辑添加
+[user]
+	name:your name
+	email:your email
+保存退出
+可以通过命令行查看//git config user.name
+项目地址：https://github.com/DarylWxc/myWebSite.git

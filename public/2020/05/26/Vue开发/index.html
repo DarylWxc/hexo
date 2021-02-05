@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Aren.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="This is my vue develop exprience~2020&#x2F;5&#x2F;7 16:02 Write过往项目经验总结 关键词：Vue，CSS，SVN，WebPack，IconFont，Flex，Jeecg，Iview，ElementUI 12345678使用Vue开发页面，环境配置，导入包，Package，使用IView组件进行页面开发。（使用开源组件一定需要查看开发文档！！！！！！）CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue开发">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/Vue%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="DarylWXC的博客">
+<meta property="og:description" content="This is my vue develop exprience~2020&#x2F;5&#x2F;7 16:02 Write过往项目经验总结 关键词：Vue，CSS，SVN，WebPack，IconFont，Flex，Jeecg，Iview，ElementUI 12345678使用Vue开发页面，环境配置，导入包，Package，使用IView组件进行页面开发。（使用开源组件一定需要查看开发文档！！！！！！）CSS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/05/26/Vue%E5%BC%80%E5%8F%91/vue.png">
+<meta property="article:published_time" content="2020-05-26T06:50:00.000Z">
+<meta property="article:modified_time" content="2020-12-09T06:14:19.000Z">
+<meta property="article:author" content="DarylWxc">
+<meta property="article:tag" content="前端框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/26/Vue%E5%BC%80%E5%8F%91/vue.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/26/Vue开发/"/>
+
+
+
+
+
+  <title>Vue开发 | DarylWXC的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DarylWXC的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/26/Vue%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-26T14:50:00+08:00">
+                2020-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  24 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="This-is-my-vue-develop-exprience"><a href="#This-is-my-vue-develop-exprience" class="headerlink" title="This is my vue develop exprience~"></a>This is my vue develop exprience~</h2><h2 id="2020-5-7-16-02-Write"><a href="#2020-5-7-16-02-Write" class="headerlink" title="2020/5/7 16:02 Write"></a>2020/5/7 16:02 Write</h2><p>过往项目经验总结</p>
+<p>关键词：Vue，CSS，SVN，WebPack，IconFont，Flex，Jeecg，Iview，ElementUI</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">使用Vue开发页面，环境配置，导入包，Package，使用IView组件进行页面开发。</span><br><span class="line">（使用开源组件一定需要查看开发文档！！！！！！）</span><br><span class="line">CSS排版布局，flex学习并使用，各种定位的深入了解。</span><br><span class="line">router路由在Vue当中的使用，熟练使用组件进行开发。</span><br><span class="line">熟练使用SVN进行提交和更新代码，提交需要带钩子，如果本地有更改过的文件，在更新时需要将有改动的文件删除再更新，否则会出现乱码</span><br><span class="line">父子组件间的传值通信，Props的使用，对话框的熟练使用。</span><br><span class="line">分析需求并设计页面，使用Axure进行页面的设计，使用开源的移动端组件和阿里的IconFont，必要时可以自行设计组件。</span><br><span class="line">熟悉WebPack框架和Cli脚手架。</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用ant-design-jeecg-vue进行开发，代码自动生成。文档链接：[jeecg开发文档](<span class="string">"http://doc.jeecg.com/1273969"</span>)</span><br><span class="line">该框架生成的代码由ElementUI组件组成。</span><br><span class="line">考虑页面的逻辑和合理性。</span><br><span class="line">弹框嵌套，需要注意层级。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2020-5-7-10-33-Write"><a href="#2020-5-7-10-33-Write" class="headerlink" title="2020/5/7 10:33 Write"></a>2020/5/7 10:33 Write</h2><p>使用Vue进行对应页面开发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">使用elementUI进行页面的开发，使用Upload上传文件，自带判断文件后缀。</span><br><span class="line">使用POST方法，带FormData参数，使用Append添加序列，需要New一个FormData对象，然后进行传参。</span><br><span class="line">使用Dialog组件，显示设备详情，点击跳出，准备参析路由。</span><br><span class="line">GET方法带的参数只有Params对象。跟在URL后面。</span><br><span class="line">POST和GET不同：//都为TCP链接，并无差别。</span><br><span class="line">参数格式不同以外，参数的大小也不同。因为服务器的处理方式不同，不一定能接受到数据（request body的数据）。</span><br><span class="line">由于HTTP的规定和浏览器/服务器的限制，应用过程体型出不同。</span><br><span class="line">GET产生一个TCP数据包，POST产生两个TCP数据包。</span><br><span class="line">GET，header和data一起发过去，响应200。（返回数据）</span><br><span class="line">POST，先发送header，服务器响应<span class="built_in">continue</span>，再发送data，响应200。（ 返回数据）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2020-5-7-15-53-Write"><a href="#2020-5-7-15-53-Write" class="headerlink" title="2020/5/7 15:53 Write"></a>2020/5/7 15:53 Write</h2><p>使用Element组件遇到的问题~</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用elementUI的UpLoad组件上传xls文件，需要注意文件格式和文件获取</span><br><span class="line">组件自带上传，可以设置header和数据的name，需要注意Token或者Cookie</span><br><span class="line">组件获取文件的方式   this.<span class="variable">$refs</span>.&#123;upload&#125;（这是关联upload组件的ref名称）.<span class="variable">$data</span>.uploadFiles</span><br><span class="line">注意dialog组件的visible显示值设置</span><br><span class="line">详细查看开发文档！！！！！必要时进行测试获取信息！！</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2020-5-8-9-38-Write"><a href="#2020-5-8-9-38-Write" class="headerlink" title="2020/5/8 9:38 Write"></a>2020/5/8 9:38 Write</h2><p>使用SVN合并代码，并开发模式遇到问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将文件checkout在其他文件夹里，然后修改原代码文件。</span><br><span class="line">多注意NetWork中请求的格式，请求的参数格式！！！！</span><br><span class="line">其中GET方式的URL会随参数改变，POST方式不会。</span><br><span class="line">使用POSTMan测试。</span><br><span class="line">接口文档管理有使用到SWAGGER和小幺鸡~</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2020-5-9-9-53-Write"><a href="#2020-5-9-9-53-Write" class="headerlink" title="2020/5/9 9:53 Write"></a>2020/5/9 9:53 Write</h2><p>总结工作经验，编写简历</p>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue的两种路由模式：Hash和History模式</span><br><span class="line"><span class="built_in">hash</span>：默认模式</span><br><span class="line">常用NewURL和OldURL来改变链接，动态页面数据。<span class="built_in">hash</span>值发生变化的时候，会触发hashchange这个时间，通过该事件监听hashchange来实现更新页面部分内容。</span><br><span class="line">History模式：</span><br><span class="line">切换历史状态，back，forward，go三个方法，刷新页面会请求服务器。History模式需要避免刷新。刷新时如果没有相应的响应或者资源，会刷新出404。</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同事开发地图，使用蜂鸟地图插件。经过询问得知，正在研究。</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">回温Vue文档。查看生命周期。</span><br><span class="line">beforeCreate()-&gt;created()-&gt;beforeMount()-&gt;mounted()-&gt;beforeUpdate()-&gt;updated()-&gt;beforeDestroy()-&gt;destoryed()//函数调用顺序，中间各有过程</span><br><span class="line">周期如下图</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/05/26/Vue%E5%BC%80%E5%8F%91/vue.png" alt="vue"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在使用ElementUI的Upload上传文件时，action的动态响应是在上传后执行的，所以需要给上传方法设置延时器，并且用到this上下文的时候，需要将this传到该函数内使用，否则会报错。</span><br><span class="line">上传可以设置header的值，在初始化的时候获取token：this.header = &#123;token:`<span class="variable">$&#123;this.$cookie.get('token')&#125;</span>`&#125;</span><br><span class="line">设置的header是一个对象，给header的token属性赋值，要求上传成功后自动关闭对话框，然后清除选择文件数据：this.<span class="variable">$refs</span>.upload.clearFiles();</span><br><span class="line">需要考虑功能全面，合理</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vue中数据异步渲染，数据响应式为Vue 的重要核心，在数据变更后，可能DOM还未更新，所以可以调用nextTick（callback）函数，这样回调函数将在DOM更新完后被调用。并且this会绑定到当前的vue实例上。</span><br><span class="line">同域：域名、端口、协议均相同，缺一不可。</span><br><span class="line">跨域：浏览器从一个域名的网页去请求另一个域名的资源时，不同域，就是跨域。//可能会被另一个域保存Cookie或session用来对同域网站发起非法操作，为CSRF攻击，盗用身份。</span><br><span class="line">解决方法：JSONP，CORS。//https://www.jianshu.com/p/f880878c1398(参考)</span><br><span class="line">使用FileZilla Client进行网页部署，连接到服务器，将右边框内dist文件删除，从左边框内选择本体文件，然后右键上传。</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Vue加载本地图片失败，无法使用相对路径。<br>//使用绝对路径 :src=”‘<a href="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg&#39;&quot;" target="_blank" rel="noopener">https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg&#39;&quot;</a><br>//使用require :src=”require(‘@/assets/images/icon/file/jpg.png’)”<br>//使用import   import jpg from ‘@/assets/images/icon/file/jpg.png’<br>Vue使用vue-awesome<br>//执行指令 npm install vue-awesome<br>//在main.js文件下 import ‘vue-awesome’ || import Icon from ‘vue-awesome/components/Icon’<br>//Vue.component(‘icon’,Icon)  然后正常使用  <icon name="”beer”"></icon><br>Vue使用Iconfont<br>//选择Icon加入购物车，并且下载源码<br>//执行命令npm install css-loader -D(否则会报错）<br>//在main.js文件中引入 import ‘@/assets/Iconfont/iconfont.css’!!!!!注意这里使用@，绝对路径<br>//直接使用<i class="iconfont icon-MV" style="color: white"></i>  在iconfont.json文件中查看各个icon的fontclass<br>Vue行内写hover样式<br>//onmouseover=”this.style.color=’#57EDED’”!!由于无法实现hover，使用js事件实现，并且在参数边要加引号’’<br>//改变光标形状为小手:cursor=’pointer’<br>Vue点击跳转链接<br>//如果不写协议，会自动在链接前加上localhost:8080(相当于一个相对路径)<br>CSS3 animaiton 实现图片旋转<br>//animation: 15s linear 0s normal none infinite rotate;<br>//animation-play-state: running;<br>Vue导入本地音频文件<br>//文件放入static文件里，无需改变任何Webpack配置，直接引入<br>//引入写法：mp3Url:”static/attack音D.mp3”<br>Vue js将小数转为整数值<br>//toFixed(2) 后面的数值代表保留两位小数<br>Vue 将字符串转化为数值<br>//parseInt(str) 如果是浮点数，将Int改成float即可<br>Vue 实现进度条<br>// element UI 放置 el-progress   :percentage=”mp3width” 设置percentage为数值变量<br>// 实现函数LoadProgress 通过setInterval改变mp3width的值（浮点数）<br>//使用el-slide,可以实现点击和拖拽<br>//需要注意函数运行速度，存在未取到值而后直接进行计算<br>Vue注意事项<br>//开发到后发现，需要通过数据关联来通过子组件控制父组件。<br>//还有一些加载速度，值得优化和注意。<br>Vue遇到组件通信问题<br>//尽量减少组件层数，如果在同一层父组件时，子组件可以一起和父组件通信，获得数据共享。</p>
+<hr>
+<p>深入响应式原理，vue的核心。<br>当一个对象在实例化中的data选项，Vue将遍历此对象所有的property，转为getter和setter。<br>每个组件实例都对应有一个watcher实例，在渲染过程中把数据property记录为依赖，之后当setter触发时，会通知watcher，使关联的组件重新渲染。<br>注意：当数据在data选项外时，为非响应式！！！<br>数组的长度和直接利用索引直接设置的数据都不是响应性的，这时可以使用set方法，使用index和数组的子项更新数据。<br>vue提前声明所有的响应式property。<br>Vue在更新DOM时是异步执行的，侦听到数据变化时，将开启一个队列，缓冲在同一事件循环中发生的所有数据变更。<br>使用原生html，js，css开发文书模板。<br>body{padding:0px;margin:0px} //适应浏览器，无白边<br>使用占位符，空格（&amp;nbsp），后用正则表达式替换。<br>text-align:justify;// 文字两端对齐<br>margin:0 auto;// 左右对齐<br>white-space:normal// 文字换行,元素空白处理<br>div的使用和flex的合理使用</p>
+<hr>
+<p>使用远程桌面连接部署，Windows+r运行 mstsc<br>输入用户名和密码，连接<br>然后将本地的文件复制并粘贴部署到连接的服务器上</p>
+<hr>
+<h2 id="开源项目Vue-element-admin"><a href="#开源项目Vue-element-admin" class="headerlink" title="开源项目Vue-element-admin"></a>开源项目Vue-element-admin</h2><p>权限验证：根据用户登录的role去判断角色请求路由表，动态生成可访问页面。路由挂载。<br>指令权限：通过封装方法，判断角色权限，类似于V-if，不同角色能看到的操作不同。<br>spa(single page web application 单页面开发)//科普<br>路由：分动态和静态路由，主要需要注意引入和使用到的地方，需要快速定位代码中使用路由的位置，研究动态路由的实现。<br>在文件夹中选择find in path 在所有文件中查询使用的地方<br>将router的path改为“/”为默认跳转的第一页面<br>vue有三类路由钩子<br>1.全局钩子  调用router.beforeEach和.afterEach函数 其中next，to中如果带参数，会导致回调，要避免死循环。<br>2.某个路由的钩子<br>3.组件内钩子<br>Vuex使用和了解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//State</span><br><span class="line">computed: &#123;</span><br><span class="line">    <span class="function"><span class="title">count</span></span> () &#123;</span><br><span class="line">      <span class="built_in">return</span> this.<span class="variable">$store</span>.state.count//一般如此调用store的数据</span><br><span class="line">    &#125;，</span><br><span class="line">...mapState(&#123; //或者通过mapState函数，批量获取</span><br><span class="line">      sidebar: state =&gt; state.app.sidebar,</span><br><span class="line">      device: state =&gt; state.app.device,</span><br><span class="line">      showSettings: state =&gt; state.settings.showSettings,</span><br><span class="line">      needTagsView: state =&gt; state.settings.tagsView,</span><br><span class="line">      fixedHeader: state =&gt; state.settings.fixedHeader</span><br><span class="line">    &#125;),</span><br><span class="line">  &#125;</span><br><span class="line">//Getter</span><br><span class="line"> getters: &#123;</span><br><span class="line">    doneTodos: state =&gt; &#123;</span><br><span class="line">      <span class="built_in">return</span> state.todos.filter(todo =&gt; todo.done)//返回处理过的数据</span><br><span class="line">       <span class="built_in">return</span> this.<span class="variable">$store</span>.getters.doneTodosCount//直接返回函数运行后返回的对象</span><br><span class="line">    &#125;</span><br><span class="line">  sidebar: state =&gt; state.app.sidebar,</span><br><span class="line">  size: state =&gt; state.app.size,</span><br><span class="line">  device: state =&gt; state.app.device</span><br><span class="line">&#125;</span><br><span class="line">computed: &#123; //依旧在computed辅助函数里调用，mapGetters函数</span><br><span class="line">  // 使用对象展开运算符将 getter 混入 computed 对象中</span><br><span class="line">    ...mapGetters([</span><br><span class="line">      <span class="string">'doneTodosCount'</span>,</span><br><span class="line">      <span class="string">'anotherGetter'</span>,</span><br><span class="line">      // ...</span><br><span class="line">    ])</span><br><span class="line">  &#125;</span><br><span class="line">//mutation 相当于函数，用于改变state的值</span><br><span class="line">store.commit(<span class="string">'increment'</span>)//调用mutation handler方式</span><br><span class="line">// ...</span><br><span class="line">mutations: &#123;//mutation函数，限制函数同步执行</span><br><span class="line">  increment (state, n) &#123;//可以传值</span><br><span class="line">    state.count += n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">store.commit(<span class="string">'increment'</span>, 10)//传入值10</span><br><span class="line">mutations: &#123;</span><br><span class="line">  increment (state, payload) &#123; //一般是传入一个对象</span><br><span class="line">    state.count += payload.amount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const mutations = &#123;</span><br><span class="line">  SET_TOKEN: (state, token) =&gt; &#123; //使用常量来定义函数名</span><br><span class="line">    state.token = token</span><br><span class="line">  &#125;,</span><br><span class="line">  SET_INTRODUCTION: (state, introduction) =&gt; &#123;//同上</span><br><span class="line">    state.introduction = introduction</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">commit(<span class="string">'SET_ROLES'</span>, roles)//调用时</span><br><span class="line">commit(<span class="string">'SET_NAME'</span>, name)</span><br><span class="line">//action 类似于mutation，可以在其中调用mutation，可以内部执行异步操作</span><br><span class="line">actions: &#123; //action函数接受一个与store实例具有相同方法和属性的context对象，可以通过该对象获取state和gettersstore.dispatch(<span class="string">'increment'</span>)</span><br><span class="line">  increment (&#123; commit &#125;) &#123;</span><br><span class="line">    commit(<span class="string">'increment'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">store.dispatch(<span class="string">'increment'</span>)//action函数通过dispatch方法触发</span><br><span class="line">//在action中有设计到登录操作，调用异步API和分发多重mutation</span><br><span class="line">也可使用mapAction</span><br><span class="line">//Module 用于将store分割成模块，每个模块拥有自己的state，mutation，action，getter，从上到下分割</span><br><span class="line">在状态数较大时可以使用，避免臃肿。</span><br><span class="line">设置Namespaced：<span class="literal">true</span>，使其成为带命名空间的模块，避免冲命名污染。</span><br><span class="line">在全局命名空间内分发action或提交mutation，将root：<span class="literal">true</span>作为第三参数传给dispatch或commit，直接访问到root下的函数（数据）。</span><br></pre></td></tr></table></figure>
+<hr>
+<p>可以在assets文件中放置css文件，或者一些静态文件。在main.js引入，全局调用。<br>路由在跳转的时候可以传递参数，有三种方式：<br>方案1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$router</span>.push(&#123;//使用方法</span><br><span class="line">    path: `/describe/<span class="variable">$&#123;id&#125;</span>`,</span><br><span class="line">)&#125;</span><br><span class="line">&#123;//对应配置的路由</span><br><span class="line">  path:<span class="string">'/describe/:id'</span>,</span><br><span class="line">  name: <span class="string">'Describe'</span>,</span><br><span class="line">  component: Describe</span><br><span class="line">&#125;</span><br><span class="line">this.<span class="variable">$route</span>.params.id//调用方法</span><br></pre></td></tr></table></figure>
+<p>方案二</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$router</span>.push(&#123;//使用方法</span><br><span class="line">    name: <span class="string">'Describe'</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">      id: id</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line">//路由正常配置</span><br><span class="line"><span class="variable">$route</span>.params.id//调用方法</span><br></pre></td></tr></table></figure>
+<p>方案三</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$router</span>.push(&#123;//使用方法</span><br><span class="line">  path: <span class="string">'/describe'</span>,</span><br><span class="line">  query: &#123;</span><br><span class="line">    id: id</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable">$route</span>.query.id//调用方法</span><br></pre></td></tr></table></figure>
+<hr>
+<p>项目菜单栏：通过多个组件组成，使用el-scrollbar组件（在element文档没有标注）<br>包裹el-menu，自定义sidebar-item组件使用v-for动态生成多个子项，通过v-if来判断子项显示模式，使用render函数返回item组件作为menuitem，使用link组件（通过：is来判断标签类型，v-bind绑定跳转链接）包裹item来作为跳转链接。<br>mixins混入的使用，其中有函数，数据，并且在每个组件混入的数据都是独立的。（主要作用：代码复用，减少冗余），其中在mixins里的函数命名必须带$_避免引入组件中函数名重复。<br>scss文件引入其他scss文件，可以调用类型，但无法调用里面的属性和mixins，在main.js引入就可以全局调用，包括引入文件中已经引入的文件。<br>Item组件使用render函数返回的原因（性能问题）<br>css3的使用，美化页面。</p>
+<hr>
+<p>v-for的使用，需要一个参数（item,i）in（数组或对象）,可以生成多个。<br>布局注意，P标签自占高度，使用a标签，display：block，块级元素，就可以调整高度了。canvas的使用需要研究，图形实现的好方法。<br>安装prettier自动代码格式化。<br>通过ps打开图片获取颜色和像素。</p>
+<hr>
+<p>Vue项目不同环境打包指令和配置<br>1.env.js文件中各自有</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span></span><br><span class="line">module.exports = &#123;</span><br><span class="line"> NODE_ENV: <span class="string">'"production（生产）"'</span>,//testing（测试）,development（开发）</span><br><span class="line"> EVN_CONFIG:<span class="string">'"prod"'</span>,//<span class="built_in">test</span>,dev</span><br><span class="line"> API_ROOT:<span class="string">'"/apis/v1"'</span>//api代理地址</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.还需修改package.json文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"</span>,</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"npm run dev"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"node build/build.js"</span>,</span><br><span class="line">  <span class="string">"build:test"</span>: <span class="string">"cross-env NODE_ENV=production env_config=test node build/build.js"</span>,</span><br><span class="line">  <span class="string">"build:pre"</span>: <span class="string">"cross-env NODE_ENV=production env_config=pre node build/build.js"</span>,</span><br><span class="line">  <span class="string">"build:prod"</span>: <span class="string">"cross-env NODE_ENV=production env_config=prod node build/build.js"</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>3.修改config/index.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">build:&#123;</span><br><span class="line">  // Template <span class="keyword">for</span> index.html</span><br><span class="line">  // 添加<span class="built_in">test</span> pre prod 三处环境的配制</span><br><span class="line">  prodEnv: require(<span class="string">'./prod.env'</span>),</span><br><span class="line">  preEnv: require(<span class="string">'./pre.env'</span>),</span><br><span class="line">  testEnv: require(<span class="string">'./test.env'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.在webpackage.pro.conf.js中使用构建环境参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 个性env常量的定义</span><br><span class="line">// const env = require(<span class="string">'../config/prod.env'</span>)</span><br><span class="line">const env = config.build[process.env.env_config+<span class="string">'Env'</span>]</span><br></pre></td></tr></table></figure>
+<p>5.build.js文件修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span></span><br><span class="line">require(<span class="string">'./check-versions'</span>)()</span><br><span class="line">// 注释掉的代码</span><br><span class="line">// process.env.NODE_ENV = <span class="string">'production'</span></span><br><span class="line">const ora = require(<span class="string">'ora'</span>)</span><br><span class="line">const rm = require(<span class="string">'rimraf'</span>)</span><br><span class="line">const path = require(<span class="string">'path'</span>)</span><br><span class="line">const chalk = require(<span class="string">'chalk'</span>)</span><br><span class="line">const webpack = require(<span class="string">'webpack'</span>)</span><br><span class="line">const config = require(<span class="string">'../config'</span>)</span><br><span class="line">const webpackConfig = require(<span class="string">'./webpack.prod.conf'</span>)</span><br><span class="line">// 修改spinner的定义</span><br><span class="line">// const spinner = ora(<span class="string">'building for production...'</span>)</span><br><span class="line">var spinner = ora(<span class="string">'building for '</span> + process.env.NODE_ENV + <span class="string">' of '</span> + process.env.env_config+ <span class="string">' mode...'</span> )</span><br><span class="line">spinner.start()</span><br><span class="line">//更多的其它内容，不需要做任何调整的内容 ...</span><br></pre></td></tr></table></figure>
+<p>6.打包指令<br>npm run build:test//测试环境<br>npm run build:prod//生产环境<br>以此类推</p>
+<hr>
+<p>异步加载：async,defer,动态创建script标签<br>异步任务：promise，async</p>
+<hr>
+<p>8中数据类型分别是：<br>Number，String，Boolean，Null，undefined，object（data，function，array），symbol，bigInt<br>Null只有一个值，是null，不存在的对象。<br>Undefined只有一个值，是undefined，没有初始化，undefined是从null中派生出来的。<br>Undefined是没有定义的，null定义了但是为空。<br>基本类型的变量是存放在栈内存（stack）里的<br>基本类型的值是按值访问的<br>基本类型的值是不可变的<br>基本类型的比较是它们的值的比较<br>类型方法<br>运算符优先级<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">参考链接表</a></p>
+<hr>
+<p>柯里化：接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下参数并且返回结果的新函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 普通的add函数</span><br><span class="line"><span class="keyword">function</span> add(x, y) &#123;</span><br><span class="line">    <span class="built_in">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Currying后</span><br><span class="line"><span class="keyword">function</span> curryingAdd(x) &#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="keyword">function</span> (y) &#123;</span><br><span class="line">        <span class="built_in">return</span> x + y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>数组常用方法（array）：<br>1.concat（arrA，arrB，…）//合并数组<br>2. arr.join（separator）//数组转字符串<br>3.arr.toString //无参数，转字符串<br>4.arr.toLocaleString//以逗号隔开输出<br>5.arr.slice（start，end）//截取数组<br>6.arr.splice（index，many，【item1】）//数组删除/添加<br>7.arr.unshift（x,y）//头部增加<br>8.arr.shitf（）//头部删除<br>9.arr.push(x,y)//尾部增加<br>10.arr.pop()//尾部删除<br>11.arr.sort(sortby) //按字符编码进行排序<br>12.arr.reverse（）//数组颠倒<br>13.arr.filter()//数组过滤<br>字符串常用方法（string）：<br>1.str.charAt(index)//返回指定位置的（字符）！！<br>2.str.indexOf(value,[index])//从index找，返回value第一次出现的下标<br>3.str.match（value）//存放匹配结果的数组<br>4.str.split(separator,[many])//数组在separator指定的边界处分割字符串<br>5.str.search(str)//第一个与str匹配的子串起始位置<br>6.str.slice(start,end)//按下标截取字符串<br>7.str.substr(start,[length])//返回从start开始的len个字符<br>8.str.substring（start,[stop]）//提取start到stop的字符串<br>9.str.concat(x,y,z)//连接字符串<br>10.str.replace(substr,replacement)//替换字符串中的部分<br>11.str.toLowerCase()//变小写<br>12.str.toUpperCase()//变大写<br>数组循环方法：<br>forEach(),for-of</p>
+<hr>
+<p>引用类型：<br>Object，Array，RegExp，Date，Function<br>引用类型的值是保存在堆内存（heap）中的对象（object）<br>引用类型的值是按引用访问的<br>引用类型的值是可变的<br>引用类型的比较是引用的比较</p>
+<hr>
+<p>深浅拷贝<br>浅拷贝为引用，深拷贝为创建一个相同的新对象。</p>
+<hr>
+<p>异步和同步<br>1.同步任务在主线程上形成一个执行栈<br>2.主线程外还有一个任务队列<br>3.一旦“执行栈”里的任务执行完毕，系统会读取任务队列里的任务执行<br>4.主线程重复以上三个步骤<br>heap（堆）stack（栈）<br>任务队列中可以放置定时事件（setTimeout，setInterval）<br>定时器将事件插入任务队列，等执行栈执行完才能去执行指定的回调函数</p>
+<hr>
+<p>使用setInterval()循环，在mounted函数中使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;timer:<span class="string">''</span>&#125;</span><br><span class="line">this.timer = setInterval(()=&gt;&#123;此处写函数&#125;,3000)//1000为1s</span><br><span class="line"><span class="function"><span class="title">beforeDestroy</span></span>()&#123;</span><br><span class="line">  clearInterval(this.timer)//在页面销毁前关闭计时器</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="使用store"><a href="#使用store" class="headerlink" title="使用store"></a>使用store</h3><p>创建新文件timer.js用来设置计时器<br>在index.js主store中引入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import timer from <span class="string">'./modules/timer'</span></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">     modules:&#123;</span><br><span class="line">        timer</span><br><span class="line">     &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">export</span> default store //暴露，可以外部引入</span><br></pre></td></tr></table></figure>
+<p>在js文件中，需要引入store ///import store from ‘./store’<br>直接调用store即可// store.state.clock//store.commit(‘set_clock’,1)<br>在组件当中调用//this.$store.dispatch对应action（异步）<br>//this.$store.state对应对象<br>//this.$store.commit对应mutation（同步）!!只有mutation可以改变状态<br>//this.$store.getters对应getter //挂载数据计算功能（里面可有数据计算函数）</p>
+<hr>
+<p>路由监听：<br>permission文件当中使用的this.$router.beforeEach(to,from,next)=&gt;{}是全局监听路由的方法<br>vue页面中有三种监听路由的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.watch:&#123;</span><br><span class="line">   <span class="variable">$route</span>:&#123;</span><br><span class="line">      handler(val,oldval)&#123;</span><br><span class="line">        console.log(val);//新路由信息</span><br><span class="line">        console.log(oldval);//老路由信息</span><br><span class="line">      &#125;</span><br><span class="line">      deep:<span class="literal">true</span>//深度观察监听</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">2.watch:&#123;</span><br><span class="line">  <span class="variable">$route</span>(to,from)&#123;</span><br><span class="line">    console.log(from.path)//从哪来</span><br><span class="line">    console.log(to.path)//到哪去</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">3.methods:&#123;</span><br><span class="line">  <span class="function"><span class="title">getpath</span></span>()&#123;</span><br><span class="line">    console.log(111)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">watch:&#123;</span><br><span class="line">   <span class="string">'$route'</span>:<span class="string">'getPath'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>js数组对象为指针，修改需要深拷贝，否则会修改原数据<br>防抖：防止按钮多次点击<br>封装防抖函数：debounce.js<br>let timeout = null<br>function bounce(fn,wait) {<br>  if(timeout !== null) clearTimeout(timeout)<br>  timeout = setTimeout(fn,wait)<br>}<br>引入(import)并使用<br>bounce(()=&gt;{function},1000)<br>数组深拷贝：<br>1.concat():<br>let copyArray = [].concat(array)<br>2.slice(idx1,idx2)<br>let copyArray = [].slice()//无参为拷贝数组</p>
+<hr>
+<p>逻辑梳理，设计模式，需求合理，可维护性<br>在写api请求的时候，可以使用promise与async await同步操作<br>并且可以后续抓错处理</p>
+<p>js中Set类型的使用：<br>Set类型带有的函数<br>let num = new Set() //初始化  typeof num为object<br>num.add()// 添加元素的函数<br>num.size //set类型的长度<br>set类型无法添加重复的元素 //利用这点可以数组去重<br>let array = […num] || num = new Set(array)//数组与set的转换<br>num.has() //Set类型用来判断一个值是否在set中<br>num.delete() //Set类型用来删除在set中的值<br>num.clear()//Set类型清空所有的值<br>Set类型的遍历方式<br>num.forEach(function(value){}) // forEach<br>for(val of num){} // for…of<br>js中的遍历函数：<br>Array.map(value,index,array){} //map函数，有元素值，元素下标，数组三个参数，针对每个元素处理，原数组不变，最后返回一个新数组<br>Array.forEach(value,index,array){}//forEach函数，参数如上，无返回值，原数组不变<br>Array.filter(value,index,array){}//filter函数,参数如上,针对每个元素，判断条件返回元素，返回新数组，原数组不变<br>Array.some(),Array.every()//对所有数组成员依次执行函数，返回布尔值,用作数组满足条件判断<br>Array.some(function callback(value,index,arr){})//调用filter的数组<br>Array.some()如果一个成员满足条件则返回true，Array.every()需要全部成员满足条件才返回true,原数组都不变<br>Array.reduce() //使用函数依次处理每个成员，最终返回一个值<br>reduce(callback(previousValue,currentValue,currentIndex,array){函数},initialValue)// previousValue:上一次遍历后提供的值，最开始为初始值:initialValue<br>遍历函数的区别与总结：<br>map()： 在处理函数中将返回值组成一个新的数组返回，原数组(arr)保持不变。<br>forEach()： 没有返回值，即使处理函数中设置了return也无效，原数组(arr)保持不变。<br>filter()： 判断处理函数中的返回值是否为true，将返回为true的数组元素(该元素为最原始的数组元素)组成一个新的数组返回，原数组(arr)保持不变。<br>some()与every()： 判断处理函数中的返回值是否为true，如果有一个成员返回值为true，则some()返回true；如果所有成员返回值都为true，则every()返回true，原数组(arr)保持不变。<br>reduce()： 返回值会被记住，并且在遍历下一个元素中可以被调用，最后返回单个结果值，原数组(arr)保持不变<br>设计模式对代码设计有着非常大的作用，尽快学习。<br>循环机制-&gt;同步异步-&gt;函数运行机制-&gt;执行栈宏任务(Macro)微任务(Micro)<br>宏任务：script(整体代码)，setTimeout,setInterval,I/O,UI交互事件，setImmediate(Node.js)<br>微任务：Promise,MutaionObserver,process.nextTick(Node.js)</p>
+<hr>
+<p>父子组件传值<br>父向子传值：单向绑定，父传过来的值无法在子组件中更改。<br>1.v-bind props<br>{<br>fooA:Number //只接受数值类型的参数<br>fooB:[String,Number] //可以接受字符串和数值类型的参数<br>fooC:{type:String,required:true} //可以接受字符串的类型，参数必须传入<br>fooD:{type:Number,default:100} //接受数值类型的参数，默认值为100<br>fooE:{type:Object,default:()=&gt;{return{message:’’}};//当为对象类型时设置默认值必须使用函数返回<br>fooF:{validator:function(value){return value &gt;= 0 &amp;&amp; value &lt;= 100;}}//使用一个自定义的验证器<br>fooG:{type:Array,default:function(){return[]}}// 当为数值类型设置默认值时必须使用数组返回<br>}</p>
+<hr>
+<p>利用$refs<br>ref=”home” //调用子组件函数获值<br>this.$refs.home.setMsg(this.mgs)//父<br>setMsg(val){this.msg = val}//子</p>
+<hr>
+<p>子向父传值： v-on $emit<br>this.$emit(“receive”,”value”)//子组件<br>@receive=”receive”<br>methods:{receive(val){}}</p>
+<hr>
+<p>利用$parent<br>setMsg(){this.$parent.toValue(this.msg)} //子<br>toValue(val){this.msg = val} //父</p>
+<hr>
+<p>爷传孙:props<br>:mgs=”msg”//爷<br>v-bind=”$attrs”//父<br>props:{mgs:String}//子</p>
+<hr>
+<p>孙传爷<br>this.$emit(“setVal”,this.msg)//孙<br>v-on=”$listeners”//父<br>@setVal=”setVal” setVal(val){this.msg = val}</p>
+<hr>
+<p>祖组件传后代组件:要求值必须为对象!!!<br>provide(){return {data:this.dataObj}}//与data同级,祖组件<br>inject:[‘data’],computed:{()=&gt;{return’${this.data.msg}&amp;{this.data.num}’}}</p>
+<hr>
+<p>兄弟组件传值(store)<br>EventBus可用，调用完必须销毁，否则出bug。</p>
+<hr>
+<p>apply:传入两个参数，一个参数数组，一个运行环境，默认Window。<br>call:传入多个参数，一个 运行环境，其他为参数。<br>bind:使用多加（），绑定上下文。<br>三个函数皆为改变上下文this的函数<br>多熟悉组件间通信，路由间通信。</p>
+<h3 id="持续进行编写和开发，经验保存"><a href="#持续进行编写和开发，经验保存" class="headerlink" title="持续进行编写和开发，经验保存"></a>持续进行编写和开发，经验保存</h3><p>后续将CSDN博客中的经验总结并转移，并学习更多HEXO使用方式和编写方式</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"># 前端框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/20/Web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD/" rel="next" title="Web前端性能优化-页面加载">
+                <i class="fa fa-chevron-left"></i> Web前端性能优化-页面加载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/05/Axure%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1/" rel="prev" title="Axure原型设计">
+                Axure原型设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Aren.jpg"
+                alt="DarylWxc" />
+            
+              <p class="site-author-name" itemprop="name">DarylWxc</p>
+              <p class="site-description motion-element" itemprop="description">每日提升一点点</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives/%7C%7Carchive">
+                <a href="/archives">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=485347116&auto=1&height=66"></iframe>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wxc" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1498368314@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-qq"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                CSDN博客链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/weixin_43898759" title="CSDN主页" target="_blank">CSDN主页</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#This-is-my-vue-develop-exprience"><span class="nav-number">1.</span> <span class="nav-text">This is my vue develop exprience~</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-5-7-16-02-Write"><span class="nav-number">2.</span> <span class="nav-text">2020&#x2F;5&#x2F;7 16:02 Write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-5-7-10-33-Write"><span class="nav-number">3.</span> <span class="nav-text">2020&#x2F;5&#x2F;7 10:33 Write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-5-7-15-53-Write"><span class="nav-number">4.</span> <span class="nav-text">2020&#x2F;5&#x2F;7 15:53 Write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-5-8-9-38-Write"><span class="nav-number">5.</span> <span class="nav-text">2020&#x2F;5&#x2F;8 9:38 Write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-5-9-9-53-Write"><span class="nav-number">6.</span> <span class="nav-text">2020&#x2F;5&#x2F;9 9:53 Write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源项目Vue-element-admin"><span class="nav-number">7.</span> <span class="nav-text">开源项目Vue-element-admin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用store"><span class="nav-number">7.1.</span> <span class="nav-text">使用store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续进行编写和开发，经验保存"><span class="nav-number">7.2.</span> <span class="nav-text">持续进行编写和开发，经验保存</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DarylWxc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Wxc</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">L·O·V·E</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" 
+color="0,0,0" opacity='1' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-Aren.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Aren.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web性能," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web前端性能优化的方式1.减少HTTP请求1一个页面80%~90%的时间花在了下载页面中的所有组件进行的HTTP请求上。因此，改善响应时间最简单的途径就是减少HTTP请求的数量。 2.将样式表放在头部12将样式表放在头部对于实际页面加载的时间影响不大，但是这会减少页面首屏出现的时间，使页面内容逐步呈现，改善用户体验，放置“白屏”。将样式表放在文档底部会阻止浏览器中的内容逐步出现，为了避免当样式变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web前端性能优化-页面加载">
+<meta property="og:url" content="http://yoursite.com/2020/05/20/Web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD/index.html">
+<meta property="og:site_name" content="DarylWXC的博客">
+<meta property="og:description" content="Web前端性能优化的方式1.减少HTTP请求1一个页面80%~90%的时间花在了下载页面中的所有组件进行的HTTP请求上。因此，改善响应时间最简单的途径就是减少HTTP请求的数量。 2.将样式表放在头部12将样式表放在头部对于实际页面加载的时间影响不大，但是这会减少页面首屏出现的时间，使页面内容逐步呈现，改善用户体验，放置“白屏”。将样式表放在文档底部会阻止浏览器中的内容逐步出现，为了避免当样式变">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-20T08:38:42.000Z">
+<meta property="article:modified_time" content="2020-05-20T09:02:42.000Z">
+<meta property="article:author" content="DarylWxc">
+<meta property="article:tag" content="Web性能">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/20/Web前端性能优化-页面加载/"/>
+
+
+
+
+
+  <title>Web前端性能优化-页面加载 | DarylWXC的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DarylWXC的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/Web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web前端性能优化-页面加载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-20T16:38:42+08:00">
+                2020-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BC%98%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  940 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Web前端性能优化的方式"><a href="#Web前端性能优化的方式" class="headerlink" title="Web前端性能优化的方式"></a>Web前端性能优化的方式</h2><h3 id="1-减少HTTP请求"><a href="#1-减少HTTP请求" class="headerlink" title="1.减少HTTP请求"></a>1.减少HTTP请求</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个页面80%~90%的时间花在了下载页面中的所有组件进行的HTTP请求上。因此，改善响应时间最简单的途径就是减少HTTP请求的数量。</span><br></pre></td></tr></table></figure>
+<h3 id="2-将样式表放在头部"><a href="#2-将样式表放在头部" class="headerlink" title="2.将样式表放在头部"></a>2.将样式表放在头部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将样式表放在头部对于实际页面加载的时间影响不大，但是这会减少页面首屏出现的时间，使页面内容逐步呈现，改善用户体验，放置“白屏”。</span><br><span class="line">将样式表放在文档底部会阻止浏览器中的内容逐步出现，为了避免当样式变化时重绘页面元素，浏览器会阻塞内容逐步呈现，造成“白屏”。这源自浏览器的行为，如果样式表仍在加载，构建呈现树就是一种浪费，因为所有样式表加载解析完毕之前无需绘制任何东西。</span><br></pre></td></tr></table></figure>
+<h3 id="3-将脚本放在底部"><a href="#3-将脚本放在底部" class="headerlink" title="3.将脚本放在底部"></a>3.将脚本放在底部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">跟样式表相同，脚本放在底部对于实际页面加载的数据影响不大。</span><br><span class="line">JS的下载和执行会阻塞DOM树的构建，所以script放在首屏范围内的HTML代码段里会截断首屏的内容。</span><br><span class="line">下载脚本时并下载是禁用的——即使使用了不同的主机名，也不会启用其他的下载。因为脚本可能修改页面内容，因此浏览器会等待；另外也是为了保证脚本能够按照正确的顺序执行，因为后面的脚本可能与前面的脚本存在依赖关系，不按照顺序执行可能会产生错误。</span><br></pre></td></tr></table></figure>
+<h3 id="4-使用外部的JavaScript和CSS"><a href="#4-使用外部的JavaScript和CSS" class="headerlink" title="4.使用外部的JavaScript和CSS"></a>4.使用外部的JavaScript和CSS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">内联脚本或者样式可以减少HTTP请求，按理说可以提高页面加载的速度。然而在实际情况中，当脚本或者样式是从外部引入的文件，浏览器就有可能缓存他们，从而在以后加载的时候能够直接使用缓存，而HTML文档的大小减小，从而提高加载速度。</span><br><span class="line">影响原因：</span><br><span class="line">用户产生的浏览量越少，内联脚本和样式的论据越强势。</span><br><span class="line">如果你的网站不同的页面之间使用的组件大致相同，那么使用外部文件可以提高这些组件的重用率。</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-对文件进行压缩"><a href="#5-对文件进行压缩" class="headerlink" title="5.对文件进行压缩"></a>5.对文件进行压缩</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在服务器端对文件进行压缩，在浏览器端对文件解压，可以有效减少通信传输的数据量。</span><br><span class="line">外部脚本和样式进行合并，多个合为一个，文本文件的压缩率可达80%以上。</span><br><span class="line">但是服务器资源不足的情况下要权衡考虑。</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-合并CSS图片"><a href="#6-合并CSS图片" class="headerlink" title="6.合并CSS图片"></a>6.合并CSS图片</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用CSS Sprites，减少请求数。</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-JS代码的优化"><a href="#7-JS代码的优化" class="headerlink" title="7.JS代码的优化"></a>7.JS代码的优化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">慎用with：在with代码块中访问非局部变量都是先从obj上开始查找，如果没有再一次按作用域链向上查找，使用with相当于增加了作用域链长度。查找需要消耗时间，过长的作用域链会导致性能下降。</span><br><span class="line">避免使用<span class="built_in">eval</span>和Function：每次使用，需要将源代码转换成可执行的代码，很消耗资源。使用该函数也不利于JavaScript压缩工具执行压缩。</span><br><span class="line">减少作用域链查找：应该减少闭包的使用。</span><br><span class="line">数据访问：对对象属性和任何数组成员的访问次数减少，尽可能减少对对象以及数组深度查找。</span><br><span class="line">字符串拼接：在JavaScript使用“+”来拼接效率比较低，使用join函数更为高效（当拼接的字符串比较多的时候考虑使用此方法）。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web%E6%80%A7%E8%83%BD/" rel="tag"># Web性能</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/18/%E6%A0%B9%E6%8D%AE%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" rel="next" title="根据测试文档测试">
+                <i class="fa fa-chevron-left"></i> 根据测试文档测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/26/Vue%E5%BC%80%E5%8F%91/" rel="prev" title="Vue开发">
+                Vue开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Aren.jpg"
+                alt="DarylWxc" />
+            
+              <p class="site-author-name" itemprop="name">DarylWxc</p>
+              <p class="site-description motion-element" itemprop="description">每日提升一点点</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives/%7C%7Carchive">
+                <a href="/archives">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=485347116&auto=1&height=66"></iframe>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wxc" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1498368314@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-qq"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                CSDN博客链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/weixin_43898759" title="CSDN主页" target="_blank">CSDN主页</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web前端性能优化的方式"><span class="nav-number">1.</span> <span class="nav-text">Web前端性能优化的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-减少HTTP请求"><span class="nav-number">1.1.</span> <span class="nav-text">1.减少HTTP请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-将样式表放在头部"><span class="nav-number">1.2.</span> <span class="nav-text">2.将样式表放在头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-将脚本放在底部"><span class="nav-number">1.3.</span> <span class="nav-text">3.将脚本放在底部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用外部的JavaScript和CSS"><span class="nav-number">1.4.</span> <span class="nav-text">4.使用外部的JavaScript和CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-对文件进行压缩"><span class="nav-number">1.5.</span> <span class="nav-text">5.对文件进行压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-合并CSS图片"><span class="nav-number">1.6.</span> <span class="nav-text">6.合并CSS图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-JS代码的优化"><span class="nav-number">1.7.</span> <span class="nav-text">7.JS代码的优化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DarylWxc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Wxc</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">L·O·V·E</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" 
+color="0,0,0" opacity='1' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
