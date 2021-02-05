@@ -1021,4 +1021,22 @@ person.prototype._proto_._proto_ === null//true
 构造函数通过prototype属性链接到原型对象。
 同一个构造函数创建的两个实例，共享一个原型对象。
 isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否
-P227
+getPrototypeOf()//用于获取[[prototype]]原型对象
+setPrototypeOf()//用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。
+create()//用于创建新对象指定原型
+访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。
+hasOwnProperty()//用于判断属性在实例或原型上
+可以通过for-in判断通过对象能否访问到一个属性//"name" in person(true)
+getOwnPropertyNames()//...按顺序进行枚举
+### 8.2.5 对象迭代
+Object.values()//以数组的形式输出值
+Object.entries()//以数组的形式输出键值和值
+非字符串的属性会被转换为字符串输出，符号属性会被忽略。
+P234
+
+
+
+
+
+
+

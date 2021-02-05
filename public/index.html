@@ -727,7 +727,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  12.1k words
+                  12.4k words
                 </span>
               
 
@@ -743,7 +743,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  48 min
+                  49 min
                 </span>
               
             </div>
@@ -1299,7 +1299,8 @@ if(pattern.test(text)) {
 <h2 id="8-2-创建对象"><a href="#8-2-创建对象" class="headerlink" title="8.2 创建对象"></a>8.2 创建对象</h2><h3 id="8-2-1-概述"><a href="#8-2-1-概述" class="headerlink" title="8.2.1 概述"></a>8.2.1 概述</h3><p>与类不同，对象的巧妙运行可以实现与类相同的行为。</p>
 <h3 id="8-2-2-工厂模式"><a href="#8-2-2-工厂模式" class="headerlink" title="8.2.2 工厂模式"></a>8.2.2 工厂模式</h3><p>设计模式之一<br>function createPerson(name,age,job){<br>   let o = new Object();<br>   o.name = name;<br>   o.age = age;<br>   o.job = job;<br>   o.sayName = function(){<br>       console.log(this.name);<br>   };<br>   return o;<br>}<br>解决创建多个类似对象的问题，但无解决对象标识问题（对象类型）。</p>
 <h3 id="8-2-3-构造函数模式"><a href="#8-2-3-构造函数模式" class="headerlink" title="8.2.3 构造函数模式"></a>8.2.3 构造函数模式</h3><p>function Person(name,age,job){<br>   this.name = name;<br>   this.age = age;<br>   this.job = job;<br>   this.sayName = function(){<br>      console.log(this.name);<br>   }<br>}<br>与工厂模式类似,无return，无显式创建对象。<br>构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。<br>let person = function(){};<br>let person1 = new person(...);<br>let person2 = new person(...);<br>person1 instanceof Object//true<br>person1 instanceof person//true<br>person2一样<br>构造函数也可以直接调用<br>person(...);window.sayName();//添加到了window<br>let o = new Object();<br>Person.call(o,"wxc",25);o.sayName()//wxc 在另一个对象的作用域中调用<br>在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。<br>可以在外部定义函数，在内部赋值解决这个问题。</p>
-<h3 id="8-2-4-原型模式"><a href="#8-2-4-原型模式" class="headerlink" title="8.2.4 原型模式"></a>8.2.4 原型模式</h3><p>prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。<br>在原型上定义的值可以共享。<br>Chrome暴露了<em>proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。<br>原型链会终止与Object的原型链。<br>person.prototype._proto</em>.<em>proto</em> === null//true<br>构造函数、原型对象和实例，三个完全不同的对象。<br>实例通过_proto_链接到原型对象，实际指向[[Prototype]]<br>构造函数通过prototype属性链接到原型对象。<br>同一个构造函数创建的两个实例，共享一个原型对象。<br>isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否<br>P227</p>
+<h3 id="8-2-4-原型模式"><a href="#8-2-4-原型模式" class="headerlink" title="8.2.4 原型模式"></a>8.2.4 原型模式</h3><p>prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。<br>在原型上定义的值可以共享。<br>Chrome暴露了<em>proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。<br>原型链会终止与Object的原型链。<br>person.prototype._proto</em>.<em>proto</em> === null//true<br>构造函数、原型对象和实例，三个完全不同的对象。<br>实例通过_proto_链接到原型对象，实际指向[[Prototype]]<br>构造函数通过prototype属性链接到原型对象。<br>同一个构造函数创建的两个实例，共享一个原型对象。<br>isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否<br>getPrototypeOf()//用于获取[[prototype]]原型对象<br>setPrototypeOf()//用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。<br>create()//用于创建新对象指定原型<br>访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。<br>hasOwnProperty()//用于判断属性在实例或原型上<br>可以通过for-in判断通过对象能否访问到一个属性//"name" in person(true)<br>getOwnPropertyNames()//...按顺序进行枚举</p>
+<h3 id="8-2-5-对象迭代"><a href="#8-2-5-对象迭代" class="headerlink" title="8.2.5 对象迭代"></a>8.2.5 对象迭代</h3><p>Object.values()//以数组的形式输出值<br>Object.entries()//以数组的形式输出键值和值<br>非字符串的属性会被转换为字符串输出，符号属性会被忽略。<br>P234</p>
 </script></noscript></noscript></h1>
           
         
