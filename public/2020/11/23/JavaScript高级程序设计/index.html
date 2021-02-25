@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E6%96%87%E6%A1%A3%E6%A0%91.png">
 <meta property="article:published_time" content="2020-11-23T01:43:04.000Z">
-<meta property="article:modified_time" content="2021-02-05T08:37:19.438Z">
+<meta property="article:modified_time" content="2021-02-06T09:41:35.489Z">
 <meta property="article:author" content="DarylWxc">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  12.4k words
+                  12.6k words
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  49 min
+                  50 min
                 </span>
               
             </div>
@@ -919,7 +919,9 @@ if(pattern.test(text)) {
 <h3 id="8-2-2-工厂模式"><a href="#8-2-2-工厂模式" class="headerlink" title="8.2.2 工厂模式"></a>8.2.2 工厂模式</h3><p>设计模式之一<br>function createPerson(name,age,job){<br>   let o = new Object();<br>   o.name = name;<br>   o.age = age;<br>   o.job = job;<br>   o.sayName = function(){<br>       console.log(this.name);<br>   };<br>   return o;<br>}<br>解决创建多个类似对象的问题，但无解决对象标识问题（对象类型）。</p>
 <h3 id="8-2-3-构造函数模式"><a href="#8-2-3-构造函数模式" class="headerlink" title="8.2.3 构造函数模式"></a>8.2.3 构造函数模式</h3><p>function Person(name,age,job){<br>   this.name = name;<br>   this.age = age;<br>   this.job = job;<br>   this.sayName = function(){<br>      console.log(this.name);<br>   }<br>}<br>与工厂模式类似,无return，无显式创建对象。<br>构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。<br>let person = function(){};<br>let person1 = new person(...);<br>let person2 = new person(...);<br>person1 instanceof Object//true<br>person1 instanceof person//true<br>person2一样<br>构造函数也可以直接调用<br>person(...);window.sayName();//添加到了window<br>let o = new Object();<br>Person.call(o,"wxc",25);o.sayName()//wxc 在另一个对象的作用域中调用<br>在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。<br>可以在外部定义函数，在内部赋值解决这个问题。</p>
 <h3 id="8-2-4-原型模式"><a href="#8-2-4-原型模式" class="headerlink" title="8.2.4 原型模式"></a>8.2.4 原型模式</h3><p>prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。<br>在原型上定义的值可以共享。<br>Chrome暴露了<em>proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。<br>原型链会终止与Object的原型链。<br>person.prototype._proto</em>.<em>proto</em> === null//true<br>构造函数、原型对象和实例，三个完全不同的对象。<br>实例通过_proto_链接到原型对象，实际指向[[Prototype]]<br>构造函数通过prototype属性链接到原型对象。<br>同一个构造函数创建的两个实例，共享一个原型对象。<br>isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否<br>getPrototypeOf()//用于获取[[prototype]]原型对象<br>setPrototypeOf()//用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。<br>create()//用于创建新对象指定原型<br>访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。<br>hasOwnProperty()//用于判断属性在实例或原型上<br>可以通过for-in判断通过对象能否访问到一个属性//"name" in person(true)<br>getOwnPropertyNames()//...按顺序进行枚举</p>
-<h3 id="8-2-5-对象迭代"><a href="#8-2-5-对象迭代" class="headerlink" title="8.2.5 对象迭代"></a>8.2.5 对象迭代</h3><p>Object.values()//以数组的形式输出值<br>Object.entries()//以数组的形式输出键值和值<br>非字符串的属性会被转换为字符串输出，符号属性会被忽略。<br>P234</p>
+<h3 id="8-2-5-对象迭代"><a href="#8-2-5-对象迭代" class="headerlink" title="8.2.5 对象迭代"></a>8.2.5 对象迭代</h3><p>Object.values()//以数组的形式输出值<br>Object.entries()//以数组的形式输出键值和值<br>非字符串的属性会被转换为字符串输出，符号属性会被忽略。<br>重写了prototype的函数原型不默认指向constructor<br>ES语法需要使用defineProperty()来恢复constructor属性。<br>实例只有指向原型的指针，没有指向构造函数的指针。</p>
+<h2 id="8-3-继承"><a href="#8-3-继承" class="headerlink" title="8.3 继承"></a>8.3 继承</h2><p>ES中只支持实现继承。</p>
+<h3 id="8-3-1-原型链"><a href="#8-3-1-原型链" class="headerlink" title="8.3.1 原型链"></a>8.3.1 原型链</h3><p>通过原型继承多个引用类型的属性和方法。<br>将A函数原型赋值为B函数的实例，A函数的实例可以通过原型访问到B函数实例的属性和方法。实际A函数可以通过原型与B函数的原型挂钩。在搜索属性时，会通过原型链访问到原型的原型，直到末端。<br>所有引用类型都继承自Object，任何函数的默认原型都是一个Object的实例，也是为什么自定义类型能够继承toString(),valueOf()方法的原因。调用toString()时，实际在调用Object.prototype上的方法。<br>通过instanceof返回原型与构造函数的原型关系。</p>
 </script></noscript></noscript></h1>
       
     </div>
@@ -1042,7 +1044,7 @@ if(pattern.test(text)) {
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1053,7 +1055,7 @@ if(pattern.test(text)) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1064,7 +1066,7 @@ if(pattern.test(text)) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1654,7 +1656,9 @@ if(pattern.test(text)) {
 &lt;h3 id&#x3D;&quot;8-2-2-工厂模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-2-工厂模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.2 工厂模式&quot;&gt;&lt;&#x2F;a&gt;8.2.2 工厂模式&lt;&#x2F;h3&gt;&lt;p&gt;设计模式之一&lt;br&gt;function createPerson(name,age,job){&lt;br&gt;   let o &#x3D; new Object();&lt;br&gt;   o.name &#x3D; name;&lt;br&gt;   o.age &#x3D; age;&lt;br&gt;   o.job &#x3D; job;&lt;br&gt;   o.sayName &#x3D; function(){&lt;br&gt;       console.log(this.name);&lt;br&gt;   };&lt;br&gt;   return o;&lt;br&gt;}&lt;br&gt;解决创建多个类似对象的问题，但无解决对象标识问题（对象类型）。&lt;&#x2F;p&gt;
 &lt;h3 id&#x3D;&quot;8-2-3-构造函数模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-3-构造函数模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.3 构造函数模式&quot;&gt;&lt;&#x2F;a&gt;8.2.3 构造函数模式&lt;&#x2F;h3&gt;&lt;p&gt;function Person(name,age,job){&lt;br&gt;   this.name &#x3D; name;&lt;br&gt;   this.age &#x3D; age;&lt;br&gt;   this.job &#x3D; job;&lt;br&gt;   this.sayName &#x3D; function(){&lt;br&gt;      console.log(this.name);&lt;br&gt;   }&lt;br&gt;}&lt;br&gt;与工厂模式类似,无return，无显式创建对象。&lt;br&gt;构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。&lt;br&gt;let person &#x3D; function(){};&lt;br&gt;let person1 &#x3D; new person(...);&lt;br&gt;let person2 &#x3D; new person(...);&lt;br&gt;person1 instanceof Object&#x2F;&#x2F;true&lt;br&gt;person1 instanceof person&#x2F;&#x2F;true&lt;br&gt;person2一样&lt;br&gt;构造函数也可以直接调用&lt;br&gt;person(...);window.sayName();&#x2F;&#x2F;添加到了window&lt;br&gt;let o &#x3D; new Object();&lt;br&gt;Person.call(o,&quot;wxc&quot;,25);o.sayName()&#x2F;&#x2F;wxc 在另一个对象的作用域中调用&lt;br&gt;在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。&lt;br&gt;可以在外部定义函数，在内部赋值解决这个问题。&lt;&#x2F;p&gt;
 &lt;h3 id&#x3D;&quot;8-2-4-原型模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-4-原型模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.4 原型模式&quot;&gt;&lt;&#x2F;a&gt;8.2.4 原型模式&lt;&#x2F;h3&gt;&lt;p&gt;prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。&lt;br&gt;在原型上定义的值可以共享。&lt;br&gt;Chrome暴露了&lt;em&gt;proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。&lt;br&gt;原型链会终止与Object的原型链。&lt;br&gt;person.prototype._proto&lt;&#x2F;em&gt;.&lt;em&gt;proto&lt;&#x2F;em&gt; &#x3D;&#x3D;&#x3D; null&#x2F;&#x2F;true&lt;br&gt;构造函数、原型对象和实例，三个完全不同的对象。&lt;br&gt;实例通过_proto_链接到原型对象，实际指向[[Prototype]]&lt;br&gt;构造函数通过prototype属性链接到原型对象。&lt;br&gt;同一个构造函数创建的两个实例，共享一个原型对象。&lt;br&gt;isPrototypeOf()&#x2F;&#x2F;用于判断实例原型对象与构造函数的原型相同否&lt;br&gt;getPrototypeOf()&#x2F;&#x2F;用于获取[[prototype]]原型对象&lt;br&gt;setPrototypeOf()&#x2F;&#x2F;用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。&lt;br&gt;create()&#x2F;&#x2F;用于创建新对象指定原型&lt;br&gt;访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。&lt;br&gt;hasOwnProperty()&#x2F;&#x2F;用于判断属性在实例或原型上&lt;br&gt;可以通过for-in判断通过对象能否访问到一个属性&#x2F;&#x2F;&quot;name&quot; in person(true)&lt;br&gt;getOwnPropertyNames()&#x2F;&#x2F;...按顺序进行枚举&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-2-5-对象迭代&quot;&gt;&lt;a href&#x3D;&quot;#8-2-5-对象迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.5 对象迭代&quot;&gt;&lt;&#x2F;a&gt;8.2.5 对象迭代&lt;&#x2F;h3&gt;&lt;p&gt;Object.values()&#x2F;&#x2F;以数组的形式输出值&lt;br&gt;Object.entries()&#x2F;&#x2F;以数组的形式输出键值和值&lt;br&gt;非字符串的属性会被转换为字符串输出，符号属性会被忽略。&lt;br&gt;P234&lt;&#x2F;p&gt;
+&lt;h3 id&#x3D;&quot;8-2-5-对象迭代&quot;&gt;&lt;a href&#x3D;&quot;#8-2-5-对象迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.5 对象迭代&quot;&gt;&lt;&#x2F;a&gt;8.2.5 对象迭代&lt;&#x2F;h3&gt;&lt;p&gt;Object.values()&#x2F;&#x2F;以数组的形式输出值&lt;br&gt;Object.entries()&#x2F;&#x2F;以数组的形式输出键值和值&lt;br&gt;非字符串的属性会被转换为字符串输出，符号属性会被忽略。&lt;br&gt;重写了prototype的函数原型不默认指向constructor&lt;br&gt;ES语法需要使用defineProperty()来恢复constructor属性。&lt;br&gt;实例只有指向原型的指针，没有指向构造函数的指针。&lt;&#x2F;p&gt;
+&lt;h2 id&#x3D;&quot;8-3-继承&quot;&gt;&lt;a href&#x3D;&quot;#8-3-继承&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.3 继承&quot;&gt;&lt;&#x2F;a&gt;8.3 继承&lt;&#x2F;h2&gt;&lt;p&gt;ES中只支持实现继承。&lt;&#x2F;p&gt;
+&lt;h3 id&#x3D;&quot;8-3-1-原型链&quot;&gt;&lt;a href&#x3D;&quot;#8-3-1-原型链&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.3.1 原型链&quot;&gt;&lt;&#x2F;a&gt;8.3.1 原型链&lt;&#x2F;h3&gt;&lt;p&gt;通过原型继承多个引用类型的属性和方法。&lt;br&gt;将A函数原型赋值为B函数的实例，A函数的实例可以通过原型访问到B函数实例的属性和方法。实际A函数可以通过原型与B函数的原型挂钩。在搜索属性时，会通过原型链访问到原型的原型，直到末端。&lt;br&gt;所有引用类型都继承自Object，任何函数的默认原型都是一个Object的实例，也是为什么自定义类型能够继承toString(),valueOf()方法的原因。调用toString()时，实际在调用Object.prototype上的方法。&lt;br&gt;通过instanceof返回原型与构造函数的原型关系。&lt;&#x2F;p&gt;
 </span></a></li></ol></div>
             
 
