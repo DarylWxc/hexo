@@ -262,6 +262,388 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/26/JavaScript%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/26/JavaScript%E5%9F%BA%E7%A1%80/" itemprop="url">JavaScript基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-26T15:17:21+08:00">
+                2021-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  447 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-原型链"><a href="#1-原型链" class="headerlink" title="1. 原型链"></a>1. 原型链</h2><p>每个函数都有prototype，指向了一个对象，该对象为实例的原型。<br>每个JS对象（除了null）都具有_proto_属性，指向该对象的原型。<br>每个原型都具有constructor属性，指向关联的构造函数。<br>Object.prototype._proto_为null代表该对象没有原型。</p>
+<h2 id="2-继承"><a href="#2-继承" class="headerlink" title="2. 继承"></a>2. 继承</h2><ul>
+<li>原型链继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.name &#x3D; &#39;kevin&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent();</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child1.getName()) &#x2F;&#x2F; kevin</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(); &#x2F;&#x2F; 引用类型的属性被所有实例共享</span><br><span class="line"></span><br><span class="line">child1.names.push(&#39;yayu&#39;); </span><br><span class="line"></span><br><span class="line">console.log(child1.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(); &#x2F;&#x2F; 创建child实例时无法向Parent传参</span><br><span class="line"></span><br><span class="line">console.log(child2.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br></pre></td></tr></table></figure></li>
+<li>借用构造函数（经典继承）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.names &#x3D; [&#39;kevin&#39;, &#39;daisy&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line">    Parent.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">child1.names.push(&#39;yayu&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child2.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;]</span><br><span class="line"></span><br><span class="line">function Parent (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child (name) &#123;</span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.name); &#x2F;&#x2F; kevin</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(&#39;daisy&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child2.name); &#x2F;&#x2F; daisy</span><br></pre></td></tr></table></figure>
+优点：<br>1.避免了引用类型的属性被所有实例共享<br>2.可以在Child中向Parent传参<br>缺点：<br>方法都在构造函数中定义，每次创建实例都会创建一遍方法。<h2 id="3-作用域"><a href="#3-作用域" class="headerlink" title="3. 作用域"></a>3. 作用域</h2><h2 id="4-闭包"><a href="#4-闭包" class="headerlink" title="4. 闭包"></a>4. 闭包</h2><h2 id="5-变量提升"><a href="#5-变量提升" class="headerlink" title="5. 变量提升"></a>5. 变量提升</h2><h2 id="6-this的指向"><a href="#6-this的指向" class="headerlink" title="6. this的指向"></a>6. this的指向</h2><h2 id="7-立即执行函数"><a href="#7-立即执行函数" class="headerlink" title="7. 立即执行函数"></a>7. 立即执行函数</h2><h2 id="8-instanceof原理"><a href="#8-instanceof原理" class="headerlink" title="8. instanceof原理"></a>8. instanceof原理</h2><h2 id="9-bind的实现"><a href="#9-bind的实现" class="headerlink" title="9. bind的实现"></a>9. bind的实现</h2><h2 id="10-apply和call"><a href="#10-apply和call" class="headerlink" title="10. apply和call"></a>10. apply和call</h2><h2 id="11-柯里化"><a href="#11-柯里化" class="headerlink" title="11. 柯里化"></a>11. 柯里化</h2><h2 id="12-v8垃圾回收机制"><a href="#12-v8垃圾回收机制" class="headerlink" title="12. v8垃圾回收机制"></a>12. v8垃圾回收机制</h2><h2 id="13-浮点数精度"><a href="#13-浮点数精度" class="headerlink" title="13. 浮点数精度"></a>13. 浮点数精度</h2><h2 id="14-new操作符"><a href="#14-new操作符" class="headerlink" title="14. new操作符"></a>14. new操作符</h2><h2 id="15-事件循环机制"><a href="#15-事件循环机制" class="headerlink" title="15. 事件循环机制"></a>15. 事件循环机制</h2><h2 id="16-promise原理"><a href="#16-promise原理" class="headerlink" title="16. promise原理"></a>16. promise原理</h2><h2 id="17-generator原理"><a href="#17-generator原理" class="headerlink" title="17. generator原理"></a>17. generator原理</h2></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/26/vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/26/vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" itemprop="url">vue权限管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-26T10:30:39+08:00">
+                2021-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  10 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-权限是啥？"><a href="#1-权限是啥？" class="headerlink" title="1. 权限是啥？"></a>1. 权限是啥？</h2><p>权限是对特定资源的访问许可，确保用户只能访问到被分配的资源。其原理是请求发起权，请求发起有两种形式：</p>
+<ul>
+<li>页面加载触发</li>
+<li>页面上的按钮点击触发<br>实现目标：</li>
+<li>路由方面，只能看到有权访问的菜单</li>
+<li>视图方面，只能看到自己有权浏览的内容和有权操作的控件</li>
+<li>请求控制，越权请求在前端进行拦截<h2 id="2-如何实现？"><a href="#2-如何实现？" class="headerlink" title="2. 如何实现？"></a>2. 如何实现？</h2>权限控制可以分四个方面：</li>
+<li>接口权限</li>
+<li>按钮权限</li>
+<li>菜单权限</li>
+<li>路由权限<h1 id="接口权限"><a href="#接口权限" class="headerlink" title="接口权限"></a>接口权限</h1>接口权限一般采用jwt的形式来严重，登录完拿到token将token保存，每次请求拦截器进行拦截，请求头部带token<h1 id="路由权限控制"><a href="#路由权限控制" class="headerlink" title="路由权限控制"></a>路由权限控制</h1>方案一：在路由标记相应的权限信息，路由跳转前做校验<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const routerMap &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;permission&#39;,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: &#39;&#x2F;permission&#x2F;index&#39;,</span><br><span class="line">    alwaysShow: true, &#x2F;&#x2F; will always show the root menu</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &#39;permission&#39;,</span><br><span class="line">      icon: &#39;lock&#39;,</span><br><span class="line">      roles: [&#39;admin&#39;, &#39;editor&#39;] &#x2F;&#x2F; you can set roles in root nav</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: &#39;page&#39;,</span><br><span class="line">      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;permission&#x2F;page&#39;),</span><br><span class="line">      name: &#39;pagePermission&#39;,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: &#39;pagePermission&#39;,</span><br><span class="line">        roles: [&#39;admin&#39;] &#x2F;&#x2F; or you can only set roles in sub nav</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      path: &#39;directive&#39;,</span><br><span class="line">      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;permission&#x2F;directive&#39;),</span><br><span class="line">      name: &#39;directivePermission&#39;,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: &#39;directivePermission&#39;</span><br><span class="line">        &#x2F;&#x2F; if do not set roles, means: this page does not require permission</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure>
+缺点：</li>
+<li>加载所有的路由，如果路由很多，而用户并不是所有路由都有权限访问，会性能会有影响</li>
+<li>全局路由守卫里，每次路由跳转都要做权限判断</li>
+<li>菜单信息写死在前端，要改个显示文字或权限信息，需要重新编译</li>
+<li>菜单跟路由耦合在一起，定义路由的时候还有添加菜单显示标题，图标之类的信息，而且路由不一定作为菜单显示，还要多加字段进行标识<br>方案二：<br>初始化的时候挂载公共路由，比如404，登录页。登录后获取用户的权限信息筛选有权限访问的路由在全局路由守卫调用addRoutes添加路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; permission judge function</span><br><span class="line">function hasPermission(roles, permissionRoles) &#123;</span><br><span class="line">  if (roles.indexOf(&#39;admin&#39;) &gt;&#x3D; 0) return true &#x2F;&#x2F; admin permission passed directly</span><br><span class="line">  if (!permissionRoles) return true</span><br><span class="line">  return roles.some(role &#x3D;&gt; permissionRoles.indexOf(role) &gt;&#x3D; 0)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const whiteList &#x3D; [&#39;&#x2F;login&#39;, &#39;&#x2F;authredirect&#39;]&#x2F;&#x2F; no redirect whitelist</span><br><span class="line"></span><br><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.start() &#x2F;&#x2F; start progress bar</span><br><span class="line">  if (getToken()) &#123; &#x2F;&#x2F; determine if there has token</span><br><span class="line">    &#x2F;* has token*&#x2F;</span><br><span class="line">    if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">      next(&#123; path: &#39;&#x2F;&#39; &#125;)</span><br><span class="line">      NProgress.done() &#x2F;&#x2F; if current page is dashboard will not trigger afterEach hook, so manually handle it</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (store.getters.roles.length &#x3D;&#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 判断当前用户是否已拉取完user_info信息</span><br><span class="line">        store.dispatch(&#39;GetUserInfo&#39;).then(res &#x3D;&gt; &#123; &#x2F;&#x2F; 拉取user_info</span><br><span class="line">          const roles &#x3D; res.data.roles &#x2F;&#x2F; note: roles must be a array! such as: [&#39;editor&#39;,&#39;develop&#39;]</span><br><span class="line">          store.dispatch(&#39;GenerateRoutes&#39;, &#123; roles &#125;).then(() &#x3D;&gt; &#123; &#x2F;&#x2F; 根据roles权限生成可访问的路由表</span><br><span class="line">            router.addRoutes(store.getters.addRouters) &#x2F;&#x2F; 动态添加可访问路由表</span><br><span class="line">            next(&#123; ...to, replace: true &#125;) &#x2F;&#x2F; hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          store.dispatch(&#39;FedLogOut&#39;).then(() &#x3D;&gt; &#123;</span><br><span class="line">            Message.error(err || &#39;Verification failed, please login again&#39;)</span><br><span class="line">            next(&#123; path: &#39;&#x2F;&#39; &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓</span><br><span class="line">        if (hasPermission(store.getters.roles, to.meta.roles)) &#123;</span><br><span class="line">          next()&#x2F;&#x2F;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#123; path: &#39;&#x2F;401&#39;, replace: true, query: &#123; noGoBack: true &#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 可删 ↑</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    &#x2F;* has no token*&#x2F;</span><br><span class="line">    if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">      next()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next(&#39;&#x2F;login&#39;) &#x2F;&#x2F; 否则全部重定向到登录页</span><br><span class="line">      NProgress.done() &#x2F;&#x2F; if current page is login will not trigger afterEach hook, so manually handle it</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(() &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.done() &#x2F;&#x2F; finish progress bar</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+缺点：</li>
+<li>全局路由守卫里，每次路由跳转都要做判断</li>
+<li>菜单信息写死在前端，要改个显示文字或权限信息，需要重新编译</li>
+<li>菜单跟路由耦合在一起，定义路由的时候还有添加菜单显示标题，图标之类的信息，而且路由不一定作为菜单显示，还要多加字段进行标识<h1 id="菜单权限"><a href="#菜单权限" class="headerlink" title="菜单权限"></a>菜单权限</h1>菜单权限可以理解成将页面与路由进行解耦<br>方案一<br>菜单与路由分离，菜单由后端返回<br>前端定义路由信息，name属性不得为空，需要此字段与后端返回菜单做关联，后端返回的菜单信息中必须要有name对应的字段，并且做唯一性校验<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">function hasPermission(router, accessMenu) &#123;</span><br><span class="line">  if (whiteList.indexOf(router.path) !&#x3D;&#x3D; -1) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  let menu &#x3D; Util.getMenuByName(router.name, accessMenu);</span><br><span class="line">  if (menu.name) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  return false;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Router.beforeEach(async (to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (getToken()) &#123;</span><br><span class="line">    let userInfo &#x3D; store.state.user.userInfo;</span><br><span class="line">    if (!userInfo.name) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        await store.dispatch(&quot;GetUserInfo&quot;)</span><br><span class="line">        await store.dispatch(&#39;updateAccessMenu&#39;)</span><br><span class="line">        if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">          next(&#123; name: &#39;home_index&#39; &#125;)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          &#x2F;&#x2F;Util.toDefaultPage([...routers], to.name, router, next);</span><br><span class="line">          next(&#123; ...to, replace: true &#125;)&#x2F;&#x2F;菜单权限更新完成,重新进一次当前路由</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;  </span><br><span class="line">      catch (e) &#123;</span><br><span class="line">        if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">          next()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#39;&#x2F;login&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">        next(&#123; name: &#39;home_index&#39; &#125;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        if (hasPermission(to, store.getters.accessMenu)) &#123;</span><br><span class="line">          Util.toDefaultPage(store.getters.accessMenu,to, routes, next);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#123; path: &#39;&#x2F;403&#39;,replace:true &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">      next()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next(&#39;&#x2F;login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  let menu &#x3D; Util.getMenuByName(to.name, store.getters.accessMenu);</span><br><span class="line">  Util.title(menu.title);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Router.afterEach((to) &#x3D;&gt; &#123;</span><br><span class="line">  window.scrollTo(0, 0);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+缺点：</li>
+<li>菜单需要与路由做一一对应，前端添加了新功能，需要通过菜单管理功能添加新的菜单，菜单配置不对会导致应用不能正常使用</li>
+<li>全局路由守卫里，每次路由跳转都要做判断<br>方案二<br>菜单和路由都由后端返回，前端统一定义路由组件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const Home &#x3D; () &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;Home.vue&quot;);</span><br><span class="line">const UserInfo &#x3D; () &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;UserInfo.vue&quot;);</span><br><span class="line">export default &#123;</span><br><span class="line">    home: Home,</span><br><span class="line">    userInfo: UserInfo</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+后端路由组件返回以下格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: &quot;home&quot;,</span><br><span class="line">        path: &quot;&#x2F;&quot;,</span><br><span class="line">        component: &quot;home&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: &quot;home&quot;,</span><br><span class="line">        path: &quot;&#x2F;userinfo&quot;,</span><br><span class="line">        component: &quot;userInfo&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+前后端都需要做相应的路由处理<br>缺点：</li>
+<li>全局路由守卫里，每次路由跳转都要做判断</li>
+<li>前后端的配合要求更高<h1 id="按钮权限"><a href="#按钮权限" class="headerlink" title="按钮权限"></a>按钮权限</h1>方案一<br>按钮权限用v-if判断，但是页面过多情况下，每个页面都要获取用户权限role和路由表里的meta.Permission，再做判断<br>方案二<br>通过自定义指令进行权限判断<br>配置路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &#39;&#x2F;permission&#39;,</span><br><span class="line">    component: Layout,</span><br><span class="line">    name: &#39;权限测试&#39;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">        btnPermissions: [&#39;admin&#39;, &#39;supper&#39;, &#39;normal&#39;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    children: [&#123;</span><br><span class="line">        path: &#39;supper&#39;,</span><br><span class="line">        component: _import(&#39;system&#x2F;supper&#39;),</span><br><span class="line">        name: &#39;权限测试页&#39;,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            btnPermissions: [&#39;admin&#39;, &#39;supper&#39;]</span><br><span class="line">        &#125; &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: &#39;normal&#39;,</span><br><span class="line">        component: _import(&#39;system&#x2F;normal&#39;),</span><br><span class="line">        name: &#39;权限测试页&#39;,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            btnPermissions: [&#39;admin&#39;]</span><br><span class="line">        &#125; &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+自定义权限鉴定指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**权限指令**&#x2F;</span><br><span class="line">const has &#x3D; Vue.directive(&#39;has&#39;, &#123;</span><br><span class="line">    bind: function (el, binding, vnode) &#123;</span><br><span class="line">        &#x2F;&#x2F; 获取页面按钮权限</span><br><span class="line">        let btnPermissionsArr &#x3D; [];</span><br><span class="line">        if(binding.value)&#123;</span><br><span class="line">            &#x2F;&#x2F; 如果指令传值，获取指令参数，根据指令参数和当前登录人按钮权限做比较。</span><br><span class="line">            btnPermissionsArr &#x3D; Array.of(binding.value);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            &#x2F;&#x2F; 否则获取路由中的参数，根据路由的btnPermissionsArr和当前登录人按钮权限做比较。</span><br><span class="line">            btnPermissionsArr &#x3D; vnode.context.$route.meta.btnPermissions;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!Vue.prototype.$_has(btnPermissionsArr)) &#123;</span><br><span class="line">            el.parentNode.removeChild(el);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 权限检查方法</span><br><span class="line">Vue.prototype.$_has &#x3D; function (value) &#123;</span><br><span class="line">    let isExist &#x3D; false;</span><br><span class="line">    &#x2F;&#x2F; 获取用户按钮权限</span><br><span class="line">    let btnPermissionsStr &#x3D; sessionStorage.getItem(&quot;btnPermissions&quot;);</span><br><span class="line">    if (btnPermissionsStr &#x3D;&#x3D; undefined || btnPermissionsStr &#x3D;&#x3D; null) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    if (value.indexOf(btnPermissionsStr) &gt; -1) &#123;</span><br><span class="line">        isExist &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line">    return isExist;</span><br><span class="line">&#125;;</span><br><span class="line">export &#123;has&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>根据项目进行方案考虑，如考虑路由与菜单是否分离<br>权限需要前后端结合，前端尽可能的去控制，更多的需要后台判断</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/Vue-mixin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2258,359 +2640,6 @@ if(pattern.test(text)) {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/25/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%83%A8%E7%BD%B2/" itemprop="url">Nginx服务器的部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-25T16:05:41+08:00">
-                2020-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BB%8F%E9%AA%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">经验</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  405 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Nginx服务器对Vue项目的部署"><a href="#Nginx服务器对Vue项目的部署" class="headerlink" title="Nginx服务器对Vue项目的部署"></a>Nginx服务器对Vue项目的部署</h3><h2 id="1-在本地下载Nginx"><a href="#1-在本地下载Nginx" class="headerlink" title="1.在本地下载Nginx"></a>1.在本地下载Nginx</h2><p>直接百度nginx，进入官网，选择Stable（稳定版），windows（版本）下载</p>
-<h2 id="2-解压下载的压缩包"><a href="#2-解压下载的压缩包" class="headerlink" title="2.解压下载的压缩包"></a>2.解压下载的压缩包</h2><p>解压压缩包在磁盘（合理规划磁盘）</p>
-<h2 id="3-配置nginx文件"><a href="#3-配置nginx文件" class="headerlink" title="3.配置nginx文件"></a>3.配置nginx文件</h2><p>在解压出的文件夹中有conf文件，进入，选择nginx.conf文件进行配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen       8100; //此为端口,如果端口有被占用请更改</span><br><span class="line">       server_name  localhost;//服务器名</span><br><span class="line"></span><br><span class="line">       location ^~ /wms &#123; // 配置，用到正则表达式</span><br><span class="line">           <span class="built_in">alias</span>   E:/nginx-1.18.0/html/dist//如使用<span class="built_in">alias</span>，则不会进行路径拼接，会进行替换，直接在该绝对路径中寻找index下的文件</span><br><span class="line">           root   E:/nginx-1.18.0/html/dist;//根目录，root代表路径，会跟上面的/wms进行拼接，为绝对路径</span><br><span class="line">           index  index.html index.htm;//从上面得到的绝对路径中寻找index.html文件，如查找不到则报403 forbidden错误，即为文件不存在</span><br><span class="line">       &#125;</span><br><span class="line">       location /dev-api/&#123; //webpack不会打包代理请求路径，需自己配置</span><br><span class="line">           proxy_pass http://192.168.1.58:8888/; // 在nginx上部署的项目请求服务器地址代理</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="history模式下的问题"><a href="#history模式下的问题" class="headerlink" title="history模式下的问题"></a>history模式下的问题</h2><p>在router使用history模式下，部署nginx的项目刷新会出现404，找不到页面的情况<br>这时候需要进行重定位</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">　　root  /；</span><br><span class="line">　　index index.html;</span><br><span class="line">　　try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html //根目录的情况下</span><br><span class="line">&#125;</span><br><span class="line">location /xx/xx/ &#123;</span><br><span class="line">　　root  /；</span><br><span class="line">　　index index.html;</span><br><span class="line">　　try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /xx/xx/index.html //特定目录情况下</span><br><span class="line">&#125;</span><br><span class="line">location /payfor/ &#123;</span><br><span class="line">       root /home/web;</span><br><span class="line">       index index.html;</span><br><span class="line">       try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /payfor/index.html; //例子</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="参考链接：匹配规则"><a href="#参考链接：匹配规则" class="headerlink" title="参考链接：匹配规则"></a><a href="https://www.cnblogs.com/jpfss/p/10418150.html" target="_blank" rel="noopener">参考链接：匹配规则</a></h2><p>重点：路径配置规则需了解</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E5%89%8D%E7%AB%AF%E9%9C%80%E6%B1%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/20/%E5%89%8D%E7%AB%AF%E9%9C%80%E6%B1%82/" itemprop="url">前端需求</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-20T16:02:44+08:00">
-                2020-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  404 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.git命令行<br>2.HTML5 可<br>3.css3 可<br>4.BFC 可<br>5.层叠上下文 可<br>6.边距折叠 可<br>7.浮动布局 可<br>8.flex布局 可（多熟练）<br>9.grid布局 可<br>10.兼容<br>11.渲染机制 可<br>12.白屏<br>13.FOUC 可<br>14.异步加载 可<br>15.重绘与回流 可<br>16.8种数据类型 可<br>17.运算符优先级 可<br>18.箭头函数 可<br>19.声明前置 可<br>20.函数作用域 可<br>21.块级作用域 可<br>22.作用域链 可<br>23.IIFE<br>24.递归 可<br>25.递归优化<br>26.柯里化 可<br>27.字符串数组方法（ES5/6）可<br>28.引用类型  可<br>29.深浅拷贝 可<br>30.正则表达式（贪婪，分组，前瞻）<br>31.同步与异步 可<br>32.任务队列 可<br>33.微任务与宏任务<br>34.节流<br>35.防抖<br>36.原型<br>37.class<br>38.原型链<br>39.object.create<br>40.组合继承<br>41.class继承<br>42.call/apply/bind<br>43.object.assign<br>44.Mixin<br>45.Getter/Setter<br>46.闭包<br>47.模块封装<br>48.高阶函数<br>49.DOM操作<br>50.DOM事件流（冒泡，捕获，阻止默认，passive，事件代理）<br>51.Cookie/Session鉴权机制<br>52.HTTP：状态码，缓存，Session，JWT，Auth2机制，XSS，CSRF原理<br>53.XMLHTTPRequest2：fetch，Ajax封装，Comet，WebSocket，Mock.js，curl，异步，回调，promise，async/await，同源策略，JSONP，CORS，服务器中转<br>54.CommonJS规范，NPM，Yarn，开发Package，模块化，IIFE，Parcel.js，ES6的原生Module，NPM Scripts与工程化<br>55.Webpack，手写loader与Plugin，Babel，编译原理<br>56.Vue，Vue Router，Vuex，ElementUI/其他<br>57.React，create-react-APP，CSS modules<br>58.小程序，云开发<br>59.网站性能优化，构建优化，typescript</p>
-<p>手写：<br>封装Ajax<br>封装bind<br>封装防抖节流<br>手写promise<br>手写Webpack Loader，Plugin<br>手写MVC，MVVM，React，模块加载器</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2664,7 +2693,7 @@ if(pattern.test(text)) {
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
