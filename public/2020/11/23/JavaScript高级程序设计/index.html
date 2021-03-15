@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E6%96%87%E6%A1%A3%E6%A0%91.png">
 <meta property="article:published_time" content="2020-11-23T01:43:04.000Z">
-<meta property="article:modified_time" content="2021-02-06T09:41:35.489Z">
+<meta property="article:modified_time" content="2021-03-08T09:52:51.949Z">
 <meta property="article:author" content="DarylWxc">
 <meta property="article:tag" content="javaScript">
 <meta name="twitter:card" content="summary">
@@ -138,7 +138,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  12.6k words
+                  12.9k words
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  50 min
+                  51 min
                 </span>
               
             </div>
@@ -392,489 +392,100 @@
 <h2 id="1-2-3-BOM"><a href="#1-2-3-BOM" class="headerlink" title="1.2.3 BOM"></a>1.2.3 BOM</h2><p>浏览器对象模型：用于支持访问和操作浏览器的窗口。使用BOM，可以操控浏览器显示页面之外的部分，BOM针对浏览器窗口和子窗口。拓展：<br>弹出新浏览器窗口的能力；<br>移动、缩放和关闭浏览器窗口的能力；<br>navigator对象，提供关于浏览器的详尽信息；<br>location对象，提供浏览器加载页面的详尽信息；<br>screen对象，提供关于用户屏幕分辨率的详尽信息；<br>performance对象，提供浏览器内存占用、导航行为和时间统计的详尽信息；<br>对cookie的支持；<br>其他自定义对象，XMLHttp，ActiveXObject；</p>
 <h1 id="1-3-JavaScript版本"><a href="#1-3-JavaScript版本" class="headerlink" title="1.3 JavaScript版本"></a>1.3 JavaScript版本</h1><h1 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h1><p>JS是一门用来与网页交互的脚本语言，包含以下三个组成部分。<br>ES：有ECMA-262定义并提供核心功能。<br>文档对象模型（DOM）:提供与网页内容交互的方法和接口。<br>浏览器对象模型（BOM）：提供与浏览器交互的方法和接口。<br>JS这三个部门得到了五大Web浏览器不同程度的支持。所有浏览器基本上对ES5提供了完善的支持，ES6最佳。</p>
 <hr>
-<h1 id="2-1-元素"><a href="#2-1-元素" class="headerlink" title="2.1 元素"></a>2.1 <script>元素</h1><p>将Js插入HTML的主要方法是使用<script>元素。有下列8个属性：<br>1.async：可选，表示立即开始下载脚本，但不能阻止其他页面动作，比如下载资源或等待其他脚本加载，只对外部脚本文件有效。<br>2.charset：可选，使用src属性指定的代码字符集。很少用。<br>3.crossorigin：可选，配置相关请求的CORS（跨源资源共享）设置。默认不使用CORS。<br>defer：可选，表示脚本可以延迟到文档完全被解析和显示之后再执行，只对外部脚本文件有效。<br>integrity：可选，允许比对接收到的资源和指定的加密签名以验证子资源完整性。<br>language：废弃。<br>src：可选，表示包含要执行的代码的外部文件。（引入外部JS文件）<br>type：可选，代替language，表示代码块中脚本语言的内容类型（MIME类型）。按照惯例这个值始终都是“text/JavaScript”，MIME类型通常都是“application/x-javascript”，如果这个值是module，则代码会被当成ES6模块，而且只有这时候代码中才能出现import和export关键字。</p>
-<h2 id="2-1-1-标签位置"><a href="#2-1-1-标签位置" class="headerlink" title="2.1.1 标签位置"></a>2.1.1 标签位置</h2><head>
-<script src='example1.js'></script>
-<meta name="generator" content="Hexo 4.2.1">
-上述是把文件放在head里，不过这种写法以为着必须把所有JS代码都下载、解析和解释完成后，才能开始渲染页面，可能会导致页面渲染的明显延迟，所以通常把文件引用放在body元素中的页面内容后面。
-<body>
-<script src="example2.js"></script>
-</body>
-## 2.1.2 推迟执行脚本
-可用defer属性，可用推迟脚本执行。
-<script defer src="example1.js"></script>
-## 2.1.3 异步执行脚本
-<script async src="example1.js"></script>
-## 2.1.4 动态加载脚本
-JS可用使用DOM API ，通过向DOM中动态添加Script元素同样可用加载指定的脚本，只要创建一个Script元素并将其添加到DOM即可。如下：
-let script = document.createElement('script');
-script.src = 'gibbersh.js'
-document.head.appendChild(script);
-这个请求是异步的，不是所有浏览器都支持async属性，因此，如果要统一动态脚本的加载行为，可以明确将其设置为同步加载。
-添加：script.async = false;
-以这种方式获取的资源对浏览器预加载器是不可见的。这会严重影响它们在资源获取队列中的优先级。这种可能会严重影响性能。要想让预加载器知道这些动态请求文件的存在，可以在文档头部显示声明它们：
-<link rel="preload" href="gibberish.js">
-## 2.1.5 XMHTL中的变化
-XHTML：可扩展超文本标记语言，是将HTML作为XML的应用重新包装的结果。在XHTML中使用JS必须制定type属性且值为text/javascript。
-XHTML比较少见。
-## 2.1.6 废弃的语法
-个别废弃的语法，可不看。
-# 2.2 行内代码与外部文件
-最佳实践是尽可能将JS代码放在外部文件中。推荐原因如下：
-可维护性：JS代码分散到很多HTML页面，会导致维护困难。而用一个目录保存所有JavaScript文件，则更容易维护，这样开发者就可以独立于使用它们的HTML页面来编辑代码。
-缓存：浏览器会根据特定的设置缓存所有外部链接的JS文件，这意味着若干两个页面都用到同一个文件，则该文件只需下载一次。这最终意味着页面加载更快。
-适应未来：通过把JS放到外部文件中，就不比考虑用XHTML的或注释黑科技。包含外部JS文件的语法在HTML和XHTML是一样的。
-在配置浏览器请求外部文件时，要重点考虑的一点是它们会占用多少带宽。在SPDY/HTTP2中，预请求的消耗已显著降低，以轻量、独立JS组件形式向客户端送达脚本更具优势。
-在初次请求时，如果浏览器支持SPDY/HTTP2，就可以从同一个地方取得一批文件，并将他们逐个放到浏览器缓存中。从浏览器角度看，通过SPDY/HTTP2获取所有这些独立的资源与获取一个大JS文件的 延迟差不多。
-在第二个页面请求时，由于你已经把应用程序切割成了轻量可缓存的文件，第二个页面也依赖的某些组件此时已经存在于浏览器缓存中了。
-# 2.3 文档模式
-最初有两种模式：混杂模式，标准模式。
-第三种模式：准标准模式。
-# 2.4 <noscript>元素
-针对不支持JS的浏览器而出的元素。以下两种情况，浏览器将显示包含在<noscript>中的内容：
-浏览器不支持脚本；
-浏览器对脚本的支持被关闭；
- <noscript> 
- <p>This page requires a JavaScript-enabled browser.</p> 
- </noscript>
-# 2.5 小结
-JS通过<script>元素插入到HTML页面中。这个元素可以用于把JS代码嵌入到HTML页面汇总，跟其他标记混合在一起，也可以用与引入保存在外部文件中的JS。本章的重点如下：
-1.要包含外部JS文件，必须将src属性设置为要包含文件的URL。文件可以跟网页在同一台服务器上，也可以位于完全不同的域。
-2.所有<script>元素会依照它们在网页中出现的次序被解释。在不使用defer和async属性的情况下，包含在<script>元素中的代码必须严格按次序解释。
-3.对不推迟执行的脚本，浏览器必须解释完位于<script>元素中的代码，然后才能继续渲染页面的剩余部分。为此，通常把script元素放到页面末尾，介于主内容之后及</body>标签之前。
-4.可以使用defer推迟到文档渲染完毕后再执行。推迟的脚本原则上按照它们被列出的次序执行。
-5.可以使用async属性表示脚本不需要等待其他脚本，同时也不阻塞文档渲染，即异步加载。异步脚本不能保证按照它们在页面中出现的次序执行。
-6.通过使用<noscript>元素，可以指定在浏览器不支持脚本时显示的内容。如果浏览器支持并启用脚本，则<noscript>元素中的任何内容都不会被渲染。
-# 3.1 语法
-## 3.1.1 区别大小写
-ECMA中一切都区分大小写。无论是变量、函数名还是操作符，都区分大小写。
-typeof不能作为函数名，因为它是一个关键字。但Typeof可以用。
-## 3.1.2 标识符
-变量、函数、属性或函数参数的名称。可以由一个或多个下列字符组成：
-第一个字符必须是一个字母、下划线（_）或美元符号（$）;
-剩下的其他字符可以是字母、下划线、美元符号或数字。
-一般使用驼峰大小写形式。
-## 3.1.3 注释
-## 3.1.4 严格模式
-"use strict" //脚本开头加上这一行
-也可以在指定函数内加上开头。所有现代浏览器都支持严格模式。
-## 3.1.5 语句
-结尾建议加分号，建议语句块加{}
-## 3.2 关键字与保留字
-ES6的关键字有：
-break     do     in     typeof 
-case     else     instanceof     var 
-catch     export     new     void 
-class     extends     return     while 
-const     finally     super     with 
-continue   for     switch     yield 
-debugger function    this 
-default     if     throw 
-delete     import     try
-ES6将来保留词汇：
-始终保留：
-enum
-严格模式下保留：
-implements     package     public 
-interface     protected     static 
-let     private
-模块代码中保留：
-await
-这些词汇不能作标识符，但可以坐对象的属性名，推荐不用作属性名。
-# 3.3 变量
-ECMA变量是松散类型的，变量可以用于保存任何类型的数据。每个变量不过是一个用于保存任意值的命名占位符。有3个关键字可以声明变量：var,const,let
-var:声明完后可以赋值，但未标识类型。//声明提升
-//var message = "hi"; 
-//message = 100; // 合法，但不推荐。
-//作用域在声明的环境下的函数作用域，例在函数内定义，调用完函数随即被销毁。
-//在函数内定义时省略var操作符，可以创建一个全局变量。不推荐这么做。
-let:块作用域，同一个块内不能重复声明。变量在作用域中无声明提升。
-//有暂时性死区。
-//无法全局声明，声明的变量不会成为window对象的属性。
-//ES6不能依赖条件声明模式
-const:与let基本相同，区别是声明变量时必须同时初始化变量，且无法修改const声明的变量。
-## 3.3.4 声明风格及最佳实践
-1.不使用var
-2.const优先，let次之
-# 3.4 数据类型
-ES6有6种简单的数据类型（原始类型）：undefined,null,boolean,number,String,Symbol。Symbol是ES6新增的。还有一种复杂的数据类型叫Object（对象）。Object是一种无序名值对的集合。
-## 3.4.1 typeof操作符
-不需要参数（但可以使用参数），严格来说，函数也是对象，并不代表一种数据类型。可是函数也有自己特殊的属性。可以用typeof区分。
-## 3.4.2 Undefined类型
-变量未初始化即是Undefined，相当于给变量赋值了Undefined。
-建议在声明时初始化，出现undefined可以更好辨别。
-## 3.4.4 Null类型
-Null类型同样只有一个值，即特殊值null。null值表示一个空对象指针，typeof null返回Object。
-在定义将来要保存对象值的变量时，建议初始化为null。
-## 3.4.4 Boolean类型
-有两个字面值：true，false。
-True和False是有效的标识符，不是布尔值。//区分大小写
-使用Boolean()来转换类型
-## 3.4.5 Number类型
-1.浮点值
-//小数点后面必须带数字，不然当整数处理。
-2.值的范围
-//Number.MIN_VALUE:5e-324
-Number.MAX_VALUE:1.7976931348623157e+308
-超出以上范围会表示为Infinity或-Infinity,该值无法用于计算。
-可使用isFinite()函数进行判断
-3.NaN
-NaN表示"不是数值",用于表示本来要返回数值的操作失败了（不是抛出错误）。
-例：0除任意数值
-console.log(0/0) // NaN
-console.log(5/0) //Infinity
-console.log(5/-0)//-Infinity
-任何涉及NaN的操作始终返回NaN，NaN不等于任何值。//(NaN == NaN)-->false
-可用isNaN()函数判断是否不是数值
-isNaN(NaN)//true
-isNaN(10)//false
-isNaN("10")//false,可转换为数值10
-isNaN("blue")//true,无法转换为数值
-isNaN(true)//false,可以转换为1
-4.数值转换
-有3个函数可以将非数值转换为数值：
-Number(),parseInt(),parseFloat()
-Number()是转型函数，可用于任何数据类型。后两个主要用于将字符串转为数值。
-Number()有如下规则：
-(true)->1,(false)->0,(null)->0,(undefined)->NaN,数值直接返回
-如果字符串包含数值字符，包括数值字符前面带加号、减号的情况，则转换为一个十进制数值。
-如果字符串包含有效的浮点值格式如“1.1”，则会转换为相应的浮点值（同样，忽略前面的0）。
-如果字符串包含有效的十六进制格式如"0xf"，则会转换为与该十六进制值对应的十进制整数值。
-如果是空字符串（不包含字符），则返回0。
-如果字符串包含上述情况之外的其他字符，则返回NaN。
-通常使用parseInt（）
-## 3.4.6 String类型
-字符串使用：双引号，单引号，反引号都合法，引号类型前后必须一致。
-1.字面量：
-\n  换行
-\t   制表
-\b  退格
-\r   回车
-\f   换页等
-2.特点
-不可变，一旦创建，值不能变。要修改某个变量的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量。
-3.转换为字符串
-toString()//函数
-还可以传入参数输出不同进制
-let num = 10;
-num.toString() // "10"
-num.toString(2) // "1010"
-num.toString(8) // "12"
-4.模板字面量
-可以使用换行字符，可以跨行定义字符串。
-使用反引号会保持引号内部的空格，字面量，length会增加。
-5.字符串插值
-可以在定义中插入一个或多个值。
-通过反引号中使用 ${}插入，插入的值都会通过toString转换为字符串
-插值表达式中可以调用函数和方法：
-foo = {toString:() => 'Wrold'};`hello,${foo}` // hello world
-capitalize(word) =>return `${word[0].toUpperCase()}`   // `${capitalize('hello')}`//->Hello
-6.模板字面量标签函数
-支持定义标签函数，通过标签函数可以自定义插值行为。
-7.原始字符串
-Unicode字符
-使用String.raw获取原始字符串
-'\u00A9' // 版权符号
-String.raw`\u00A9`// \u00A9
-## 3.4.7 Symbol类型
-Symbol是ES6新增的，且实例是唯一，不可变的。用于创建唯一记号，进而用作非字符串形式的对象属性。
-1.基本用法
-let sym = Symbol(); type of sym//symbol
-也可以传入字符串参数作为对symbol的描述，可通过这个字符串来调试代码。但这个字符串参数与符号定义或标识无关。
-符号无法与new关键字一起作为构造函数使用。
-可以使用符号包装对象，借用Object函数()函数：
-let mySymbol = Symbol();
-let myWrappedSymbol = Object (mySymbol);
-console.log(typeof myWrappedSymbol); // "object"
-2.使用全局符号注册表
-如果运行时的不同部分需要共享和 重用符号实例，那么可以用一个字符串作为键，在全局符号注册表中创建并重用符号。
-需要使用Symbol.for()方法。
-## 3.4.8 Object类型
-对象其实就是一组数据和功能的集合。可以通过new来创建实例对象。
-每个对象都有如下属性和方法：
-constructor：用于创建当前对象的函数，构造函数。
-hasOwnProperty(propertyName)：用于判断当前对象实例上是否存在给定的属性。
-isPrototypeOf(object)：用于判断当前对象是否为另一个对象的原型。
-propertyIsEnumerable(propertyName):用于判断给定的属性是否可以使用。
-toLacaleString():返回对象的字符串表示,反映对象所在本地化执行环境。
-toString():返回对象的字符串表示。
-valueOf():返回对象对应的字符串、数值或布尔值表示。
-# 3.5 操作符
-## 3.5.1 一元操作符
-只操作一个值的操作符叫一元操作符。
-++,--;  //操作中会自行转换类型,(递增和递减)
-+,-//一元加减符，可以用于运算和转换
-## 3.5.2 位操作符
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">## 3.5.3 布尔操作符</span><br><span class="line">逻辑非，逻辑与逻辑或</span><br><span class="line">1.逻辑非 ：！（感叹号）</span><br><span class="line">!false &#x2F;&#x2F; true</span><br><span class="line">!&quot;blue&quot; &#x2F;&#x2F;false</span><br><span class="line">!0 &#x2F;&#x2F;true</span><br><span class="line">!NaN &#x2F;&#x2F;true</span><br><span class="line">!&quot;&quot; &#x2F;&#x2F;true</span><br><span class="line">!12345 &#x2F;&#x2F;false</span><br><span class="line">也可以用两个感叹号:!!,相当于调用了转型函数Boolean()。第一个返回布尔值，第二个对该布尔值取反。</span><br><span class="line">相当于如上例子，布尔值取反。</span><br><span class="line">2.逻辑与</span><br><span class="line">由&amp;&amp;表示 &#x2F;&#x2F; true &amp;&amp; true为true  其余都为false</span><br><span class="line">3.逻辑或</span><br><span class="line">由||表示 &#x2F;&#x2F;有一个是true为true，false || false为false</span><br><span class="line">## 3.5.4 乘性操作符</span><br><span class="line">乘法(*)，除法(&#x2F;)，取模(%)。</span><br><span class="line">乘法(*):都为数值则计算，有一项为NaN则返回NaN，如果是Infinity*0&#x3D;NaN,Infinity*(-&#x2F;+)num&#x3D;(-)Infinity，Infinity*Infinity&#x3D;Infinity,如果不是数值会转换后再近些操作。</span><br><span class="line">除法(&#x2F;):</span><br><span class="line">0 &#x2F; 0 &#x3D; NaN,Infinity &#x2F; Infinity &#x3D; NaN,-(number)&#x2F;0 &#x3D; (-)Infinity,Infinity &#x2F; (-)Number &#x3D; (-)Infinity</span><br><span class="line">取模(%):类似除</span><br><span class="line">## 3.5.5 指数操作符</span><br><span class="line">ES7新增的操作符 (**)&#x2F;&#x2F;Math.pow(3,2) &#x3D;&#x3D; 3 ** 2 &#x3D;&#x3D; 9</span><br><span class="line">squared ** &#x3D; 2 &#x2F;&#x2F;9</span><br><span class="line">## 3.5.6 加性操作符</span><br><span class="line">（+），（-）</span><br><span class="line">## 3.5.7 关系操作符</span><br><span class="line">（&lt;）,（&gt;）,（&lt;&#x3D;），（&gt;&#x3D;）</span><br><span class="line">## 3.5.8 相等操作符</span><br><span class="line">（&#x3D;&#x3D;），（!&#x3D;），（&#x3D;&#x3D;&#x3D;）,（!&#x3D;&#x3D;）</span><br><span class="line">## 3.5.9 条件操作符</span><br><span class="line">（?）&#x2F;&#x2F; let max &#x3D; （num1 &gt; num2）? num1 : num2</span><br><span class="line">## 3.5.10 赋值操作符</span><br><span class="line">（&#x3D;），（*&#x3D;），（&#x2F;&#x3D;），（%&#x3D;），（+&#x3D;）,（-&#x3D;）,（&lt;&lt;&#x3D;）,（&gt;&gt;&#x3D;）,（&gt;&gt;&gt;&#x3D;）</span><br><span class="line"># 3.6 语句</span><br><span class="line">## 3.6.1 if语句</span><br></pre></td></tr></table></figure>
-## 3.6.2 do-while语句
-do {***} while(expression);
-## 3.6.3 while语句
-let i = 0;
-while(i < 10) { i += 2};
-## 3.6.4 for语句
-for(initialization;expression;post-loop-expression) statement
-## 3.6.5 for-in语句
-for(property in expression) statement
-for(const propName in window) {document.write(propName)}//例子
-## 3.6.6 for-of语句
-for(property of expression) statement
-for(const el of [2,4,6,8]){document.write(el)}//例子
-## 3.6.7 标签语句
-label:statement
-start: for(let i = 0;i < count;i++){console.log(i)}//start是一个标签，可在后面通过break，continue语句引用。
-## 3.6.8 break和continue语句
-break用于立即退出循环,强行执行循环后的下一条语句。
-continue语句用于立即退出循环，但会从循环顶部开始执行。
-## 3.6.9 with语句
-with(expression) statement;
-let qs = location.search.substring(1);
-let hostName = location.hostname;
-let url = location.href;
-with(location){
-let qs = search.substring(1);
-let hostName = hostname;
-let url = href;
-}
-严格模式不允许使用
-## 3.6.10 switch语句
-switch(expression){
-  case value1:
-    statament
-    break;
-  case value2:
-    statement
-    break;
-  ...
-  default:
-    statement
-}
-//switch不会强制转换数据类型
-## 3.7 函数
-function Name(arg0,arg1){ statements}
-遇到return语句函数就会立即停止执行并退出。
-函数不能以eval，arguments作为名称；
-函数的参数不能叫eval，arguments；
-两个命名参数不能拥有同一个名称。
-## 3.8 小结
-ES中基本数据类型包括：undefined,Null,Boolean,Number,String,Symbol
-不需要指定函数的返回值，因为任何函数可以在任何时候返回任何值。//声明方式
-不指定返回值的函数实际上会返回特殊值undefined。
-# 4 变量、作用域与内存
-## 4.1 原始值与引用值
-变量有两种不同的类型：原始值和引用值。原始值就是最简单的数据，引用值则是由多个值构成的对象。
-原始值的变量是按值访问的，引用值是保存在内存中的对象，操作对象时，操作的是对该对象的引用而非实际的对象本身。
-### 4.1.1 动态属性
-引用值可以随时添加、修改和删除其属性和方法。
-只有引用值可以动态添加后面可以使用的属性。
-原始类型的初始化可以只使用原始字面量形式。如果使用new则创建Object类型的实例。
-let name1 = "wxc";//typeof name1 == string
-let name2 = new String("Matt");//typeof name2 == object
-### 4.1.2 复制值
-原始值的变量复制会创建新变量。//let name1 = "wxc";let name2 = name1;
-引用值的变量复制的是一个指针，两个变量指向同一个对象，一改则都改。
-### 4.1.3 传递参数
-函数的参数都是按值传递的，传递时，值会被复制到一个局部变量。
-按引用传递参数时，值在内存中的位置会被保存在一个局部变量，对本地变量的修改会反映到函数外部。ES中函数的参数就是局部变量。
-### 4.1.4确定类型
-typeof对于原始值有用，但对引用值不大。
-引用值判断可以用instanceof
-person instanceof Object
-colors instanceof Array
-pattern instanceof RegExp
-instanceof对于原始值始终返回false，原始值不是对象。
-## 4.2 执行上下文与作用域
-每个上下文都有一个关联的变量对象，这个上下文中定义的所有变量和函数都存在于这个对象上。
-浏览器中，全局上下文为window对象。var定义的全局变量和函数都会成为window对象的属性和方法。使用let和const的顶级声明不会定义在全局上下文中，但在作用域链解析上效果是一样的。
-每个函数也有自己的上下文，执行函数时，函数上下文被推倒一个上下文栈上，执行完后弹出。ES的执行流通过该上下文栈进行控制。
-上下文中的代码在执行时，会创建变量对象的一个作用域链。这个作用域链决定了各级上下文中的代码在访问变量和函数时的顺序。正在执行的上下文的变量对象始终位于作用域链的最前端，如果上下文是函数，其活动对象用作变量对象。活动对象最初只有一个定义变量：arguments。作用域链的下一个变量对象来自上级包含上下文。全局上下文的变量对象始终是作用域链的最后一个变量对象。
-局部作用域中定义的变量可用于在局部上下文中替换全局变量。
-### 4.2.1 作用域链增强
-代码执行到try/catch语句的catch块与with语句时，都会在作用域链前端添加一个变量对象。对with语句来说，会向作用域链前端添加指定的对象；对catch则会创建一个新的变量对象，这个变量对象会包含要抛出的错误对象的声明。
-### 4.2.2 变量声明
-1.使用var声明变量，变量会被自动添加到最接近的上下文，最接近的上下文大多是函数的局部上下文，如果未声明就被初始化了，就被添加到全局上下文。如果在函数内声明变量添加到全局上下文，函数退出后依然可以访问。
-var声明会被拿到函数或全局作用域的顶部，位于作用域中所有代码之前。变量提升。
-2.使用let声明的块级作用域声明
-块级作用域由最近的{}界定。
-3.使用const的常量声明
-const声明的同时必须初始化为某个值。声明后不能重新赋新值。
-作用域与let声明一样。
-建议多使用const，除非需要一个会重新赋值的变量。可以防止重新赋值的BUG。
-4.标识符查找
-特定上下文读取或写入而引用一个标识符时，必须通过搜索确定这个标识符表示什么。搜索开始于作用域链前端，以给定的名称搜索对应的标识符。//其实就是调用变量
-## 4.3 垃圾回收
-JS使用垃圾回收，程序每隔一段就会自动运行。确定不会再使用的变量，释放内存。
-### 4.3.1 标记清理
-常用策略是标记清理。程序运行时，标记内存中存储的所有变量，将所有上下文中的变量，以及被在上下文中的变量引用的标记去掉。再加上标记代表待删除，随后做一次内存清理，销毁带标记的所有值并回收内存。
-IE，Firefox，Opera，Chrome，Safari都在JS实习标记清理，频率有所差异。
-### 4.3.2 引用计数
-对每个值记录引用次数。声明变量并赋一个引用值时，这个值的引用数为1。 如果保存对该值引用的变量被其他值给覆盖了，引用数-1。引用数为0时回收内存。
-### 4.3.3 性能
-垃圾回收的时间调度很重要，变量太多会造成性能损失。JS引擎的垃圾回收程序被调优为动态改变分配变量、字面量或数组槽位等会触发垃圾回收的阈值。如果回收的内存不到已分配的15%，这些阈值会翻倍。如果一次回收的内存达到已分配的85%，则阈值重置为默认值。
-### 4.3.4 内存管理
-保证在执行代码时只保存必要的数据。不在必要则设置为null，从而释放其引用。这也可以叫作解除引用。局部变量在超出作用域会自动解除引用，所以该建议更适合全局变量和全局对象。
-1.通过const和let声明提升性能
-块作用域，能更早让垃圾回收程序介入。
-2.隐藏类和删除操作
-对象与隐藏类会被关联起来，用于跟踪他们的属性特征。共享相同隐藏类的对象性能会更好。
-function Article(){this.title = 'go go go'}
-let a1 = new Article();//隐藏类title
-let a2 = new Article();//隐藏类title
-a1.author = 'Jake'//对应多出author隐藏类，可能对性能产生明显影响。
-function Article(author){this.title='go',this.author=author}
-let a2 = new Article('wxc')//a2与a1相同，共享一个隐藏类。
-delete a1.author//使用delete关键字会导致生成同样的隐藏类片段
-a1.author = null; //保持共享，并达到垃圾回收的效果
-3.内存泄漏
-JS的内存泄漏大部分是不合理的引用导致的。
-function(){name = 'Jake'}意外声明全局变量是最常见也最容易修复的内存泄漏问题。无关键字声明。
-定时器也会导致内存泄漏，定时器的回调通过闭包引用了外部变量。
-使用闭包容易造成内存泄漏，如下：
-let outer = function() {let name = 'Jake';return function() {return name};};
-调用outer()会导致内存泄漏。只要返回的函数存在就不能清理name，因为闭包一直在引用，加入name的内容很大，就是个大问题。
-4.静态分配与对象池
-不要动态创建矢量对象
-在初始化的时候，创建一个对象池，管理一组可回收的对象。使用完后回归对象池。
-## 4.4 小结
-原始值大小固定，因此保存在栈内存上。
-引用值是对象，存储在堆内存上。
-任何变量都存在于某个作用域（上下文）中，这个作用域决定了变量的声明周期，以及它们可以访问代码的哪些部分。
-全局上下文：window，浏览器。
-函数上下文：声明函数的{}内
-块级上下文：最近的{}内
-JS有垃圾回收，垃圾回收的方法有：引用计数，标记清理。主流为标记清理。
-接触变量引用一般直接给变量赋值为null。
-# 5.基本引用类型
-引用值是某个特定引用类型的实例。
-对象被认为是某个特定引用类型的实例。新对象通过使用new操作符跟一个构造函数来创建。
-函数也是一种引用类型。
-## 5.1 Date
-日期对象//let now = new Date();
-可用Date.parse()转换成日期对象//let someDate = new Date(Date.parse("May 23,2019"));如果字符串不表示日期，会返回NaN。
-let allFives = new Date(Date.UTC(2005,4,5,17,55,55));//GMT时间——Date.UTC方法
-ES提供了Date.now()方法，返回表示方法执行时日期。
-let start = Date.now();//当前时间
-### 5.1.1 继承的方法
-let date = new Date(2021,1,20);
-toLocaleString()//-->2021/2/20 上午12:00:00
-toString()//-->Sat Feb 20 2021 00:00:00 GMT+0800
-valueOf()//-->1613750400000
-### 5.1.2 日期格式化方法
-Date格式化日期的方法：
-toDateString()//显示日期中的周几，月，日，年
-toTimeString()//显示日期中的时分秒和时区
-toLocaleDateString()//显示日期中的周几 月 日 年
-toLocaleTimeString()//显示日期中的时 分 秒
-toUTCString()//显示完整的UTC日期
-### 5.1.3 日期/时间组件方法
-主要应用：
-getTime()//返回日期的毫秒表示，与valueOf相同
-setTime(milliseconds)//设置日期的毫秒表示，从而修改整个日期
-getFullYear()//返回四位年数
-getMonth()//返回日期的月
-getDate()//返回日期的日
-getDay()//返回日期中表示周几的数值
-getHours()//返回日期中的时
-getMinutes()//返回日期中的分
-getSeconds()//返回日期中的秒
-## 5.2 RegExp
-ES通过RegExp类型支持正则表达式。
-let expression = /pattern/flags;
-匹配模式的标记：
-1.g:全局模式，表示查找字符串的全部内容，而不是找到第一个匹配的内容就结束。
-2.i:不区分大小写，表示查找匹配时忽略pattern和字符串的大小写。
-3.m:多行模式，表示查找到一行文本末尾时会继续查找。
-4.y:粘附模式，表示只查找从lastIndex开始及之后的字符串。
-5.u:Unicode模式，启用Unicode匹配。
-6.s：dotAll模式，表示元字符匹配任何字符。(包括\n或\r)。
-使用不同模式和标记可以创建出各种正则表达式，比如：
-//匹配字符串中的所有"at"
-let pattern1 = /at/g;
-//匹配第一个"bat"或"cat" 忽略大小写
-let pattern2 = /[bc]at/i
-//匹配所有以"at"结尾的三字符组合，忽略大小写
-let pattern3 = /.at/gi
-元字符在模式中必须转义：
-( ，[， {，\，^，$，|，)，]，}，？，*，+，- //这些符号前面需要\来转义
-//匹配第一个"bat"或"cat"，忽略大小写
-let pattern1 = /[bc]at/i;
-//匹配第一个"[bc]at"，忽略大小写
-let pattern2 = /\[bc\]at/i;
-//匹配所有以"at"结尾的三字符组合，忽略大小写
-let pattern3 = /.at/gi;
-//匹配所有".at"，忽略大小写
-let pattern4 = /\.at/gi;
-也可使用RegExp构造函数来创建：
-let pattern1 = /[bc]at/i   ==   new RegExp("[bc]at","i");
-也可以使用实例，选择性修改标记
-const re1 = /cat/g;
-const re2 = new RegExp(re1);
-const re3 = new RegExp(re1,"i");
-### 5.2.1 RegExp实例属性
-global:布尔值，表示是否设置了g标记。
-ignoreCase:布尔值，表示是否设置了i标记。
-unicode:布尔值，表示是否设置了u标记。
-sticky:布尔值，表示是否设置了y标记。
-lastIndex:整数，表示在源字符串中下一次搜索的开始位置，始终从0开始。
-multiline:布尔值，表示是否设置了m标记。
-dotAll:布尔值，表示是否设置了s标记。
-source:正则表达式的字面量字符串，没有开头和结尾的斜杠。
-flags:正则表达式的标记字符串。始终以字面量而非传入构造函数的字符串模式形式返回。
-### 5.2.2 RegExp实例方法
-exec()函数：
-let text = 'cat, bat, sat, fat';
-  let pattern = /.at/gi;
-  let matchs = pattern.exec(text);
-  console.log(matchs);//cat
-//设置了全局标记(g)，每次调用返回一个匹配的信息，如果没有设置全局标记，只会返回第一个匹配的信息。
-//设置了g标记，每次调用exec()都会在字符中向前搜索下一个匹配项
-let text = 'cat, bat, sat, fat';
-  let pattern = /.at/gi;
-  let matchs = pattern.exec(text);//cat
-  let matchs = pattern.exec(text);//bat
-  let matchs = pattern.exec(text);//sat
-  console.log(matchs);
-//设置了y标记，每次调用会在lastIndex的位置上寻找匹配项。y标记覆盖g标记。
-test()函数：//用于判断是否存在实际内容中，常在if判断语句中
-let text = "000-00-00 00";
-let pattern = /\d{3}-\d{2}-\d(4)/;
-if(pattern.test(text)) {console.log("The pattern was matched.")};
-继承的方法toLocaleString()和toString()都返回字面量表示。
-let pattern = new RegExp("\\[bc\\]at","gt");
-console.log(pattern.toString());//  /\[bc\]at/gi
-console.log(pattern.toLocaleString());//  /\[bc\]at/gi
-### 5.2.3 RegExp构造函数属性
-input：$_   //最后搜索的字符串
-lastMatch：$&   //最后匹配的文本
-lastParen：$+   //最后匹配的捕获组
-leftContext：$`   //input字符串中出现在lastMatch前面的文本
-rightContext：$'   //input字符串中出现在lastMatch后面的文本
-let text = "this has been a short summer";
-let pattern = /(.)hort/g; //()-->捕获组
-if(pattern.test(text)) {
-   console.log(RegExp.input); //this has been a short summer
-   console.log(RegExp.leftContext); //this has been a
-   console.log(RegExp.rightContext); //summer
-   console.log(RegExp.lastMatch); //short
-   console.log(RegExp.input); //s
-}
-
-<p>if(pattern.test(text)) {<br>   console.log(RegExp.$_); //this has been a short summer<br>   console.log(RegExp["$`"]); //this has been a<br>   console.log(RegExp["$'"]); //summer<br>   console.log(RegExp["$&"]); //short<br>   console.log(RegExp["$+"]); //s<br>}<br>let pattern = /(..)or(.)/g;</p>
+<h1 id="2-1-script元素"><a href="#2-1-script元素" class="headerlink" title="2.1 script元素"></a>2.1 script元素</h1><p>将Js插入HTML的主要方法是使用script元素。有下列8个属性：<br>1.async：可选，表示立即开始下载脚本，但不能阻止其他页面动作，比如下载资源或等待其他脚本加载，只对外部脚本文件有效。<br>2.charset：可选，使用src属性指定的代码字符集。很少用。<br>3.crossorigin：可选，配置相关请求的CORS（跨源资源共享）设置。默认不使用CORS。<br>defer：可选，表示脚本可以延迟到文档完全被解析和显示之后再执行，只对外部脚本文件有效。<br>integrity：可选，允许比对接收到的资源和指定的加密签名以验证子资源完整性。<br>language：废弃。<br>src：可选，表示包含要执行的代码的外部文件。（引入外部JS文件）<br>type：可选，代替language，表示代码块中脚本语言的内容类型（MIME类型）。按照惯例这个值始终都是“text/JavaScript”，MIME类型通常都是“application/x-javascript”，如果这个值是module，则代码会被当成ES6模块，而且只有这时候代码中才能出现import和export关键字。</p>
+<h2 id="2-1-1-标签位置"><a href="#2-1-1-标签位置" class="headerlink" title="2.1.1 标签位置"></a>2.1.1 标签位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src&#x3D;&#39;example1.js&#39;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br></pre></td></tr></table></figure>
+<p>上述是把文件放在head里，不过这种写法以为着必须把所有JS代码都下载、解析和解释完成后，才能开始渲染页面，可能会导致页面渲染的明显延迟，所以通常把文件引用放在body元素中的页面内容后面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script src&#x3D;&#39;example2.js&#39;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-2-推迟执行脚本"><a href="#2-1-2-推迟执行脚本" class="headerlink" title="2.1.2 推迟执行脚本"></a>2.1.2 推迟执行脚本</h2><p>可用defer属性，可用推迟脚本执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src&#x3D;&#39;example1.js&#39;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-3-异步执行脚本"><a href="#2-1-3-异步执行脚本" class="headerlink" title="2.1.3 异步执行脚本"></a>2.1.3 异步执行脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script async src&#x3D;&#39;example1.js&#39;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-4-动态加载脚本"><a href="#2-1-4-动态加载脚本" class="headerlink" title="2.1.4 动态加载脚本"></a>2.1.4 动态加载脚本</h2><p>JS可用使用DOM API ，通过向DOM中动态添加Script元素同样可用加载指定的脚本，只要创建一个Script元素并将其添加到DOM即可。如下：<br>let script = document.createElement(‘script’);<br>script.src = ‘gibbersh.js’<br>document.head.appendChild(script);<br>这个请求是异步的，不是所有浏览器都支持async属性，因此，如果要统一动态脚本的加载行为，可以明确将其设置为同步加载。<br>添加：script.async = false;<br>以这种方式获取的资源对浏览器预加载器是不可见的。这会严重影响它们在资源获取队列中的优先级。这种可能会严重影响性能。要想让预加载器知道这些动态请求文件的存在，可以在文档头部显示声明它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;gibberish.js&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-5-XMHTL中的变化"><a href="#2-1-5-XMHTL中的变化" class="headerlink" title="2.1.5 XMHTL中的变化"></a>2.1.5 XMHTL中的变化</h2><p>XHTML：可扩展超文本标记语言，是将HTML作为XML的应用重新包装的结果。在XHTML中使用JS必须制定type属性且值为text/javascript。<br>XHTML比较少见。</p>
+<h2 id="2-1-6-废弃的语法"><a href="#2-1-6-废弃的语法" class="headerlink" title="2.1.6 废弃的语法"></a>2.1.6 废弃的语法</h2><p>个别废弃的语法，可不看。</p>
+<h1 id="2-2-行内代码与外部文件"><a href="#2-2-行内代码与外部文件" class="headerlink" title="2.2 行内代码与外部文件"></a>2.2 行内代码与外部文件</h1><p>最佳实践是尽可能将JS代码放在外部文件中。推荐原因如下：<br>可维护性：JS代码分散到很多HTML页面，会导致维护困难。而用一个目录保存所有JavaScript文件，则更容易维护，这样开发者就可以独立于使用它们的HTML页面来编辑代码。<br>缓存：浏览器会根据特定的设置缓存所有外部链接的JS文件，这意味着若干两个页面都用到同一个文件，则该文件只需下载一次。这最终意味着页面加载更快。<br>适应未来：通过把JS放到外部文件中，就不比考虑用XHTML的或注释黑科技。包含外部JS文件的语法在HTML和XHTML是一样的。<br>在配置浏览器请求外部文件时，要重点考虑的一点是它们会占用多少带宽。在SPDY/HTTP2中，预请求的消耗已显著降低，以轻量、独立JS组件形式向客户端送达脚本更具优势。<br>在初次请求时，如果浏览器支持SPDY/HTTP2，就可以从同一个地方取得一批文件，并将他们逐个放到浏览器缓存中。从浏览器角度看，通过SPDY/HTTP2获取所有这些独立的资源与获取一个大JS文件的 延迟差不多。<br>在第二个页面请求时，由于你已经把应用程序切割成了轻量可缓存的文件，第二个页面也依赖的某些组件此时已经存在于浏览器缓存中了。</p>
+<h1 id="2-3-文档模式"><a href="#2-3-文档模式" class="headerlink" title="2.3 文档模式"></a>2.3 文档模式</h1><p>最初有两种模式：混杂模式，标准模式。<br>第三种模式：准标准模式。</p>
+<h1 id="2-4-noscript元素"><a href="#2-4-noscript元素" class="headerlink" title="2.4 noscript元素"></a>2.4 noscript元素</h1><p>针对不支持JS的浏览器而出的元素。以下两种情况，浏览器将显示包含在noscript中的内容：<br>浏览器不支持脚本；<br>浏览器对脚本的支持被关闭；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;noscript&gt; </span><br><span class="line">&lt;p&gt;This page requires a JavaScript-enabled browser.&lt;&#x2F;p&gt; </span><br><span class="line">&lt;&#x2F;noscript&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h1><p>JS通过script元素插入到HTML页面中。这个元素可以用于把JS代码嵌入到HTML页面汇总，跟其他标记混合在一起，也可以用与引入保存在外部文件中的JS。本章的重点如下：<br>1.要包含外部JS文件，必须将src属性设置为要包含文件的URL。文件可以跟网页在同一台服务器上，也可以位于完全不同的域。<br>2.所有script元素会依照它们在网页中出现的次序被解释。在不使用defer和async属性的情况下，包含在script元素中的代码必须严格按次序解释。<br>3.对不推迟执行的脚本，浏览器必须解释完位于script元素中的代码，然后才能继续渲染页面的剩余部分。为此，通常把script元素放到页面末尾，介于主内容之后及body标签之前。<br>4.可以使用defer推迟到文档渲染完毕后再执行。推迟的脚本原则上按照它们被列出的次序执行。<br>5.可以使用async属性表示脚本不需要等待其他脚本，同时也不阻塞文档渲染，即异步加载。异步脚本不能保证按照它们在页面中出现的次序执行。<br>6.通过使用noscript元素，可以指定在浏览器不支持脚本时显示的内容。如果浏览器支持并启用脚本，则noscript元素中的任何内容都不会被渲染。</p>
+<h1 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h1><h2 id="3-1-1-区别大小写"><a href="#3-1-1-区别大小写" class="headerlink" title="3.1.1 区别大小写"></a>3.1.1 区别大小写</h2><p>ECMA中一切都区分大小写。无论是变量、函数名还是操作符，都区分大小写。<br>typeof不能作为函数名，因为它是一个关键字。但Typeof可以用。</p>
+<h2 id="3-1-2-标识符"><a href="#3-1-2-标识符" class="headerlink" title="3.1.2 标识符"></a>3.1.2 标识符</h2><p>变量、函数、属性或函数参数的名称。可以由一个或多个下列字符组成：<br>第一个字符必须是一个字母、下划线（_）或美元符号（$）;<br>剩下的其他字符可以是字母、下划线、美元符号或数字。<br>一般使用驼峰大小写形式。</p>
+<h2 id="3-1-3-注释"><a href="#3-1-3-注释" class="headerlink" title="3.1.3 注释"></a>3.1.3 注释</h2><h2 id="3-1-4-严格模式"><a href="#3-1-4-严格模式" class="headerlink" title="3.1.4 严格模式"></a>3.1.4 严格模式</h2><p>“use strict” //脚本开头加上这一行<br>也可以在指定函数内加上开头。所有现代浏览器都支持严格模式。</p>
+<h2 id="3-1-5-语句"><a href="#3-1-5-语句" class="headerlink" title="3.1.5 语句"></a>3.1.5 语句</h2><p>结尾建议加分号，建议语句块加{}</p>
+<h2 id="3-2-关键字与保留字"><a href="#3-2-关键字与保留字" class="headerlink" title="3.2 关键字与保留字"></a>3.2 关键字与保留字</h2><p>ES6的关键字有：<br>break     do     in     typeof<br>case     else     instanceof     var<br>catch     export     new     void<br>class     extends     return     while<br>const     finally     super     with<br>continue   for     switch     yield<br>debugger function    this<br>default     if     throw<br>delete     import     try<br>ES6将来保留词汇：<br>始终保留：<br>enum<br>严格模式下保留：<br>implements     package     public<br>interface     protected     static<br>let     private<br>模块代码中保留：<br>await<br>这些词汇不能作标识符，但可以坐对象的属性名，推荐不用作属性名。</p>
+<h1 id="3-3-变量"><a href="#3-3-变量" class="headerlink" title="3.3 变量"></a>3.3 变量</h1><p>ECMA变量是松散类型的，变量可以用于保存任何类型的数据。每个变量不过是一个用于保存任意值的命名占位符。有3个关键字可以声明变量：var,const,let<br>var:声明完后可以赋值，但未标识类型。//声明提升<br>//var message = “hi”;<br>//message = 100; // 合法，但不推荐。<br>//作用域在声明的环境下的函数作用域，例在函数内定义，调用完函数随即被销毁。<br>//在函数内定义时省略var操作符，可以创建一个全局变量。不推荐这么做。<br>let:块作用域，同一个块内不能重复声明。变量在作用域中无声明提升。<br>//有暂时性死区。<br>//无法全局声明，声明的变量不会成为window对象的属性。<br>//ES6不能依赖条件声明模式<br>const:与let基本相同，区别是声明变量时必须同时初始化变量，且无法修改const声明的变量。</p>
+<h2 id="3-3-4-声明风格及最佳实践"><a href="#3-3-4-声明风格及最佳实践" class="headerlink" title="3.3.4 声明风格及最佳实践"></a>3.3.4 声明风格及最佳实践</h2><p>1.不使用var<br>2.const优先，let次之</p>
+<h1 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h1><p>ES6有6种简单的数据类型（原始类型）：undefined,null,boolean,number,String,Symbol。Symbol是ES6新增的。还有一种复杂的数据类型叫Object（对象）。Object是一种无序名值对的集合。</p>
+<h2 id="3-4-1-typeof操作符"><a href="#3-4-1-typeof操作符" class="headerlink" title="3.4.1 typeof操作符"></a>3.4.1 typeof操作符</h2><p>不需要参数（但可以使用参数），严格来说，函数也是对象，并不代表一种数据类型。可是函数也有自己特殊的属性。可以用typeof区分。</p>
+<h2 id="3-4-2-Undefined类型"><a href="#3-4-2-Undefined类型" class="headerlink" title="3.4.2 Undefined类型"></a>3.4.2 Undefined类型</h2><p>变量未初始化即是Undefined，相当于给变量赋值了Undefined。<br>建议在声明时初始化，出现undefined可以更好辨别。</p>
+<h2 id="3-4-4-Null类型"><a href="#3-4-4-Null类型" class="headerlink" title="3.4.4 Null类型"></a>3.4.4 Null类型</h2><p>Null类型同样只有一个值，即特殊值null。null值表示一个空对象指针，typeof null返回Object。<br>在定义将来要保存对象值的变量时，建议初始化为null。</p>
+<h2 id="3-4-4-Boolean类型"><a href="#3-4-4-Boolean类型" class="headerlink" title="3.4.4 Boolean类型"></a>3.4.4 Boolean类型</h2><p>有两个字面值：true，false。<br>True和False是有效的标识符，不是布尔值。//区分大小写<br>使用Boolean()来转换类型</p>
+<h2 id="3-4-5-Number类型"><a href="#3-4-5-Number类型" class="headerlink" title="3.4.5 Number类型"></a>3.4.5 Number类型</h2><p>1.浮点值<br>//小数点后面必须带数字，不然当整数处理。<br>2.值的范围<br>//Number.MIN_VALUE:5e-324<br>Number.MAX_VALUE:1.7976931348623157e+308<br>超出以上范围会表示为Infinity或-Infinity,该值无法用于计算。<br>可使用isFinite()函数进行判断<br>3.NaN<br>NaN表示”不是数值”,用于表示本来要返回数值的操作失败了（不是抛出错误）。<br>例：0除任意数值<br>console.log(0/0) // NaN<br>console.log(5/0) //Infinity<br>console.log(5/-0)//-Infinity<br>任何涉及NaN的操作始终返回NaN，NaN不等于任何值。//(NaN == NaN)–&gt;false<br>可用isNaN()函数判断是否不是数值<br>isNaN(NaN)//true<br>isNaN(10)//false<br>isNaN(“10”)//false,可转换为数值10<br>isNaN(“blue”)//true,无法转换为数值<br>isNaN(true)//false,可以转换为1<br>4.数值转换<br>有3个函数可以将非数值转换为数值：<br>Number(),parseInt(),parseFloat()<br>Number()是转型函数，可用于任何数据类型。后两个主要用于将字符串转为数值。<br>Number()有如下规则：<br>(true)-&gt;1,(false)-&gt;0,(null)-&gt;0,(undefined)-&gt;NaN,数值直接返回<br>如果字符串包含数值字符，包括数值字符前面带加号、减号的情况，则转换为一个十进制数值。<br>如果字符串包含有效的浮点值格式如“1.1”，则会转换为相应的浮点值（同样，忽略前面的0）。<br>如果字符串包含有效的十六进制格式如”0xf”，则会转换为与该十六进制值对应的十进制整数值。<br>如果是空字符串（不包含字符），则返回0。<br>如果字符串包含上述情况之外的其他字符，则返回NaN。<br>通常使用parseInt（）</p>
+<h2 id="3-4-6-String类型"><a href="#3-4-6-String类型" class="headerlink" title="3.4.6 String类型"></a>3.4.6 String类型</h2><p>字符串使用：双引号，单引号，反引号都合法，引号类型前后必须一致。<br>1.字面量：<br>\n  换行<br>\t   制表<br>\b  退格<br>\r   回车<br>\f   换页等<br>2.特点<br>不可变，一旦创建，值不能变。要修改某个变量的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量。<br>3.转换为字符串<br>toString()//函数<br>还可以传入参数输出不同进制<br>let num = 10;<br>num.toString() // “10”<br>num.toString(2) // “1010”<br>num.toString(8) // “12”<br>4.模板字面量<br>可以使用换行字符，可以跨行定义字符串。<br>使用反引号会保持引号内部的空格，字面量，length会增加。<br>5.字符串插值<br>可以在定义中插入一个或多个值。<br>通过反引号中使用 ${}插入，插入的值都会通过toString转换为字符串<br>插值表达式中可以调用函数和方法：<br>foo = {toString:() =&gt; ‘Wrold’};<code>hello,${foo}</code> // hello world<br>capitalize(word) =&gt;return <code>${word[0].toUpperCase()}</code>   // <code>${capitalize(&#39;hello&#39;)}</code>//-&gt;Hello<br>6.模板字面量标签函数<br>支持定义标签函数，通过标签函数可以自定义插值行为。<br>7.原始字符串<br>Unicode字符<br>使用String.raw获取原始字符串<br>‘\u00A9’ // 版权符号<br>String.raw<code>\u00A9</code>// \u00A9</p>
+<h2 id="3-4-7-Symbol类型"><a href="#3-4-7-Symbol类型" class="headerlink" title="3.4.7 Symbol类型"></a>3.4.7 Symbol类型</h2><p>Symbol是ES6新增的，且实例是唯一，不可变的。用于创建唯一记号，进而用作非字符串形式的对象属性。<br>1.基本用法<br>let sym = Symbol(); type of sym//symbol<br>也可以传入字符串参数作为对symbol的描述，可通过这个字符串来调试代码。但这个字符串参数与符号定义或标识无关。<br>符号无法与new关键字一起作为构造函数使用。<br>可以使用符号包装对象，借用Object函数()函数：<br>let mySymbol = Symbol();<br>let myWrappedSymbol = Object (mySymbol);<br>console.log(typeof myWrappedSymbol); // “object”<br>2.使用全局符号注册表<br>如果运行时的不同部分需要共享和 重用符号实例，那么可以用一个字符串作为键，在全局符号注册表中创建并重用符号。<br>需要使用Symbol.for()方法。</p>
+<h2 id="3-4-8-Object类型"><a href="#3-4-8-Object类型" class="headerlink" title="3.4.8 Object类型"></a>3.4.8 Object类型</h2><p>对象其实就是一组数据和功能的集合。可以通过new来创建实例对象。<br>每个对象都有如下属性和方法：<br>constructor：用于创建当前对象的函数，构造函数。<br>hasOwnProperty(propertyName)：用于判断当前对象实例上是否存在给定的属性。<br>isPrototypeOf(object)：用于判断当前对象是否为另一个对象的原型。<br>propertyIsEnumerable(propertyName):用于判断给定的属性是否可以使用。<br>toLacaleString():返回对象的字符串表示,反映对象所在本地化执行环境。<br>toString():返回对象的字符串表示。<br>valueOf():返回对象对应的字符串、数值或布尔值表示。</p>
+<h1 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h1><h2 id="3-5-1-一元操作符"><a href="#3-5-1-一元操作符" class="headerlink" title="3.5.1 一元操作符"></a>3.5.1 一元操作符</h2><p>只操作一个值的操作符叫一元操作符。<br>++,–;  //操作中会自行转换类型,(递增和递减)<br>+,-//一元加减符，可以用于运算和转换</p>
+<h2 id="3-5-2-位操作符"><a href="#3-5-2-位操作符" class="headerlink" title="3.5.2 位操作符"></a>3.5.2 位操作符</h2><p>…</p>
+<h2 id="3-5-3-布尔操作符"><a href="#3-5-3-布尔操作符" class="headerlink" title="3.5.3 布尔操作符"></a>3.5.3 布尔操作符</h2><p>逻辑非，逻辑与逻辑或<br>1.逻辑非 ：！（感叹号）<br>!false // true<br>!”blue” //false<br>!0 //true<br>!NaN //true<br>!”” //true<br>!12345 //false<br>也可以用两个感叹号:!!,相当于调用了转型函数Boolean()。第一个返回布尔值，第二个对该布尔值取反。<br>相当于如上例子，布尔值取反。<br>2.逻辑与<br>由&amp;&amp;表示 // true &amp;&amp; true为true  其余都为false<br>3.逻辑或<br>由||表示 //有一个是true为true，false || false为false</p>
+<h2 id="3-5-4-乘性操作符"><a href="#3-5-4-乘性操作符" class="headerlink" title="3.5.4 乘性操作符"></a>3.5.4 乘性操作符</h2><p>乘法(<em>)，除法(/)，取模(%)。<br>乘法(</em>):都为数值则计算，有一项为NaN则返回NaN，如果是Infinity<em>0=NaN,Infinity</em>(-/+)num=(-)Infinity，Infinity*Infinity=Infinity,如果不是数值会转换后再近些操作。<br>除法(/):<br>0 / 0 = NaN,Infinity / Infinity = NaN,-(number)/0 = (-)Infinity,Infinity / (-)Number = (-)Infinity<br>取模(%):类似除</p>
+<h2 id="3-5-5-指数操作符"><a href="#3-5-5-指数操作符" class="headerlink" title="3.5.5 指数操作符"></a>3.5.5 指数操作符</h2><p>ES7新增的操作符 (*<em>)//Math.pow(3,2) == 3 *</em> 2 == 9<br>squared ** = 2 //9</p>
+<h2 id="3-5-6-加性操作符"><a href="#3-5-6-加性操作符" class="headerlink" title="3.5.6 加性操作符"></a>3.5.6 加性操作符</h2><p>（+），（-）</p>
+<h2 id="3-5-7-关系操作符"><a href="#3-5-7-关系操作符" class="headerlink" title="3.5.7 关系操作符"></a>3.5.7 关系操作符</h2><p>（&lt;）,（&gt;）,（&lt;=），（&gt;=）</p>
+<h2 id="3-5-8-相等操作符"><a href="#3-5-8-相等操作符" class="headerlink" title="3.5.8 相等操作符"></a>3.5.8 相等操作符</h2><p>（==），（!=），（===）,（!==）</p>
+<h2 id="3-5-9-条件操作符"><a href="#3-5-9-条件操作符" class="headerlink" title="3.5.9 条件操作符"></a>3.5.9 条件操作符</h2><p>（?）// let max = （num1 &gt; num2）? num1 : num2</p>
+<h2 id="3-5-10-赋值操作符"><a href="#3-5-10-赋值操作符" class="headerlink" title="3.5.10 赋值操作符"></a>3.5.10 赋值操作符</h2><p>（=），（*=），（/=），（%=），（+=）,（-=）,（&lt;&lt;=）,（&gt;&gt;=）,（&gt;&gt;&gt;=）</p>
+<h1 id="3-6-语句"><a href="#3-6-语句" class="headerlink" title="3.6 语句"></a>3.6 语句</h1><h2 id="3-6-1-if语句"><a href="#3-6-1-if语句" class="headerlink" title="3.6.1 if语句"></a>3.6.1 if语句</h2><p>…</p>
+<h2 id="3-6-2-do-while语句"><a href="#3-6-2-do-while语句" class="headerlink" title="3.6.2 do-while语句"></a>3.6.2 do-while语句</h2><p>do {***} while(expression);</p>
+<h2 id="3-6-3-while语句"><a href="#3-6-3-while语句" class="headerlink" title="3.6.3 while语句"></a>3.6.3 while语句</h2><p>let i = 0;<br>while(i &lt; 10) { i += 2};</p>
+<h2 id="3-6-4-for语句"><a href="#3-6-4-for语句" class="headerlink" title="3.6.4 for语句"></a>3.6.4 for语句</h2><p>for(initialization;expression;post-loop-expression) statement</p>
+<h2 id="3-6-5-for-in语句"><a href="#3-6-5-for-in语句" class="headerlink" title="3.6.5 for-in语句"></a>3.6.5 for-in语句</h2><p>for(property in expression) statement<br>for(const propName in window) {document.write(propName)}//例子</p>
+<h2 id="3-6-6-for-of语句"><a href="#3-6-6-for-of语句" class="headerlink" title="3.6.6 for-of语句"></a>3.6.6 for-of语句</h2><p>for(property of expression) statement<br>for(const el of [2,4,6,8]){document.write(el)}//例子</p>
+<h2 id="3-6-7-标签语句"><a href="#3-6-7-标签语句" class="headerlink" title="3.6.7 标签语句"></a>3.6.7 标签语句</h2><p>label:statement<br>start: for(let i = 0;i &lt; count;i++){console.log(i)}//start是一个标签，可在后面通过break，continue语句引用。</p>
+<h2 id="3-6-8-break和continue语句"><a href="#3-6-8-break和continue语句" class="headerlink" title="3.6.8 break和continue语句"></a>3.6.8 break和continue语句</h2><p>break用于立即退出循环,强行执行循环后的下一条语句。<br>continue语句用于立即退出循环，但会从循环顶部开始执行。</p>
+<h2 id="3-6-9-with语句"><a href="#3-6-9-with语句" class="headerlink" title="3.6.9 with语句"></a>3.6.9 with语句</h2><p>with(expression) statement;<br>let qs = location.search.substring(1);<br>let hostName = location.hostname;<br>let url = location.href;<br>with(location){<br>let qs = search.substring(1);<br>let hostName = hostname;<br>let url = href;<br>}<br>严格模式不允许使用</p>
+<h2 id="3-6-10-switch语句"><a href="#3-6-10-switch语句" class="headerlink" title="3.6.10 switch语句"></a>3.6.10 switch语句</h2><p>switch(expression){<br>  case value1:<br>    statament<br>    break;<br>  case value2:<br>    statement<br>    break;<br>  …<br>  default:<br>    statement<br>}<br>//switch不会强制转换数据类型</p>
+<h2 id="3-7-函数"><a href="#3-7-函数" class="headerlink" title="3.7 函数"></a>3.7 函数</h2><p>function Name(arg0,arg1){ statements}<br>遇到return语句函数就会立即停止执行并退出。<br>函数不能以eval，arguments作为名称；<br>函数的参数不能叫eval，arguments；<br>两个命名参数不能拥有同一个名称。</p>
+<h2 id="3-8-小结"><a href="#3-8-小结" class="headerlink" title="3.8 小结"></a>3.8 小结</h2><p>ES中基本数据类型包括：undefined,Null,Boolean,Number,String,Symbol<br>不需要指定函数的返回值，因为任何函数可以在任何时候返回任何值。//声明方式<br>不指定返回值的函数实际上会返回特殊值undefined。</p>
+<h1 id="4-变量、作用域与内存"><a href="#4-变量、作用域与内存" class="headerlink" title="4 变量、作用域与内存"></a>4 变量、作用域与内存</h1><h2 id="4-1-原始值与引用值"><a href="#4-1-原始值与引用值" class="headerlink" title="4.1 原始值与引用值"></a>4.1 原始值与引用值</h2><p>变量有两种不同的类型：原始值和引用值。原始值就是最简单的数据，引用值则是由多个值构成的对象。<br>原始值的变量是按值访问的，引用值是保存在内存中的对象，操作对象时，操作的是对该对象的引用而非实际的对象本身。</p>
+<h3 id="4-1-1-动态属性"><a href="#4-1-1-动态属性" class="headerlink" title="4.1.1 动态属性"></a>4.1.1 动态属性</h3><p>引用值可以随时添加、修改和删除其属性和方法。<br>只有引用值可以动态添加后面可以使用的属性。<br>原始类型的初始化可以只使用原始字面量形式。如果使用new则创建Object类型的实例。<br>let name1 = “wxc”;//typeof name1 == string<br>let name2 = new String(“Matt”);//typeof name2 == object</p>
+<h3 id="4-1-2-复制值"><a href="#4-1-2-复制值" class="headerlink" title="4.1.2 复制值"></a>4.1.2 复制值</h3><p>原始值的变量复制会创建新变量。//let name1 = “wxc”;let name2 = name1;<br>引用值的变量复制的是一个指针，两个变量指向同一个对象，一改则都改。</p>
+<h3 id="4-1-3-传递参数"><a href="#4-1-3-传递参数" class="headerlink" title="4.1.3 传递参数"></a>4.1.3 传递参数</h3><p>函数的参数都是按值传递的，传递时，值会被复制到一个局部变量。<br>按引用传递参数时，值在内存中的位置会被保存在一个局部变量，对本地变量的修改会反映到函数外部。ES中函数的参数就是局部变量。</p>
+<h3 id="4-1-4确定类型"><a href="#4-1-4确定类型" class="headerlink" title="4.1.4确定类型"></a>4.1.4确定类型</h3><p>typeof对于原始值有用，但对引用值不大。<br>引用值判断可以用instanceof<br>person instanceof Object<br>colors instanceof Array<br>pattern instanceof RegExp<br>instanceof对于原始值始终返回false，原始值不是对象。</p>
+<h2 id="4-2-执行上下文与作用域"><a href="#4-2-执行上下文与作用域" class="headerlink" title="4.2 执行上下文与作用域"></a>4.2 执行上下文与作用域</h2><p>每个上下文都有一个关联的变量对象，这个上下文中定义的所有变量和函数都存在于这个对象上。<br>浏览器中，全局上下文为window对象。var定义的全局变量和函数都会成为window对象的属性和方法。使用let和const的顶级声明不会定义在全局上下文中，但在作用域链解析上效果是一样的。<br>每个函数也有自己的上下文，执行函数时，函数上下文被推倒一个上下文栈上，执行完后弹出。ES的执行流通过该上下文栈进行控制。<br>上下文中的代码在执行时，会创建变量对象的一个作用域链。这个作用域链决定了各级上下文中的代码在访问变量和函数时的顺序。正在执行的上下文的变量对象始终位于作用域链的最前端，如果上下文是函数，其活动对象用作变量对象。活动对象最初只有一个定义变量：arguments。作用域链的下一个变量对象来自上级包含上下文。全局上下文的变量对象始终是作用域链的最后一个变量对象。<br>局部作用域中定义的变量可用于在局部上下文中替换全局变量。</p>
+<h3 id="4-2-1-作用域链增强"><a href="#4-2-1-作用域链增强" class="headerlink" title="4.2.1 作用域链增强"></a>4.2.1 作用域链增强</h3><p>代码执行到try/catch语句的catch块与with语句时，都会在作用域链前端添加一个变量对象。对with语句来说，会向作用域链前端添加指定的对象；对catch则会创建一个新的变量对象，这个变量对象会包含要抛出的错误对象的声明。</p>
+<h3 id="4-2-2-变量声明"><a href="#4-2-2-变量声明" class="headerlink" title="4.2.2 变量声明"></a>4.2.2 变量声明</h3><p>1.使用var声明变量，变量会被自动添加到最接近的上下文，最接近的上下文大多是函数的局部上下文，如果未声明就被初始化了，就被添加到全局上下文。如果在函数内声明变量添加到全局上下文，函数退出后依然可以访问。<br>var声明会被拿到函数或全局作用域的顶部，位于作用域中所有代码之前。变量提升。<br>2.使用let声明的块级作用域声明<br>块级作用域由最近的{}界定。<br>3.使用const的常量声明<br>const声明的同时必须初始化为某个值。声明后不能重新赋新值。<br>作用域与let声明一样。<br>建议多使用const，除非需要一个会重新赋值的变量。可以防止重新赋值的BUG。<br>4.标识符查找<br>特定上下文读取或写入而引用一个标识符时，必须通过搜索确定这个标识符表示什么。搜索开始于作用域链前端，以给定的名称搜索对应的标识符。//其实就是调用变量</p>
+<h2 id="4-3-垃圾回收"><a href="#4-3-垃圾回收" class="headerlink" title="4.3 垃圾回收"></a>4.3 垃圾回收</h2><p>JS使用垃圾回收，程序每隔一段就会自动运行。确定不会再使用的变量，释放内存。</p>
+<h3 id="4-3-1-标记清理"><a href="#4-3-1-标记清理" class="headerlink" title="4.3.1 标记清理"></a>4.3.1 标记清理</h3><p>常用策略是标记清理。程序运行时，标记内存中存储的所有变量，将所有上下文中的变量，以及被在上下文中的变量引用的标记去掉。再加上标记代表待删除，随后做一次内存清理，销毁带标记的所有值并回收内存。<br>IE，Firefox，Opera，Chrome，Safari都在JS实习标记清理，频率有所差异。</p>
+<h3 id="4-3-2-引用计数"><a href="#4-3-2-引用计数" class="headerlink" title="4.3.2 引用计数"></a>4.3.2 引用计数</h3><p>对每个值记录引用次数。声明变量并赋一个引用值时，这个值的引用数为1。 如果保存对该值引用的变量被其他值给覆盖了，引用数-1。引用数为0时回收内存。</p>
+<h3 id="4-3-3-性能"><a href="#4-3-3-性能" class="headerlink" title="4.3.3 性能"></a>4.3.3 性能</h3><p>垃圾回收的时间调度很重要，变量太多会造成性能损失。JS引擎的垃圾回收程序被调优为动态改变分配变量、字面量或数组槽位等会触发垃圾回收的阈值。如果回收的内存不到已分配的15%，这些阈值会翻倍。如果一次回收的内存达到已分配的85%，则阈值重置为默认值。</p>
+<h3 id="4-3-4-内存管理"><a href="#4-3-4-内存管理" class="headerlink" title="4.3.4 内存管理"></a>4.3.4 内存管理</h3><p>保证在执行代码时只保存必要的数据。不在必要则设置为null，从而释放其引用。这也可以叫作解除引用。局部变量在超出作用域会自动解除引用，所以该建议更适合全局变量和全局对象。<br>1.通过const和let声明提升性能<br>块作用域，能更早让垃圾回收程序介入。<br>2.隐藏类和删除操作<br>对象与隐藏类会被关联起来，用于跟踪他们的属性特征。共享相同隐藏类的对象性能会更好。<br>function Article(){this.title = ‘go go go’}<br>let a1 = new Article();//隐藏类title<br>let a2 = new Article();//隐藏类title<br>a1.author = ‘Jake’//对应多出author隐藏类，可能对性能产生明显影响。<br>function Article(author){this.title=’go’,this.author=author}<br>let a2 = new Article(‘wxc’)//a2与a1相同，共享一个隐藏类。<br>delete a1.author//使用delete关键字会导致生成同样的隐藏类片段<br>a1.author = null; //保持共享，并达到垃圾回收的效果<br>3.内存泄漏<br>JS的内存泄漏大部分是不合理的引用导致的。<br>function(){name = ‘Jake’}意外声明全局变量是最常见也最容易修复的内存泄漏问题。无关键字声明。<br>定时器也会导致内存泄漏，定时器的回调通过闭包引用了外部变量。<br>使用闭包容易造成内存泄漏，如下：<br>let outer = function() {let name = ‘Jake’;return function() {return name};};<br>调用outer()会导致内存泄漏。只要返回的函数存在就不能清理name，因为闭包一直在引用，加入name的内容很大，就是个大问题。<br>4.静态分配与对象池<br>不要动态创建矢量对象<br>在初始化的时候，创建一个对象池，管理一组可回收的对象。使用完后回归对象池。</p>
+<h2 id="4-4-小结"><a href="#4-4-小结" class="headerlink" title="4.4 小结"></a>4.4 小结</h2><p>原始值大小固定，因此保存在栈内存上。<br>引用值是对象，存储在堆内存上。<br>任何变量都存在于某个作用域（上下文）中，这个作用域决定了变量的声明周期，以及它们可以访问代码的哪些部分。<br>全局上下文：window，浏览器。<br>函数上下文：声明函数的{}内<br>块级上下文：最近的{}内<br>JS有垃圾回收，垃圾回收的方法有：引用计数，标记清理。主流为标记清理。<br>接触变量引用一般直接给变量赋值为null。</p>
+<h1 id="5-基本引用类型"><a href="#5-基本引用类型" class="headerlink" title="5.基本引用类型"></a>5.基本引用类型</h1><p>引用值是某个特定引用类型的实例。<br>对象被认为是某个特定引用类型的实例。新对象通过使用new操作符跟一个构造函数来创建。<br>函数也是一种引用类型。</p>
+<h2 id="5-1-Date"><a href="#5-1-Date" class="headerlink" title="5.1 Date"></a>5.1 Date</h2><p>日期对象//let now = new Date();<br>可用Date.parse()转换成日期对象//let someDate = new Date(Date.parse(“May 23,2019”));如果字符串不表示日期，会返回NaN。<br>let allFives = new Date(Date.UTC(2005,4,5,17,55,55));//GMT时间——Date.UTC方法<br>ES提供了Date.now()方法，返回表示方法执行时日期。<br>let start = Date.now();//当前时间</p>
+<h3 id="5-1-1-继承的方法"><a href="#5-1-1-继承的方法" class="headerlink" title="5.1.1 继承的方法"></a>5.1.1 继承的方法</h3><p>let date = new Date(2021,1,20);<br>toLocaleString()//–&gt;2021/2/20 上午12:00:00<br>toString()//–&gt;Sat Feb 20 2021 00:00:00 GMT+0800<br>valueOf()//–&gt;1613750400000</p>
+<h3 id="5-1-2-日期格式化方法"><a href="#5-1-2-日期格式化方法" class="headerlink" title="5.1.2 日期格式化方法"></a>5.1.2 日期格式化方法</h3><p>Date格式化日期的方法：<br>toDateString()//显示日期中的周几，月，日，年<br>toTimeString()//显示日期中的时分秒和时区<br>toLocaleDateString()//显示日期中的周几 月 日 年<br>toLocaleTimeString()//显示日期中的时 分 秒<br>toUTCString()//显示完整的UTC日期</p>
+<h3 id="5-1-3-日期-时间组件方法"><a href="#5-1-3-日期-时间组件方法" class="headerlink" title="5.1.3 日期/时间组件方法"></a>5.1.3 日期/时间组件方法</h3><p>主要应用：<br>getTime()//返回日期的毫秒表示，与valueOf相同<br>setTime(milliseconds)//设置日期的毫秒表示，从而修改整个日期<br>getFullYear()//返回四位年数<br>getMonth()//返回日期的月<br>getDate()//返回日期的日<br>getDay()//返回日期中表示周几的数值<br>getHours()//返回日期中的时<br>getMinutes()//返回日期中的分<br>getSeconds()//返回日期中的秒</p>
+<h2 id="5-2-RegExp"><a href="#5-2-RegExp" class="headerlink" title="5.2 RegExp"></a>5.2 RegExp</h2><p>ES通过RegExp类型支持正则表达式。<br>let expression = /pattern/flags;<br>匹配模式的标记：<br>1.g:全局模式，表示查找字符串的全部内容，而不是找到第一个匹配的内容就结束。<br>2.i:不区分大小写，表示查找匹配时忽略pattern和字符串的大小写。<br>3.m:多行模式，表示查找到一行文本末尾时会继续查找。<br>4.y:粘附模式，表示只查找从lastIndex开始及之后的字符串。<br>5.u:Unicode模式，启用Unicode匹配。<br>6.s：dotAll模式，表示元字符匹配任何字符。(包括\n或\r)。<br>使用不同模式和标记可以创建出各种正则表达式，比如：<br>//匹配字符串中的所有”at”<br>let pattern1 = /at/g;<br>//匹配第一个”bat”或”cat” 忽略大小写<br>let pattern2 = /[bc]at/i<br>//匹配所有以”at”结尾的三字符组合，忽略大小写<br>let pattern3 = /.at/gi<br>元字符在模式中必须转义：<br>( ，[， {，\，^，$，|，)，]，}，？，*，+，- //这些符号前面需要\来转义<br>//匹配第一个”bat”或”cat”，忽略大小写<br>let pattern1 = /[bc]at/i;<br>//匹配第一个”[bc]at”，忽略大小写<br>let pattern2 = /[bc]at/i;<br>//匹配所有以”at”结尾的三字符组合，忽略大小写<br>let pattern3 = /.at/gi;<br>//匹配所有”.at”，忽略大小写<br>let pattern4 = /.at/gi;<br>也可使用RegExp构造函数来创建：<br>let pattern1 = /[bc]at/i   ==   new RegExp(“[bc]at”,”i”);<br>也可以使用实例，选择性修改标记<br>const re1 = /cat/g;<br>const re2 = new RegExp(re1);<br>const re3 = new RegExp(re1,”i”);</p>
+<h3 id="5-2-1-RegExp实例属性"><a href="#5-2-1-RegExp实例属性" class="headerlink" title="5.2.1 RegExp实例属性"></a>5.2.1 RegExp实例属性</h3><p>global:布尔值，表示是否设置了g标记。<br>ignoreCase:布尔值，表示是否设置了i标记。<br>unicode:布尔值，表示是否设置了u标记。<br>sticky:布尔值，表示是否设置了y标记。<br>lastIndex:整数，表示在源字符串中下一次搜索的开始位置，始终从0开始。<br>multiline:布尔值，表示是否设置了m标记。<br>dotAll:布尔值，表示是否设置了s标记。<br>source:正则表达式的字面量字符串，没有开头和结尾的斜杠。<br>flags:正则表达式的标记字符串。始终以字面量而非传入构造函数的字符串模式形式返回。</p>
+<h3 id="5-2-2-RegExp实例方法"><a href="#5-2-2-RegExp实例方法" class="headerlink" title="5.2.2 RegExp实例方法"></a>5.2.2 RegExp实例方法</h3><p>exec()函数：<br>let text = ‘cat, bat, sat, fat’;<br>  let pattern = /.at/gi;<br>  let matchs = pattern.exec(text);<br>  console.log(matchs);//cat<br>//设置了全局标记(g)，每次调用返回一个匹配的信息，如果没有设置全局标记，只会返回第一个匹配的信息。<br>//设置了g标记，每次调用exec()都会在字符中向前搜索下一个匹配项<br>let text = ‘cat, bat, sat, fat’;<br>  let pattern = /.at/gi;<br>  let matchs = pattern.exec(text);//cat<br>  let matchs = pattern.exec(text);//bat<br>  let matchs = pattern.exec(text);//sat<br>  console.log(matchs);<br>//设置了y标记，每次调用会在lastIndex的位置上寻找匹配项。y标记覆盖g标记。<br>test()函数：//用于判断是否存在实际内容中，常在if判断语句中<br>let text = “000-00-00 00”;<br>let pattern = /\d{3}-\d{2}-\d(4)/;<br>if(pattern.test(text)) {console.log(“The pattern was matched.”)};<br>继承的方法toLocaleString()和toString()都返回字面量表示。<br>let pattern = new RegExp(“\[bc\]at”,”gt”);<br>console.log(pattern.toString());//  /[bc]at/gi<br>console.log(pattern.toLocaleString());//  /[bc]at/gi</p>
+<h3 id="5-2-3-RegExp构造函数属性"><a href="#5-2-3-RegExp构造函数属性" class="headerlink" title="5.2.3 RegExp构造函数属性"></a>5.2.3 RegExp构造函数属性</h3><p>input：$_   //最后搜索的字符串<br>lastMatch：$&amp;   //最后匹配的文本<br>lastParen：$+   //最后匹配的捕获组<br>leftContext：$`   //input字符串中出现在lastMatch前面的文本<br>rightContext：$’   //input字符串中出现在lastMatch后面的文本<br>let text = “this has been a short summer”;<br>let pattern = /(.)hort/g; //()–&gt;捕获组<br>if(pattern.test(text)) {<br>   console.log(RegExp.input); //this has been a short summer<br>   console.log(RegExp.leftContext); //this has been a<br>   console.log(RegExp.rightContext); //summer<br>   console.log(RegExp.lastMatch); //short<br>   console.log(RegExp.input); //s<br>}</p>
+<p>if(pattern.test(text)) {<br>   console.log(RegExp.$_); //this has been a short summer<br>   console.log(RegExp[“$`”]); //this has been a<br>   console.log(RegExp[“$’”]); //summer<br>   console.log(RegExp[“$&amp;”]); //short<br>   console.log(RegExp[“$+”]); //s<br>}<br>let pattern = /(..)or(.)/g;</p>
 <p>if(pattern.test(text)) {<br>   console.log(RegExp.$1); // sh<br>   console.log(RegExp.$2);// t<br>}</p>
 <h3 id="5-2-4-模式局限"><a href="#5-2-4-模式局限" class="headerlink" title="5.2.4 模式局限"></a>5.2.4 模式局限</h3><p>ES对正则表达式的支持还缺少一些高级特性。</p>
-<h2 id="5-3-原始值包装类型"><a href="#5-3-原始值包装类型" class="headerlink" title="5.3 原始值包装类型"></a>5.3 原始值包装类型</h2><p>ES提供了3种特殊类型的引用类型：Boolean,Number,String。<br>以读模式访问字符串时，后台执行：<br>（1）创建一个String类型的实例；// let s1 = "some text"<br>（2）调用实例上的特点方法；// let s2 = s1.substring(2);<br>（3）销毁实例；// s1 = null;<br>let value = "25";<br>let number = Number(value);   //转型函数<br>console.log(typeof number);   //"number"<br>let obj = new Number(value); // 构造函数<br>console.log(typeof obj); //"object"<br>变量obj保存一个Number实例。</p>
-<h3 id="5-3-1-Boolean"><a href="#5-3-1-Boolean" class="headerlink" title="5.3.1 Boolean"></a>5.3.1 Boolean</h3><p>let falseObject = new Boolean(false);// typeof == object<br>let result = falseObject && true;<br>console.log(result); //true<br>let falseValue = false;//typeof == boolean 强烈建议永远不要使用<br>result = falseValue && true;<br>console.log(result); //false</p>
-<h3 id="5-3-2-Number"><a href="#5-3-2-Number" class="headerlink" title="5.3.2 Number"></a>5.3.2 Number</h3><p>方法：toFix()//let num = 10;num.toFixed(2);// "10.00"<br>方法：toExponential()//let num = 10;num.toExponential(1);//"1.0e+1"<br>方法：toPrecision()//let num = 99;<br>num.toPrecision(1)//"1e+2"<br>num.toPrecision(2)//"99"<br>num.toPrecision(3)//"99.0"<br>方法：isInterger()//辨别一个数值是否保存为整数。<br>Number.isInterger(1);// true<br>Number.isInterger(1.00)//true<br>Number.isInterger(1.01)//false<br>方法：isSafeInterger()判断数值范围</p>
-<h3 id="5-3-3-String"><a href="#5-3-3-String" class="headerlink" title="5.3.3 String"></a>5.3.3 String</h3><p>每个字符用16位表示，基于16位码元完成操作。//基本多语言平面。<br>normalize()方法：用于判断规范性。<br>concat()：拼接//用加法运算符也可<br>Value = "hello world";<br>slice()：<br>Value.slice(3)//"lo world";<br>Value.slice(3,7)//"lo w";<br>Value.slice(-3)//"rld" 等同于slice(8);(11-3)<br>Value.slice(3,-4)//"lo w" 等同于slice(3,7);(3+4)<br>substr()：<br>Value.substr(3)//"lo world";<br>Value.substr(3,7)//"lo worl";<br>Value.substr(-3)//"rld" 等同于substr(8);<br>Value.substr(3,-4)//""等同于substr(3,0);<br>substring()：<br>Value.substring(3)//"lo world";<br>Value.substring(3,7)//"lo w";<br>Value.substring(-3)//"hello world" 等同于substring(0)<br>Value.substring(3,-4)//"hel"等同于substring(0,3)<br>indexOf():<br>Value.indexOf("o");// 4<br>Value.indexOf("t")// -1<br>Value.indexOf("o",6)//7<br>lastIndexOf():<br>Value.lastIndexOf("o")//7<br>Value.lastIndexOf("t")//-1<br>Value.lastIndexOf("o",6)//4<br>message = "foobarbaz";<br>startWith():<br>message.startWith("foo");//true<br>message.startWith("bar");//false<br>endWith():<br>message.endWith("baz");//true<br>message.endWith("bar");//false<br>includes():<br>message.includes("bar");//true<br>message.includes("qux");//false<br>trim()://不影响原字符串，trimLeft(),trimRight()<br>let string = "   hello  world   ";<br>string.trim()//"hello  world"<br>repeat():<br>string = "abc";<br>string.repeat(2)//"abcabc";<br>padStart(),padEnd():<br>string = "foo"<br>string.padStart(6)//"   foo";len=6<br>string.padStart(9,".")//"......foo";len=9<br>string.padStart(8,"bar")//"barbafoo"len=8<br>string.padEnd(6)//"foo   ";<br>string.padEnd(9,".")//"foo......";<br>string.padEnd(8,"bar")//"foobarba";<br>迭代与解构<br>let message = "abc";<br>Iterator = message<a href="">Symbol.iterator</a>;<br>Iterator.next()//{value:"a",done:false}<br>Iterator.next()//{value:"b",done:false}<br>Iterator.next()//{value:"c",done:false}<br>Iterator.next()//{value:"undefined",done:true}<br>大小写转换<br>toLowerCase()//小写<br>toLocalLowerCase()//特定地区方法使用<br>toUpperCase()//大写<br>toLocalUpperCase()//特定地区方法使用<br>字符串模式匹配方法<br>match():与exec()方法一致<br>search():<br>let text = "cat, bat, sat, fat";<br>let pos = text.search(/at/);//1第一个位置为1<br>replace():<br>let res = text.replace("at","ond");//"cond, bat, sat, fat"<br>let res = text.replace(/at/g,"ond")//"cond, bond, sond, fond"<br>localeCompare():按字母表顺序比较返回值</p>
+<h2 id="5-3-原始值包装类型"><a href="#5-3-原始值包装类型" class="headerlink" title="5.3 原始值包装类型"></a>5.3 原始值包装类型</h2><p>ES提供了3种特殊类型的引用类型：Boolean,Number,String。<br>以读模式访问字符串时，后台执行：<br>（1）创建一个String类型的实例；// let s1 = “some text”<br>（2）调用实例上的特点方法；// let s2 = s1.substring(2);<br>（3）销毁实例；// s1 = null;<br>let value = “25”;<br>let number = Number(value);   //转型函数<br>console.log(typeof number);   //“number”<br>let obj = new Number(value); // 构造函数<br>console.log(typeof obj); //“object”<br>变量obj保存一个Number实例。</p>
+<h3 id="5-3-1-Boolean"><a href="#5-3-1-Boolean" class="headerlink" title="5.3.1 Boolean"></a>5.3.1 Boolean</h3><p>let falseObject = new Boolean(false);// typeof == object<br>let result = falseObject &amp;&amp; true;<br>console.log(result); //true<br>let falseValue = false;//typeof == boolean 强烈建议永远不要使用<br>result = falseValue &amp;&amp; true;<br>console.log(result); //false</p>
+<h3 id="5-3-2-Number"><a href="#5-3-2-Number" class="headerlink" title="5.3.2 Number"></a>5.3.2 Number</h3><p>方法：toFix()//let num = 10;num.toFixed(2);// “10.00”<br>方法：toExponential()//let num = 10;num.toExponential(1);//“1.0e+1”<br>方法：toPrecision()//let num = 99;<br>num.toPrecision(1)//“1e+2”<br>num.toPrecision(2)//“99”<br>num.toPrecision(3)//“99.0”<br>方法：isInterger()//辨别一个数值是否保存为整数。<br>Number.isInterger(1);// true<br>Number.isInterger(1.00)//true<br>Number.isInterger(1.01)//false<br>方法：isSafeInterger()判断数值范围</p>
+<h3 id="5-3-3-String"><a href="#5-3-3-String" class="headerlink" title="5.3.3 String"></a>5.3.3 String</h3><p>每个字符用16位表示，基于16位码元完成操作。//基本多语言平面。<br>normalize()方法：用于判断规范性。<br>concat()：拼接//用加法运算符也可<br>Value = “hello world”;<br>slice()：<br>Value.slice(3)//“lo world”;<br>Value.slice(3,7)//“lo w”;<br>Value.slice(-3)//“rld” 等同于slice(8);(11-3)<br>Value.slice(3,-4)//“lo w” 等同于slice(3,7);(3+4)<br>substr()：<br>Value.substr(3)//“lo world”;<br>Value.substr(3,7)//“lo worl”;<br>Value.substr(-3)//“rld” 等同于substr(8);<br>Value.substr(3,-4)//“”等同于substr(3,0);<br>substring()：<br>Value.substring(3)//“lo world”;<br>Value.substring(3,7)//“lo w”;<br>Value.substring(-3)//“hello world” 等同于substring(0)<br>Value.substring(3,-4)//“hel”等同于substring(0,3)<br>indexOf():<br>Value.indexOf(“o”);// 4<br>Value.indexOf(“t”)// -1<br>Value.indexOf(“o”,6)//7<br>lastIndexOf():<br>Value.lastIndexOf(“o”)//7<br>Value.lastIndexOf(“t”)//-1<br>Value.lastIndexOf(“o”,6)//4<br>message = “foobarbaz”;<br>startWith():<br>message.startWith(“foo”);//true<br>message.startWith(“bar”);//false<br>endWith():<br>message.endWith(“baz”);//true<br>message.endWith(“bar”);//false<br>includes():<br>message.includes(“bar”);//true<br>message.includes(“qux”);//false<br>trim()://不影响原字符串，trimLeft(),trimRight()<br>let string = “   hello  world   “;<br>string.trim()//“hello  world”<br>repeat():<br>string = “abc”;<br>string.repeat(2)//“abcabc”;<br>padStart(),padEnd():<br>string = “foo”<br>string.padStart(6)//“   foo”;len=6<br>string.padStart(9,”.”)//“……foo”;len=9<br>string.padStart(8,”bar”)//“barbafoo”len=8<br>string.padEnd(6)//“foo   “;<br>string.padEnd(9,”.”)//“foo……”;<br>string.padEnd(8,”bar”)//“foobarba”;<br>迭代与解构<br>let message = “abc”;<br>Iterator = message<a href>Symbol.iterator</a>;<br>Iterator.next()//{value:”a”,done:false}<br>Iterator.next()//{value:”b”,done:false}<br>Iterator.next()//{value:”c”,done:false}<br>Iterator.next()//{value:”undefined”,done:true}<br>大小写转换<br>toLowerCase()//小写<br>toLocalLowerCase()//特定地区方法使用<br>toUpperCase()//大写<br>toLocalUpperCase()//特定地区方法使用<br>字符串模式匹配方法<br>match():与exec()方法一致<br>search():<br>let text = “cat, bat, sat, fat”;<br>let pos = text.search(/at/);//1第一个位置为1<br>replace():<br>let res = text.replace(“at”,”ond”);//“cond, bat, sat, fat”<br>let res = text.replace(/at/g,”ond”)//“cond, bond, sond, fond”<br>localeCompare():按字母表顺序比较返回值</p>
 <h2 id="5-4-单例内置对象"><a href="#5-4-单例内置对象" class="headerlink" title="5.4 单例内置对象"></a>5.4 单例内置对象</h2><p>包括Global,Math</p>
-<h3 id="5-4-1-Global"><a href="#5-4-1-Global" class="headerlink" title="5.4.1 Global"></a>5.4.1 Global</h3><p>全局作用域中定义的变量和函数都会成为Global对象的属性。<br>encodeURI(),encodeURIComponent()//编码统一资源标识符。<br>eval():<br>eval("console.log('hi')");///console.log("hi");<br>eval("function sayHi(){console.log('hi');}");///sayHi();<br>容易被XSS攻击。<br>对象属性：<br>undefined//特殊值<br>NaN//特殊值<br>Infinity//特殊值<br>Object//构造函数<br>Array//构造函数<br>Function//构造函数<br>....<br>window对象<br>window为Global对象的代理,全局变量和函数即为window的属性。</p>
-<h3 id="5-4-2-Math"><a href="#5-4-2-Math" class="headerlink" title="5.4.2 Math"></a>5.4.2 Math</h3><p>Math对象属性：<br>E //自然对数的基数e的值<br>LN10 //10为底的自然对数<br>LN2 //2为底的自然对数<br>LOG2E //以2为底e的对数<br>LOG10E //以10为底e的对数<br>PI //π的值<br>SQRT1_2 //1/2的平方根<br>SQRT2 //2的平方根<br>Math方法：<br>min():取最小值//配合数组可以使用扩展操作符<br>max():取最大值//max = Math.max(...array);<br>ceil():向上取<br>Math.ceil(25.9);//26<br>Math.ceil(25.5);//26<br>Math.ceil(25.1);//26<br>round():四舍五入<br>console.log(Math.round(25.9)); // 26<br>console.log(Math.round(25.5)); // 26<br>console.log(Math.round(25.1)); // 25<br>fround():取单精度浮点值<br>console.log(Math.fround(0.4)); // 0.4000000059604645<br>console.log(Math.fround(0.5)); // 0.5<br>console.log(Math.fround(25.9)); // 25.899999618530273<br>floor():向下取<br>console.log(Math.floor(25.9)); // 25<br>console.log(Math.floor(25.5)); // 25<br>console.log(Math.floor(25.1)); // 25<br>random()://返回小数0~1内<br>加密提高不确定性：建议使用window.crypto.getRandomValues()。<br>abs()//绝对值<br>exp()//次幂<br>log()//自然对数<br>....</p>
+<h3 id="5-4-1-Global"><a href="#5-4-1-Global" class="headerlink" title="5.4.1 Global"></a>5.4.1 Global</h3><p>全局作用域中定义的变量和函数都会成为Global对象的属性。<br>encodeURI(),encodeURIComponent()//编码统一资源标识符。<br>eval():<br>eval(“console.log(‘hi’)”);///console.log(“hi”);<br>eval(“function sayHi(){console.log(‘hi’);}”);///sayHi();<br>容易被XSS攻击。<br>对象属性：<br>undefined//特殊值<br>NaN//特殊值<br>Infinity//特殊值<br>Object//构造函数<br>Array//构造函数<br>Function//构造函数<br>….<br>window对象<br>window为Global对象的代理,全局变量和函数即为window的属性。</p>
+<h3 id="5-4-2-Math"><a href="#5-4-2-Math" class="headerlink" title="5.4.2 Math"></a>5.4.2 Math</h3><p>Math对象属性：<br>E //自然对数的基数e的值<br>LN10 //10为底的自然对数<br>LN2 //2为底的自然对数<br>LOG2E //以2为底e的对数<br>LOG10E //以10为底e的对数<br>PI //π的值<br>SQRT1_2 //1/2的平方根<br>SQRT2 //2的平方根<br>Math方法：<br>min():取最小值//配合数组可以使用扩展操作符<br>max():取最大值//max = Math.max(…array);<br>ceil():向上取<br>Math.ceil(25.9);//26<br>Math.ceil(25.5);//26<br>Math.ceil(25.1);//26<br>round():四舍五入<br>console.log(Math.round(25.9)); // 26<br>console.log(Math.round(25.5)); // 26<br>console.log(Math.round(25.1)); // 25<br>fround():取单精度浮点值<br>console.log(Math.fround(0.4)); // 0.4000000059604645<br>console.log(Math.fround(0.5)); // 0.5<br>console.log(Math.fround(25.9)); // 25.899999618530273<br>floor():向下取<br>console.log(Math.floor(25.9)); // 25<br>console.log(Math.floor(25.5)); // 25<br>console.log(Math.floor(25.1)); // 25<br>random()://返回小数0~1内<br>加密提高不确定性：建议使用window.crypto.getRandomValues()。<br>abs()//绝对值<br>exp()//次幂<br>log()//自然对数<br>….</p>
 <h2 id="5-5-小结"><a href="#5-5-小结" class="headerlink" title="5.5 小结"></a>5.5 小结</h2><p>对象为引用值，内置的引用类型可用于创建特定类型的对象。<br>RegExp是ES支持正则表达式的接口。<br>函数实际上是Function类型的实例，是对象。</p>
-<h1 id="6-集合引用类型"><a href="#6-集合引用类型" class="headerlink" title="6 集合引用类型"></a>6 集合引用类型</h1><h2 id="6-1-Object"><a href="#6-1-Object" class="headerlink" title="6.1 Object"></a>6.1 Object</h2><p>let person = new Object();//构造函数<br>person.name = 'micheal';<br>let person = {name:'micheal'};//{}字面量表达式<br>person["name"]//micheal<br>person.name//micheal</p>
-<h2 id="6-2-Array"><a href="#6-2-Array" class="headerlink" title="6.2 Array"></a>6.2 Array</h2><h3 id="6-2-1-创建数组"><a href="#6-2-1-创建数组" class="headerlink" title="6.2.1 创建数组"></a>6.2.1 创建数组</h3><p>let colors = new Array();//可以传值创建初始length的数组，也可以传数组值<br>let colors = ["red","blue"]//字面量表达式<br>from():<br>Array.from("Matt")//["M","a","t","t"]<br>适用于Map,Set,Array,iterator,arguments<br>of()://使用Array.prototype.slice.call(arguments)<br>Array.of(1,2,3,4)//[1,2,3,4]<br>Array.of(undefined)//[undefined]</p>
-<h3 id="6-2-2-数组空位"><a href="#6-2-2-数组空位" class="headerlink" title="6.2.2 数组空位"></a>6.2.2 数组空位</h3><p>使用(,)创建数组空位<br>const options = [,,,,,]<br>options.length = 5<br>options //[,,,,,]<br>空值为undefined<br>options = [1,,,5];<br>options.map(()=>6)//[6,,,6]<br>options.join('-')//"1-----5"</p>
-<h3 id="6-2-3-数组索引"><a href="#6-2-3-数组索引" class="headerlink" title="6.2.3 数组索引"></a>6.2.3 数组索引</h3><p>colors[0]-->第一个元素<br>给数组设置length会改变数组大小</p>
+<h1 id="6-集合引用类型"><a href="#6-集合引用类型" class="headerlink" title="6 集合引用类型"></a>6 集合引用类型</h1><h2 id="6-1-Object"><a href="#6-1-Object" class="headerlink" title="6.1 Object"></a>6.1 Object</h2><p>let person = new Object();//构造函数<br>person.name = ‘micheal’;<br>let person = {name:’micheal’};//{}字面量表达式<br>person[“name”]//micheal<br>person.name//micheal</p>
+<h2 id="6-2-Array"><a href="#6-2-Array" class="headerlink" title="6.2 Array"></a>6.2 Array</h2><h3 id="6-2-1-创建数组"><a href="#6-2-1-创建数组" class="headerlink" title="6.2.1 创建数组"></a>6.2.1 创建数组</h3><p>let colors = new Array();//可以传值创建初始length的数组，也可以传数组值<br>let colors = [“red”,”blue”]//字面量表达式<br>from():<br>Array.from(“Matt”)//[“M”,”a”,”t”,”t”]<br>适用于Map,Set,Array,iterator,arguments<br>of()://使用Array.prototype.slice.call(arguments)<br>Array.of(1,2,3,4)//[1,2,3,4]<br>Array.of(undefined)//[undefined]</p>
+<h3 id="6-2-2-数组空位"><a href="#6-2-2-数组空位" class="headerlink" title="6.2.2 数组空位"></a>6.2.2 数组空位</h3><p>使用(,)创建数组空位<br>const options = [,,,,,]<br>options.length = 5<br>options //[,,,,,]<br>空值为undefined<br>options = [1,,,5];<br>options.map(()=&gt;6)//[6,,,6]<br>options.join(‘-‘)//“1—–5”</p>
+<h3 id="6-2-3-数组索引"><a href="#6-2-3-数组索引" class="headerlink" title="6.2.3 数组索引"></a>6.2.3 数组索引</h3><p>colors[0]–&gt;第一个元素<br>给数组设置length会改变数组大小</p>
 <h3 id="6-2-4-检测数组"><a href="#6-2-4-检测数组" class="headerlink" title="6.2.4 检测数组"></a>6.2.4 检测数组</h3><p>判断是否数组，使用instanceof<br>也可使用isArray()方法</p>
-<h3 id="6-2-5-迭代器方法"><a href="#6-2-5-迭代器方法" class="headerlink" title="6.2.5 迭代器方法"></a>6.2.5 迭代器方法</h3><p>const a = ["a","b","c","d"];<br>keys()://返回数组索引的迭代器<br>const akeys = Array.from(a.keys()); // [0,1,2,3]<br>values()://返回数组元素的迭代器<br>const aValues = Array.from(a.Values());//["a","b","c","d"]<br>entries()://返回索引/值对的迭代器<br>const aEntries = Array.from(a.entries());//[[0,"a"],[1,"b"],[2,"c"],[3,"d"]]<br>for(const [idx,element] of a.entries()){<br>alert(idx);<br>alert(element);<br>}<br>//0<br>//a<br>//1<br>//b<br>//2<br>//c<br>//3<br>//d</p>
+<h3 id="6-2-5-迭代器方法"><a href="#6-2-5-迭代器方法" class="headerlink" title="6.2.5 迭代器方法"></a>6.2.5 迭代器方法</h3><p>const a = [“a”,”b”,”c”,”d”];<br>keys()://返回数组索引的迭代器<br>const akeys = Array.from(a.keys()); // [0,1,2,3]<br>values()://返回数组元素的迭代器<br>const aValues = Array.from(a.Values());//[“a”,”b”,”c”,”d”]<br>entries()://返回索引/值对的迭代器<br>const aEntries = Array.from(a.entries());//[[0,”a”],[1,”b”],[2,”c”],[3,”d”]]<br>for(const [idx,element] of a.entries()){<br>alert(idx);<br>alert(element);<br>}<br>//0<br>//a<br>//1<br>//b<br>//2<br>//c<br>//3<br>//d</p>
 <h3 id="6-2-6-复制和填充方法"><a href="#6-2-6-复制和填充方法" class="headerlink" title="6.2.6 复制和填充方法"></a>6.2.6 复制和填充方法</h3><p>copyWithin()//批量复制<br>fill()://填充<br>const a = [0,0,0,0,0];<br>zeros.fill(5)//[5,5,5,5,5];<br>zeros.fill(6,3)//[0,0,0,6,6]<br>zeros.fill(7,1,3)//[0,7,7,0,0]<br>索引过低，过高，反向都会被忽略<br>部门可用的索引，填充可用部分。<br>ints = [0,1,2,3,4,5,6,7,8,9];<br>ints.copyWithin(5) // [0,1,2,3,4,0,1,2,3,4];<br>ints.copyWithin(0,5)//[5,6,7,8,9,5,6,7,8,9];<br>ints.copyWithin(4,0,3)//[0,1,2,3,0,1,2,7,8,9];<br>ints.copyWithin(2,0,6)//[0,1,0,1,2,3,4,5,8,9];</p>
 <h3 id="6-2-7-转换方法"><a href="#6-2-7-转换方法" class="headerlink" title="6.2.7 转换方法"></a>6.2.7 转换方法</h3><p>数组调用toString(),valueOf()方法相当于每个元素调用一次这个方法。</p>
 <h3 id="6-2-8-栈方法"><a href="#6-2-8-栈方法" class="headerlink" title="6.2.8 栈方法"></a>6.2.8 栈方法</h3><p>push()//从最后推入数据<br>pop()//弹出最后一项并返回</p>
@@ -887,42 +498,44 @@ if(pattern.test(text)) {
 <h2 id="6-3-定型数组"><a href="#6-3-定型数组" class="headerlink" title="6.3 定型数组"></a>6.3 定型数组</h2><h3 id="6-3-1-历史"><a href="#6-3-1-历史" class="headerlink" title="6.3.1 历史"></a>6.3.1 历史</h3><p>WebGL用到，3D技术。<br>定型数组</p>
 <h3 id="6-3-2-ArrayBuffer"><a href="#6-3-2-ArrayBuffer" class="headerlink" title="6.3.2 ArrayBuffer"></a>6.3.2 ArrayBuffer</h3><p>构造函数，用于内存中分配特定数量的字节空间。</p>
 <h3 id="6-3-3-DataView"><a href="#6-3-3-DataView" class="headerlink" title="6.3.3 DataView"></a>6.3.3 DataView</h3><h3 id="6-3-4-定型数组"><a href="#6-3-4-定型数组" class="headerlink" title="6.3.4 定型数组"></a>6.3.4 定型数组</h3><h2 id="6-4-Map"><a href="#6-4-Map" class="headerlink" title="6.4 Map"></a>6.4 Map</h2><p>一种实现键值存储机制的集合类型。</p>
-<h3 id="6-4-1-基本API"><a href="#6-4-1-基本API" class="headerlink" title="6.4.1 基本API"></a>6.4.1 基本API</h3><p>const m2 = new Map([["key1","val1"]["key2","val2"]["key3","val3"]])<br>m1.size = 3<br>可使用has(),get()进行查询，delete(),clear()删除值。</p>
+<h3 id="6-4-1-基本API"><a href="#6-4-1-基本API" class="headerlink" title="6.4.1 基本API"></a>6.4.1 基本API</h3><p>const m2 = new Map([[“key1”,”val1”][“key2”,”val2”][“key3”,”val3”]])<br>m1.size = 3<br>可使用has(),get()进行查询，delete(),clear()删除值。</p>
 <h3 id="6-4-2-顺序与迭代"><a href="#6-4-2-顺序与迭代" class="headerlink" title="6.4.2 顺序与迭代"></a>6.4.2 顺序与迭代</h3><p>提供迭代器(Iterator),通过entries()获取<br>可以通过遍历获取。</p>
 <h3 id="6-4-3-选择Object还是Map"><a href="#6-4-3-选择Object还是Map" class="headerlink" title="6.4.3 选择Object还是Map"></a>6.4.3 选择Object还是Map</h3><p>1.内存占用<br>Map占用更小<br>2.插入性能<br>Map插入性能更好<br>3.查找速度<br>Object优于Map<br>4.删除性能<br>Map更快，涉及大量删除 Map最佳。</p>
 <h2 id="6-5-WeakMap"><a href="#6-5-WeakMap" class="headerlink" title="6.5 WeakMap"></a>6.5 WeakMap</h2><p>类似于Map，只能用对象作为键。<br>API与Map相同。<br>键不存在时，值会被垃圾回收。<br>无法迭代。</p>
 <h2 id="6-6-Set"><a href="#6-6-Set" class="headerlink" title="6.6 Set"></a>6.6 Set</h2><h3 id="6-6-1-基本API"><a href="#6-6-1-基本API" class="headerlink" title="6.6.1 基本API"></a>6.6.1 基本API</h3><p>与Map相似，size长度，has()查询，delete()和clear()删除元素。<br>add()添加元素。</p>
 <h3 id="6-6-2-顺序与迭代"><a href="#6-6-2-顺序与迭代" class="headerlink" title="6.6.2 顺序与迭代"></a>6.6.2 顺序与迭代</h3><p>可通过values()与keys()获取迭代器<br>可以使用遍历方法迭代。</p>
 <h2 id="6-7-WeakSet"><a href="#6-7-WeakSet" class="headerlink" title="6.7 WeakSet"></a>6.7 WeakSet</h2><p>与WeakMap类型</p>
-<h2 id="6-8-迭代与扩展操作"><a href="#6-8-迭代与扩展操作" class="headerlink" title="6.8 迭代与扩展操作"></a>6.8 迭代与扩展操作</h2><p>支持for-of循环<br>支持浅拷贝<br>let arr1 = [...arr2];</p>
+<h2 id="6-8-迭代与扩展操作"><a href="#6-8-迭代与扩展操作" class="headerlink" title="6.8 迭代与扩展操作"></a>6.8 迭代与扩展操作</h2><p>支持for-of循环<br>支持浅拷贝<br>let arr1 = […arr2];</p>
 <h2 id="6-9-小结"><a href="#6-9-小结" class="headerlink" title="6.9 小结"></a>6.9 小结</h2><p>JS的对象是引用值，可以通过几种内置引用类型创建特定类型的对象。<br>Object类型是一个基础类型，所有引用类型都继承了它的基本行为。<br>Array是一组有序的值，并提供了操作和转换值的能力。<br>定型数组包含一套不同的引用类型。<br>Date，日期类型。RegExp，正则表达式的接口。<br>ES6新增Map，WeakMap,Set,WeakSet。</p>
 <h1 id="7-迭代器与生成器"><a href="#7-迭代器与生成器" class="headerlink" title="7 迭代器与生成器"></a>7 迭代器与生成器</h1><p>迭代即“重复”，“再来”。</p>
 <h2 id="7-1-理解迭代"><a href="#7-1-理解迭代" class="headerlink" title="7.1 理解迭代"></a>7.1 理解迭代</h2><p>JS中，计数循环就是一种最简单的迭代：for（）<br>可以指定顺序，次数，在一个有序集合上进行。<br>需知道如何使用数据结构，遍历顺序不是数据结构固有的。</p>
 <h2 id="7-2-迭代器模式"><a href="#7-2-迭代器模式" class="headerlink" title="7.2 迭代器模式"></a>7.2 迭代器模式</h2><p>任何实现Iterable接口的数据结构都可以被实现Iterator接口的结构消费。<br>迭代器是按需创建的一次性对象。每个迭代器都会关联一个可迭代对象。</p>
-<h3 id="7-2-1-可迭代协议"><a href="#7-2-1-可迭代协议" class="headerlink" title="7.2.1 可迭代协议"></a>7.2.1 可迭代协议</h3><p>实现了Iterable接口的内置类型：<br>1.字符串<br>2.数组<br>3.映射<br>4.集合<br>5.arguments对象<br>6.NodeList等DOM集合类型<br>接受可迭代对象的语言特性包括：<br>let arr = ["foo","bar","baz"];<br>1.for-of //for(let el of arr){el};<br>2.数组解构 //let [a,b,c] = arr;<br>3.扩展操作符 // let arr2 = [...arr];<br>4.Array.from() //let arr3 = Array.from(arr);<br>5.创建集合 //let set = new Set(arr);<br>6.创建映射 //let pairs = arr.map((x,i)=>[x,i]);<br>7.promise.all()<br>8.promise.race()<br>9.yield*操作符</p>
-<h3 id="7-2-2-迭代器协议"><a href="#7-2-2-迭代器协议" class="headerlink" title="7.2.2 迭代器协议"></a>7.2.2 迭代器协议</h3><p>let arr = ["a","b"];<br>console.log(arr[Symbol.iterator]); //f values(){[native code]};<br>let iter = arr<a href="">Symbol.iterator</a>;<br>console.log(iter);// ArrayIterator()<br>iter.next();//{done:false,value:"a"};</p>
+<h3 id="7-2-1-可迭代协议"><a href="#7-2-1-可迭代协议" class="headerlink" title="7.2.1 可迭代协议"></a>7.2.1 可迭代协议</h3><p>实现了Iterable接口的内置类型：<br>1.字符串<br>2.数组<br>3.映射<br>4.集合<br>5.arguments对象<br>6.NodeList等DOM集合类型<br>接受可迭代对象的语言特性包括：<br>let arr = [“foo”,”bar”,”baz”];<br>1.for-of //for(let el of arr){el};<br>2.数组解构 //let [a,b,c] = arr;<br>3.扩展操作符 // let arr2 = […arr];<br>4.Array.from() //let arr3 = Array.from(arr);<br>5.创建集合 //let set = new Set(arr);<br>6.创建映射 //let pairs = arr.map((x,i)=&gt;[x,i]);<br>7.promise.all()<br>8.promise.race()<br>9.yield*操作符</p>
+<h3 id="7-2-2-迭代器协议"><a href="#7-2-2-迭代器协议" class="headerlink" title="7.2.2 迭代器协议"></a>7.2.2 迭代器协议</h3><p>let arr = [“a”,”b”];<br>console.log(arr[Symbol.iterator]); //f values(){[native code]};<br>let iter = arr<a href>Symbol.iterator</a>;<br>console.log(iter);// ArrayIterator()<br>iter.next();//{done:false,value:”a”};</p>
 <h3 id="7-2-3-自定义迭代器"><a href="#7-2-3-自定义迭代器" class="headerlink" title="7.2.3 自定义迭代器"></a>7.2.3 自定义迭代器</h3><p>自定义迭代方法</p>
 <h3 id="7-2-4-提前终止迭代器"><a href="#7-2-4-提前终止迭代器" class="headerlink" title="7.2.4 提前终止迭代器"></a>7.2.4 提前终止迭代器</h3><p>return {done:true};<br>或break</p>
 <h2 id="7-3-生成器"><a href="#7-3-生成器" class="headerlink" title="7.3 生成器"></a>7.3 生成器</h2><h3 id="7-3-1-生成器基础"><a href="#7-3-1-生成器基础" class="headerlink" title="7.3.1 生成器基础"></a>7.3.1 生成器基础</h3><h3 id="7-3-2-通过yield中断执行"><a href="#7-3-2-通过yield中断执行" class="headerlink" title="7.3.2 通过yield中断执行"></a>7.3.2 通过yield中断执行</h3><h3 id="7-3-3-生成器作为默认迭代器"><a href="#7-3-3-生成器作为默认迭代器" class="headerlink" title="7.3.3 生成器作为默认迭代器"></a>7.3.3 生成器作为默认迭代器</h3><h3 id="7-3-4-提前终止生成器"><a href="#7-3-4-提前终止生成器" class="headerlink" title="7.3.4 提前终止生成器"></a>7.3.4 提前终止生成器</h3><h2 id="7-4-小结"><a href="#7-4-小结" class="headerlink" title="7.4 小结"></a>7.4 小结</h2><p>由任意对象实现的接口，支持连续获取对象产出的每一个值。使用symbol.iterator获取，并且通过一些方法调用，例next(),for-of。</p>
 <h1 id="8-对象、类与面向对象编程"><a href="#8-对象、类与面向对象编程" class="headerlink" title="8 对象、类与面向对象编程"></a>8 对象、类与面向对象编程</h1><p>无特定顺序的值。每个属性或方法都用名称标识。</p>
 <h2 id="8-1-理解对象"><a href="#8-1-理解对象" class="headerlink" title="8.1 理解对象"></a>8.1 理解对象</h2><h3 id="8-1-1-属性的类型"><a href="#8-1-1-属性的类型" class="headerlink" title="8.1.1 属性的类型"></a>8.1.1 属性的类型</h3><p>数据属性：<br>[[Configurable]]:表示属性是否可以通过delete删除并重定义，是否可修改特性，是否可以把它改为访问器属性。<br>[[Enumerable]]:表示属性是否可以通过for-in循环返回。<br>[[Writable]]:表示属性的值是否可以被修改。<br>[[Value]]:表示属性的值。<br>访问器属性：<br>[[Configurable]]:表示属性是否可以通过delete删除并重定义，是否可修改特性，是否可以把它改为访问器属性。<br>[[Enumerable]]:表示属性是否可以通过for-in循环返回。<br>[[Get]]:获取函数，读取属性调用。<br>[[Set]]:设置函数，写入属性时调用。</p>
 <h3 id="8-1-2-定义多个属性"><a href="#8-1-2-定义多个属性" class="headerlink" title="8.1.2 定义多个属性"></a>8.1.2 定义多个属性</h3><p>let book = {};<br>Object.defineProperties(book,{year:{value:2017},edition:{value:1},year:{get(){return this.year;}}});</p>
-<h3 id="8-1-3-读取属性的特性"><a href="#8-1-3-读取属性的特性" class="headerlink" title="8.1.3 读取属性的特性"></a>8.1.3 读取属性的特性</h3><p>Object.getOwnPropertyDescriptor(object,'name');<br>descriptor = Object.getOwnPropertyDescriptor(book,"year");<br>Object.getOwnPropertyDescriptors(object);//获取所有</p>
+<h3 id="8-1-3-读取属性的特性"><a href="#8-1-3-读取属性的特性" class="headerlink" title="8.1.3 读取属性的特性"></a>8.1.3 读取属性的特性</h3><p>Object.getOwnPropertyDescriptor(object,’name’);<br>descriptor = Object.getOwnPropertyDescriptor(book,”year”);<br>Object.getOwnPropertyDescriptors(object);//获取所有</p>
 <h3 id="8-1-4-合并对象"><a href="#8-1-4-合并对象" class="headerlink" title="8.1.4 合并对象"></a>8.1.4 合并对象</h3><p>Object.assgin();//浅拷贝,会覆盖重复的属性<br>result = Object.assign(object1,object2);<br>object === result<br>result = Object.assign(object1,object2,object3);</p>
 <h3 id="8-1-5-对象标识及相等判定"><a href="#8-1-5-对象标识及相等判定" class="headerlink" title="8.1.5 对象标识及相等判定"></a>8.1.5 对象标识及相等判定</h3><p>Object.is()//需要两个参数<br>Object.is(+0,-0)//false</p>
-<h3 id="8-1-6-增强的对象语法"><a href="#8-1-6-增强的对象语法" class="headerlink" title="8.1.6 增强的对象语法"></a>8.1.6 增强的对象语法</h3><p>let person = {name:name};  === let person = {name};//不建议<br>namekey = "name";let person = {[namekey]:'Matt'};//[]内可以使用表达式，属性可计算<br>let person = {<a href="name">nameKey</a>{console.log('name')}};//方法名兼容计算属性</p>
-<h3 id="8-1-7-对象解构"><a href="#8-1-7-对象解构" class="headerlink" title="8.1.7 对象解构"></a>8.1.7 对象解构</h3><p>let person = {name:'matt',age:27}//不解构<br>let personName = person.name,personAge = person.age;//解构<br>let {name:personName,age:personAge} = person;<br>null和undefined不支持解构</p>
-<p>let person = {job:{title:'Software engineer'}};//嵌套解构<br>let personCopy={};<br>let({job:personCopy.job}=person);</p>
+<h3 id="8-1-6-增强的对象语法"><a href="#8-1-6-增强的对象语法" class="headerlink" title="8.1.6 增强的对象语法"></a>8.1.6 增强的对象语法</h3><p>let person = {name:name};  === let person = {name};//不建议<br>namekey = “name”;let person = {[namekey]:’Matt’};//[]内可以使用表达式，属性可计算<br>let person = {<a href="name">nameKey</a>{console.log(‘name’)}};//方法名兼容计算属性</p>
+<h3 id="8-1-7-对象解构"><a href="#8-1-7-对象解构" class="headerlink" title="8.1.7 对象解构"></a>8.1.7 对象解构</h3><p>let person = {name:’matt’,age:27}//不解构<br>let personName = person.name,personAge = person.age;//解构<br>let {name:personName,age:personAge} = person;<br>null和undefined不支持解构</p>
+<p>let person = {job:{title:’Software engineer’}};//嵌套解构<br>let personCopy={};<br>let({job:personCopy.job}=person);</p>
 <p>前面的解构出错，后面的解构会失败。</p>
-<p>let person = {name:'matt',age:27}; function printPerson(foo,{name,age},bar)//参数解构，调用时传入对象</p>
+<p>let person = {name:’matt’,age:27}; function printPerson(foo,{name,age},bar)//参数解构，调用时传入对象</p>
 <h2 id="8-2-创建对象"><a href="#8-2-创建对象" class="headerlink" title="8.2 创建对象"></a>8.2 创建对象</h2><h3 id="8-2-1-概述"><a href="#8-2-1-概述" class="headerlink" title="8.2.1 概述"></a>8.2.1 概述</h3><p>与类不同，对象的巧妙运行可以实现与类相同的行为。</p>
 <h3 id="8-2-2-工厂模式"><a href="#8-2-2-工厂模式" class="headerlink" title="8.2.2 工厂模式"></a>8.2.2 工厂模式</h3><p>设计模式之一<br>function createPerson(name,age,job){<br>   let o = new Object();<br>   o.name = name;<br>   o.age = age;<br>   o.job = job;<br>   o.sayName = function(){<br>       console.log(this.name);<br>   };<br>   return o;<br>}<br>解决创建多个类似对象的问题，但无解决对象标识问题（对象类型）。</p>
-<h3 id="8-2-3-构造函数模式"><a href="#8-2-3-构造函数模式" class="headerlink" title="8.2.3 构造函数模式"></a>8.2.3 构造函数模式</h3><p>function Person(name,age,job){<br>   this.name = name;<br>   this.age = age;<br>   this.job = job;<br>   this.sayName = function(){<br>      console.log(this.name);<br>   }<br>}<br>与工厂模式类似,无return，无显式创建对象。<br>构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。<br>let person = function(){};<br>let person1 = new person(...);<br>let person2 = new person(...);<br>person1 instanceof Object//true<br>person1 instanceof person//true<br>person2一样<br>构造函数也可以直接调用<br>person(...);window.sayName();//添加到了window<br>let o = new Object();<br>Person.call(o,"wxc",25);o.sayName()//wxc 在另一个对象的作用域中调用<br>在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。<br>可以在外部定义函数，在内部赋值解决这个问题。</p>
-<h3 id="8-2-4-原型模式"><a href="#8-2-4-原型模式" class="headerlink" title="8.2.4 原型模式"></a>8.2.4 原型模式</h3><p>prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。<br>在原型上定义的值可以共享。<br>Chrome暴露了<em>proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。<br>原型链会终止与Object的原型链。<br>person.prototype._proto</em>.<em>proto</em> === null//true<br>构造函数、原型对象和实例，三个完全不同的对象。<br>实例通过_proto_链接到原型对象，实际指向[[Prototype]]<br>构造函数通过prototype属性链接到原型对象。<br>同一个构造函数创建的两个实例，共享一个原型对象。<br>isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否<br>getPrototypeOf()//用于获取[[prototype]]原型对象<br>setPrototypeOf()//用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。<br>create()//用于创建新对象指定原型<br>访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。<br>hasOwnProperty()//用于判断属性在实例或原型上<br>可以通过for-in判断通过对象能否访问到一个属性//"name" in person(true)<br>getOwnPropertyNames()//...按顺序进行枚举</p>
+<h3 id="8-2-3-构造函数模式"><a href="#8-2-3-构造函数模式" class="headerlink" title="8.2.3 构造函数模式"></a>8.2.3 构造函数模式</h3><p>function Person(name,age,job){<br>   this.name = name;<br>   this.age = age;<br>   this.job = job;<br>   this.sayName = function(){<br>      console.log(this.name);<br>   }<br>}<br>与工厂模式类似,无return，无显式创建对象。<br>构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。<br>let person = function(){};<br>let person1 = new person(…);<br>let person2 = new person(…);<br>person1 instanceof Object//true<br>person1 instanceof person//true<br>person2一样<br>构造函数也可以直接调用<br>person(…);window.sayName();//添加到了window<br>let o = new Object();<br>Person.call(o,”wxc”,25);o.sayName()//wxc 在另一个对象的作用域中调用<br>在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。<br>可以在外部定义函数，在内部赋值解决这个问题。</p>
+<h3 id="8-2-4-原型模式"><a href="#8-2-4-原型模式" class="headerlink" title="8.2.4 原型模式"></a>8.2.4 原型模式</h3><p>prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。<br>在原型上定义的值可以共享。<br>Chrome暴露了<em>proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。<br>原型链会终止与Object的原型链。<br>person.prototype._proto</em>.<em>proto</em> === null//true<br>构造函数、原型对象和实例，三个完全不同的对象。<br>实例通过_proto_链接到原型对象，实际指向[[Prototype]]<br>构造函数通过prototype属性链接到原型对象。<br>同一个构造函数创建的两个实例，共享一个原型对象。<br>isPrototypeOf()//用于判断实例原型对象与构造函数的原型相同否<br>getPrototypeOf()//用于获取[[prototype]]原型对象<br>setPrototypeOf()//用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。<br>create()//用于创建新对象指定原型<br>访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。<br>hasOwnProperty()//用于判断属性在实例或原型上<br>可以通过for-in判断通过对象能否访问到一个属性//“name” in person(true)<br>getOwnPropertyNames()//…按顺序进行枚举</p>
 <h3 id="8-2-5-对象迭代"><a href="#8-2-5-对象迭代" class="headerlink" title="8.2.5 对象迭代"></a>8.2.5 对象迭代</h3><p>Object.values()//以数组的形式输出值<br>Object.entries()//以数组的形式输出键值和值<br>非字符串的属性会被转换为字符串输出，符号属性会被忽略。<br>重写了prototype的函数原型不默认指向constructor<br>ES语法需要使用defineProperty()来恢复constructor属性。<br>实例只有指向原型的指针，没有指向构造函数的指针。</p>
 <h2 id="8-3-继承"><a href="#8-3-继承" class="headerlink" title="8.3 继承"></a>8.3 继承</h2><p>ES中只支持实现继承。</p>
-<h3 id="8-3-1-原型链"><a href="#8-3-1-原型链" class="headerlink" title="8.3.1 原型链"></a>8.3.1 原型链</h3><p>通过原型继承多个引用类型的属性和方法。<br>将A函数原型赋值为B函数的实例，A函数的实例可以通过原型访问到B函数实例的属性和方法。实际A函数可以通过原型与B函数的原型挂钩。在搜索属性时，会通过原型链访问到原型的原型，直到末端。<br>所有引用类型都继承自Object，任何函数的默认原型都是一个Object的实例，也是为什么自定义类型能够继承toString(),valueOf()方法的原因。调用toString()时，实际在调用Object.prototype上的方法。<br>通过instanceof返回原型与构造函数的原型关系。</p>
-</script></noscript></noscript></h1>
+<h3 id="8-3-1-原型链"><a href="#8-3-1-原型链" class="headerlink" title="8.3.1 原型链"></a>8.3.1 原型链</h3><p>通过原型继承多个引用类型的属性和方法。原型链为ES主要继承方式。<br>将A函数原型赋值为B函数的实例，A函数的实例可以通过原型访问到B函数实例的属性和方法。实际A函数可以通过原型与B函数的原型挂钩。在搜索属性时，会通过原型链访问到原型的原型，直到末端。<br>所有引用类型都继承自Object，任何函数的默认原型都是一个Object的实例，也是为什么自定义类型能够继承toString(),valueOf()方法的原因。调用toString()时，实际在调用Object.prototype上的方法。<br>通过instanceof返回原型与构造函数的原型关系。<br>通过isPrototypeOf返回原型链中是否含有这个原型。<br>添加属性或覆盖属性时需要在原型赋值后添加到原型上。<br>通过prototype字面量直接修改原型，会破坏之前的原型链。<br>原型链的问题：<br>1.使用原型实现继承后，函数原型对象的所有属性都会被函数实例共享。<br>2.子类型在实例化时不能给父类型的构造函数传参。</p>
+<h3 id="8-3-2-盗用构造函数"><a href="#8-3-2-盗用构造函数" class="headerlink" title="8.3.2 盗用构造函数"></a>8.3.2 盗用构造函数</h3><p>通过call，apply来调用执行函数的构造函数，从而得到构造函数的属性和方法。<br>可以通过apply,call来向父类构造函数传值。<br>缺点：必须在构造函数中定义方法，函数无法重用。且子类无法访问父类原型的方法。（原型不是父类的实例对象）</p>
+<h3 id="8-3-3-组合继承"><a href="#8-3-3-组合继承" class="headerlink" title="8.3.3 组合继承"></a>8.3.3 组合继承</h3><p>P244</p>
+
       
     </div>
     
@@ -1044,7 +657,7 @@ if(pattern.test(text)) {
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1055,7 +668,7 @@ if(pattern.test(text)) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1066,7 +679,7 @@ if(pattern.test(text)) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1129,537 +742,7 @@ if(pattern.test(text)) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-历史回顾"><span class="nav-number">1.</span> <span class="nav-text">1.1 历史回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-JS实现"><span class="nav-number">2.</span> <span class="nav-text">1.2 JS实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-1（ECMAScript）"><span class="nav-number">2.1.</span> <span class="nav-text">1.2.1（ECMAScript）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-DOM"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.2 DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-BOM"><span class="nav-number">2.3.</span> <span class="nav-text">1.2.3 BOM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-JavaScript版本"><span class="nav-number">3.</span> <span class="nav-text">1.3 JavaScript版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-4-小结"><span class="nav-number">4.</span> <span class="nav-text">1.4 小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-元素"><span class="nav-number">5.</span> <span class="nav-text">2.1 元素&lt;&#x2F;h1&gt;&lt;p&gt;将Js插入HTML的主要方法是使用&lt;script&gt;元素。有下列8个属性：&lt;br&gt;1.async：可选，表示立即开始下载脚本，但不能阻止其他页面动作，比如下载资源或等待其他脚本加载，只对外部脚本文件有效。&lt;br&gt;2.charset：可选，使用src属性指定的代码字符集。很少用。&lt;br&gt;3.crossorigin：可选，配置相关请求的CORS（跨源资源共享）设置。默认不使用CORS。&lt;br&gt;defer：可选，表示脚本可以延迟到文档完全被解析和显示之后再执行，只对外部脚本文件有效。&lt;br&gt;integrity：可选，允许比对接收到的资源和指定的加密签名以验证子资源完整性。&lt;br&gt;language：废弃。&lt;br&gt;src：可选，表示包含要执行的代码的外部文件。（引入外部JS文件）&lt;br&gt;type：可选，代替language，表示代码块中脚本语言的内容类型（MIME类型）。按照惯例这个值始终都是“text&#x2F;JavaScript”，MIME类型通常都是“application&#x2F;x-javascript”，如果这个值是module，则代码会被当成ES6模块，而且只有这时候代码中才能出现import和export关键字。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;2-1-1-标签位置&quot;&gt;&lt;a href&#x3D;&quot;#2-1-1-标签位置&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;2.1.1 标签位置&quot;&gt;&lt;&#x2F;a&gt;2.1.1 标签位置&lt;&#x2F;h2&gt;&lt;head&gt;
-&lt;script src&#x3D;&#39;example1.js&#39;&gt;
-
-上述是把文件放在head里，不过这种写法以为着必须把所有JS代码都下载、解析和解释完成后，才能开始渲染页面，可能会导致页面渲染的明显延迟，所以通常把文件引用放在body元素中的页面内容后面。
-
-
-
-## 2.1.2 推迟执行脚本
-可用defer属性，可用推迟脚本执行。
-
-## 2.1.3 异步执行脚本
-
-## 2.1.4 动态加载脚本
-JS可用使用DOM API ，通过向DOM中动态添加Script元素同样可用加载指定的脚本，只要创建一个Script元素并将其添加到DOM即可。如下：
-let script &#x3D; document.createElement(&#39;script&#39;);
-script.src &#x3D; &#39;gibbersh.js&#39;
-document.head.appendChild(script);
-这个请求是异步的，不是所有浏览器都支持async属性，因此，如果要统一动态脚本的加载行为，可以明确将其设置为同步加载。
-添加：script.async &#x3D; false;
-以这种方式获取的资源对浏览器预加载器是不可见的。这会严重影响它们在资源获取队列中的优先级。这种可能会严重影响性能。要想让预加载器知道这些动态请求文件的存在，可以在文档头部显示声明它们：
-
-## 2.1.5 XMHTL中的变化
-XHTML：可扩展超文本标记语言，是将HTML作为XML的应用重新包装的结果。在XHTML中使用JS必须制定type属性且值为text&#x2F;javascript。
-XHTML比较少见。
-## 2.1.6 废弃的语法
-个别废弃的语法，可不看。
-# 2.2 行内代码与外部文件
-最佳实践是尽可能将JS代码放在外部文件中。推荐原因如下：
-可维护性：JS代码分散到很多HTML页面，会导致维护困难。而用一个目录保存所有JavaScript文件，则更容易维护，这样开发者就可以独立于使用它们的HTML页面来编辑代码。
-缓存：浏览器会根据特定的设置缓存所有外部链接的JS文件，这意味着若干两个页面都用到同一个文件，则该文件只需下载一次。这最终意味着页面加载更快。
-适应未来：通过把JS放到外部文件中，就不比考虑用XHTML的或注释黑科技。包含外部JS文件的语法在HTML和XHTML是一样的。
-在配置浏览器请求外部文件时，要重点考虑的一点是它们会占用多少带宽。在SPDY&#x2F;HTTP2中，预请求的消耗已显著降低，以轻量、独立JS组件形式向客户端送达脚本更具优势。
-在初次请求时，如果浏览器支持SPDY&#x2F;HTTP2，就可以从同一个地方取得一批文件，并将他们逐个放到浏览器缓存中。从浏览器角度看，通过SPDY&#x2F;HTTP2获取所有这些独立的资源与获取一个大JS文件的 延迟差不多。
-在第二个页面请求时，由于你已经把应用程序切割成了轻量可缓存的文件，第二个页面也依赖的某些组件此时已经存在于浏览器缓存中了。
-# 2.3 文档模式
-最初有两种模式：混杂模式，标准模式。
-第三种模式：准标准模式。
-# 2.4 元素
-针对不支持JS的浏览器而出的元素。以下两种情况，浏览器将显示包含在中的内容：
-浏览器不支持脚本；
-浏览器对脚本的支持被关闭；
-  
- This page requires a JavaScript-enabled browser. 
- 
-# 2.5 小结
-JS通过元素插入到HTML页面中。这个元素可以用于把JS代码嵌入到HTML页面汇总，跟其他标记混合在一起，也可以用与引入保存在外部文件中的JS。本章的重点如下：
-1.要包含外部JS文件，必须将src属性设置为要包含文件的URL。文件可以跟网页在同一台服务器上，也可以位于完全不同的域。
-2.所有&lt;script&gt;元素会依照它们在网页中出现的次序被解释。在不使用defer和async属性的情况下，包含在&lt;script&gt;元素中的代码必须严格按次序解释。
-3.对不推迟执行的脚本，浏览器必须解释完位于&lt;script&gt;元素中的代码，然后才能继续渲染页面的剩余部分。为此，通常把script元素放到页面末尾，介于主内容之后及&lt;&#x2F;body&gt;标签之前。
-4.可以使用defer推迟到文档渲染完毕后再执行。推迟的脚本原则上按照它们被列出的次序执行。
-5.可以使用async属性表示脚本不需要等待其他脚本，同时也不阻塞文档渲染，即异步加载。异步脚本不能保证按照它们在页面中出现的次序执行。
-6.通过使用&lt;noscript&gt;元素，可以指定在浏览器不支持脚本时显示的内容。如果浏览器支持并启用脚本，则&lt;noscript&gt;元素中的任何内容都不会被渲染。
-# 3.1 语法
-## 3.1.1 区别大小写
-ECMA中一切都区分大小写。无论是变量、函数名还是操作符，都区分大小写。
-typeof不能作为函数名，因为它是一个关键字。但Typeof可以用。
-## 3.1.2 标识符
-变量、函数、属性或函数参数的名称。可以由一个或多个下列字符组成：
-第一个字符必须是一个字母、下划线（_）或美元符号（$）;
-剩下的其他字符可以是字母、下划线、美元符号或数字。
-一般使用驼峰大小写形式。
-## 3.1.3 注释
-## 3.1.4 严格模式
-&quot;use strict&quot; &#x2F;&#x2F;脚本开头加上这一行
-也可以在指定函数内加上开头。所有现代浏览器都支持严格模式。
-## 3.1.5 语句
-结尾建议加分号，建议语句块加{}
-## 3.2 关键字与保留字
-ES6的关键字有：
-break     do     in     typeof 
-case     else     instanceof     var 
-catch     export     new     void 
-class     extends     return     while 
-const     finally     super     with 
-continue   for     switch     yield 
-debugger function    this 
-default     if     throw 
-delete     import     try
-ES6将来保留词汇：
-始终保留：
-enum
-严格模式下保留：
-implements     package     public 
-interface     protected     static 
-let     private
-模块代码中保留：
-await
-这些词汇不能作标识符，但可以坐对象的属性名，推荐不用作属性名。
-# 3.3 变量
-ECMA变量是松散类型的，变量可以用于保存任何类型的数据。每个变量不过是一个用于保存任意值的命名占位符。有3个关键字可以声明变量：var,const,let
-var:声明完后可以赋值，但未标识类型。&#x2F;&#x2F;声明提升
-&#x2F;&#x2F;var message &#x3D; &quot;hi&quot;; 
-&#x2F;&#x2F;message &#x3D; 100; &#x2F;&#x2F; 合法，但不推荐。
-&#x2F;&#x2F;作用域在声明的环境下的函数作用域，例在函数内定义，调用完函数随即被销毁。
-&#x2F;&#x2F;在函数内定义时省略var操作符，可以创建一个全局变量。不推荐这么做。
-let:块作用域，同一个块内不能重复声明。变量在作用域中无声明提升。
-&#x2F;&#x2F;有暂时性死区。
-&#x2F;&#x2F;无法全局声明，声明的变量不会成为window对象的属性。
-&#x2F;&#x2F;ES6不能依赖条件声明模式
-const:与let基本相同，区别是声明变量时必须同时初始化变量，且无法修改const声明的变量。
-## 3.3.4 声明风格及最佳实践
-1.不使用var
-2.const优先，let次之
-# 3.4 数据类型
-ES6有6种简单的数据类型（原始类型）：undefined,null,boolean,number,String,Symbol。Symbol是ES6新增的。还有一种复杂的数据类型叫Object（对象）。Object是一种无序名值对的集合。
-## 3.4.1 typeof操作符
-不需要参数（但可以使用参数），严格来说，函数也是对象，并不代表一种数据类型。可是函数也有自己特殊的属性。可以用typeof区分。
-## 3.4.2 Undefined类型
-变量未初始化即是Undefined，相当于给变量赋值了Undefined。
-建议在声明时初始化，出现undefined可以更好辨别。
-## 3.4.4 Null类型
-Null类型同样只有一个值，即特殊值null。null值表示一个空对象指针，typeof null返回Object。
-在定义将来要保存对象值的变量时，建议初始化为null。
-## 3.4.4 Boolean类型
-有两个字面值：true，false。
-True和False是有效的标识符，不是布尔值。&#x2F;&#x2F;区分大小写
-使用Boolean()来转换类型
-## 3.4.5 Number类型
-1.浮点值
-&#x2F;&#x2F;小数点后面必须带数字，不然当整数处理。
-2.值的范围
-&#x2F;&#x2F;Number.MIN_VALUE:5e-324
-Number.MAX_VALUE:1.7976931348623157e+308
-超出以上范围会表示为Infinity或-Infinity,该值无法用于计算。
-可使用isFinite()函数进行判断
-3.NaN
-NaN表示&quot;不是数值&quot;,用于表示本来要返回数值的操作失败了（不是抛出错误）。
-例：0除任意数值
-console.log(0&#x2F;0) &#x2F;&#x2F; NaN
-console.log(5&#x2F;0) &#x2F;&#x2F;Infinity
-console.log(5&#x2F;-0)&#x2F;&#x2F;-Infinity
-任何涉及NaN的操作始终返回NaN，NaN不等于任何值。&#x2F;&#x2F;(NaN &#x3D;&#x3D; NaN)--&gt;false
-可用isNaN()函数判断是否不是数值
-isNaN(NaN)&#x2F;&#x2F;true
-isNaN(10)&#x2F;&#x2F;false
-isNaN(&quot;10&quot;)&#x2F;&#x2F;false,可转换为数值10
-isNaN(&quot;blue&quot;)&#x2F;&#x2F;true,无法转换为数值
-isNaN(true)&#x2F;&#x2F;false,可以转换为1
-4.数值转换
-有3个函数可以将非数值转换为数值：
-Number(),parseInt(),parseFloat()
-Number()是转型函数，可用于任何数据类型。后两个主要用于将字符串转为数值。
-Number()有如下规则：
-(true)-&gt;1,(false)-&gt;0,(null)-&gt;0,(undefined)-&gt;NaN,数值直接返回
-如果字符串包含数值字符，包括数值字符前面带加号、减号的情况，则转换为一个十进制数值。
-如果字符串包含有效的浮点值格式如“1.1”，则会转换为相应的浮点值（同样，忽略前面的0）。
-如果字符串包含有效的十六进制格式如&quot;0xf&quot;，则会转换为与该十六进制值对应的十进制整数值。
-如果是空字符串（不包含字符），则返回0。
-如果字符串包含上述情况之外的其他字符，则返回NaN。
-通常使用parseInt（）
-## 3.4.6 String类型
-字符串使用：双引号，单引号，反引号都合法，引号类型前后必须一致。
-1.字面量：
-\n  换行
-\t   制表
-\b  退格
-\r   回车
-\f   换页等
-2.特点
-不可变，一旦创建，值不能变。要修改某个变量的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量。
-3.转换为字符串
-toString()&#x2F;&#x2F;函数
-还可以传入参数输出不同进制
-let num &#x3D; 10;
-num.toString() &#x2F;&#x2F; &quot;10&quot;
-num.toString(2) &#x2F;&#x2F; &quot;1010&quot;
-num.toString(8) &#x2F;&#x2F; &quot;12&quot;
-4.模板字面量
-可以使用换行字符，可以跨行定义字符串。
-使用反引号会保持引号内部的空格，字面量，length会增加。
-5.字符串插值
-可以在定义中插入一个或多个值。
-通过反引号中使用 ${}插入，插入的值都会通过toString转换为字符串
-插值表达式中可以调用函数和方法：
-foo &#x3D; {toString:() &#x3D;&gt; &#39;Wrold&#39;};&#96;hello,${foo}&#96; &#x2F;&#x2F; hello world
-capitalize(word) &#x3D;&gt;return &#96;${word[0].toUpperCase()}&#96;   &#x2F;&#x2F; &#96;${capitalize(&#39;hello&#39;)}&#96;&#x2F;&#x2F;-&gt;Hello
-6.模板字面量标签函数
-支持定义标签函数，通过标签函数可以自定义插值行为。
-7.原始字符串
-Unicode字符
-使用String.raw获取原始字符串
-&#39;\u00A9&#39; &#x2F;&#x2F; 版权符号
-String.raw&#96;\u00A9&#96;&#x2F;&#x2F; \u00A9
-## 3.4.7 Symbol类型
-Symbol是ES6新增的，且实例是唯一，不可变的。用于创建唯一记号，进而用作非字符串形式的对象属性。
-1.基本用法
-let sym &#x3D; Symbol(); type of sym&#x2F;&#x2F;symbol
-也可以传入字符串参数作为对symbol的描述，可通过这个字符串来调试代码。但这个字符串参数与符号定义或标识无关。
-符号无法与new关键字一起作为构造函数使用。
-可以使用符号包装对象，借用Object函数()函数：
-let mySymbol &#x3D; Symbol();
-let myWrappedSymbol &#x3D; Object (mySymbol);
-console.log(typeof myWrappedSymbol); &#x2F;&#x2F; &quot;object&quot;
-2.使用全局符号注册表
-如果运行时的不同部分需要共享和 重用符号实例，那么可以用一个字符串作为键，在全局符号注册表中创建并重用符号。
-需要使用Symbol.for()方法。
-## 3.4.8 Object类型
-对象其实就是一组数据和功能的集合。可以通过new来创建实例对象。
-每个对象都有如下属性和方法：
-constructor：用于创建当前对象的函数，构造函数。
-hasOwnProperty(propertyName)：用于判断当前对象实例上是否存在给定的属性。
-isPrototypeOf(object)：用于判断当前对象是否为另一个对象的原型。
-propertyIsEnumerable(propertyName):用于判断给定的属性是否可以使用。
-toLacaleString():返回对象的字符串表示,反映对象所在本地化执行环境。
-toString():返回对象的字符串表示。
-valueOf():返回对象对应的字符串、数值或布尔值表示。
-# 3.5 操作符
-## 3.5.1 一元操作符
-只操作一个值的操作符叫一元操作符。
-++,--;  &#x2F;&#x2F;操作中会自行转换类型,(递增和递减)
-+,-&#x2F;&#x2F;一元加减符，可以用于运算和转换
-## 3.5.2 位操作符
-&lt;figure class&#x3D;&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class&#x3D;&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class&#x3D;&quot;line&quot;&gt;1&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;2&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;3&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;4&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;5&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;6&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;7&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;8&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;9&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;10&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;11&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;12&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;13&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;14&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;15&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;16&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;17&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;18&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;19&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;20&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;21&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;22&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;23&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;24&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;25&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;26&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;27&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;28&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;29&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;30&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;31&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;32&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;33&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;34&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;35&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;36&lt;&#x2F;span&gt;&lt;br&gt;&lt;&#x2F;pre&gt;&lt;&#x2F;td&gt;&lt;td class&#x3D;&quot;code&quot;&gt;&lt;pre&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.3 布尔操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;逻辑非，逻辑与逻辑或&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;1.逻辑非 ：！（感叹号）&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!false &#x2F;&#x2F; true&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!&quot;blue&quot; &#x2F;&#x2F;false&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!0 &#x2F;&#x2F;true&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!NaN &#x2F;&#x2F;true&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!&quot;&quot; &#x2F;&#x2F;true&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;!12345 &#x2F;&#x2F;false&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;也可以用两个感叹号:!!,相当于调用了转型函数Boolean()。第一个返回布尔值，第二个对该布尔值取反。&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;相当于如上例子，布尔值取反。&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;2.逻辑与&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;由&amp;&amp;表示 &#x2F;&#x2F; true &amp;&amp; true为true  其余都为false&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;3.逻辑或&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;由||表示 &#x2F;&#x2F;有一个是true为true，false || false为false&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.4 乘性操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;乘法(*)，除法(&#x2F;)，取模(%)。&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;乘法(*):都为数值则计算，有一项为NaN则返回NaN，如果是Infinity*0&#x3D;NaN,Infinity*(-&#x2F;+)num&#x3D;(-)Infinity，Infinity*Infinity&#x3D;Infinity,如果不是数值会转换后再近些操作。&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;除法(&#x2F;):&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;0 &#x2F; 0 &#x3D; NaN,Infinity &#x2F; Infinity &#x3D; NaN,-(number)&#x2F;0 &#x3D; (-)Infinity,Infinity &#x2F; (-)Number &#x3D; (-)Infinity&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;取模(%):类似除&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.5 指数操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;ES7新增的操作符 (**)&#x2F;&#x2F;Math.pow(3,2) &#x3D;&#x3D; 3 ** 2 &#x3D;&#x3D; 9&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;squared ** &#x3D; 2 &#x2F;&#x2F;9&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.6 加性操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;（+），（-）&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.7 关系操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;（&lt;）,（&gt;）,（&lt;&#x3D;），（&gt;&#x3D;）&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.8 相等操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;（&#x3D;&#x3D;），（!&#x3D;），（&#x3D;&#x3D;&#x3D;）,（!&#x3D;&#x3D;）&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.9 条件操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;（?）&#x2F;&#x2F; let max &#x3D; （num1 &gt; num2）? num1 : num2&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.5.10 赋值操作符&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;（&#x3D;），（*&#x3D;），（&#x2F;&#x3D;），（%&#x3D;），（+&#x3D;）,（-&#x3D;）,（&lt;&lt;&#x3D;）,（&gt;&gt;&#x3D;）,（&gt;&gt;&gt;&#x3D;）&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;# 3.6 语句&lt;&#x2F;span&gt;&lt;br&gt;&lt;span class&#x3D;&quot;line&quot;&gt;## 3.6.1 if语句&lt;&#x2F;span&gt;&lt;br&gt;&lt;&#x2F;pre&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;table&gt;&lt;&#x2F;figure&gt;
-## 3.6.2 do-while语句
-do {***} while(expression);
-## 3.6.3 while语句
-let i &#x3D; 0;
-while(i &lt; 10) { i +&#x3D; 2};
-## 3.6.4 for语句
-for(initialization;expression;post-loop-expression) statement
-## 3.6.5 for-in语句
-for(property in expression) statement
-for(const propName in window) {document.write(propName)}&#x2F;&#x2F;例子
-## 3.6.6 for-of语句
-for(property of expression) statement
-for(const el of [2,4,6,8]){document.write(el)}&#x2F;&#x2F;例子
-## 3.6.7 标签语句
-label:statement
-start: for(let i &#x3D; 0;i &lt; count;i++){console.log(i)}&#x2F;&#x2F;start是一个标签，可在后面通过break，continue语句引用。
-## 3.6.8 break和continue语句
-break用于立即退出循环,强行执行循环后的下一条语句。
-continue语句用于立即退出循环，但会从循环顶部开始执行。
-## 3.6.9 with语句
-with(expression) statement;
-let qs &#x3D; location.search.substring(1);
-let hostName &#x3D; location.hostname;
-let url &#x3D; location.href;
-with(location){
-let qs &#x3D; search.substring(1);
-let hostName &#x3D; hostname;
-let url &#x3D; href;
-}
-严格模式不允许使用
-## 3.6.10 switch语句
-switch(expression){
-  case value1:
-    statament
-    break;
-  case value2:
-    statement
-    break;
-  ...
-  default:
-    statement
-}
-&#x2F;&#x2F;switch不会强制转换数据类型
-## 3.7 函数
-function Name(arg0,arg1){ statements}
-遇到return语句函数就会立即停止执行并退出。
-函数不能以eval，arguments作为名称；
-函数的参数不能叫eval，arguments；
-两个命名参数不能拥有同一个名称。
-## 3.8 小结
-ES中基本数据类型包括：undefined,Null,Boolean,Number,String,Symbol
-不需要指定函数的返回值，因为任何函数可以在任何时候返回任何值。&#x2F;&#x2F;声明方式
-不指定返回值的函数实际上会返回特殊值undefined。
-# 4 变量、作用域与内存
-## 4.1 原始值与引用值
-变量有两种不同的类型：原始值和引用值。原始值就是最简单的数据，引用值则是由多个值构成的对象。
-原始值的变量是按值访问的，引用值是保存在内存中的对象，操作对象时，操作的是对该对象的引用而非实际的对象本身。
-### 4.1.1 动态属性
-引用值可以随时添加、修改和删除其属性和方法。
-只有引用值可以动态添加后面可以使用的属性。
-原始类型的初始化可以只使用原始字面量形式。如果使用new则创建Object类型的实例。
-let name1 &#x3D; &quot;wxc&quot;;&#x2F;&#x2F;typeof name1 &#x3D;&#x3D; string
-let name2 &#x3D; new String(&quot;Matt&quot;);&#x2F;&#x2F;typeof name2 &#x3D;&#x3D; object
-### 4.1.2 复制值
-原始值的变量复制会创建新变量。&#x2F;&#x2F;let name1 &#x3D; &quot;wxc&quot;;let name2 &#x3D; name1;
-引用值的变量复制的是一个指针，两个变量指向同一个对象，一改则都改。
-### 4.1.3 传递参数
-函数的参数都是按值传递的，传递时，值会被复制到一个局部变量。
-按引用传递参数时，值在内存中的位置会被保存在一个局部变量，对本地变量的修改会反映到函数外部。ES中函数的参数就是局部变量。
-### 4.1.4确定类型
-typeof对于原始值有用，但对引用值不大。
-引用值判断可以用instanceof
-person instanceof Object
-colors instanceof Array
-pattern instanceof RegExp
-instanceof对于原始值始终返回false，原始值不是对象。
-## 4.2 执行上下文与作用域
-每个上下文都有一个关联的变量对象，这个上下文中定义的所有变量和函数都存在于这个对象上。
-浏览器中，全局上下文为window对象。var定义的全局变量和函数都会成为window对象的属性和方法。使用let和const的顶级声明不会定义在全局上下文中，但在作用域链解析上效果是一样的。
-每个函数也有自己的上下文，执行函数时，函数上下文被推倒一个上下文栈上，执行完后弹出。ES的执行流通过该上下文栈进行控制。
-上下文中的代码在执行时，会创建变量对象的一个作用域链。这个作用域链决定了各级上下文中的代码在访问变量和函数时的顺序。正在执行的上下文的变量对象始终位于作用域链的最前端，如果上下文是函数，其活动对象用作变量对象。活动对象最初只有一个定义变量：arguments。作用域链的下一个变量对象来自上级包含上下文。全局上下文的变量对象始终是作用域链的最后一个变量对象。
-局部作用域中定义的变量可用于在局部上下文中替换全局变量。
-### 4.2.1 作用域链增强
-代码执行到try&#x2F;catch语句的catch块与with语句时，都会在作用域链前端添加一个变量对象。对with语句来说，会向作用域链前端添加指定的对象；对catch则会创建一个新的变量对象，这个变量对象会包含要抛出的错误对象的声明。
-### 4.2.2 变量声明
-1.使用var声明变量，变量会被自动添加到最接近的上下文，最接近的上下文大多是函数的局部上下文，如果未声明就被初始化了，就被添加到全局上下文。如果在函数内声明变量添加到全局上下文，函数退出后依然可以访问。
-var声明会被拿到函数或全局作用域的顶部，位于作用域中所有代码之前。变量提升。
-2.使用let声明的块级作用域声明
-块级作用域由最近的{}界定。
-3.使用const的常量声明
-const声明的同时必须初始化为某个值。声明后不能重新赋新值。
-作用域与let声明一样。
-建议多使用const，除非需要一个会重新赋值的变量。可以防止重新赋值的BUG。
-4.标识符查找
-特定上下文读取或写入而引用一个标识符时，必须通过搜索确定这个标识符表示什么。搜索开始于作用域链前端，以给定的名称搜索对应的标识符。&#x2F;&#x2F;其实就是调用变量
-## 4.3 垃圾回收
-JS使用垃圾回收，程序每隔一段就会自动运行。确定不会再使用的变量，释放内存。
-### 4.3.1 标记清理
-常用策略是标记清理。程序运行时，标记内存中存储的所有变量，将所有上下文中的变量，以及被在上下文中的变量引用的标记去掉。再加上标记代表待删除，随后做一次内存清理，销毁带标记的所有值并回收内存。
-IE，Firefox，Opera，Chrome，Safari都在JS实习标记清理，频率有所差异。
-### 4.3.2 引用计数
-对每个值记录引用次数。声明变量并赋一个引用值时，这个值的引用数为1。 如果保存对该值引用的变量被其他值给覆盖了，引用数-1。引用数为0时回收内存。
-### 4.3.3 性能
-垃圾回收的时间调度很重要，变量太多会造成性能损失。JS引擎的垃圾回收程序被调优为动态改变分配变量、字面量或数组槽位等会触发垃圾回收的阈值。如果回收的内存不到已分配的15%，这些阈值会翻倍。如果一次回收的内存达到已分配的85%，则阈值重置为默认值。
-### 4.3.4 内存管理
-保证在执行代码时只保存必要的数据。不在必要则设置为null，从而释放其引用。这也可以叫作解除引用。局部变量在超出作用域会自动解除引用，所以该建议更适合全局变量和全局对象。
-1.通过const和let声明提升性能
-块作用域，能更早让垃圾回收程序介入。
-2.隐藏类和删除操作
-对象与隐藏类会被关联起来，用于跟踪他们的属性特征。共享相同隐藏类的对象性能会更好。
-function Article(){this.title &#x3D; &#39;go go go&#39;}
-let a1 &#x3D; new Article();&#x2F;&#x2F;隐藏类title
-let a2 &#x3D; new Article();&#x2F;&#x2F;隐藏类title
-a1.author &#x3D; &#39;Jake&#39;&#x2F;&#x2F;对应多出author隐藏类，可能对性能产生明显影响。
-function Article(author){this.title&#x3D;&#39;go&#39;,this.author&#x3D;author}
-let a2 &#x3D; new Article(&#39;wxc&#39;)&#x2F;&#x2F;a2与a1相同，共享一个隐藏类。
-delete a1.author&#x2F;&#x2F;使用delete关键字会导致生成同样的隐藏类片段
-a1.author &#x3D; null; &#x2F;&#x2F;保持共享，并达到垃圾回收的效果
-3.内存泄漏
-JS的内存泄漏大部分是不合理的引用导致的。
-function(){name &#x3D; &#39;Jake&#39;}意外声明全局变量是最常见也最容易修复的内存泄漏问题。无关键字声明。
-定时器也会导致内存泄漏，定时器的回调通过闭包引用了外部变量。
-使用闭包容易造成内存泄漏，如下：
-let outer &#x3D; function() {let name &#x3D; &#39;Jake&#39;;return function() {return name};};
-调用outer()会导致内存泄漏。只要返回的函数存在就不能清理name，因为闭包一直在引用，加入name的内容很大，就是个大问题。
-4.静态分配与对象池
-不要动态创建矢量对象
-在初始化的时候，创建一个对象池，管理一组可回收的对象。使用完后回归对象池。
-## 4.4 小结
-原始值大小固定，因此保存在栈内存上。
-引用值是对象，存储在堆内存上。
-任何变量都存在于某个作用域（上下文）中，这个作用域决定了变量的声明周期，以及它们可以访问代码的哪些部分。
-全局上下文：window，浏览器。
-函数上下文：声明函数的{}内
-块级上下文：最近的{}内
-JS有垃圾回收，垃圾回收的方法有：引用计数，标记清理。主流为标记清理。
-接触变量引用一般直接给变量赋值为null。
-# 5.基本引用类型
-引用值是某个特定引用类型的实例。
-对象被认为是某个特定引用类型的实例。新对象通过使用new操作符跟一个构造函数来创建。
-函数也是一种引用类型。
-## 5.1 Date
-日期对象&#x2F;&#x2F;let now &#x3D; new Date();
-可用Date.parse()转换成日期对象&#x2F;&#x2F;let someDate &#x3D; new Date(Date.parse(&quot;May 23,2019&quot;));如果字符串不表示日期，会返回NaN。
-let allFives &#x3D; new Date(Date.UTC(2005,4,5,17,55,55));&#x2F;&#x2F;GMT时间——Date.UTC方法
-ES提供了Date.now()方法，返回表示方法执行时日期。
-let start &#x3D; Date.now();&#x2F;&#x2F;当前时间
-### 5.1.1 继承的方法
-let date &#x3D; new Date(2021,1,20);
-toLocaleString()&#x2F;&#x2F;--&gt;2021&#x2F;2&#x2F;20 上午12:00:00
-toString()&#x2F;&#x2F;--&gt;Sat Feb 20 2021 00:00:00 GMT+0800
-valueOf()&#x2F;&#x2F;--&gt;1613750400000
-### 5.1.2 日期格式化方法
-Date格式化日期的方法：
-toDateString()&#x2F;&#x2F;显示日期中的周几，月，日，年
-toTimeString()&#x2F;&#x2F;显示日期中的时分秒和时区
-toLocaleDateString()&#x2F;&#x2F;显示日期中的周几 月 日 年
-toLocaleTimeString()&#x2F;&#x2F;显示日期中的时 分 秒
-toUTCString()&#x2F;&#x2F;显示完整的UTC日期
-### 5.1.3 日期&#x2F;时间组件方法
-主要应用：
-getTime()&#x2F;&#x2F;返回日期的毫秒表示，与valueOf相同
-setTime(milliseconds)&#x2F;&#x2F;设置日期的毫秒表示，从而修改整个日期
-getFullYear()&#x2F;&#x2F;返回四位年数
-getMonth()&#x2F;&#x2F;返回日期的月
-getDate()&#x2F;&#x2F;返回日期的日
-getDay()&#x2F;&#x2F;返回日期中表示周几的数值
-getHours()&#x2F;&#x2F;返回日期中的时
-getMinutes()&#x2F;&#x2F;返回日期中的分
-getSeconds()&#x2F;&#x2F;返回日期中的秒
-## 5.2 RegExp
-ES通过RegExp类型支持正则表达式。
-let expression &#x3D; &#x2F;pattern&#x2F;flags;
-匹配模式的标记：
-1.g:全局模式，表示查找字符串的全部内容，而不是找到第一个匹配的内容就结束。
-2.i:不区分大小写，表示查找匹配时忽略pattern和字符串的大小写。
-3.m:多行模式，表示查找到一行文本末尾时会继续查找。
-4.y:粘附模式，表示只查找从lastIndex开始及之后的字符串。
-5.u:Unicode模式，启用Unicode匹配。
-6.s：dotAll模式，表示元字符匹配任何字符。(包括\n或\r)。
-使用不同模式和标记可以创建出各种正则表达式，比如：
-&#x2F;&#x2F;匹配字符串中的所有&quot;at&quot;
-let pattern1 &#x3D; &#x2F;at&#x2F;g;
-&#x2F;&#x2F;匹配第一个&quot;bat&quot;或&quot;cat&quot; 忽略大小写
-let pattern2 &#x3D; &#x2F;[bc]at&#x2F;i
-&#x2F;&#x2F;匹配所有以&quot;at&quot;结尾的三字符组合，忽略大小写
-let pattern3 &#x3D; &#x2F;.at&#x2F;gi
-元字符在模式中必须转义：
-( ，[， {，\，^，$，|，)，]，}，？，*，+，- &#x2F;&#x2F;这些符号前面需要\来转义
-&#x2F;&#x2F;匹配第一个&quot;bat&quot;或&quot;cat&quot;，忽略大小写
-let pattern1 &#x3D; &#x2F;[bc]at&#x2F;i;
-&#x2F;&#x2F;匹配第一个&quot;[bc]at&quot;，忽略大小写
-let pattern2 &#x3D; &#x2F;\[bc\]at&#x2F;i;
-&#x2F;&#x2F;匹配所有以&quot;at&quot;结尾的三字符组合，忽略大小写
-let pattern3 &#x3D; &#x2F;.at&#x2F;gi;
-&#x2F;&#x2F;匹配所有&quot;.at&quot;，忽略大小写
-let pattern4 &#x3D; &#x2F;\.at&#x2F;gi;
-也可使用RegExp构造函数来创建：
-let pattern1 &#x3D; &#x2F;[bc]at&#x2F;i   &#x3D;&#x3D;   new RegExp(&quot;[bc]at&quot;,&quot;i&quot;);
-也可以使用实例，选择性修改标记
-const re1 &#x3D; &#x2F;cat&#x2F;g;
-const re2 &#x3D; new RegExp(re1);
-const re3 &#x3D; new RegExp(re1,&quot;i&quot;);
-### 5.2.1 RegExp实例属性
-global:布尔值，表示是否设置了g标记。
-ignoreCase:布尔值，表示是否设置了i标记。
-unicode:布尔值，表示是否设置了u标记。
-sticky:布尔值，表示是否设置了y标记。
-lastIndex:整数，表示在源字符串中下一次搜索的开始位置，始终从0开始。
-multiline:布尔值，表示是否设置了m标记。
-dotAll:布尔值，表示是否设置了s标记。
-source:正则表达式的字面量字符串，没有开头和结尾的斜杠。
-flags:正则表达式的标记字符串。始终以字面量而非传入构造函数的字符串模式形式返回。
-### 5.2.2 RegExp实例方法
-exec()函数：
-let text &#x3D; &#39;cat, bat, sat, fat&#39;;
-  let pattern &#x3D; &#x2F;.at&#x2F;gi;
-  let matchs &#x3D; pattern.exec(text);
-  console.log(matchs);&#x2F;&#x2F;cat
-&#x2F;&#x2F;设置了全局标记(g)，每次调用返回一个匹配的信息，如果没有设置全局标记，只会返回第一个匹配的信息。
-&#x2F;&#x2F;设置了g标记，每次调用exec()都会在字符中向前搜索下一个匹配项
-let text &#x3D; &#39;cat, bat, sat, fat&#39;;
-  let pattern &#x3D; &#x2F;.at&#x2F;gi;
-  let matchs &#x3D; pattern.exec(text);&#x2F;&#x2F;cat
-  let matchs &#x3D; pattern.exec(text);&#x2F;&#x2F;bat
-  let matchs &#x3D; pattern.exec(text);&#x2F;&#x2F;sat
-  console.log(matchs);
-&#x2F;&#x2F;设置了y标记，每次调用会在lastIndex的位置上寻找匹配项。y标记覆盖g标记。
-test()函数：&#x2F;&#x2F;用于判断是否存在实际内容中，常在if判断语句中
-let text &#x3D; &quot;000-00-00 00&quot;;
-let pattern &#x3D; &#x2F;\d{3}-\d{2}-\d(4)&#x2F;;
-if(pattern.test(text)) {console.log(&quot;The pattern was matched.&quot;)};
-继承的方法toLocaleString()和toString()都返回字面量表示。
-let pattern &#x3D; new RegExp(&quot;\\[bc\\]at&quot;,&quot;gt&quot;);
-console.log(pattern.toString());&#x2F;&#x2F;  &#x2F;\[bc\]at&#x2F;gi
-console.log(pattern.toLocaleString());&#x2F;&#x2F;  &#x2F;\[bc\]at&#x2F;gi
-### 5.2.3 RegExp构造函数属性
-input：$_   &#x2F;&#x2F;最后搜索的字符串
-lastMatch：$&amp;   &#x2F;&#x2F;最后匹配的文本
-lastParen：$+   &#x2F;&#x2F;最后匹配的捕获组
-leftContext：$&#96;   &#x2F;&#x2F;input字符串中出现在lastMatch前面的文本
-rightContext：$&#39;   &#x2F;&#x2F;input字符串中出现在lastMatch后面的文本
-let text &#x3D; &quot;this has been a short summer&quot;;
-let pattern &#x3D; &#x2F;(.)hort&#x2F;g; &#x2F;&#x2F;()--&gt;捕获组
-if(pattern.test(text)) {
-   console.log(RegExp.input); &#x2F;&#x2F;this has been a short summer
-   console.log(RegExp.leftContext); &#x2F;&#x2F;this has been a
-   console.log(RegExp.rightContext); &#x2F;&#x2F;summer
-   console.log(RegExp.lastMatch); &#x2F;&#x2F;short
-   console.log(RegExp.input); &#x2F;&#x2F;s
-}
-
-&lt;p&gt;if(pattern.test(text)) {&lt;br&gt;   console.log(RegExp.$_); &#x2F;&#x2F;this has been a short summer&lt;br&gt;   console.log(RegExp[&quot;$&#96;&quot;]); &#x2F;&#x2F;this has been a&lt;br&gt;   console.log(RegExp[&quot;$&#39;&quot;]); &#x2F;&#x2F;summer&lt;br&gt;   console.log(RegExp[&quot;$&amp;&quot;]); &#x2F;&#x2F;short&lt;br&gt;   console.log(RegExp[&quot;$+&quot;]); &#x2F;&#x2F;s&lt;br&gt;}&lt;br&gt;let pattern &#x3D; &#x2F;(..)or(.)&#x2F;g;&lt;&#x2F;p&gt;
-&lt;p&gt;if(pattern.test(text)) {&lt;br&gt;   console.log(RegExp.$1); &#x2F;&#x2F; sh&lt;br&gt;   console.log(RegExp.$2);&#x2F;&#x2F; t&lt;br&gt;}&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-2-4-模式局限&quot;&gt;&lt;a href&#x3D;&quot;#5-2-4-模式局限&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.2.4 模式局限&quot;&gt;&lt;&#x2F;a&gt;5.2.4 模式局限&lt;&#x2F;h3&gt;&lt;p&gt;ES对正则表达式的支持还缺少一些高级特性。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;5-3-原始值包装类型&quot;&gt;&lt;a href&#x3D;&quot;#5-3-原始值包装类型&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.3 原始值包装类型&quot;&gt;&lt;&#x2F;a&gt;5.3 原始值包装类型&lt;&#x2F;h2&gt;&lt;p&gt;ES提供了3种特殊类型的引用类型：Boolean,Number,String。&lt;br&gt;以读模式访问字符串时，后台执行：&lt;br&gt;（1）创建一个String类型的实例；&#x2F;&#x2F; let s1 &#x3D; &quot;some text&quot;&lt;br&gt;（2）调用实例上的特点方法；&#x2F;&#x2F; let s2 &#x3D; s1.substring(2);&lt;br&gt;（3）销毁实例；&#x2F;&#x2F; s1 &#x3D; null;&lt;br&gt;let value &#x3D; &quot;25&quot;;&lt;br&gt;let number &#x3D; Number(value);   &#x2F;&#x2F;转型函数&lt;br&gt;console.log(typeof number);   &#x2F;&#x2F;&quot;number&quot;&lt;br&gt;let obj &#x3D; new Number(value); &#x2F;&#x2F; 构造函数&lt;br&gt;console.log(typeof obj); &#x2F;&#x2F;&quot;object&quot;&lt;br&gt;变量obj保存一个Number实例。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-3-1-Boolean&quot;&gt;&lt;a href&#x3D;&quot;#5-3-1-Boolean&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.3.1 Boolean&quot;&gt;&lt;&#x2F;a&gt;5.3.1 Boolean&lt;&#x2F;h3&gt;&lt;p&gt;let falseObject &#x3D; new Boolean(false);&#x2F;&#x2F; typeof &#x3D;&#x3D; object&lt;br&gt;let result &#x3D; falseObject &amp;&amp; true;&lt;br&gt;console.log(result); &#x2F;&#x2F;true&lt;br&gt;let falseValue &#x3D; false;&#x2F;&#x2F;typeof &#x3D;&#x3D; boolean 强烈建议永远不要使用&lt;br&gt;result &#x3D; falseValue &amp;&amp; true;&lt;br&gt;console.log(result); &#x2F;&#x2F;false&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-3-2-Number&quot;&gt;&lt;a href&#x3D;&quot;#5-3-2-Number&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.3.2 Number&quot;&gt;&lt;&#x2F;a&gt;5.3.2 Number&lt;&#x2F;h3&gt;&lt;p&gt;方法：toFix()&#x2F;&#x2F;let num &#x3D; 10;num.toFixed(2);&#x2F;&#x2F; &quot;10.00&quot;&lt;br&gt;方法：toExponential()&#x2F;&#x2F;let num &#x3D; 10;num.toExponential(1);&#x2F;&#x2F;&quot;1.0e+1&quot;&lt;br&gt;方法：toPrecision()&#x2F;&#x2F;let num &#x3D; 99;&lt;br&gt;num.toPrecision(1)&#x2F;&#x2F;&quot;1e+2&quot;&lt;br&gt;num.toPrecision(2)&#x2F;&#x2F;&quot;99&quot;&lt;br&gt;num.toPrecision(3)&#x2F;&#x2F;&quot;99.0&quot;&lt;br&gt;方法：isInterger()&#x2F;&#x2F;辨别一个数值是否保存为整数。&lt;br&gt;Number.isInterger(1);&#x2F;&#x2F; true&lt;br&gt;Number.isInterger(1.00)&#x2F;&#x2F;true&lt;br&gt;Number.isInterger(1.01)&#x2F;&#x2F;false&lt;br&gt;方法：isSafeInterger()判断数值范围&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-3-3-String&quot;&gt;&lt;a href&#x3D;&quot;#5-3-3-String&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.3.3 String&quot;&gt;&lt;&#x2F;a&gt;5.3.3 String&lt;&#x2F;h3&gt;&lt;p&gt;每个字符用16位表示，基于16位码元完成操作。&#x2F;&#x2F;基本多语言平面。&lt;br&gt;normalize()方法：用于判断规范性。&lt;br&gt;concat()：拼接&#x2F;&#x2F;用加法运算符也可&lt;br&gt;Value &#x3D; &quot;hello world&quot;;&lt;br&gt;slice()：&lt;br&gt;Value.slice(3)&#x2F;&#x2F;&quot;lo world&quot;;&lt;br&gt;Value.slice(3,7)&#x2F;&#x2F;&quot;lo w&quot;;&lt;br&gt;Value.slice(-3)&#x2F;&#x2F;&quot;rld&quot; 等同于slice(8);(11-3)&lt;br&gt;Value.slice(3,-4)&#x2F;&#x2F;&quot;lo w&quot; 等同于slice(3,7);(3+4)&lt;br&gt;substr()：&lt;br&gt;Value.substr(3)&#x2F;&#x2F;&quot;lo world&quot;;&lt;br&gt;Value.substr(3,7)&#x2F;&#x2F;&quot;lo worl&quot;;&lt;br&gt;Value.substr(-3)&#x2F;&#x2F;&quot;rld&quot; 等同于substr(8);&lt;br&gt;Value.substr(3,-4)&#x2F;&#x2F;&quot;&quot;等同于substr(3,0);&lt;br&gt;substring()：&lt;br&gt;Value.substring(3)&#x2F;&#x2F;&quot;lo world&quot;;&lt;br&gt;Value.substring(3,7)&#x2F;&#x2F;&quot;lo w&quot;;&lt;br&gt;Value.substring(-3)&#x2F;&#x2F;&quot;hello world&quot; 等同于substring(0)&lt;br&gt;Value.substring(3,-4)&#x2F;&#x2F;&quot;hel&quot;等同于substring(0,3)&lt;br&gt;indexOf():&lt;br&gt;Value.indexOf(&quot;o&quot;);&#x2F;&#x2F; 4&lt;br&gt;Value.indexOf(&quot;t&quot;)&#x2F;&#x2F; -1&lt;br&gt;Value.indexOf(&quot;o&quot;,6)&#x2F;&#x2F;7&lt;br&gt;lastIndexOf():&lt;br&gt;Value.lastIndexOf(&quot;o&quot;)&#x2F;&#x2F;7&lt;br&gt;Value.lastIndexOf(&quot;t&quot;)&#x2F;&#x2F;-1&lt;br&gt;Value.lastIndexOf(&quot;o&quot;,6)&#x2F;&#x2F;4&lt;br&gt;message &#x3D; &quot;foobarbaz&quot;;&lt;br&gt;startWith():&lt;br&gt;message.startWith(&quot;foo&quot;);&#x2F;&#x2F;true&lt;br&gt;message.startWith(&quot;bar&quot;);&#x2F;&#x2F;false&lt;br&gt;endWith():&lt;br&gt;message.endWith(&quot;baz&quot;);&#x2F;&#x2F;true&lt;br&gt;message.endWith(&quot;bar&quot;);&#x2F;&#x2F;false&lt;br&gt;includes():&lt;br&gt;message.includes(&quot;bar&quot;);&#x2F;&#x2F;true&lt;br&gt;message.includes(&quot;qux&quot;);&#x2F;&#x2F;false&lt;br&gt;trim():&#x2F;&#x2F;不影响原字符串，trimLeft(),trimRight()&lt;br&gt;let string &#x3D; &quot;   hello  world   &quot;;&lt;br&gt;string.trim()&#x2F;&#x2F;&quot;hello  world&quot;&lt;br&gt;repeat():&lt;br&gt;string &#x3D; &quot;abc&quot;;&lt;br&gt;string.repeat(2)&#x2F;&#x2F;&quot;abcabc&quot;;&lt;br&gt;padStart(),padEnd():&lt;br&gt;string &#x3D; &quot;foo&quot;&lt;br&gt;string.padStart(6)&#x2F;&#x2F;&quot;   foo&quot;;len&#x3D;6&lt;br&gt;string.padStart(9,&quot;.&quot;)&#x2F;&#x2F;&quot;......foo&quot;;len&#x3D;9&lt;br&gt;string.padStart(8,&quot;bar&quot;)&#x2F;&#x2F;&quot;barbafoo&quot;len&#x3D;8&lt;br&gt;string.padEnd(6)&#x2F;&#x2F;&quot;foo   &quot;;&lt;br&gt;string.padEnd(9,&quot;.&quot;)&#x2F;&#x2F;&quot;foo......&quot;;&lt;br&gt;string.padEnd(8,&quot;bar&quot;)&#x2F;&#x2F;&quot;foobarba&quot;;&lt;br&gt;迭代与解构&lt;br&gt;let message &#x3D; &quot;abc&quot;;&lt;br&gt;Iterator &#x3D; message&lt;a href&#x3D;&quot;&quot;&gt;Symbol.iterator&lt;&#x2F;a&gt;;&lt;br&gt;Iterator.next()&#x2F;&#x2F;{value:&quot;a&quot;,done:false}&lt;br&gt;Iterator.next()&#x2F;&#x2F;{value:&quot;b&quot;,done:false}&lt;br&gt;Iterator.next()&#x2F;&#x2F;{value:&quot;c&quot;,done:false}&lt;br&gt;Iterator.next()&#x2F;&#x2F;{value:&quot;undefined&quot;,done:true}&lt;br&gt;大小写转换&lt;br&gt;toLowerCase()&#x2F;&#x2F;小写&lt;br&gt;toLocalLowerCase()&#x2F;&#x2F;特定地区方法使用&lt;br&gt;toUpperCase()&#x2F;&#x2F;大写&lt;br&gt;toLocalUpperCase()&#x2F;&#x2F;特定地区方法使用&lt;br&gt;字符串模式匹配方法&lt;br&gt;match():与exec()方法一致&lt;br&gt;search():&lt;br&gt;let text &#x3D; &quot;cat, bat, sat, fat&quot;;&lt;br&gt;let pos &#x3D; text.search(&#x2F;at&#x2F;);&#x2F;&#x2F;1第一个位置为1&lt;br&gt;replace():&lt;br&gt;let res &#x3D; text.replace(&quot;at&quot;,&quot;ond&quot;);&#x2F;&#x2F;&quot;cond, bat, sat, fat&quot;&lt;br&gt;let res &#x3D; text.replace(&#x2F;at&#x2F;g,&quot;ond&quot;)&#x2F;&#x2F;&quot;cond, bond, sond, fond&quot;&lt;br&gt;localeCompare():按字母表顺序比较返回值&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;5-4-单例内置对象&quot;&gt;&lt;a href&#x3D;&quot;#5-4-单例内置对象&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.4 单例内置对象&quot;&gt;&lt;&#x2F;a&gt;5.4 单例内置对象&lt;&#x2F;h2&gt;&lt;p&gt;包括Global,Math&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-4-1-Global&quot;&gt;&lt;a href&#x3D;&quot;#5-4-1-Global&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.4.1 Global&quot;&gt;&lt;&#x2F;a&gt;5.4.1 Global&lt;&#x2F;h3&gt;&lt;p&gt;全局作用域中定义的变量和函数都会成为Global对象的属性。&lt;br&gt;encodeURI(),encodeURIComponent()&#x2F;&#x2F;编码统一资源标识符。&lt;br&gt;eval():&lt;br&gt;eval(&quot;console.log(&#39;hi&#39;)&quot;);&#x2F;&#x2F;&#x2F;console.log(&quot;hi&quot;);&lt;br&gt;eval(&quot;function sayHi(){console.log(&#39;hi&#39;);}&quot;);&#x2F;&#x2F;&#x2F;sayHi();&lt;br&gt;容易被XSS攻击。&lt;br&gt;对象属性：&lt;br&gt;undefined&#x2F;&#x2F;特殊值&lt;br&gt;NaN&#x2F;&#x2F;特殊值&lt;br&gt;Infinity&#x2F;&#x2F;特殊值&lt;br&gt;Object&#x2F;&#x2F;构造函数&lt;br&gt;Array&#x2F;&#x2F;构造函数&lt;br&gt;Function&#x2F;&#x2F;构造函数&lt;br&gt;....&lt;br&gt;window对象&lt;br&gt;window为Global对象的代理,全局变量和函数即为window的属性。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;5-4-2-Math&quot;&gt;&lt;a href&#x3D;&quot;#5-4-2-Math&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.4.2 Math&quot;&gt;&lt;&#x2F;a&gt;5.4.2 Math&lt;&#x2F;h3&gt;&lt;p&gt;Math对象属性：&lt;br&gt;E &#x2F;&#x2F;自然对数的基数e的值&lt;br&gt;LN10 &#x2F;&#x2F;10为底的自然对数&lt;br&gt;LN2 &#x2F;&#x2F;2为底的自然对数&lt;br&gt;LOG2E &#x2F;&#x2F;以2为底e的对数&lt;br&gt;LOG10E &#x2F;&#x2F;以10为底e的对数&lt;br&gt;PI &#x2F;&#x2F;π的值&lt;br&gt;SQRT1_2 &#x2F;&#x2F;1&#x2F;2的平方根&lt;br&gt;SQRT2 &#x2F;&#x2F;2的平方根&lt;br&gt;Math方法：&lt;br&gt;min():取最小值&#x2F;&#x2F;配合数组可以使用扩展操作符&lt;br&gt;max():取最大值&#x2F;&#x2F;max &#x3D; Math.max(...array);&lt;br&gt;ceil():向上取&lt;br&gt;Math.ceil(25.9);&#x2F;&#x2F;26&lt;br&gt;Math.ceil(25.5);&#x2F;&#x2F;26&lt;br&gt;Math.ceil(25.1);&#x2F;&#x2F;26&lt;br&gt;round():四舍五入&lt;br&gt;console.log(Math.round(25.9)); &#x2F;&#x2F; 26&lt;br&gt;console.log(Math.round(25.5)); &#x2F;&#x2F; 26&lt;br&gt;console.log(Math.round(25.1)); &#x2F;&#x2F; 25&lt;br&gt;fround():取单精度浮点值&lt;br&gt;console.log(Math.fround(0.4)); &#x2F;&#x2F; 0.4000000059604645&lt;br&gt;console.log(Math.fround(0.5)); &#x2F;&#x2F; 0.5&lt;br&gt;console.log(Math.fround(25.9)); &#x2F;&#x2F; 25.899999618530273&lt;br&gt;floor():向下取&lt;br&gt;console.log(Math.floor(25.9)); &#x2F;&#x2F; 25&lt;br&gt;console.log(Math.floor(25.5)); &#x2F;&#x2F; 25&lt;br&gt;console.log(Math.floor(25.1)); &#x2F;&#x2F; 25&lt;br&gt;random():&#x2F;&#x2F;返回小数0~1内&lt;br&gt;加密提高不确定性：建议使用window.crypto.getRandomValues()。&lt;br&gt;abs()&#x2F;&#x2F;绝对值&lt;br&gt;exp()&#x2F;&#x2F;次幂&lt;br&gt;log()&#x2F;&#x2F;自然对数&lt;br&gt;....&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;5-5-小结&quot;&gt;&lt;a href&#x3D;&quot;#5-5-小结&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;5.5 小结&quot;&gt;&lt;&#x2F;a&gt;5.5 小结&lt;&#x2F;h2&gt;&lt;p&gt;对象为引用值，内置的引用类型可用于创建特定类型的对象。&lt;br&gt;RegExp是ES支持正则表达式的接口。&lt;br&gt;函数实际上是Function类型的实例，是对象。&lt;&#x2F;p&gt;
-&lt;h1 id&#x3D;&quot;6-集合引用类型&quot;&gt;&lt;a href&#x3D;&quot;#6-集合引用类型&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6 集合引用类型&quot;&gt;&lt;&#x2F;a&gt;6 集合引用类型&lt;&#x2F;h1&gt;&lt;h2 id&#x3D;&quot;6-1-Object&quot;&gt;&lt;a href&#x3D;&quot;#6-1-Object&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.1 Object&quot;&gt;&lt;&#x2F;a&gt;6.1 Object&lt;&#x2F;h2&gt;&lt;p&gt;let person &#x3D; new Object();&#x2F;&#x2F;构造函数&lt;br&gt;person.name &#x3D; &#39;micheal&#39;;&lt;br&gt;let person &#x3D; {name:&#39;micheal&#39;};&#x2F;&#x2F;{}字面量表达式&lt;br&gt;person[&quot;name&quot;]&#x2F;&#x2F;micheal&lt;br&gt;person.name&#x2F;&#x2F;micheal&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-2-Array&quot;&gt;&lt;a href&#x3D;&quot;#6-2-Array&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2 Array&quot;&gt;&lt;&#x2F;a&gt;6.2 Array&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;6-2-1-创建数组&quot;&gt;&lt;a href&#x3D;&quot;#6-2-1-创建数组&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.1 创建数组&quot;&gt;&lt;&#x2F;a&gt;6.2.1 创建数组&lt;&#x2F;h3&gt;&lt;p&gt;let colors &#x3D; new Array();&#x2F;&#x2F;可以传值创建初始length的数组，也可以传数组值&lt;br&gt;let colors &#x3D; [&quot;red&quot;,&quot;blue&quot;]&#x2F;&#x2F;字面量表达式&lt;br&gt;from():&lt;br&gt;Array.from(&quot;Matt&quot;)&#x2F;&#x2F;[&quot;M&quot;,&quot;a&quot;,&quot;t&quot;,&quot;t&quot;]&lt;br&gt;适用于Map,Set,Array,iterator,arguments&lt;br&gt;of():&#x2F;&#x2F;使用Array.prototype.slice.call(arguments)&lt;br&gt;Array.of(1,2,3,4)&#x2F;&#x2F;[1,2,3,4]&lt;br&gt;Array.of(undefined)&#x2F;&#x2F;[undefined]&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-2-数组空位&quot;&gt;&lt;a href&#x3D;&quot;#6-2-2-数组空位&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.2 数组空位&quot;&gt;&lt;&#x2F;a&gt;6.2.2 数组空位&lt;&#x2F;h3&gt;&lt;p&gt;使用(,)创建数组空位&lt;br&gt;const options &#x3D; [,,,,,]&lt;br&gt;options.length &#x3D; 5&lt;br&gt;options &#x2F;&#x2F;[,,,,,]&lt;br&gt;空值为undefined&lt;br&gt;options &#x3D; [1,,,5];&lt;br&gt;options.map(()&#x3D;&gt;6)&#x2F;&#x2F;[6,,,6]&lt;br&gt;options.join(&#39;-&#39;)&#x2F;&#x2F;&quot;1-----5&quot;&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-3-数组索引&quot;&gt;&lt;a href&#x3D;&quot;#6-2-3-数组索引&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.3 数组索引&quot;&gt;&lt;&#x2F;a&gt;6.2.3 数组索引&lt;&#x2F;h3&gt;&lt;p&gt;colors[0]--&gt;第一个元素&lt;br&gt;给数组设置length会改变数组大小&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-4-检测数组&quot;&gt;&lt;a href&#x3D;&quot;#6-2-4-检测数组&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.4 检测数组&quot;&gt;&lt;&#x2F;a&gt;6.2.4 检测数组&lt;&#x2F;h3&gt;&lt;p&gt;判断是否数组，使用instanceof&lt;br&gt;也可使用isArray()方法&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-5-迭代器方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-5-迭代器方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.5 迭代器方法&quot;&gt;&lt;&#x2F;a&gt;6.2.5 迭代器方法&lt;&#x2F;h3&gt;&lt;p&gt;const a &#x3D; [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;];&lt;br&gt;keys():&#x2F;&#x2F;返回数组索引的迭代器&lt;br&gt;const akeys &#x3D; Array.from(a.keys()); &#x2F;&#x2F; [0,1,2,3]&lt;br&gt;values():&#x2F;&#x2F;返回数组元素的迭代器&lt;br&gt;const aValues &#x3D; Array.from(a.Values());&#x2F;&#x2F;[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]&lt;br&gt;entries():&#x2F;&#x2F;返回索引&#x2F;值对的迭代器&lt;br&gt;const aEntries &#x3D; Array.from(a.entries());&#x2F;&#x2F;[[0,&quot;a&quot;],[1,&quot;b&quot;],[2,&quot;c&quot;],[3,&quot;d&quot;]]&lt;br&gt;for(const [idx,element] of a.entries()){&lt;br&gt;alert(idx);&lt;br&gt;alert(element);&lt;br&gt;}&lt;br&gt;&#x2F;&#x2F;0&lt;br&gt;&#x2F;&#x2F;a&lt;br&gt;&#x2F;&#x2F;1&lt;br&gt;&#x2F;&#x2F;b&lt;br&gt;&#x2F;&#x2F;2&lt;br&gt;&#x2F;&#x2F;c&lt;br&gt;&#x2F;&#x2F;3&lt;br&gt;&#x2F;&#x2F;d&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-6-复制和填充方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-6-复制和填充方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.6 复制和填充方法&quot;&gt;&lt;&#x2F;a&gt;6.2.6 复制和填充方法&lt;&#x2F;h3&gt;&lt;p&gt;copyWithin()&#x2F;&#x2F;批量复制&lt;br&gt;fill():&#x2F;&#x2F;填充&lt;br&gt;const a &#x3D; [0,0,0,0,0];&lt;br&gt;zeros.fill(5)&#x2F;&#x2F;[5,5,5,5,5];&lt;br&gt;zeros.fill(6,3)&#x2F;&#x2F;[0,0,0,6,6]&lt;br&gt;zeros.fill(7,1,3)&#x2F;&#x2F;[0,7,7,0,0]&lt;br&gt;索引过低，过高，反向都会被忽略&lt;br&gt;部门可用的索引，填充可用部分。&lt;br&gt;ints &#x3D; [0,1,2,3,4,5,6,7,8,9];&lt;br&gt;ints.copyWithin(5) &#x2F;&#x2F; [0,1,2,3,4,0,1,2,3,4];&lt;br&gt;ints.copyWithin(0,5)&#x2F;&#x2F;[5,6,7,8,9,5,6,7,8,9];&lt;br&gt;ints.copyWithin(4,0,3)&#x2F;&#x2F;[0,1,2,3,0,1,2,7,8,9];&lt;br&gt;ints.copyWithin(2,0,6)&#x2F;&#x2F;[0,1,0,1,2,3,4,5,8,9];&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-7-转换方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-7-转换方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.7 转换方法&quot;&gt;&lt;&#x2F;a&gt;6.2.7 转换方法&lt;&#x2F;h3&gt;&lt;p&gt;数组调用toString(),valueOf()方法相当于每个元素调用一次这个方法。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-8-栈方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-8-栈方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.8 栈方法&quot;&gt;&lt;&#x2F;a&gt;6.2.8 栈方法&lt;&#x2F;h3&gt;&lt;p&gt;push()&#x2F;&#x2F;从最后推入数据&lt;br&gt;pop()&#x2F;&#x2F;弹出最后一项并返回&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-9-队列方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-9-队列方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.9 队列方法&quot;&gt;&lt;&#x2F;a&gt;6.2.9 队列方法&lt;&#x2F;h3&gt;&lt;p&gt;shift():&#x2F;&#x2F;删除数组第一项并返回&lt;br&gt;push():&#x2F;&#x2F;从最后推入数据&lt;br&gt;unshift():&#x2F;&#x2F;从开头推入&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-10-排序方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-10-排序方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.10 排序方法&quot;&gt;&lt;&#x2F;a&gt;6.2.10 排序方法&lt;&#x2F;h3&gt;&lt;p&gt;reverse():&#x2F;&#x2F;反向排序&lt;br&gt;sort():&#x2F;&#x2F;将元素转换成字符串比较&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-1-11-操作方法&quot;&gt;&lt;a href&#x3D;&quot;#6-1-11-操作方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.1.11 操作方法&quot;&gt;&lt;&#x2F;a&gt;6.1.11 操作方法&lt;&#x2F;h3&gt;&lt;p&gt;concat():添加&#x2F;&#x2F;直接使用会打平数组&lt;br&gt;slice():取值&lt;br&gt;splice():&#x2F;&#x2F;可实现删除(两个参数)，插入(三个参数)，替换(三个参数)&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-12-搜索和位置方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-12-搜索和位置方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.12 搜索和位置方法&quot;&gt;&lt;&#x2F;a&gt;6.2.12 搜索和位置方法&lt;&#x2F;h3&gt;&lt;p&gt;indexOf()&#x2F;&#x2F;查找元素位置，返回&lt;br&gt;lastIndexOf()&#x2F;&#x2F;查找元素位置，返回&lt;br&gt;includes()&#x2F;&#x2F;返回布尔值，是否包含元素&lt;br&gt;find()&#x2F;&#x2F;返回第一个匹配的元素&lt;br&gt;findIndex()&#x2F;&#x2F;返回索引&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-13-迭代方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-13-迭代方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.13 迭代方法&quot;&gt;&lt;&#x2F;a&gt;6.2.13 迭代方法&lt;&#x2F;h3&gt;&lt;p&gt;every():元素都匹配才会返回true&lt;br&gt;filter():返回true的元素组成数组返回&lt;br&gt;forEach():运行函数，无返回值&lt;br&gt;map():调用结果构成数组返回&lt;br&gt;some():如果有一项返回true，则返回true&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-2-14-归并方法&quot;&gt;&lt;a href&#x3D;&quot;#6-2-14-归并方法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.2.14 归并方法&quot;&gt;&lt;&#x2F;a&gt;6.2.14 归并方法&lt;&#x2F;h3&gt;&lt;p&gt;reduce():从头遍历,构建一个返回值&lt;br&gt;reduceRight():从尾遍历,构建一个返回值&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-3-定型数组&quot;&gt;&lt;a href&#x3D;&quot;#6-3-定型数组&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.3 定型数组&quot;&gt;&lt;&#x2F;a&gt;6.3 定型数组&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;6-3-1-历史&quot;&gt;&lt;a href&#x3D;&quot;#6-3-1-历史&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.3.1 历史&quot;&gt;&lt;&#x2F;a&gt;6.3.1 历史&lt;&#x2F;h3&gt;&lt;p&gt;WebGL用到，3D技术。&lt;br&gt;定型数组&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-3-2-ArrayBuffer&quot;&gt;&lt;a href&#x3D;&quot;#6-3-2-ArrayBuffer&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.3.2 ArrayBuffer&quot;&gt;&lt;&#x2F;a&gt;6.3.2 ArrayBuffer&lt;&#x2F;h3&gt;&lt;p&gt;构造函数，用于内存中分配特定数量的字节空间。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-3-3-DataView&quot;&gt;&lt;a href&#x3D;&quot;#6-3-3-DataView&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.3.3 DataView&quot;&gt;&lt;&#x2F;a&gt;6.3.3 DataView&lt;&#x2F;h3&gt;&lt;h3 id&#x3D;&quot;6-3-4-定型数组&quot;&gt;&lt;a href&#x3D;&quot;#6-3-4-定型数组&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.3.4 定型数组&quot;&gt;&lt;&#x2F;a&gt;6.3.4 定型数组&lt;&#x2F;h3&gt;&lt;h2 id&#x3D;&quot;6-4-Map&quot;&gt;&lt;a href&#x3D;&quot;#6-4-Map&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.4 Map&quot;&gt;&lt;&#x2F;a&gt;6.4 Map&lt;&#x2F;h2&gt;&lt;p&gt;一种实现键值存储机制的集合类型。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-4-1-基本API&quot;&gt;&lt;a href&#x3D;&quot;#6-4-1-基本API&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.4.1 基本API&quot;&gt;&lt;&#x2F;a&gt;6.4.1 基本API&lt;&#x2F;h3&gt;&lt;p&gt;const m2 &#x3D; new Map([[&quot;key1&quot;,&quot;val1&quot;][&quot;key2&quot;,&quot;val2&quot;][&quot;key3&quot;,&quot;val3&quot;]])&lt;br&gt;m1.size &#x3D; 3&lt;br&gt;可使用has(),get()进行查询，delete(),clear()删除值。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-4-2-顺序与迭代&quot;&gt;&lt;a href&#x3D;&quot;#6-4-2-顺序与迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.4.2 顺序与迭代&quot;&gt;&lt;&#x2F;a&gt;6.4.2 顺序与迭代&lt;&#x2F;h3&gt;&lt;p&gt;提供迭代器(Iterator),通过entries()获取&lt;br&gt;可以通过遍历获取。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-4-3-选择Object还是Map&quot;&gt;&lt;a href&#x3D;&quot;#6-4-3-选择Object还是Map&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.4.3 选择Object还是Map&quot;&gt;&lt;&#x2F;a&gt;6.4.3 选择Object还是Map&lt;&#x2F;h3&gt;&lt;p&gt;1.内存占用&lt;br&gt;Map占用更小&lt;br&gt;2.插入性能&lt;br&gt;Map插入性能更好&lt;br&gt;3.查找速度&lt;br&gt;Object优于Map&lt;br&gt;4.删除性能&lt;br&gt;Map更快，涉及大量删除 Map最佳。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-5-WeakMap&quot;&gt;&lt;a href&#x3D;&quot;#6-5-WeakMap&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.5 WeakMap&quot;&gt;&lt;&#x2F;a&gt;6.5 WeakMap&lt;&#x2F;h2&gt;&lt;p&gt;类似于Map，只能用对象作为键。&lt;br&gt;API与Map相同。&lt;br&gt;键不存在时，值会被垃圾回收。&lt;br&gt;无法迭代。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-6-Set&quot;&gt;&lt;a href&#x3D;&quot;#6-6-Set&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.6 Set&quot;&gt;&lt;&#x2F;a&gt;6.6 Set&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;6-6-1-基本API&quot;&gt;&lt;a href&#x3D;&quot;#6-6-1-基本API&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.6.1 基本API&quot;&gt;&lt;&#x2F;a&gt;6.6.1 基本API&lt;&#x2F;h3&gt;&lt;p&gt;与Map相似，size长度，has()查询，delete()和clear()删除元素。&lt;br&gt;add()添加元素。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;6-6-2-顺序与迭代&quot;&gt;&lt;a href&#x3D;&quot;#6-6-2-顺序与迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.6.2 顺序与迭代&quot;&gt;&lt;&#x2F;a&gt;6.6.2 顺序与迭代&lt;&#x2F;h3&gt;&lt;p&gt;可通过values()与keys()获取迭代器&lt;br&gt;可以使用遍历方法迭代。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-7-WeakSet&quot;&gt;&lt;a href&#x3D;&quot;#6-7-WeakSet&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.7 WeakSet&quot;&gt;&lt;&#x2F;a&gt;6.7 WeakSet&lt;&#x2F;h2&gt;&lt;p&gt;与WeakMap类型&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-8-迭代与扩展操作&quot;&gt;&lt;a href&#x3D;&quot;#6-8-迭代与扩展操作&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.8 迭代与扩展操作&quot;&gt;&lt;&#x2F;a&gt;6.8 迭代与扩展操作&lt;&#x2F;h2&gt;&lt;p&gt;支持for-of循环&lt;br&gt;支持浅拷贝&lt;br&gt;let arr1 &#x3D; [...arr2];&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;6-9-小结&quot;&gt;&lt;a href&#x3D;&quot;#6-9-小结&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;6.9 小结&quot;&gt;&lt;&#x2F;a&gt;6.9 小结&lt;&#x2F;h2&gt;&lt;p&gt;JS的对象是引用值，可以通过几种内置引用类型创建特定类型的对象。&lt;br&gt;Object类型是一个基础类型，所有引用类型都继承了它的基本行为。&lt;br&gt;Array是一组有序的值，并提供了操作和转换值的能力。&lt;br&gt;定型数组包含一套不同的引用类型。&lt;br&gt;Date，日期类型。RegExp，正则表达式的接口。&lt;br&gt;ES6新增Map，WeakMap,Set,WeakSet。&lt;&#x2F;p&gt;
-&lt;h1 id&#x3D;&quot;7-迭代器与生成器&quot;&gt;&lt;a href&#x3D;&quot;#7-迭代器与生成器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7 迭代器与生成器&quot;&gt;&lt;&#x2F;a&gt;7 迭代器与生成器&lt;&#x2F;h1&gt;&lt;p&gt;迭代即“重复”，“再来”。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;7-1-理解迭代&quot;&gt;&lt;a href&#x3D;&quot;#7-1-理解迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.1 理解迭代&quot;&gt;&lt;&#x2F;a&gt;7.1 理解迭代&lt;&#x2F;h2&gt;&lt;p&gt;JS中，计数循环就是一种最简单的迭代：for（）&lt;br&gt;可以指定顺序，次数，在一个有序集合上进行。&lt;br&gt;需知道如何使用数据结构，遍历顺序不是数据结构固有的。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;7-2-迭代器模式&quot;&gt;&lt;a href&#x3D;&quot;#7-2-迭代器模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.2 迭代器模式&quot;&gt;&lt;&#x2F;a&gt;7.2 迭代器模式&lt;&#x2F;h2&gt;&lt;p&gt;任何实现Iterable接口的数据结构都可以被实现Iterator接口的结构消费。&lt;br&gt;迭代器是按需创建的一次性对象。每个迭代器都会关联一个可迭代对象。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;7-2-1-可迭代协议&quot;&gt;&lt;a href&#x3D;&quot;#7-2-1-可迭代协议&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.2.1 可迭代协议&quot;&gt;&lt;&#x2F;a&gt;7.2.1 可迭代协议&lt;&#x2F;h3&gt;&lt;p&gt;实现了Iterable接口的内置类型：&lt;br&gt;1.字符串&lt;br&gt;2.数组&lt;br&gt;3.映射&lt;br&gt;4.集合&lt;br&gt;5.arguments对象&lt;br&gt;6.NodeList等DOM集合类型&lt;br&gt;接受可迭代对象的语言特性包括：&lt;br&gt;let arr &#x3D; [&quot;foo&quot;,&quot;bar&quot;,&quot;baz&quot;];&lt;br&gt;1.for-of &#x2F;&#x2F;for(let el of arr){el};&lt;br&gt;2.数组解构 &#x2F;&#x2F;let [a,b,c] &#x3D; arr;&lt;br&gt;3.扩展操作符 &#x2F;&#x2F; let arr2 &#x3D; [...arr];&lt;br&gt;4.Array.from() &#x2F;&#x2F;let arr3 &#x3D; Array.from(arr);&lt;br&gt;5.创建集合 &#x2F;&#x2F;let set &#x3D; new Set(arr);&lt;br&gt;6.创建映射 &#x2F;&#x2F;let pairs &#x3D; arr.map((x,i)&#x3D;&gt;[x,i]);&lt;br&gt;7.promise.all()&lt;br&gt;8.promise.race()&lt;br&gt;9.yield*操作符&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;7-2-2-迭代器协议&quot;&gt;&lt;a href&#x3D;&quot;#7-2-2-迭代器协议&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.2.2 迭代器协议&quot;&gt;&lt;&#x2F;a&gt;7.2.2 迭代器协议&lt;&#x2F;h3&gt;&lt;p&gt;let arr &#x3D; [&quot;a&quot;,&quot;b&quot;];&lt;br&gt;console.log(arr[Symbol.iterator]); &#x2F;&#x2F;f values(){[native code]};&lt;br&gt;let iter &#x3D; arr&lt;a href&#x3D;&quot;&quot;&gt;Symbol.iterator&lt;&#x2F;a&gt;;&lt;br&gt;console.log(iter);&#x2F;&#x2F; ArrayIterator()&lt;br&gt;iter.next();&#x2F;&#x2F;{done:false,value:&quot;a&quot;};&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;7-2-3-自定义迭代器&quot;&gt;&lt;a href&#x3D;&quot;#7-2-3-自定义迭代器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.2.3 自定义迭代器&quot;&gt;&lt;&#x2F;a&gt;7.2.3 自定义迭代器&lt;&#x2F;h3&gt;&lt;p&gt;自定义迭代方法&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;7-2-4-提前终止迭代器&quot;&gt;&lt;a href&#x3D;&quot;#7-2-4-提前终止迭代器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.2.4 提前终止迭代器&quot;&gt;&lt;&#x2F;a&gt;7.2.4 提前终止迭代器&lt;&#x2F;h3&gt;&lt;p&gt;return {done:true};&lt;br&gt;或break&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;7-3-生成器&quot;&gt;&lt;a href&#x3D;&quot;#7-3-生成器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.3 生成器&quot;&gt;&lt;&#x2F;a&gt;7.3 生成器&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;7-3-1-生成器基础&quot;&gt;&lt;a href&#x3D;&quot;#7-3-1-生成器基础&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.3.1 生成器基础&quot;&gt;&lt;&#x2F;a&gt;7.3.1 生成器基础&lt;&#x2F;h3&gt;&lt;h3 id&#x3D;&quot;7-3-2-通过yield中断执行&quot;&gt;&lt;a href&#x3D;&quot;#7-3-2-通过yield中断执行&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.3.2 通过yield中断执行&quot;&gt;&lt;&#x2F;a&gt;7.3.2 通过yield中断执行&lt;&#x2F;h3&gt;&lt;h3 id&#x3D;&quot;7-3-3-生成器作为默认迭代器&quot;&gt;&lt;a href&#x3D;&quot;#7-3-3-生成器作为默认迭代器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.3.3 生成器作为默认迭代器&quot;&gt;&lt;&#x2F;a&gt;7.3.3 生成器作为默认迭代器&lt;&#x2F;h3&gt;&lt;h3 id&#x3D;&quot;7-3-4-提前终止生成器&quot;&gt;&lt;a href&#x3D;&quot;#7-3-4-提前终止生成器&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.3.4 提前终止生成器&quot;&gt;&lt;&#x2F;a&gt;7.3.4 提前终止生成器&lt;&#x2F;h3&gt;&lt;h2 id&#x3D;&quot;7-4-小结&quot;&gt;&lt;a href&#x3D;&quot;#7-4-小结&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;7.4 小结&quot;&gt;&lt;&#x2F;a&gt;7.4 小结&lt;&#x2F;h2&gt;&lt;p&gt;由任意对象实现的接口，支持连续获取对象产出的每一个值。使用symbol.iterator获取，并且通过一些方法调用，例next(),for-of。&lt;&#x2F;p&gt;
-&lt;h1 id&#x3D;&quot;8-对象、类与面向对象编程&quot;&gt;&lt;a href&#x3D;&quot;#8-对象、类与面向对象编程&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8 对象、类与面向对象编程&quot;&gt;&lt;&#x2F;a&gt;8 对象、类与面向对象编程&lt;&#x2F;h1&gt;&lt;p&gt;无特定顺序的值。每个属性或方法都用名称标识。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;8-1-理解对象&quot;&gt;&lt;a href&#x3D;&quot;#8-1-理解对象&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1 理解对象&quot;&gt;&lt;&#x2F;a&gt;8.1 理解对象&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;8-1-1-属性的类型&quot;&gt;&lt;a href&#x3D;&quot;#8-1-1-属性的类型&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.1 属性的类型&quot;&gt;&lt;&#x2F;a&gt;8.1.1 属性的类型&lt;&#x2F;h3&gt;&lt;p&gt;数据属性：&lt;br&gt;[[Configurable]]:表示属性是否可以通过delete删除并重定义，是否可修改特性，是否可以把它改为访问器属性。&lt;br&gt;[[Enumerable]]:表示属性是否可以通过for-in循环返回。&lt;br&gt;[[Writable]]:表示属性的值是否可以被修改。&lt;br&gt;[[Value]]:表示属性的值。&lt;br&gt;访问器属性：&lt;br&gt;[[Configurable]]:表示属性是否可以通过delete删除并重定义，是否可修改特性，是否可以把它改为访问器属性。&lt;br&gt;[[Enumerable]]:表示属性是否可以通过for-in循环返回。&lt;br&gt;[[Get]]:获取函数，读取属性调用。&lt;br&gt;[[Set]]:设置函数，写入属性时调用。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-2-定义多个属性&quot;&gt;&lt;a href&#x3D;&quot;#8-1-2-定义多个属性&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.2 定义多个属性&quot;&gt;&lt;&#x2F;a&gt;8.1.2 定义多个属性&lt;&#x2F;h3&gt;&lt;p&gt;let book &#x3D; {};&lt;br&gt;Object.defineProperties(book,{year:{value:2017},edition:{value:1},year:{get(){return this.year;}}});&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-3-读取属性的特性&quot;&gt;&lt;a href&#x3D;&quot;#8-1-3-读取属性的特性&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.3 读取属性的特性&quot;&gt;&lt;&#x2F;a&gt;8.1.3 读取属性的特性&lt;&#x2F;h3&gt;&lt;p&gt;Object.getOwnPropertyDescriptor(object,&#39;name&#39;);&lt;br&gt;descriptor &#x3D; Object.getOwnPropertyDescriptor(book,&quot;year&quot;);&lt;br&gt;Object.getOwnPropertyDescriptors(object);&#x2F;&#x2F;获取所有&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-4-合并对象&quot;&gt;&lt;a href&#x3D;&quot;#8-1-4-合并对象&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.4 合并对象&quot;&gt;&lt;&#x2F;a&gt;8.1.4 合并对象&lt;&#x2F;h3&gt;&lt;p&gt;Object.assgin();&#x2F;&#x2F;浅拷贝,会覆盖重复的属性&lt;br&gt;result &#x3D; Object.assign(object1,object2);&lt;br&gt;object &#x3D;&#x3D;&#x3D; result&lt;br&gt;result &#x3D; Object.assign(object1,object2,object3);&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-5-对象标识及相等判定&quot;&gt;&lt;a href&#x3D;&quot;#8-1-5-对象标识及相等判定&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.5 对象标识及相等判定&quot;&gt;&lt;&#x2F;a&gt;8.1.5 对象标识及相等判定&lt;&#x2F;h3&gt;&lt;p&gt;Object.is()&#x2F;&#x2F;需要两个参数&lt;br&gt;Object.is(+0,-0)&#x2F;&#x2F;false&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-6-增强的对象语法&quot;&gt;&lt;a href&#x3D;&quot;#8-1-6-增强的对象语法&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.6 增强的对象语法&quot;&gt;&lt;&#x2F;a&gt;8.1.6 增强的对象语法&lt;&#x2F;h3&gt;&lt;p&gt;let person &#x3D; {name:name};  &#x3D;&#x3D;&#x3D; let person &#x3D; {name};&#x2F;&#x2F;不建议&lt;br&gt;namekey &#x3D; &quot;name&quot;;let person &#x3D; {[namekey]:&#39;Matt&#39;};&#x2F;&#x2F;[]内可以使用表达式，属性可计算&lt;br&gt;let person &#x3D; {&lt;a href&#x3D;&quot;name&quot;&gt;nameKey&lt;&#x2F;a&gt;{console.log(&#39;name&#39;)}};&#x2F;&#x2F;方法名兼容计算属性&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-1-7-对象解构&quot;&gt;&lt;a href&#x3D;&quot;#8-1-7-对象解构&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.1.7 对象解构&quot;&gt;&lt;&#x2F;a&gt;8.1.7 对象解构&lt;&#x2F;h3&gt;&lt;p&gt;let person &#x3D; {name:&#39;matt&#39;,age:27}&#x2F;&#x2F;不解构&lt;br&gt;let personName &#x3D; person.name,personAge &#x3D; person.age;&#x2F;&#x2F;解构&lt;br&gt;let {name:personName,age:personAge} &#x3D; person;&lt;br&gt;null和undefined不支持解构&lt;&#x2F;p&gt;
-&lt;p&gt;let person &#x3D; {job:{title:&#39;Software engineer&#39;}};&#x2F;&#x2F;嵌套解构&lt;br&gt;let personCopy&#x3D;{};&lt;br&gt;let({job:personCopy.job}&#x3D;person);&lt;&#x2F;p&gt;
-&lt;p&gt;前面的解构出错，后面的解构会失败。&lt;&#x2F;p&gt;
-&lt;p&gt;let person &#x3D; {name:&#39;matt&#39;,age:27}; function printPerson(foo,{name,age},bar)&#x2F;&#x2F;参数解构，调用时传入对象&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;8-2-创建对象&quot;&gt;&lt;a href&#x3D;&quot;#8-2-创建对象&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2 创建对象&quot;&gt;&lt;&#x2F;a&gt;8.2 创建对象&lt;&#x2F;h2&gt;&lt;h3 id&#x3D;&quot;8-2-1-概述&quot;&gt;&lt;a href&#x3D;&quot;#8-2-1-概述&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.1 概述&quot;&gt;&lt;&#x2F;a&gt;8.2.1 概述&lt;&#x2F;h3&gt;&lt;p&gt;与类不同，对象的巧妙运行可以实现与类相同的行为。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-2-2-工厂模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-2-工厂模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.2 工厂模式&quot;&gt;&lt;&#x2F;a&gt;8.2.2 工厂模式&lt;&#x2F;h3&gt;&lt;p&gt;设计模式之一&lt;br&gt;function createPerson(name,age,job){&lt;br&gt;   let o &#x3D; new Object();&lt;br&gt;   o.name &#x3D; name;&lt;br&gt;   o.age &#x3D; age;&lt;br&gt;   o.job &#x3D; job;&lt;br&gt;   o.sayName &#x3D; function(){&lt;br&gt;       console.log(this.name);&lt;br&gt;   };&lt;br&gt;   return o;&lt;br&gt;}&lt;br&gt;解决创建多个类似对象的问题，但无解决对象标识问题（对象类型）。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-2-3-构造函数模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-3-构造函数模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.3 构造函数模式&quot;&gt;&lt;&#x2F;a&gt;8.2.3 构造函数模式&lt;&#x2F;h3&gt;&lt;p&gt;function Person(name,age,job){&lt;br&gt;   this.name &#x3D; name;&lt;br&gt;   this.age &#x3D; age;&lt;br&gt;   this.job &#x3D; job;&lt;br&gt;   this.sayName &#x3D; function(){&lt;br&gt;      console.log(this.name);&lt;br&gt;   }&lt;br&gt;}&lt;br&gt;与工厂模式类似,无return，无显式创建对象。&lt;br&gt;构造函数不一定写成函数声明的形式。赋值给变量的函数表达式也可。&lt;br&gt;let person &#x3D; function(){};&lt;br&gt;let person1 &#x3D; new person(...);&lt;br&gt;let person2 &#x3D; new person(...);&lt;br&gt;person1 instanceof Object&#x2F;&#x2F;true&lt;br&gt;person1 instanceof person&#x2F;&#x2F;true&lt;br&gt;person2一样&lt;br&gt;构造函数也可以直接调用&lt;br&gt;person(...);window.sayName();&#x2F;&#x2F;添加到了window&lt;br&gt;let o &#x3D; new Object();&lt;br&gt;Person.call(o,&quot;wxc&quot;,25);o.sayName()&#x2F;&#x2F;wxc 在另一个对象的作用域中调用&lt;br&gt;在构造函数内定义的函数实例化后相同名称确不相等，是两个不同的函数。&lt;br&gt;可以在外部定义函数，在内部赋值解决这个问题。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-2-4-原型模式&quot;&gt;&lt;a href&#x3D;&quot;#8-2-4-原型模式&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.4 原型模式&quot;&gt;&lt;&#x2F;a&gt;8.2.4 原型模式&lt;&#x2F;h3&gt;&lt;p&gt;prototype,这个属性为一个对象。包含由特定引用类型的实例共享的属性和方法。实际上是构造函数创建的原型。&lt;br&gt;在原型上定义的值可以共享。&lt;br&gt;Chrome暴露了&lt;em&gt;proto_属性，可通过这个属性访问对象的原型。prototype属性为对象。&lt;br&gt;原型链会终止与Object的原型链。&lt;br&gt;person.prototype._proto&lt;&#x2F;em&gt;.&lt;em&gt;proto&lt;&#x2F;em&gt; &#x3D;&#x3D;&#x3D; null&#x2F;&#x2F;true&lt;br&gt;构造函数、原型对象和实例，三个完全不同的对象。&lt;br&gt;实例通过_proto_链接到原型对象，实际指向[[Prototype]]&lt;br&gt;构造函数通过prototype属性链接到原型对象。&lt;br&gt;同一个构造函数创建的两个实例，共享一个原型对象。&lt;br&gt;isPrototypeOf()&#x2F;&#x2F;用于判断实例原型对象与构造函数的原型相同否&lt;br&gt;getPrototypeOf()&#x2F;&#x2F;用于获取[[prototype]]原型对象&lt;br&gt;setPrototypeOf()&#x2F;&#x2F;用于给[[prototype]]对象写入新值,该方法调用可能会严重导致性能下降。&lt;br&gt;create()&#x2F;&#x2F;用于创建新对象指定原型&lt;br&gt;访问对象属性时，如果未在对象实例本身找到则会沿着指针进入原型对象，在原型对象上查找。无法通过实例重写这些值，如果创建于原型对象中同名的属性，会在实例上创建这个属性，遮蔽原型对象上的属性，只有delete后才能继续搜索原型对象的该属性。&lt;br&gt;hasOwnProperty()&#x2F;&#x2F;用于判断属性在实例或原型上&lt;br&gt;可以通过for-in判断通过对象能否访问到一个属性&#x2F;&#x2F;&quot;name&quot; in person(true)&lt;br&gt;getOwnPropertyNames()&#x2F;&#x2F;...按顺序进行枚举&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-2-5-对象迭代&quot;&gt;&lt;a href&#x3D;&quot;#8-2-5-对象迭代&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.2.5 对象迭代&quot;&gt;&lt;&#x2F;a&gt;8.2.5 对象迭代&lt;&#x2F;h3&gt;&lt;p&gt;Object.values()&#x2F;&#x2F;以数组的形式输出值&lt;br&gt;Object.entries()&#x2F;&#x2F;以数组的形式输出键值和值&lt;br&gt;非字符串的属性会被转换为字符串输出，符号属性会被忽略。&lt;br&gt;重写了prototype的函数原型不默认指向constructor&lt;br&gt;ES语法需要使用defineProperty()来恢复constructor属性。&lt;br&gt;实例只有指向原型的指针，没有指向构造函数的指针。&lt;&#x2F;p&gt;
-&lt;h2 id&#x3D;&quot;8-3-继承&quot;&gt;&lt;a href&#x3D;&quot;#8-3-继承&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.3 继承&quot;&gt;&lt;&#x2F;a&gt;8.3 继承&lt;&#x2F;h2&gt;&lt;p&gt;ES中只支持实现继承。&lt;&#x2F;p&gt;
-&lt;h3 id&#x3D;&quot;8-3-1-原型链&quot;&gt;&lt;a href&#x3D;&quot;#8-3-1-原型链&quot; class&#x3D;&quot;headerlink&quot; title&#x3D;&quot;8.3.1 原型链&quot;&gt;&lt;&#x2F;a&gt;8.3.1 原型链&lt;&#x2F;h3&gt;&lt;p&gt;通过原型继承多个引用类型的属性和方法。&lt;br&gt;将A函数原型赋值为B函数的实例，A函数的实例可以通过原型访问到B函数实例的属性和方法。实际A函数可以通过原型与B函数的原型挂钩。在搜索属性时，会通过原型链访问到原型的原型，直到末端。&lt;br&gt;所有引用类型都继承自Object，任何函数的默认原型都是一个Object的实例，也是为什么自定义类型能够继承toString(),valueOf()方法的原因。调用toString()时，实际在调用Object.prototype上的方法。&lt;br&gt;通过instanceof返回原型与构造函数的原型关系。&lt;&#x2F;p&gt;
-</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-历史回顾"><span class="nav-number">1.</span> <span class="nav-text">1.1 历史回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-JS实现"><span class="nav-number">2.</span> <span class="nav-text">1.2 JS实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-1（ECMAScript）"><span class="nav-number">2.1.</span> <span class="nav-text">1.2.1（ECMAScript）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-DOM"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.2 DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-BOM"><span class="nav-number">2.3.</span> <span class="nav-text">1.2.3 BOM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-JavaScript版本"><span class="nav-number">3.</span> <span class="nav-text">1.3 JavaScript版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-4-小结"><span class="nav-number">4.</span> <span class="nav-text">1.4 小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-script元素"><span class="nav-number">5.</span> <span class="nav-text">2.1 script元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-标签位置"><span class="nav-number">5.1.</span> <span class="nav-text">2.1.1 标签位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-推迟执行脚本"><span class="nav-number">5.2.</span> <span class="nav-text">2.1.2 推迟执行脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-3-异步执行脚本"><span class="nav-number">5.3.</span> <span class="nav-text">2.1.3 异步执行脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-4-动态加载脚本"><span class="nav-number">5.4.</span> <span class="nav-text">2.1.4 动态加载脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-5-XMHTL中的变化"><span class="nav-number">5.5.</span> <span class="nav-text">2.1.5 XMHTL中的变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-6-废弃的语法"><span class="nav-number">5.6.</span> <span class="nav-text">2.1.6 废弃的语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-行内代码与外部文件"><span class="nav-number">6.</span> <span class="nav-text">2.2 行内代码与外部文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-文档模式"><span class="nav-number">7.</span> <span class="nav-text">2.3 文档模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-noscript元素"><span class="nav-number">8.</span> <span class="nav-text">2.4 noscript元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-小结"><span class="nav-number">9.</span> <span class="nav-text">2.5 小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-1-语法"><span class="nav-number">10.</span> <span class="nav-text">3.1 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-1-区别大小写"><span class="nav-number">10.1.</span> <span class="nav-text">3.1.1 区别大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-2-标识符"><span class="nav-number">10.2.</span> <span class="nav-text">3.1.2 标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-3-注释"><span class="nav-number">10.3.</span> <span class="nav-text">3.1.3 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-4-严格模式"><span class="nav-number">10.4.</span> <span class="nav-text">3.1.4 严格模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-5-语句"><span class="nav-number">10.5.</span> <span class="nav-text">3.1.5 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-关键字与保留字"><span class="nav-number">10.6.</span> <span class="nav-text">3.2 关键字与保留字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3-变量"><span class="nav-number">11.</span> <span class="nav-text">3.3 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-4-声明风格及最佳实践"><span class="nav-number">11.1.</span> <span class="nav-text">3.3.4 声明风格及最佳实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-4-数据类型"><span class="nav-number">12.</span> <span class="nav-text">3.4 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-1-typeof操作符"><span class="nav-number">12.1.</span> <span class="nav-text">3.4.1 typeof操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-2-Undefined类型"><span class="nav-number">12.2.</span> <span class="nav-text">3.4.2 Undefined类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-4-Null类型"><span class="nav-number">12.3.</span> <span class="nav-text">3.4.4 Null类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-4-Boolean类型"><span class="nav-number">12.4.</span> <span class="nav-text">3.4.4 Boolean类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-5-Number类型"><span class="nav-number">12.5.</span> <span class="nav-text">3.4.5 Number类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-6-String类型"><span class="nav-number">12.6.</span> <span class="nav-text">3.4.6 String类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-7-Symbol类型"><span class="nav-number">12.7.</span> <span class="nav-text">3.4.7 Symbol类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-8-Object类型"><span class="nav-number">12.8.</span> <span class="nav-text">3.4.8 Object类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-5-操作符"><span class="nav-number">13.</span> <span class="nav-text">3.5 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-1-一元操作符"><span class="nav-number">13.1.</span> <span class="nav-text">3.5.1 一元操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-2-位操作符"><span class="nav-number">13.2.</span> <span class="nav-text">3.5.2 位操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-3-布尔操作符"><span class="nav-number">13.3.</span> <span class="nav-text">3.5.3 布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-4-乘性操作符"><span class="nav-number">13.4.</span> <span class="nav-text">3.5.4 乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-5-指数操作符"><span class="nav-number">13.5.</span> <span class="nav-text">3.5.5 指数操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-6-加性操作符"><span class="nav-number">13.6.</span> <span class="nav-text">3.5.6 加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-7-关系操作符"><span class="nav-number">13.7.</span> <span class="nav-text">3.5.7 关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-8-相等操作符"><span class="nav-number">13.8.</span> <span class="nav-text">3.5.8 相等操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-9-条件操作符"><span class="nav-number">13.9.</span> <span class="nav-text">3.5.9 条件操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-10-赋值操作符"><span class="nav-number">13.10.</span> <span class="nav-text">3.5.10 赋值操作符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-6-语句"><span class="nav-number">14.</span> <span class="nav-text">3.6 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-1-if语句"><span class="nav-number">14.1.</span> <span class="nav-text">3.6.1 if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-2-do-while语句"><span class="nav-number">14.2.</span> <span class="nav-text">3.6.2 do-while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-3-while语句"><span class="nav-number">14.3.</span> <span class="nav-text">3.6.3 while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-4-for语句"><span class="nav-number">14.4.</span> <span class="nav-text">3.6.4 for语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-5-for-in语句"><span class="nav-number">14.5.</span> <span class="nav-text">3.6.5 for-in语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-6-for-of语句"><span class="nav-number">14.6.</span> <span class="nav-text">3.6.6 for-of语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-7-标签语句"><span class="nav-number">14.7.</span> <span class="nav-text">3.6.7 标签语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-8-break和continue语句"><span class="nav-number">14.8.</span> <span class="nav-text">3.6.8 break和continue语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-9-with语句"><span class="nav-number">14.9.</span> <span class="nav-text">3.6.9 with语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-10-switch语句"><span class="nav-number">14.10.</span> <span class="nav-text">3.6.10 switch语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-函数"><span class="nav-number">14.11.</span> <span class="nav-text">3.7 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-小结"><span class="nav-number">14.12.</span> <span class="nav-text">3.8 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-变量、作用域与内存"><span class="nav-number">15.</span> <span class="nav-text">4 变量、作用域与内存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-原始值与引用值"><span class="nav-number">15.1.</span> <span class="nav-text">4.1 原始值与引用值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-动态属性"><span class="nav-number">15.1.1.</span> <span class="nav-text">4.1.1 动态属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-复制值"><span class="nav-number">15.1.2.</span> <span class="nav-text">4.1.2 复制值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-传递参数"><span class="nav-number">15.1.3.</span> <span class="nav-text">4.1.3 传递参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-4确定类型"><span class="nav-number">15.1.4.</span> <span class="nav-text">4.1.4确定类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-执行上下文与作用域"><span class="nav-number">15.2.</span> <span class="nav-text">4.2 执行上下文与作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-作用域链增强"><span class="nav-number">15.2.1.</span> <span class="nav-text">4.2.1 作用域链增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-变量声明"><span class="nav-number">15.2.2.</span> <span class="nav-text">4.2.2 变量声明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-垃圾回收"><span class="nav-number">15.3.</span> <span class="nav-text">4.3 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-标记清理"><span class="nav-number">15.3.1.</span> <span class="nav-text">4.3.1 标记清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-引用计数"><span class="nav-number">15.3.2.</span> <span class="nav-text">4.3.2 引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-性能"><span class="nav-number">15.3.3.</span> <span class="nav-text">4.3.3 性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-内存管理"><span class="nav-number">15.3.4.</span> <span class="nav-text">4.3.4 内存管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-小结"><span class="nav-number">15.4.</span> <span class="nav-text">4.4 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-基本引用类型"><span class="nav-number">16.</span> <span class="nav-text">5.基本引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Date"><span class="nav-number">16.1.</span> <span class="nav-text">5.1 Date</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-继承的方法"><span class="nav-number">16.1.1.</span> <span class="nav-text">5.1.1 继承的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-日期格式化方法"><span class="nav-number">16.1.2.</span> <span class="nav-text">5.1.2 日期格式化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-日期-时间组件方法"><span class="nav-number">16.1.3.</span> <span class="nav-text">5.1.3 日期&#x2F;时间组件方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-RegExp"><span class="nav-number">16.2.</span> <span class="nav-text">5.2 RegExp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-RegExp实例属性"><span class="nav-number">16.2.1.</span> <span class="nav-text">5.2.1 RegExp实例属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-RegExp实例方法"><span class="nav-number">16.2.2.</span> <span class="nav-text">5.2.2 RegExp实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-RegExp构造函数属性"><span class="nav-number">16.2.3.</span> <span class="nav-text">5.2.3 RegExp构造函数属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-模式局限"><span class="nav-number">16.2.4.</span> <span class="nav-text">5.2.4 模式局限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-原始值包装类型"><span class="nav-number">16.3.</span> <span class="nav-text">5.3 原始值包装类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-Boolean"><span class="nav-number">16.3.1.</span> <span class="nav-text">5.3.1 Boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-Number"><span class="nav-number">16.3.2.</span> <span class="nav-text">5.3.2 Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-String"><span class="nav-number">16.3.3.</span> <span class="nav-text">5.3.3 String</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-单例内置对象"><span class="nav-number">16.4.</span> <span class="nav-text">5.4 单例内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-Global"><span class="nav-number">16.4.1.</span> <span class="nav-text">5.4.1 Global</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-Math"><span class="nav-number">16.4.2.</span> <span class="nav-text">5.4.2 Math</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-小结"><span class="nav-number">16.5.</span> <span class="nav-text">5.5 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-集合引用类型"><span class="nav-number">17.</span> <span class="nav-text">6 集合引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Object"><span class="nav-number">17.1.</span> <span class="nav-text">6.1 Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Array"><span class="nav-number">17.2.</span> <span class="nav-text">6.2 Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-创建数组"><span class="nav-number">17.2.1.</span> <span class="nav-text">6.2.1 创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-数组空位"><span class="nav-number">17.2.2.</span> <span class="nav-text">6.2.2 数组空位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-数组索引"><span class="nav-number">17.2.3.</span> <span class="nav-text">6.2.3 数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-4-检测数组"><span class="nav-number">17.2.4.</span> <span class="nav-text">6.2.4 检测数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-5-迭代器方法"><span class="nav-number">17.2.5.</span> <span class="nav-text">6.2.5 迭代器方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-6-复制和填充方法"><span class="nav-number">17.2.6.</span> <span class="nav-text">6.2.6 复制和填充方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-7-转换方法"><span class="nav-number">17.2.7.</span> <span class="nav-text">6.2.7 转换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-8-栈方法"><span class="nav-number">17.2.8.</span> <span class="nav-text">6.2.8 栈方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-9-队列方法"><span class="nav-number">17.2.9.</span> <span class="nav-text">6.2.9 队列方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-10-排序方法"><span class="nav-number">17.2.10.</span> <span class="nav-text">6.2.10 排序方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-11-操作方法"><span class="nav-number">17.2.11.</span> <span class="nav-text">6.1.11 操作方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-12-搜索和位置方法"><span class="nav-number">17.2.12.</span> <span class="nav-text">6.2.12 搜索和位置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-13-迭代方法"><span class="nav-number">17.2.13.</span> <span class="nav-text">6.2.13 迭代方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-14-归并方法"><span class="nav-number">17.2.14.</span> <span class="nav-text">6.2.14 归并方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-定型数组"><span class="nav-number">17.3.</span> <span class="nav-text">6.3 定型数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-1-历史"><span class="nav-number">17.3.1.</span> <span class="nav-text">6.3.1 历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-2-ArrayBuffer"><span class="nav-number">17.3.2.</span> <span class="nav-text">6.3.2 ArrayBuffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-DataView"><span class="nav-number">17.3.3.</span> <span class="nav-text">6.3.3 DataView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-4-定型数组"><span class="nav-number">17.3.4.</span> <span class="nav-text">6.3.4 定型数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-Map"><span class="nav-number">17.4.</span> <span class="nav-text">6.4 Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-1-基本API"><span class="nav-number">17.4.1.</span> <span class="nav-text">6.4.1 基本API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-2-顺序与迭代"><span class="nav-number">17.4.2.</span> <span class="nav-text">6.4.2 顺序与迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-3-选择Object还是Map"><span class="nav-number">17.4.3.</span> <span class="nav-text">6.4.3 选择Object还是Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-WeakMap"><span class="nav-number">17.5.</span> <span class="nav-text">6.5 WeakMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-Set"><span class="nav-number">17.6.</span> <span class="nav-text">6.6 Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-1-基本API"><span class="nav-number">17.6.1.</span> <span class="nav-text">6.6.1 基本API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-2-顺序与迭代"><span class="nav-number">17.6.2.</span> <span class="nav-text">6.6.2 顺序与迭代</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-WeakSet"><span class="nav-number">17.7.</span> <span class="nav-text">6.7 WeakSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-8-迭代与扩展操作"><span class="nav-number">17.8.</span> <span class="nav-text">6.8 迭代与扩展操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-9-小结"><span class="nav-number">17.9.</span> <span class="nav-text">6.9 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-迭代器与生成器"><span class="nav-number">18.</span> <span class="nav-text">7 迭代器与生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-理解迭代"><span class="nav-number">18.1.</span> <span class="nav-text">7.1 理解迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-迭代器模式"><span class="nav-number">18.2.</span> <span class="nav-text">7.2 迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-可迭代协议"><span class="nav-number">18.2.1.</span> <span class="nav-text">7.2.1 可迭代协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-迭代器协议"><span class="nav-number">18.2.2.</span> <span class="nav-text">7.2.2 迭代器协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-自定义迭代器"><span class="nav-number">18.2.3.</span> <span class="nav-text">7.2.3 自定义迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-4-提前终止迭代器"><span class="nav-number">18.2.4.</span> <span class="nav-text">7.2.4 提前终止迭代器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-生成器"><span class="nav-number">18.3.</span> <span class="nav-text">7.3 生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-1-生成器基础"><span class="nav-number">18.3.1.</span> <span class="nav-text">7.3.1 生成器基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-2-通过yield中断执行"><span class="nav-number">18.3.2.</span> <span class="nav-text">7.3.2 通过yield中断执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-3-生成器作为默认迭代器"><span class="nav-number">18.3.3.</span> <span class="nav-text">7.3.3 生成器作为默认迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-4-提前终止生成器"><span class="nav-number">18.3.4.</span> <span class="nav-text">7.3.4 提前终止生成器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-小结"><span class="nav-number">18.4.</span> <span class="nav-text">7.4 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-对象、类与面向对象编程"><span class="nav-number">19.</span> <span class="nav-text">8 对象、类与面向对象编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-理解对象"><span class="nav-number">19.1.</span> <span class="nav-text">8.1 理解对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-属性的类型"><span class="nav-number">19.1.1.</span> <span class="nav-text">8.1.1 属性的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-定义多个属性"><span class="nav-number">19.1.2.</span> <span class="nav-text">8.1.2 定义多个属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-读取属性的特性"><span class="nav-number">19.1.3.</span> <span class="nav-text">8.1.3 读取属性的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-合并对象"><span class="nav-number">19.1.4.</span> <span class="nav-text">8.1.4 合并对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-5-对象标识及相等判定"><span class="nav-number">19.1.5.</span> <span class="nav-text">8.1.5 对象标识及相等判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-6-增强的对象语法"><span class="nav-number">19.1.6.</span> <span class="nav-text">8.1.6 增强的对象语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-7-对象解构"><span class="nav-number">19.1.7.</span> <span class="nav-text">8.1.7 对象解构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-创建对象"><span class="nav-number">19.2.</span> <span class="nav-text">8.2 创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-概述"><span class="nav-number">19.2.1.</span> <span class="nav-text">8.2.1 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-工厂模式"><span class="nav-number">19.2.2.</span> <span class="nav-text">8.2.2 工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-构造函数模式"><span class="nav-number">19.2.3.</span> <span class="nav-text">8.2.3 构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-4-原型模式"><span class="nav-number">19.2.4.</span> <span class="nav-text">8.2.4 原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-5-对象迭代"><span class="nav-number">19.2.5.</span> <span class="nav-text">8.2.5 对象迭代</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-继承"><span class="nav-number">19.3.</span> <span class="nav-text">8.3 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-原型链"><span class="nav-number">19.3.1.</span> <span class="nav-text">8.3.1 原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-盗用构造函数"><span class="nav-number">19.3.2.</span> <span class="nav-text">8.3.2 盗用构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-3-组合继承"><span class="nav-number">19.3.3.</span> <span class="nav-text">8.3.3 组合继承</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
