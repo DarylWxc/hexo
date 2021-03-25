@@ -207,11 +207,133 @@ var声明的变量和方法，都会提升到全局对象上。
 标准函数中，this引用的是把函数当成方法调用的上下值。
 箭头函数会保留定义它时的上下文
 ## 7. 立即执行函数
+调用需要在后面添加()，也需要在前面将函数用()包裹。
+后面的()可以用来传值，立即执行会保存闭包的状态。
+前面的()包裹函数则被解析成表达式，匿名函数后面的()被用于调用，将前面的函数当成声明。
+IIFE（立即自执行）
+模块模式：
+```
+var counter = (function(){
+    var i = 0;
+    return {
+        get: function(){
+            return i;
+        },
+        set: function(val){
+            i = val;
+        },
+        increment: function(){
+            return ++i;
+        }
+    }
+    }());
+    counter.get();//0
+    counter.set(3);
+    counter.increment();//4
+    counter.increment();//5
+
+    conuter.i;//undefined (`i` is not a property of the returned object)
+    i;//ReferenceError: i is not defined (it only exists inside the closure)
+```
+最小化了全局变量的污染，创造了使用变量。
 ## 8. instanceof原理
+typeof也可用于判断object类型，但判断null会显示object。(typeof用于判断基本数据类型，包括symbol都是没问题的，避免null)
+instanceof用于判断object类型，判断null时会报错，显示null不是object。
+也可使用Object.prototype.toString来判断一个变量的类型（比较准确）。
+原理：
+根据原型链判断，遍历原型链查找相同的类型。
+一边查找函数的原型，一边查找实例的原型。
+总结：准确判断对象实例类型，可以使用Object.prototype.toString.call，
+typeof只适合判断基本数据类型，instanceof判断null为Object。
 ## 9. bind的实现
+bind()方法会创建一个新的函数，当这个新函数被调用时，bind()的第一个参数将作为它运行时的this，之后的一序列参数将会在传递的实参前传入作为它的参数。
+bind特点：
+ - 返回一个函数
+ - 可以传入参数
+当bind返回的函数作为构造函数时，bind指定的this会失效，但参数生效。
+```
+Function.prototype.bind2 = function (context) {
+
+    if (typeof this !== "function") {
+      throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+
+    var self = this;
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    var fNOP = function () {};
+
+    var fBound = function () {
+        var bindArgs = Array.prototype.slice.call(arguments);
+        return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs));
+    }
+
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+    return fBound;
+}
+```
 ## 10. apply和call
+共同点：
+ - 改变上下文tihs
+ - 必须是函数调用
+区别：
+ - call传入多个参数
+ - apply传入参数数组或类数组(具有length和for遍历)
+call使用场景：
+1.继承对象
+2.借用方法
+apply使用场景：
+1.Math.max
+2.两个数组合并
+3.实现bind
 ## 11. 柯里化
+定义：将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。
+用途：参数复用，降低通用性，提高适用性。
+实现：
+```
+var curry = function (fn) {
+    var args = [].slice.call(arguments, 1);
+    return function() {
+        var newArgs = args.concat([].slice.call(arguments));
+        return fn.apply(this, newArgs);
+    };
+};
+```
+本质上是用函数包裹原函数，给原函数传入之前的参数，当执行func()()时，执行包裹函数，返回原函数，调用sub_curry再包裹原函数，然后将新的参数混合旧的参数再传入原函数，知道函数参数的书目达到要求为止。
 ## 12. v8垃圾回收机制
+1.为什么要垃圾回收？
+避免内存泄漏，性能下降
+2.V8引擎内存限制
+64位系统，1.4G
+32位系统，0.7G
+由于JS单线程机制，垃圾回收会影响程序执行。为了减少对应用的性能影响，V8直接限制内存大小。
+3.V8的垃圾回收策略
+分代式垃圾回收机制，根据存活时间将内存的垃圾回收进行不同的分代，然后对不同的分代采用不同的垃圾回收算法。
+V8有如下内存结构：
+ - 新生代：一般分配内存，一般用于垃圾回收时保存保留对象
+ - 老生代：新生代对象一段时候后转移的地方
+ - 大对象区：存放体积较大的对象，垃圾回收不会移动该区
+ - 代码区：代码对象，会被分配在这里，唯一拥有执行权限的内存区域
+ - map区：存放cell和map，区域存放相同大小
+新生代回收算法：
+Scavenge算法：Cheney算法，二分空间From和To，先From，回收时复制到To，然后将To变成From，From清空变为To。
+对象晋升：
+多次存活后转到老生代的对象，过程称为对象晋升。
+条件：
+ - 经过过一次Scavenge算法
+ - To空间的内存占比超过25%
+老生代回收算法：
+采用Mark-Sweep标记清除和Mark-Compact标记清理算法
+引用计数，如果对象没有被指针引用，则被视为垃圾回收。
+4. 避免内存泄漏
+ - 尽可能减少全局变量
+ - 手动清除计时器
+ - 少用闭包
+ - 清除DOM引用
+ - 弱引用
+5. 总结
+新生代，老生代，算法，垃圾回收机制，避免内存泄漏。
 ## 13. 浮点数精度
 ## 14. new操作符
 ## 15. 事件循环机制

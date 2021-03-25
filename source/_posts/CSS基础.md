@@ -6,29 +6,80 @@ tags:
  - 响应式布局
 categories: 页面样式
 ---
-## 1. 盒模型？
+### 1. 盒模型？
 盒模型：框模型，包含content(内容)、padding(内边距)、border(边框)、margin(外边距)。
-## 2. IE模型和标准模型的区别？
+## 1. IE模型和标准模型的区别？
 IE模型：width=content+padding，height=content+padding
 标准模型：width=content，height=content
-## 3. CSS设置方式
+## 2. CSS设置方式
 可通过CSS3新增的属性box-sizing设置盒模型的模式，content-box(标准模型)，IE模型(border-box)。
-## 4. JavaScript设置盒模型的宽高
+## 3. JavaScript设置盒模型的宽高
 1.dom.style.width/height //只能取到行内样式的宽和高，style标签中的link外链取不到。
 2.dom.currentStyle.width/height //取到的是最终渲染后的宽高，只IE支持
 3.window.getComputedStyle(dom).width/height //同(2)，IE9以上支持，其他浏览器支持
 4.dom.getBoundingClientRect().width/height //同(3)，还可取到对于视窗的上下左右的距离
-## 5. 外边距重叠
+## 4. 外边距重叠
 当两个垂直外边距相遇时，会形成外边距，合并后的外边距高度等于两个发生合并的外边距的高度中的较大者。普通文档流才会发生，行内框，浮动框和绝对定位之间的外边距不会合并。
-## 6. BFC
+## 5. BFC
 BFC：块级格式化上下文
  - BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。
  - BFC的区域不会与浮动元素的布局重叠。
  - BFC元素是一个独立的容器，外面的元素不会影响里面的元素。里面的元素也不会影响外面的元素。
  - 计算BFC高度的时候，浮动元素也会参与计算（清楚浮动）。
-## 7. 触发条件
+## 6. 触发条件
  - overflow部位visible；
  - float的值不为none；
  - position的值不为static或relative；
  - display属性为inline-block，table，table-cell，table-caption，flex，inline-flex
 当子元素浮动不会影响父元素时，可以给父元素触发BFC。
+---
+### 2. CSS选择器
+选择器类型：
+ - 简单选择器：通过元素类型(元素名)、class(.)或id(#)匹配一个或多个元素
+ - 属性选择器：通过属性/属性值匹配一个或多个元素
+ - 伪类：匹配处于确定状态的一个或多个元素，比如被鼠标指针悬停的元素，或当前被选中或未选中的复选框，或元素是DOM树中一父节点的第一个子节点(:)
+ - 伪元素：匹配处于相关的确定位置的一个或多个元素(::)
+ - 组合器：不仅是选择器本身，还以有效的方式组合老两个或更多的选择器用于非常特定的选择的方法。(嵌套)
+ - 多用选择器：以逗号分隔开的多个选择器放在一个CSS规则下面
+### 3. BFC
+块级格式化上下文，独立的容器，不影响外面的布局。
+触发条件：
+ - body根元素
+ - 浮动元素
+ - 绝对定位元素
+ - display(inline-block、table-cells、flex)
+ - overflow(hidden、auto、scroll)
+特性：
+ - 在同一个BFC中，外边距会发生折叠
+ - BFC可以包含浮动的元素(清除浮动)
+ - 可以阻止元素被浮动元素覆盖
+### 4. position
+ - 默认是static(静态定位)
+ - 相对定位(relative)
+ - 绝对定位(absolute)
+ - 固定定位(fixed)
+ - sticky(fixed和relative的混合)
+元素根据z-index决定显示层级
+### 4. flex布局
+根据主轴和交叉轴进行排列
+align-items(交叉轴方向)：对齐方式
+justify-content(主轴方向)：对齐方式
+### 5. CSS优先级
+根据权重决定
+ - 行内样式+1000
+ - id选择器+100
+ - 属性,class选择器,伪类+10
+ - 元素选择器,伪元素+1
+ - 通配符+0
+ - !important提升样式优先级(最高)，最好不用
+css样式单线程，依次从上向下加载，优先级和加载顺序有关
+!important>行内>内联and外联
+权重相等时，靠近目标的优先
+总结：
+ - !important > id > class > tag
+ - !important可以提升，不建议使用，会影响子属性
+ - 同样的!important，按权重决定
+ - 同一个CSS样式写两次，前面会被覆盖
+ - 样式指向同一元素，权重规则生效，权重大的被应用
+ - 样式指向同一元素，权重规则生效，权重相同，就近原则，后面的样式应用
+ - 样式不指向同一元素，权重失效，就近原则，离目标近的样式应用
