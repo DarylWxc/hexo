@@ -9,6 +9,7 @@ categories: web前端
 单点登录，简称SSO。是在多个应用系统中用户只需要登录一次就可以访问所有相互信任的应用系统。
 SSO一般都需要一个独立的认证中心(passport)，子系统登录均通过passport，子系统本身将不参与登录操作。
 授权以后，会建立局部会话，一定时间内无需再次向passport发起认证。
+---
 # 2. 如何实现
  - 同域名下的单点登录
 cookie的domin属性设置为当前域的父域，并且父域的cookie会被子域所共享。path属性默认为web应用的上下文路径。
@@ -21,6 +22,7 @@ cookie的domin属性设置为当前域的父域，并且父域的cookie会被子
  - 不同域名下的单点登录(二)
 可以将SessionID保存到LocalStorage中，每次请求时，将LocalStorage的数据传递给服务端，后端在登录后返回SessionID或Token。
 通过iframe+postMessage方式，将token写入多个域下的LocalStorage，可以被多个域所共享。
+---
 # 3. 流程
 用户登录成功后，会与SSO认证中心及各个子系统建立会话，用户与SSO认证中心建立的会话称为全局会话。
 用户与各个子系统建立的会话称为局部会话，局部会话建立后，用户访问子系统受保护资源将不再通过SSO认证中心。

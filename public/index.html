@@ -262,6 +262,394 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/31/uni-app%E5%88%9D%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/31/uni-app%E5%88%9D%E8%AF%95/" itemprop="url">uni-app初试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-31T09:14:10+08:00">
+                2021-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">移动端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  323 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-文档查阅"><a href="#1-文档查阅" class="headerlink" title="1. 文档查阅"></a>1. 文档查阅</h3><p>初始化hello-uniapp项目，查看项目相关文件，src为主要文件夹<br>common：文件夹为一些配置插件封装<br>components：组件目录<br>hybrid：存放本地HTML文件<br>platforms：存放各平台专用页面文件<br>pages：业务页面文件存放目录<br>static：存放本地静态资源<br>wxcomponents：存放小程序组件<br>manifest.json：配置应用名称、appid、logo、版本等打包信息<br>pages.json：配置页面路由、导航条、选项卡等页面类信息</p>
+<h2 id="1-1-写法"><a href="#1-1-写法" class="headerlink" title="1.1 写法"></a>1.1 写法</h2><p>标签与小程序相似<br>page相当于body节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">page&#123;</span><br><span class="line">   background:#ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-疑难杂症"><a href="#2-疑难杂症" class="headerlink" title="2. 疑难杂症"></a>2. 疑难杂症</h3><p>1.引入iconfont方式，添加图标到创建的项目文件夹中，然后Unicode选项生成代码，直接讲代码复制到新建的css文件中，然后在app.vue文件引入该CSS文件。使用时:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">style:iconfont&#123;</span><br><span class="line">   font-family:&quot;iconfont&quot; &#x2F;&#x2F;之前css文件里的font-family值</span><br><span class="line">   font-size:16rpx; &#x2F;&#x2F;等</span><br><span class="line">&#125;</span><br><span class="line">&lt;text class&#x3D;&quot;iconfont&quot;&gt;&#123;复制的图标代码&#125;&lt;&#x2F;text&gt;&#x2F;&#x2F;class为定义的iconfont</span><br></pre></td></tr></table></figure>
+<p>添加新图标只需要生成新代码复制到css文件中即可<br>2.使用uview组件库，搜索框，input输入框无法设置宽度<br>套一层view设置宽度即可 //反应失灵</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/26/Web%E5%AE%89%E5%85%A8%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/26/Web%E5%AE%89%E5%85%A8%E6%80%A7/" itemprop="url">Web安全性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-26T13:43:14+08:00">
+                2021-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.3k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  4 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Web攻击"><a href="#1-Web攻击" class="headerlink" title="1. Web攻击"></a>1. Web攻击</h3><p>植入恶意代码，修改网站权限，获取网站用户隐私信息等等。<br>常见Web攻击方式有：</p>
+<ul>
+<li>XSS(Cross Site Scripting)跨站脚本攻击</li>
+<li>CSRF(Cross-site request forgery)跨站请求伪造</li>
+<li>SQL注入攻击<h3 id="2-XSS"><a href="#2-XSS" class="headerlink" title="2. XSS"></a>2. XSS</h3>跨站脚本攻击，允许攻击者将恶意代码植入到提供给其他用户使用的页面中。<br>XSS涉及到三方，即攻击者、客户端与Web应用。<br>XSS是盗取存储在客户端的Cookie或者其他网站用于识别客户端身份的敏感信息。获取合法用户的信息后，假冒合法用户与网站交互。<br>XSS攻击可以分成：<h2 id="2-1-存储型"><a href="#2-1-存储型" class="headerlink" title="2.1 存储型"></a>2.1 存储型</h2>步骤：</li>
+<li>攻击者将恶意代码提交到目标网站的数据库中</li>
+<li>用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在HTML中返回给浏览器</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作<br>这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等<h2 id="2-2-反射型"><a href="#2-2-反射型" class="headerlink" title="2.2 反射型"></a>2.2 反射型</h2>步骤：</li>
+<li>攻击者构造出特殊的URL，其中包含恶意代码</li>
+<li>用户打开带有恶意代码的URL时，网站服务端将恶意代码从URL中取出，拼接在HTML中返回给浏览器</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作<br>一个在数据库里，一个在URL里。<br>反射型常用语URL传递参数的功能，如网站搜索、跳转等。<h2 id="2-3-DOM型"><a href="#2-3-DOM型" class="headerlink" title="2.3 DOM型"></a>2.3 DOM型</h2>步骤：</li>
+<li>攻击者构造出特殊的URL，其中包含恶意代码</li>
+<li>用户打开带有恶意代码的URL</li>
+<li>用户浏览器接收到响应后解析执行，前端JS取出URL中的恶意代码并执行</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作<br>DOM型的XSS攻击由浏览器端完成，是JS自身的安全漏洞，其他两种都属于服务端的安全漏洞<h2 id="2-4-如何预防"><a href="#2-4-如何预防" class="headerlink" title="2.4 如何预防"></a>2.4 如何预防</h2>XSS攻击的两大要素<br>1.攻击者提交恶意代码<br>2.浏览器执行恶意代码<br>将一些符号写入数据库前用特殊符号替换，不要将不可信的数据作为HTML插到页面上<br>DOM中的一些内联事件监听器，a标签，settimeout，setInterval等都能把字符串作为代码运行。不可信的数据拼接到字符串中传递给这些API中很容易产生安全隐患。<h3 id="3-CSRF"><a href="#3-CSRF" class="headerlink" title="3. CSRF"></a>3. CSRF</h3>CSRF(Cross-site request forgery)跨站请求伪造：攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求<br>流程：</li>
+<li>登录a.com，保留了登录凭证(Cookie)</li>
+<li>攻击者引诱受害者访问了b.com</li>
+<li>b.com向a.com发送了一个请求：默认携带a的Cookie</li>
+<li>a.com收到请求后，误以为是受害者自己发送的请求</li>
+<li>a.com以受害者的名义执行了act</li>
+<li>攻击完成<br>CSRF可以通过get请求，即通过访问img的页面后，浏览器自动访问目标地址，发送请求<br>特点：</li>
+<li>攻击一般发起在第三方网站，而不是被攻击的网站。被攻击的网站无法防止攻击发生</li>
+<li>攻击利用受害者在攻击网站的登录凭证，冒充受害者提交操作；而不是直接窃取数据</li>
+<li>整个过程攻击并不能获取到受害者的登录凭证，仅仅是“冒用”</li>
+<li>跨站请求可以用各种方式，图片URL，超链接，CORS，Form提交等等。部分请求方式可以直接嵌入在第三方论坛，文章中，难以追踪<h2 id="3-1-如何预防"><a href="#3-1-如何预防" class="headerlink" title="3.1 如何预防"></a>3.1 如何预防</h2>CSRF通常从第三方网站发起，只能从增强自己的网站针对CSRF的防护能力来提升安全性。<br>方案如下：</li>
+<li>阻止不明的外域的访问<br>通过同源检测，Samesite Cookie</li>
+<li>提交时要求附加本域才能获取的信息<br>通过CSRF Token，双重Cookie验证<h3 id="4-SQL注入"><a href="#4-SQL注入" class="headerlink" title="4.SQL注入"></a>4.SQL注入</h3>通过将恶意的sql查询或添加语句插入到应用的输入参数中，再在后台sql服务器上解析执行进行的攻击<br>流程：</li>
+<li>找出SQL漏洞的注入点</li>
+<li>判断数据库的类型以及版本</li>
+<li>猜解用户名和密码</li>
+<li>利用工具查找web后台管理入口</li>
+<li>入侵和破坏<br>预防：</li>
+<li>严格检查输入变量的类型和格式</li>
+<li>过滤和转义特殊字符</li>
+<li>对访问数据库的web应用程序采用Web应用防火墙</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/25/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -387,10 +775,15 @@
         
           
             <h1 id="1-SSO是什么"><a href="#1-SSO是什么" class="headerlink" title="1. SSO是什么"></a>1. SSO是什么</h1><p>单点登录，简称SSO。是在多个应用系统中用户只需要登录一次就可以访问所有相互信任的应用系统。<br>SSO一般都需要一个独立的认证中心(passport)，子系统登录均通过passport，子系统本身将不参与登录操作。<br>授权以后，会建立局部会话，一定时间内无需再次向passport发起认证。</p>
+<hr>
 <h1 id="2-如何实现"><a href="#2-如何实现" class="headerlink" title="2. 如何实现"></a>2. 如何实现</h1><ul>
 <li>同域名下的单点登录<br>cookie的domin属性设置为当前域的父域，并且父域的cookie会被子域所共享。path属性默认为web应用的上下文路径。<br>利用cookie的该特点，将cookie的path属性设置为根路径，将Session ID保存到父域中。子域应用就都可以访问到这个cookie。<br>不过需要在主域名相同的情况下可以通过这种方式来实现单点登录。</li>
 <li>不同域名下的单点登录(一)<br>不同域下，Cookie不共享。需要部署一个认证中心，用于专门处理登录请求的独立的Web服务。<br>验证token，如果没有则跳转到认证中心，跳转时携带Cookie(带有token)，根据Cookie判断登录状态。<br>已登录的用户在跳转前生成一个Token拼接在目标URL的后面，回传给目标应用系统，写入Cookie。</li>
-<li>不同域名下的单点登录(二)<br>可以将SessionID保存到LocalStorage中，每次请求时，将LocalStorage的数据传递给服务端，后端在登录后返回SessionID或Token。<br>通过iframe+postMessage方式，将token写入多个域下的LocalStorage，可以被多个域所共享。<h1 id="3-流程"><a href="#3-流程" class="headerlink" title="3. 流程"></a>3. 流程</h1>用户登录成功后，会与SSO认证中心及各个子系统建立会话，用户与SSO认证中心建立的会话称为全局会话。<br>用户与各个子系统建立的会话称为局部会话，局部会话建立后，用户访问子系统受保护资源将不再通过SSO认证中心。<br>全局会话与局部会话存在如下约束关系：</li>
+<li>不同域名下的单点登录(二)<br>可以将SessionID保存到LocalStorage中，每次请求时，将LocalStorage的数据传递给服务端，后端在登录后返回SessionID或Token。<br>通过iframe+postMessage方式，将token写入多个域下的LocalStorage，可以被多个域所共享。</li>
+</ul>
+<hr>
+<h1 id="3-流程"><a href="#3-流程" class="headerlink" title="3. 流程"></a>3. 流程</h1><p>用户登录成功后，会与SSO认证中心及各个子系统建立会话，用户与SSO认证中心建立的会话称为全局会话。<br>用户与各个子系统建立的会话称为局部会话，局部会话建立后，用户访问子系统受保护资源将不再通过SSO认证中心。<br>全局会话与局部会话存在如下约束关系：</p>
+<ul>
 <li>局部会话存在，全局会话一定存在</li>
 <li>全局会话存在，局部会话不一定存在</li>
 <li>全局会话销毁，局部会话必须销毁</li>
@@ -701,7 +1094,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  335 words
+                  336 words
                 </span>
               
 
@@ -743,8 +1136,16 @@
             <h3 id="1-computed用法"><a href="#1-computed用法" class="headerlink" title="1. computed用法"></a>1. computed用法</h3><p>类似于watch的计算属性，根据所依赖的数据动态设置新的计算结果。computed的值在getter执行后会被缓存。<br>应用场景：</p>
 <ul>
 <li>适用于一些重复使用数据或复杂及费时的运算。</li>
-<li>依赖于其他数据的数据<h3 id="2-computed和methods的区别？"><a href="#2-computed和methods的区别？" class="headerlink" title="2. computed和methods的区别？"></a>2. computed和methods的区别？</h3>1.methods无响应式，不会动态更改<br>2.computed可以定义成函数，也可以定义成get/set<h3 id="3-watch用法"><a href="#3-watch用法" class="headerlink" title="3. watch用法"></a>3. watch用法</h3>对data里的数据监听回调。<br>应用场景：当data数据更新时需要操作或数据变化时执行异步，开销较大的操作时使用。<br>普通监听：watch内调用，根据newval和oldval执行函数<br>深度监听：有immediate属性，可立即执行方法，deep属性，针对对象属性的监听，性能开销较大<h3 id="4-watch和computed的区别"><a href="#4-watch和computed的区别" class="headerlink" title="4. watch和computed的区别"></a>4. watch和computed的区别</h3>相同：都是观察页面数据变化<br>不同：computed只有当依赖数据变化才会计算，当数据没有变化会读取缓存。watch每次都需要执行函数，无缓存，更适用于数据变化时的异步。<h3 id="5-原理及源码"><a href="#5-原理及源码" class="headerlink" title="5. 原理及源码"></a>5. 原理及源码</h3>在initState函数中，initComputed函数，判断是否有computed后执行，循环遍历computed，根据key实例化watcher，通过Object.defineProperty()函数来监听。回调时调用mount.call()，跟响应式原理一样。</li>
+<li>依赖于其他数据的数据</li>
 </ul>
+<hr>
+<h3 id="2-computed和methods的区别？"><a href="#2-computed和methods的区别？" class="headerlink" title="2. computed和methods的区别？"></a>2. computed和methods的区别？</h3><p>1.methods无响应式，不会动态更改<br>2.computed可以定义成函数，也可以定义成get/set</p>
+<hr>
+<h3 id="3-watch用法"><a href="#3-watch用法" class="headerlink" title="3. watch用法"></a>3. watch用法</h3><p>对data里的数据监听回调。<br>应用场景：当data数据更新时需要操作或数据变化时执行异步，开销较大的操作时使用。<br>普通监听：watch内调用，根据newval和oldval执行函数<br>深度监听：有immediate属性，可立即执行方法，deep属性，针对对象属性的监听，性能开销较大</p>
+<hr>
+<h3 id="4-watch和computed的区别"><a href="#4-watch和computed的区别" class="headerlink" title="4. watch和computed的区别"></a>4. watch和computed的区别</h3><p>相同：都是观察页面数据变化<br>不同：computed只有当依赖数据变化才会计算，当数据没有变化会读取缓存。watch每次都需要执行函数，无缓存，更适用于数据变化时的异步。</p>
+<hr>
+<h3 id="5-原理及源码"><a href="#5-原理及源码" class="headerlink" title="5. 原理及源码"></a>5. 原理及源码</h3><p>在initState函数中，initComputed函数，判断是否有computed后执行，循环遍历computed，根据key实例化watcher，通过Object.defineProperty()函数来监听。回调时调用mount.call()，跟响应式原理一样。</p>
 
           
         
@@ -878,7 +1279,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  338 words
+                  622 words
                 </span>
               
 
@@ -894,7 +1295,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 min
+                  2 min
                 </span>
               
             </div>
@@ -930,7 +1331,10 @@
 <li>高可维护性<h2 id="1-4-引入多个script后出现问题"><a href="#1-4-引入多个script后出现问题" class="headerlink" title="1.4 引入多个script后出现问题"></a>1.4 引入多个script后出现问题</h2></li>
 <li>请求过多</li>
 <li>依赖模糊</li>
-<li>难以维护</li>
+<li>难以维护<h3 id="2-AST"><a href="#2-AST" class="headerlink" title="2. AST"></a>2. AST</h3><h2 id="2-1-什么是AST"><a href="#2-1-什么是AST" class="headerlink" title="2.1 什么是AST"></a>2.1 什么是AST</h2>抽象语法树，源代码的抽象语法结构的树状表现形式。<h2 id="2-2-词法分析和语法分析"><a href="#2-2-词法分析和语法分析" class="headerlink" title="2.2 词法分析和语法分析"></a>2.2 词法分析和语法分析</h2>JS是解释型语言，通过词法分析-&gt;语法分析-&gt;语法书，执行。<br>词法分析：扫描，将字符流转换为记号流(token)，读取代码按照一定的规则合成一个个的标识。<br>语法分析：解析器，将词法分析出来的数组转换成树的形式，验证语法。有错则报错。<h2 id="2-3-AST过程"><a href="#2-3-AST过程" class="headerlink" title="2.3 AST过程"></a>2.3 AST过程</h2></li>
+<li>语法检查、代码风格检查、格式化代码、语法高亮、错误提示、自动补全等</li>
+<li>代码混淆压缩</li>
+<li>优化变更代码，改变代码结构等<h3 id="3-babel工作原理"><a href="#3-babel工作原理" class="headerlink" title="3. babel工作原理"></a>3. babel工作原理</h3>解决了ES6兼容问题，把ES6代码转换为ES5代码，用了AST。<br>配置presets,plugins使用插件<br>访问者模式，访问某一个路径的时候进行匹配，然后在节点修改<br>引入babel插件，使用babel对代码进行转换，过程会改变AST语法树，然后生成新代码<h2 id="3-1-babylon"><a href="#3-1-babylon" class="headerlink" title="3.1 babylon"></a>3.1 babylon</h2>babel使用的引擎是Babylon</li>
 </ul>
 
           
@@ -1790,380 +2194,11 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/Vue-mixin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/25/Vue-mixin/" itemprop="url">Vue-mixin</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-25T15:05:59+08:00">
-                2021-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  412 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-mixin是什么？"><a href="#1-mixin是什么？" class="headerlink" title="1. mixin是什么？"></a>1. mixin是什么？</h2><p>Mixin是一种类，提供方法实现。通常作为功能模块使用，在需要该功能时“混入”，有利于代码复用，避免多继承的复杂。本质是一个JS对象，包含组件的任意功能，将功能传入mixins中就可以使用，可以局部混入，可以全局混入（不推荐！）。</p>
-<h2 id="2-如何使用？"><a href="#2-如何使用？" class="headerlink" title="2. 如何使用？"></a>2. 如何使用？</h2><p>局部混入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var myMixin = &#123;</span><br><span class="line">  created: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    this.hello()</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hello: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      console.log(<span class="string">'hello from mixin!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 组件通过mixins属性调用mixin对象</span><br><span class="line">Vue.component(<span class="string">'componentA'</span>,&#123;</span><br><span class="line">  mixins: [myMixin]</span><br><span class="line">&#125;)</span><br><span class="line">// 使用该组件时，会混合mixin里的方法，自动执行钩子函数。也可以调用mixin里的data值</span><br></pre></td></tr></table></figure>
-<p>全局混入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.mixin(&#123;</span><br><span class="line">  created: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      console.log(<span class="string">"全局混入"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 全局混入需要特别注意，会影响到每个组件。</span><br></pre></td></tr></table></figure>
-<p>当组件存在于mixin对象相同的选项时，合并时会覆盖mixin的选项。<br>生命周期钩子相同时，会合并成一个数组，先执行mixin的钩子。</p>
-<h2 id="3-使用场景"><a href="#3-使用场景" class="headerlink" title="3. 使用场景"></a>3. 使用场景</h2><p>相似或相同的代码，功能相对独立。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const toggle = &#123; // 编写mixin</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      isShowing: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="function"><span class="title">toggleShow</span></span>() &#123;</span><br><span class="line">      this.isShowing = !this.isShowing;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Modal = &#123;  // 使用时引入</span><br><span class="line">  template: <span class="string">'#modal'</span>,</span><br><span class="line">  mixins: [toggle]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="4-源码分析"><a href="#4-源码分析" class="headerlink" title="4. 源码分析"></a>4. 源码分析</h2><h2 id="5-小结"><a href="#5-小结" class="headerlink" title="5. 小结"></a>5. 小结</h2><p>·替换型策略有props、methods、inject、computed，新参数替换旧<br>·合并型策略是data，通过set方法进行合并和重新赋值<br>·队列型策略有生命周期和watch，原理是将函数存入一个数组，然后正序遍历依次执行<br>·叠加型有component、directives、filters，通过原型链进行层层叠加</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/Vue%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/25/Vue%E6%8C%87%E4%BB%A4/" itemprop="url">Vue指令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-25T14:05:04+08:00">
-                2021-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1.1k words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  5 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-指令是啥？"><a href="#1-指令是啥？" class="headerlink" title="1.指令是啥？"></a>1.指令是啥？</h2><p>Vue有一套为数据驱动视图更方便的指令系统。v-开头的行内属性都是指令，不同指令可以实现不同的功能。</p>
-<h2 id="2-如何实现？"><a href="#2-如何实现？" class="headerlink" title="2.如何实现？"></a>2.如何实现？</h2><p>局部注册，全局注册。通过Vue.directive注册。<br>全局注册：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'focus'</span>, &#123; // 注册v-focus指令</span><br><span class="line">   inserted: <span class="keyword">function</span> (el) &#123;</span><br><span class="line">      el.focus() // 让元素自动聚焦</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>局部注册：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">directives: &#123;</span><br><span class="line">   focus: &#123;</span><br><span class="line">      inserted: <span class="keyword">function</span> (el) &#123;</span><br><span class="line">         el.focus() //功能同上</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>模板中的使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-focus /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>自定义指令也存在钩子函数：<br>·bind：只调用一次，指令第一次绑定到元素时使用。初始化设置。<br>·inserted：被绑定元素插入父节点时调用<br>·update：所在组件VNode更新时调用<br>·componentUpdated：所在组件VNode和子VNode全部更新后调用<br>·unbind：只调用一次，指令与元素解绑时调用<br>钩子函数的参数有：<br>·el：指令绑定的元素，可操作DOM<br>·binding：一个对象，包含name,value,oldValue,expression,arg,modifiers<br>·vnode：虚拟节点<br>·oldVnode：上一个虚拟节点</p>
-<h2 id="3-应用场景"><a href="#3-应用场景" class="headerlink" title="3.应用场景"></a>3.应用场景</h2><p>·防抖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 1.设置v-throttle自定义指令</span><br><span class="line">Vue.directive(<span class="string">'throttle'</span>, &#123;</span><br><span class="line">  <span class="built_in">bind</span>: (el, binding) =&gt; &#123;</span><br><span class="line">    <span class="built_in">let</span> throttleTime = binding.value; // 防抖时间</span><br><span class="line">    <span class="keyword">if</span> (!throttleTime) &#123; // 用户若不设置防抖时间，则默认2s</span><br><span class="line">      throttleTime = 2000;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">let</span> cbFun;</span><br><span class="line">    el.addEventListener(<span class="string">'click'</span>, event =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (!cbFun) &#123; // 第一次执行</span><br><span class="line">        cbFun = setTimeout(() =&gt; &#123;</span><br><span class="line">          cbFun = null;</span><br><span class="line">        &#125;, throttleTime);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        event &amp;&amp; event.stopImmediatePropagation();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="literal">true</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">// 2.为button标签设置v-throttle自定义指令</span><br><span class="line">&lt;button @click=<span class="string">"sayHello"</span> v-throttle&gt;提交&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-<p>·图片懒加载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">// 1.设置v-throttle自定义指令</span><br><span class="line">Vue.directive(<span class="string">'throttle'</span>, &#123;</span><br><span class="line">  <span class="built_in">bind</span>: (el, binding) =&gt; &#123;</span><br><span class="line">    <span class="built_in">let</span> throttleTime = binding.value; // 防抖时间</span><br><span class="line">    <span class="keyword">if</span> (!throttleTime) &#123; // 用户若不设置防抖时间，则默认2s</span><br><span class="line">      throttleTime = 2000;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">let</span> cbFun;</span><br><span class="line">    el.addEventListener(<span class="string">'click'</span>, event =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (!cbFun) &#123; // 第一次执行</span><br><span class="line">        cbFun = setTimeout(() =&gt; &#123;</span><br><span class="line">          cbFun = null;</span><br><span class="line">        &#125;, throttleTime);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        event &amp;&amp; event.stopImmediatePropagation();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="literal">true</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">// 2.为button标签设置v-throttle自定义指令</span><br><span class="line">&lt;button @click=<span class="string">"sayHello"</span> v-throttle&gt;提交&lt;/button&gt;</span><br><span class="line">图片懒加载</span><br><span class="line">设置一个v-lazy自定义组件完成图片懒加载</span><br><span class="line">const LazyLoad = &#123;</span><br><span class="line">    // install方法</span><br><span class="line">    install(Vue,options)&#123;</span><br><span class="line">       // 代替图片的loading图</span><br><span class="line">        <span class="built_in">let</span> defaultSrc = options.default;</span><br><span class="line">        Vue.directive(<span class="string">'lazy'</span>,&#123;</span><br><span class="line">            <span class="built_in">bind</span>(el,binding)&#123;</span><br><span class="line">                LazyLoad.init(el,binding.value,defaultSrc);</span><br><span class="line">            &#125;,</span><br><span class="line">            inserted(el)&#123;</span><br><span class="line">                // 兼容处理</span><br><span class="line">                <span class="keyword">if</span>(<span class="string">'IntersectionObserver'</span> <span class="keyword">in</span> window)&#123;</span><br><span class="line">                    LazyLoad.observe(el);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    LazyLoad.listenerScroll(el);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    // 初始化</span><br><span class="line">    init(el,val,def)&#123;</span><br><span class="line">        // data-src 储存真实src</span><br><span class="line">        el.setAttribute(<span class="string">'data-src'</span>,val);</span><br><span class="line">        // 设置src为loading图</span><br><span class="line">        el.setAttribute(<span class="string">'src'</span>,def);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 利用IntersectionObserver监听el</span><br><span class="line">    observe(el)&#123;</span><br><span class="line">        <span class="built_in">let</span> io = new IntersectionObserver(entries =&gt; &#123;</span><br><span class="line">            <span class="built_in">let</span> realSrc = el.dataset.src;</span><br><span class="line">            <span class="keyword">if</span>(entries[0].isIntersecting)&#123;</span><br><span class="line">                <span class="keyword">if</span>(realSrc)&#123;</span><br><span class="line">                    el.src = realSrc;</span><br><span class="line">                    el.removeAttribute(<span class="string">'data-src'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        io.observe(el);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 监听scroll事件</span><br><span class="line">    listenerScroll(el)&#123;</span><br><span class="line">        <span class="built_in">let</span> handler = LazyLoad.throttle(LazyLoad.load,300);</span><br><span class="line">        LazyLoad.load(el);</span><br><span class="line">        window.addEventListener(<span class="string">'scroll'</span>,() =&gt; &#123;</span><br><span class="line">            handler(el);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 加载真实图片</span><br><span class="line">    load(el)&#123;</span><br><span class="line">        <span class="built_in">let</span> windowHeight = document.documentElement.clientHeight</span><br><span class="line">        <span class="built_in">let</span> elTop = el.getBoundingClientRect().top;</span><br><span class="line">        <span class="built_in">let</span> elBtm = el.getBoundingClientRect().bottom;</span><br><span class="line">        <span class="built_in">let</span> realSrc = el.dataset.src;</span><br><span class="line">        <span class="keyword">if</span>(elTop - windowHeight&lt;0&amp;&amp;elBtm &gt; 0)&#123;</span><br><span class="line">            <span class="keyword">if</span>(realSrc)&#123;</span><br><span class="line">                el.src = realSrc;</span><br><span class="line">                el.removeAttribute(<span class="string">'data-src'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 节流</span><br><span class="line">    throttle(fn,delay)&#123;</span><br><span class="line">        <span class="built_in">let</span> timer; </span><br><span class="line">        <span class="built_in">let</span> prevTime;</span><br><span class="line">        <span class="built_in">return</span> <span class="keyword">function</span>(...args)&#123;</span><br><span class="line">            <span class="built_in">let</span> currTime = Date.now();</span><br><span class="line">            <span class="built_in">let</span> context = this;</span><br><span class="line">            <span class="keyword">if</span>(!prevTime) prevTime = currTime;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(currTime - prevTime &gt; delay)&#123;</span><br><span class="line">                prevTime = currTime;</span><br><span class="line">                fn.apply(context,args);</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">                <span class="built_in">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            timer = setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">                prevTime = Date.now();</span><br><span class="line">                timer = null;</span><br><span class="line">                fn.apply(context,args);</span><br><span class="line">            &#125;,delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default LazyLoad;</span><br></pre></td></tr></table></figure>
-<p>·一键copy的功能</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Message &#125; from <span class="string">'ant-design-vue'</span>;</span><br><span class="line"></span><br><span class="line">const vCopy = &#123; //</span><br><span class="line">  /*</span><br><span class="line">    <span class="built_in">bind</span> 钩子函数，第一次绑定时调用，可以在这里做初始化设置</span><br><span class="line">    el: 作用的 dom 对象</span><br><span class="line">    value: 传给指令的值，也就是我们要 copy 的值</span><br><span class="line">  */</span><br><span class="line">  <span class="built_in">bind</span>(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.<span class="variable">$value</span> = value; // 用一个全局属性来存传进来的值，因为这个值在别的钩子函数里还会用到</span><br><span class="line">    el.handler = () =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (!el.<span class="variable">$value</span>) &#123;</span><br><span class="line">      // 值为空的时候，给出提示，我这里的提示是用的 ant-design-vue 的提示，你们随意</span><br><span class="line">        Message.warning(<span class="string">'无复制内容'</span>);</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      // 动态创建 textarea 标签</span><br><span class="line">      const textarea = document.createElement(<span class="string">'textarea'</span>);</span><br><span class="line">      // 将该 textarea 设为 <span class="built_in">readonly</span> 防止 iOS 下自动唤起键盘，同时将 textarea 移出可视区域</span><br><span class="line">      textarea.readOnly = <span class="string">'readonly'</span>;</span><br><span class="line">      textarea.style.position = <span class="string">'absolute'</span>;</span><br><span class="line">      textarea.style.left = <span class="string">'-9999px'</span>;</span><br><span class="line">      // 将要 copy 的值赋给 textarea 标签的 value 属性</span><br><span class="line">      textarea.value = el.<span class="variable">$value</span>;</span><br><span class="line">      // 将 textarea 插入到 body 中</span><br><span class="line">      document.body.appendChild(textarea);</span><br><span class="line">      // 选中值并复制</span><br><span class="line">      textarea.select();</span><br><span class="line">      // textarea.setSelectionRange(0, textarea.value.length);</span><br><span class="line">      const result = document.execCommand(<span class="string">'Copy'</span>);</span><br><span class="line">      <span class="keyword">if</span> (result) &#123;</span><br><span class="line">        Message.success(<span class="string">'复制成功'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      document.body.removeChild(textarea);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 绑定点击事件，就是所谓的一键 copy 啦</span><br><span class="line">    el.addEventListener(<span class="string">'click'</span>, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">  // 当传进来的值更新的时候触发</span><br><span class="line">  componentUpdated(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.<span class="variable">$value</span> = value;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 指令与元素解绑的时候，移除事件绑定</span><br><span class="line">  unbind(el) &#123;</span><br><span class="line">    el.removeEventListener(<span class="string">'click'</span>, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default vCopy;</span><br></pre></td></tr></table></figure>
-<p>还有拖拽指令、页面水印、权限校验等等</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
   </nav>
 
 
@@ -2212,7 +2247,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2223,7 +2258,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2234,7 +2269,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
