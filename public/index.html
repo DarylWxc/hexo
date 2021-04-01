@@ -262,6 +262,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/01/%E4%B8%8D%E5%90%8C%E6%83%85%E5%86%B5%E4%B8%8BPX%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/01/%E4%B8%8D%E5%90%8C%E6%83%85%E5%86%B5%E4%B8%8BPX%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url">不同情况下PX的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-01T08:51:34+08:00">
+                2021-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B5%E9%9D%A2%E6%A0%B7%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">页面样式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  505 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-CSS像素"><a href="#1-CSS像素" class="headerlink" title="1. CSS像素"></a>1. CSS像素</h3><p>CSS分相对单位和绝对单位。<br>相对单位一般指设备像素(device pixel),一般情况页面缩比为1,1个css像素等于一个设备独立像素，页面缩放时也会影响px的变化。<br>CSS像素有两个方面的相对性：<br>1.在同一个设备上，每一个CSS像素所代表的设备像素是可以变化的(分辨率)<br>2.在不同的设备之间，每一个CSS像素所代表的设备像素是可以变化的(不同手机)<br>受到以下因素的影响而变化：<br>1.每英寸像素(PRI)<br>2.设备像素比(DPR)</p>
+<hr>
+<h3 id="2-设备像素"><a href="#2-设备像素" class="headerlink" title="2. 设备像素"></a>2. 设备像素</h3><p>设备像素(device pixels)，物理像素，指设备能控制的最小物理单位。<br>一般设备像素点是固定不变的，单位为pt。</p>
+<h3 id="3-设备独立像素"><a href="#3-设备独立像素" class="headerlink" title="3. 设备独立像素"></a>3. 设备独立像素</h3><p>与设备无关的逻辑像素，代表可以通过程序控制使用的虚拟像素，是一个总体概念，包括CSS像素。<br>可通过window.screen.width/window.screen.height查看</p>
+<h3 id="4-DPR"><a href="#4-DPR" class="headerlink" title="4. DPR"></a>4. DPR</h3><p>dpr(device pixel ratio)，设备像素比，设备独立像素到设备像素的转换关系，可以通过window.devicePixelRatio获取。<br>计算公式：DPR=设备像素/设备独立像素<br>DRP=1，1X1个设备像素=1个CSS像素<br>DRP=2，2X2个设备像素=4个CSS像素<br>DPR=3，3X3个设备像素=9个CSS像素</p>
+<h3 id="5-PPI"><a href="#5-PPI" class="headerlink" title="5. PPI"></a>5. PPI</h3><p>ppi(pixel per inch)，每英寸像素，表示每英寸所包含的像素点数目，更确切的说法应该是像素密度。<br>屏幕分辨率:X*Y PPI=根号X^2+Y^2 / 屏幕尺寸</p>
+<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h3><p>无缩放情况下，1CSS像素=1设备独立像素。<br>设备像素确定后不发生改变，设备独立像素是虚拟单位，会改变。<br>移动端中，标准屏幕(160ppi)下1个设备独立像素=1个设备像素。<br>设备像素比(dpr) = 设备像素 / 设备独立像素<br>每英寸像素(ppi)，值越大，图像越清晰。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/31/uni-app%E5%88%9D%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1648,7 +1827,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k words
+                  1.5k words
                 </span>
               
 
@@ -1664,7 +1843,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3 min
+                  5 min
                 </span>
               
             </div>
@@ -1711,7 +1890,11 @@
 <li>伪类：匹配处于确定状态的一个或多个元素，比如被鼠标指针悬停的元素，或当前被选中或未选中的复选框，或元素是DOM树中一父节点的第一个子节点(:)</li>
 <li>伪元素：匹配处于相关的确定位置的一个或多个元素(::)</li>
 <li>组合器：不仅是选择器本身，还以有效的方式组合老两个或更多的选择器用于非常特定的选择的方法。(嵌套)</li>
-<li>多用选择器：以逗号分隔开的多个选择器放在一个CSS规则下面<h3 id="3-BFC"><a href="#3-BFC" class="headerlink" title="3. BFC"></a>3. BFC</h3>块级格式化上下文，独立的容器，不影响外面的布局。<br>触发条件：</li>
+<li>多用选择器：以逗号分隔开的多个选择器放在一个CSS规则下面</li>
+</ul>
+<hr>
+<h3 id="3-BFC"><a href="#3-BFC" class="headerlink" title="3. BFC"></a>3. BFC</h3><p>块级格式化上下文，独立的容器，不影响外面的布局。<br>触发条件：</p>
+<ul>
 <li>body根元素</li>
 <li>浮动元素</li>
 <li>绝对定位元素</li>
@@ -1719,12 +1902,21 @@
 <li>overflow(hidden、auto、scroll)<br>特性：</li>
 <li>在同一个BFC中，外边距会发生折叠</li>
 <li>BFC可以包含浮动的元素(清除浮动)</li>
-<li>可以阻止元素被浮动元素覆盖<h3 id="4-position"><a href="#4-position" class="headerlink" title="4. position"></a>4. position</h3></li>
+<li>可以阻止元素被浮动元素覆盖</li>
+</ul>
+<hr>
+<h3 id="4-position"><a href="#4-position" class="headerlink" title="4. position"></a>4. position</h3><ul>
 <li>默认是static(静态定位)</li>
 <li>相对定位(relative)</li>
 <li>绝对定位(absolute)</li>
 <li>固定定位(fixed)</li>
-<li>sticky(fixed和relative的混合)<br>元素根据z-index决定显示层级<h3 id="4-flex布局"><a href="#4-flex布局" class="headerlink" title="4. flex布局"></a>4. flex布局</h3>根据主轴和交叉轴进行排列<br>align-items(交叉轴方向)：对齐方式<br>justify-content(主轴方向)：对齐方式<h3 id="5-CSS优先级"><a href="#5-CSS优先级" class="headerlink" title="5. CSS优先级"></a>5. CSS优先级</h3>根据权重决定</li>
+<li>sticky(fixed和relative的混合)<br>元素根据z-index决定显示层级</li>
+</ul>
+<hr>
+<h3 id="4-flex布局"><a href="#4-flex布局" class="headerlink" title="4. flex布局"></a>4. flex布局</h3><p>根据主轴和交叉轴进行排列<br>align-items(交叉轴方向)：对齐方式<br>justify-content(主轴方向)：对齐方式</p>
+<hr>
+<h3 id="5-CSS优先级"><a href="#5-CSS优先级" class="headerlink" title="5. CSS优先级"></a>5. CSS优先级</h3><p>根据权重决定</p>
+<ul>
 <li>行内样式+1000</li>
 <li>id选择器+100</li>
 <li>属性,class选择器,伪类+10</li>
@@ -1739,7 +1931,20 @@
 <li>样式指向同一元素，权重规则生效，权重相同，就近原则，后面的样式应用</li>
 <li>样式不指向同一元素，权重失效，就近原则，离目标近的样式应用</li>
 </ul>
-
+<hr>
+<h3 id="6-双飞翼-圣杯布局"><a href="#6-双飞翼-圣杯布局" class="headerlink" title="6. 双飞翼/圣杯布局"></a>6. 双飞翼/圣杯布局</h3><h2 id="6-1-圣杯"><a href="#6-1-圣杯" class="headerlink" title="6.1 圣杯"></a>6.1 圣杯</h2><p>1.给left、middle、right设置float:left，脱离文档流<br>2.给container设置overflow:hidden，形成BFC撑开文档<br>3.left，right设置上各自的宽度<br>4.middle设置width:100%<br>5.给left,middle,right设置positon:relative<br>6.left设置left:-leftWidth,right设置right:-rightWidth<br>7.container设置padding:0,rightWidth,0,leftWidth</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.left middle right &#123;position:relative;float:left;word-break:break-all&#125;</span><br><span class="line">.left&#123;margin-left:-100%;left:-200px;width:200px;&#125;</span><br><span class="line">.right&#123;margin-left:-220px;right:-220px;width:220px;&#125;</span><br><span class="line">.middle&#123;width:100%&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-双飞翼布局"><a href="#6-2-双飞翼布局" class="headerlink" title="6.2 双飞翼布局"></a>6.2 双飞翼布局</h2><p>1.middle增加inner<br>2.给left,middle,right设置float:left脱离文档流<br>3.container加上overflow:hidden,触发BFC<br>4.left,right设置宽度<br>5.middle设置width:100%<br>6.left设置margin-left:-100%,right设置right:-rightWidth;<br>7.container设置padding:0,rightWidth,0,leftWidth;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.left middle right &#123;float:left;word-break:break-all&#125;</span><br><span class="line">.left&#123;margin-left:-100%;width:200px&#125;</span><br><span class="line">.right&#123;margin-left:-220px;width:220px;&#125;</span><br><span class="line">.middle&#123;width:100%;height:100%&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width-gt-LeftWidth-RightWidth"><a href="#由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width-gt-LeftWidth-RightWidth" class="headerlink" title="由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width&gt;LeftWidth+RightWidth"></a>由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width&gt;LeftWidth+RightWidth</h2><h3 id="7-CSS3新特性"><a href="#7-CSS3新特性" class="headerlink" title="7. CSS3新特性"></a>7. CSS3新特性</h3><h2 id="7-1-过渡"><a href="#7-1-过渡" class="headerlink" title="7.1 过渡"></a>7.1 过渡</h2><p>transition: CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)<br>transition:width,.5s,ease,.2s</p>
+<h2 id="7-2-动画"><a href="#7-2-动画" class="headerlink" title="7.2 动画"></a>7.2 动画</h2><p>animation:动画名称，花费时间，运动曲线，动画延迟，播放次数，是否反向动画，是否暂停动画<br>animation:logo2-line 2s linear;</p>
+<h2 id="7-3-形状转换"><a href="#7-3-形状转换" class="headerlink" title="7.3 形状转换"></a>7.3 形状转换</h2><p>tranform:适用于2D或3D转换的元素<br>transform:rotate(30deg);</p>
+<h2 id="7-4-选择器"><a href="#7-4-选择器" class="headerlink" title="7.4 选择器"></a>7.4 选择器</h2><p><a href="https://www.w3school.com.cn/cssref/css_selectors.asp" target="_blank" rel="noopener">CSS选择器参考手册</a></p>
+<h2 id="7-5-阴影"><a href="#7-5-阴影" class="headerlink" title="7.5 阴影"></a>7.5 阴影</h2><p>box-shadow:水平阴影位置 垂直阴影位置 模糊距离 阴影大小 阴影颜色等<br>box-shadow:10px 10px 5px #888888</p>
+<h2 id="7-6-边框"><a href="#7-6-边框" class="headerlink" title="7.6 边框"></a>7.6 边框</h2><p>border-image:..//边框图<br>border-radius:..//边框圆角</p>
+<h2 id="7-7-背景"><a href="#7-7-背景" class="headerlink" title="7.7 背景"></a>7.7 背景</h2><p>background-clip:padding-box;//content-box</p>
+<h2 id="7-8-反射"><a href="#7-8-反射" class="headerlink" title="7.8 反射"></a>7.8 反射</h2><p>-webkit-box-reflect:方向[above-上|below-下|right-右|left-左]</p>
+<h2 id="7-9-文字"><a href="#7-9-文字" class="headerlink" title="7.9 文字"></a>7.9 文字</h2>
           
         
       
@@ -1990,210 +2195,6 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/26/vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/26/vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" itemprop="url">vue权限管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-26T10:30:39+08:00">
-                2021-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2.2k words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  10 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-权限是啥？"><a href="#1-权限是啥？" class="headerlink" title="1. 权限是啥？"></a>1. 权限是啥？</h2><p>权限是对特定资源的访问许可，确保用户只能访问到被分配的资源。其原理是请求发起权，请求发起有两种形式：</p>
-<ul>
-<li>页面加载触发</li>
-<li>页面上的按钮点击触发<br>实现目标：</li>
-<li>路由方面，只能看到有权访问的菜单</li>
-<li>视图方面，只能看到自己有权浏览的内容和有权操作的控件</li>
-<li>请求控制，越权请求在前端进行拦截<h2 id="2-如何实现？"><a href="#2-如何实现？" class="headerlink" title="2. 如何实现？"></a>2. 如何实现？</h2>权限控制可以分四个方面：</li>
-<li>接口权限</li>
-<li>按钮权限</li>
-<li>菜单权限</li>
-<li>路由权限<h1 id="接口权限"><a href="#接口权限" class="headerlink" title="接口权限"></a>接口权限</h1>接口权限一般采用jwt的形式来严重，登录完拿到token将token保存，每次请求拦截器进行拦截，请求头部带token<h1 id="路由权限控制"><a href="#路由权限控制" class="headerlink" title="路由权限控制"></a>路由权限控制</h1>方案一：在路由标记相应的权限信息，路由跳转前做校验<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const routerMap &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;permission&#39;,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: &#39;&#x2F;permission&#x2F;index&#39;,</span><br><span class="line">    alwaysShow: true, &#x2F;&#x2F; will always show the root menu</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &#39;permission&#39;,</span><br><span class="line">      icon: &#39;lock&#39;,</span><br><span class="line">      roles: [&#39;admin&#39;, &#39;editor&#39;] &#x2F;&#x2F; you can set roles in root nav</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: &#39;page&#39;,</span><br><span class="line">      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;permission&#x2F;page&#39;),</span><br><span class="line">      name: &#39;pagePermission&#39;,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: &#39;pagePermission&#39;,</span><br><span class="line">        roles: [&#39;admin&#39;] &#x2F;&#x2F; or you can only set roles in sub nav</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      path: &#39;directive&#39;,</span><br><span class="line">      component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;permission&#x2F;directive&#39;),</span><br><span class="line">      name: &#39;directivePermission&#39;,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: &#39;directivePermission&#39;</span><br><span class="line">        &#x2F;&#x2F; if do not set roles, means: this page does not require permission</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure>
-缺点：</li>
-<li>加载所有的路由，如果路由很多，而用户并不是所有路由都有权限访问，会性能会有影响</li>
-<li>全局路由守卫里，每次路由跳转都要做权限判断</li>
-<li>菜单信息写死在前端，要改个显示文字或权限信息，需要重新编译</li>
-<li>菜单跟路由耦合在一起，定义路由的时候还有添加菜单显示标题，图标之类的信息，而且路由不一定作为菜单显示，还要多加字段进行标识<br>方案二：<br>初始化的时候挂载公共路由，比如404，登录页。登录后获取用户的权限信息筛选有权限访问的路由在全局路由守卫调用addRoutes添加路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; permission judge function</span><br><span class="line">function hasPermission(roles, permissionRoles) &#123;</span><br><span class="line">  if (roles.indexOf(&#39;admin&#39;) &gt;&#x3D; 0) return true &#x2F;&#x2F; admin permission passed directly</span><br><span class="line">  if (!permissionRoles) return true</span><br><span class="line">  return roles.some(role &#x3D;&gt; permissionRoles.indexOf(role) &gt;&#x3D; 0)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const whiteList &#x3D; [&#39;&#x2F;login&#39;, &#39;&#x2F;authredirect&#39;]&#x2F;&#x2F; no redirect whitelist</span><br><span class="line"></span><br><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.start() &#x2F;&#x2F; start progress bar</span><br><span class="line">  if (getToken()) &#123; &#x2F;&#x2F; determine if there has token</span><br><span class="line">    &#x2F;* has token*&#x2F;</span><br><span class="line">    if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">      next(&#123; path: &#39;&#x2F;&#39; &#125;)</span><br><span class="line">      NProgress.done() &#x2F;&#x2F; if current page is dashboard will not trigger afterEach hook, so manually handle it</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (store.getters.roles.length &#x3D;&#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 判断当前用户是否已拉取完user_info信息</span><br><span class="line">        store.dispatch(&#39;GetUserInfo&#39;).then(res &#x3D;&gt; &#123; &#x2F;&#x2F; 拉取user_info</span><br><span class="line">          const roles &#x3D; res.data.roles &#x2F;&#x2F; note: roles must be a array! such as: [&#39;editor&#39;,&#39;develop&#39;]</span><br><span class="line">          store.dispatch(&#39;GenerateRoutes&#39;, &#123; roles &#125;).then(() &#x3D;&gt; &#123; &#x2F;&#x2F; 根据roles权限生成可访问的路由表</span><br><span class="line">            router.addRoutes(store.getters.addRouters) &#x2F;&#x2F; 动态添加可访问路由表</span><br><span class="line">            next(&#123; ...to, replace: true &#125;) &#x2F;&#x2F; hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          store.dispatch(&#39;FedLogOut&#39;).then(() &#x3D;&gt; &#123;</span><br><span class="line">            Message.error(err || &#39;Verification failed, please login again&#39;)</span><br><span class="line">            next(&#123; path: &#39;&#x2F;&#39; &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓</span><br><span class="line">        if (hasPermission(store.getters.roles, to.meta.roles)) &#123;</span><br><span class="line">          next()&#x2F;&#x2F;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#123; path: &#39;&#x2F;401&#39;, replace: true, query: &#123; noGoBack: true &#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 可删 ↑</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    &#x2F;* has no token*&#x2F;</span><br><span class="line">    if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">      next()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next(&#39;&#x2F;login&#39;) &#x2F;&#x2F; 否则全部重定向到登录页</span><br><span class="line">      NProgress.done() &#x2F;&#x2F; if current page is login will not trigger afterEach hook, so manually handle it</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(() &#x3D;&gt; &#123;</span><br><span class="line">  NProgress.done() &#x2F;&#x2F; finish progress bar</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-缺点：</li>
-<li>全局路由守卫里，每次路由跳转都要做判断</li>
-<li>菜单信息写死在前端，要改个显示文字或权限信息，需要重新编译</li>
-<li>菜单跟路由耦合在一起，定义路由的时候还有添加菜单显示标题，图标之类的信息，而且路由不一定作为菜单显示，还要多加字段进行标识<h1 id="菜单权限"><a href="#菜单权限" class="headerlink" title="菜单权限"></a>菜单权限</h1>菜单权限可以理解成将页面与路由进行解耦<br>方案一<br>菜单与路由分离，菜单由后端返回<br>前端定义路由信息，name属性不得为空，需要此字段与后端返回菜单做关联，后端返回的菜单信息中必须要有name对应的字段，并且做唯一性校验<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">function hasPermission(router, accessMenu) &#123;</span><br><span class="line">  if (whiteList.indexOf(router.path) !&#x3D;&#x3D; -1) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  let menu &#x3D; Util.getMenuByName(router.name, accessMenu);</span><br><span class="line">  if (menu.name) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  return false;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Router.beforeEach(async (to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (getToken()) &#123;</span><br><span class="line">    let userInfo &#x3D; store.state.user.userInfo;</span><br><span class="line">    if (!userInfo.name) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        await store.dispatch(&quot;GetUserInfo&quot;)</span><br><span class="line">        await store.dispatch(&#39;updateAccessMenu&#39;)</span><br><span class="line">        if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">          next(&#123; name: &#39;home_index&#39; &#125;)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          &#x2F;&#x2F;Util.toDefaultPage([...routers], to.name, router, next);</span><br><span class="line">          next(&#123; ...to, replace: true &#125;)&#x2F;&#x2F;菜单权限更新完成,重新进一次当前路由</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;  </span><br><span class="line">      catch (e) &#123;</span><br><span class="line">        if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">          next()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#39;&#x2F;login&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (to.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;login&#39;) &#123;</span><br><span class="line">        next(&#123; name: &#39;home_index&#39; &#125;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        if (hasPermission(to, store.getters.accessMenu)) &#123;</span><br><span class="line">          Util.toDefaultPage(store.getters.accessMenu,to, routes, next);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          next(&#123; path: &#39;&#x2F;403&#39;,replace:true &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123; &#x2F;&#x2F; 在免登录白名单，直接进入</span><br><span class="line">      next()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next(&#39;&#x2F;login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  let menu &#x3D; Util.getMenuByName(to.name, store.getters.accessMenu);</span><br><span class="line">  Util.title(menu.title);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Router.afterEach((to) &#x3D;&gt; &#123;</span><br><span class="line">  window.scrollTo(0, 0);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-缺点：</li>
-<li>菜单需要与路由做一一对应，前端添加了新功能，需要通过菜单管理功能添加新的菜单，菜单配置不对会导致应用不能正常使用</li>
-<li>全局路由守卫里，每次路由跳转都要做判断<br>方案二<br>菜单和路由都由后端返回，前端统一定义路由组件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const Home &#x3D; () &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;Home.vue&quot;);</span><br><span class="line">const UserInfo &#x3D; () &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;UserInfo.vue&quot;);</span><br><span class="line">export default &#123;</span><br><span class="line">    home: Home,</span><br><span class="line">    userInfo: UserInfo</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-后端路由组件返回以下格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: &quot;home&quot;,</span><br><span class="line">        path: &quot;&#x2F;&quot;,</span><br><span class="line">        component: &quot;home&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: &quot;home&quot;,</span><br><span class="line">        path: &quot;&#x2F;userinfo&quot;,</span><br><span class="line">        component: &quot;userInfo&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-前后端都需要做相应的路由处理<br>缺点：</li>
-<li>全局路由守卫里，每次路由跳转都要做判断</li>
-<li>前后端的配合要求更高<h1 id="按钮权限"><a href="#按钮权限" class="headerlink" title="按钮权限"></a>按钮权限</h1>方案一<br>按钮权限用v-if判断，但是页面过多情况下，每个页面都要获取用户权限role和路由表里的meta.Permission，再做判断<br>方案二<br>通过自定义指令进行权限判断<br>配置路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &#39;&#x2F;permission&#39;,</span><br><span class="line">    component: Layout,</span><br><span class="line">    name: &#39;权限测试&#39;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">        btnPermissions: [&#39;admin&#39;, &#39;supper&#39;, &#39;normal&#39;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    children: [&#123;</span><br><span class="line">        path: &#39;supper&#39;,</span><br><span class="line">        component: _import(&#39;system&#x2F;supper&#39;),</span><br><span class="line">        name: &#39;权限测试页&#39;,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            btnPermissions: [&#39;admin&#39;, &#39;supper&#39;]</span><br><span class="line">        &#125; &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: &#39;normal&#39;,</span><br><span class="line">        component: _import(&#39;system&#x2F;normal&#39;),</span><br><span class="line">        name: &#39;权限测试页&#39;,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            btnPermissions: [&#39;admin&#39;]</span><br><span class="line">        &#125; &#x2F;&#x2F;页面需要的权限</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-自定义权限鉴定指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**权限指令**&#x2F;</span><br><span class="line">const has &#x3D; Vue.directive(&#39;has&#39;, &#123;</span><br><span class="line">    bind: function (el, binding, vnode) &#123;</span><br><span class="line">        &#x2F;&#x2F; 获取页面按钮权限</span><br><span class="line">        let btnPermissionsArr &#x3D; [];</span><br><span class="line">        if(binding.value)&#123;</span><br><span class="line">            &#x2F;&#x2F; 如果指令传值，获取指令参数，根据指令参数和当前登录人按钮权限做比较。</span><br><span class="line">            btnPermissionsArr &#x3D; Array.of(binding.value);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            &#x2F;&#x2F; 否则获取路由中的参数，根据路由的btnPermissionsArr和当前登录人按钮权限做比较。</span><br><span class="line">            btnPermissionsArr &#x3D; vnode.context.$route.meta.btnPermissions;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!Vue.prototype.$_has(btnPermissionsArr)) &#123;</span><br><span class="line">            el.parentNode.removeChild(el);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 权限检查方法</span><br><span class="line">Vue.prototype.$_has &#x3D; function (value) &#123;</span><br><span class="line">    let isExist &#x3D; false;</span><br><span class="line">    &#x2F;&#x2F; 获取用户按钮权限</span><br><span class="line">    let btnPermissionsStr &#x3D; sessionStorage.getItem(&quot;btnPermissions&quot;);</span><br><span class="line">    if (btnPermissionsStr &#x3D;&#x3D; undefined || btnPermissionsStr &#x3D;&#x3D; null) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    if (value.indexOf(btnPermissionsStr) &gt; -1) &#123;</span><br><span class="line">        isExist &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line">    return isExist;</span><br><span class="line">&#125;;</span><br><span class="line">export &#123;has&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>根据项目进行方案考虑，如考虑路由与菜单是否分离<br>权限需要前后端结合，前端尽可能的去控制，更多的需要后台判断</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2247,7 +2248,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

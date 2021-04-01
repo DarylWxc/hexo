@@ -41,6 +41,7 @@ BFC：块级格式化上下文
  - 伪元素：匹配处于相关的确定位置的一个或多个元素(::)
  - 组合器：不仅是选择器本身，还以有效的方式组合老两个或更多的选择器用于非常特定的选择的方法。(嵌套)
  - 多用选择器：以逗号分隔开的多个选择器放在一个CSS规则下面
+---
 ### 3. BFC
 块级格式化上下文，独立的容器，不影响外面的布局。
 触发条件：
@@ -53,6 +54,7 @@ BFC：块级格式化上下文
  - 在同一个BFC中，外边距会发生折叠
  - BFC可以包含浮动的元素(清除浮动)
  - 可以阻止元素被浮动元素覆盖
+---
 ### 4. position
  - 默认是static(静态定位)
  - 相对定位(relative)
@@ -60,10 +62,12 @@ BFC：块级格式化上下文
  - 固定定位(fixed)
  - sticky(fixed和relative的混合)
 元素根据z-index决定显示层级
+---
 ### 4. flex布局
 根据主轴和交叉轴进行排列
 align-items(交叉轴方向)：对齐方式
 justify-content(主轴方向)：对齐方式
+---
 ### 5. CSS优先级
 根据权重决定
  - 行内样式+1000
@@ -83,3 +87,60 @@ css样式单线程，依次从上向下加载，优先级和加载顺序有关
  - 样式指向同一元素，权重规则生效，权重大的被应用
  - 样式指向同一元素，权重规则生效，权重相同，就近原则，后面的样式应用
  - 样式不指向同一元素，权重失效，就近原则，离目标近的样式应用
+---
+### 6. 双飞翼/圣杯布局
+## 6.1 圣杯
+1.给left、middle、right设置float:left，脱离文档流
+2.给container设置overflow:hidden，形成BFC撑开文档
+3.left，right设置上各自的宽度
+4.middle设置width:100%
+5.给left,middle,right设置positon:relative
+6.left设置left:-leftWidth,right设置right:-rightWidth
+7.container设置padding:0,rightWidth,0,leftWidth
+```
+.left middle right {position:relative;float:left;word-break:break-all}
+.left{margin-left:-100%;left:-200px;width:200px;}
+.right{margin-left:-220px;right:-220px;width:220px;}
+.middle{width:100%}
+```
+## 6.2 双飞翼布局
+1.middle增加inner
+2.给left,middle,right设置float:left脱离文档流
+3.container加上overflow:hidden,触发BFC
+4.left,right设置宽度
+5.middle设置width:100%
+6.left设置margin-left:-100%,right设置right:-rightWidth;
+7.container设置padding:0,rightWidth,0,leftWidth;
+```
+.left middle right {float:left;word-break:break-all}
+.left{margin-left:-100%;width:200px}
+.right{margin-left:-220px;width:220px;}
+.middle{width:100%;height:100%}
+```
+由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width>LeftWidth+RightWidth
+---
+### 7. CSS3新特性
+## 7.1 过渡
+transition: CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)
+transition:width,.5s,ease,.2s
+## 7.2 动画
+animation:动画名称，花费时间，运动曲线，动画延迟，播放次数，是否反向动画，是否暂停动画
+animation:logo2-line 2s linear;
+## 7.3 形状转换
+tranform:适用于2D或3D转换的元素
+transform:rotate(30deg);
+## 7.4 选择器
+[CSS选择器参考手册](https://www.w3school.com.cn/cssref/css_selectors.asp)
+## 7.5 阴影
+box-shadow:水平阴影位置 垂直阴影位置 模糊距离 阴影大小 阴影颜色等
+box-shadow:10px 10px 5px #888888
+## 7.6 边框
+border-image:..//边框图
+border-radius:..//边框圆角
+## 7.7 背景
+background-clip:padding-box;//content-box
+## 7.8 反射
+-webkit-box-reflect:方向[above-上|below-下|right-右|left-左]
+## 7.9 文字
+
+
