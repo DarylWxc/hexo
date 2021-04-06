@@ -38,3 +38,17 @@ style:iconfont{
 添加新图标只需要生成新代码复制到css文件中即可
 2.使用uview组件库，搜索框，input输入框无法设置宽度
 套一层view设置宽度即可 //反应失灵
+3.引入uview组件时，需要安装sass解析，根据官网指令安装后，出现版本适配问题。
+使用指令 npm uninstall less-loader 卸载
+npm install less-loader@5.0.0 安装 成功后再次运行 出现同样的问题
+将版本改为7.3.0 运行 同样失效 将版本改为4.1.0 运行 同样失效
+修改package.json中的版本，重装后运行成功 uview未导入成功
+运行指令 npm i node-sass -D npm i sass-loader -D 运行成功
+再修正easycom的规则，终成功。
+4.开发小程序与H5端不同，引入iconfont较为麻烦，最终采用png格式贴图。
+5.弧度背景可以使用背景图片
+6.点击tabBar底部跳转，通过onTabItemTap回调函数触发
+
+
+
+
