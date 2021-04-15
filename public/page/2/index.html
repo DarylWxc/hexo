@@ -262,6 +262,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/25/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/25/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO/" itemprop="url">单点登录SSO</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-25T10:38:58+08:00">
+                2021-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  571 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-SSO是什么"><a href="#1-SSO是什么" class="headerlink" title="1. SSO是什么"></a>1. SSO是什么</h1><p>单点登录，简称SSO。是在多个应用系统中用户只需要登录一次就可以访问所有相互信任的应用系统。<br>SSO一般都需要一个独立的认证中心(passport)，子系统登录均通过passport，子系统本身将不参与登录操作。<br>授权以后，会建立局部会话，一定时间内无需再次向passport发起认证。</p>
+<hr>
+<h1 id="2-如何实现"><a href="#2-如何实现" class="headerlink" title="2. 如何实现"></a>2. 如何实现</h1><ul>
+<li>同域名下的单点登录<br>cookie的domin属性设置为当前域的父域，并且父域的cookie会被子域所共享。path属性默认为web应用的上下文路径。<br>利用cookie的该特点，将cookie的path属性设置为根路径，将Session ID保存到父域中。子域应用就都可以访问到这个cookie。<br>不过需要在主域名相同的情况下可以通过这种方式来实现单点登录。</li>
+<li>不同域名下的单点登录(一)<br>不同域下，Cookie不共享。需要部署一个认证中心，用于专门处理登录请求的独立的Web服务。<br>验证token，如果没有则跳转到认证中心，跳转时携带Cookie(带有token)，根据Cookie判断登录状态。<br>已登录的用户在跳转前生成一个Token拼接在目标URL的后面，回传给目标应用系统，写入Cookie。</li>
+<li>不同域名下的单点登录(二)<br>可以将SessionID保存到LocalStorage中，每次请求时，将LocalStorage的数据传递给服务端，后端在登录后返回SessionID或Token。<br>通过iframe+postMessage方式，将token写入多个域下的LocalStorage，可以被多个域所共享。</li>
+</ul>
+<hr>
+<h1 id="3-流程"><a href="#3-流程" class="headerlink" title="3. 流程"></a>3. 流程</h1><p>用户登录成功后，会与SSO认证中心及各个子系统建立会话，用户与SSO认证中心建立的会话称为全局会话。<br>用户与各个子系统建立的会话称为局部会话，局部会话建立后，用户访问子系统受保护资源将不再通过SSO认证中心。<br>全局会话与局部会话存在如下约束关系：</p>
+<ul>
+<li>局部会话存在，全局会话一定存在</li>
+<li>全局会话存在，局部会话不一定存在</li>
+<li>全局会话销毁，局部会话必须销毁</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/18/Vue%E6%8F%92%E6%A7%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2015,181 +2201,6 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%A4%9A%E9%A1%B5%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/01/21/%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%A4%9A%E9%A1%B5%E9%9D%A2/" itemprop="url">单页面和多页面</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-21T09:38:11+08:00">
-                2021-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%9A%E5%8A%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">业务</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  254 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>单页面应用(SPA):只有一个主页面的应用，单页面跳转，仅刷新局部资源。多应用于PC端。<br>多页面应用(MPA):就是指一个应用中有多个页面，页面跳转时是整页刷新，公共资源等选择性重新加载。<br>单页面的优点：<br>资源共用，页面局部刷新，切换速度快，用户体验良好。<br>数据传递容易，维护成本较低。开发成本较高，需要借助框架。<br>缺点：不利于SEO优化，可利用SSR优化。</p>
-<p>多页面优点：搜索引擎优化简易，开发成本较低，但重复代码多。<br>缺点：公共资源不共用，页面切换加载慢，流畅度不够。无法实现跳转动画，<br>依赖url，cookie，localstorage传参。维护成本较高。</p>
-<p>单页面适用场景：高要求的体验度、追求界面流畅的应用。<br>多页面的适用场景：适用于追求高度支持搜索引擎的应用。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2243,7 +2254,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
