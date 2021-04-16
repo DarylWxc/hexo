@@ -3,7 +3,7 @@ title: Nginx服务器的部署
 date: 2020-08-25 16:05:41
 tags:
  - 前端开发
-categories: 经验
+categories: 环境配置
 ---
 ### Nginx服务器对Vue项目的部署
 
