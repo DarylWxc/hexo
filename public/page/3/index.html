@@ -262,6 +262,658 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/15/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/15/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" itemprop="url">Vue响应式原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-15T10:56:14+08:00">
+                2021-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  434 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-数据初始化"><a href="#1-数据初始化" class="headerlink" title="1. 数据初始化"></a>1. 数据初始化</h2><p>Vue源码中在initState中进行了数据初始化，为数据添加响应式。针对props，methods，data，computed和watch，做数据的初始化处理，响应式转换。</p>
+<h2 id="2-initProps"><a href="#2-initProps" class="headerlink" title="2. initProps"></a>2. initProps</h2><p>Props用于父子组件间传值(父传子)。<br>:test=test会被解析成{attrs: {test: test}}，并作为子组件的render函数。<br>创建VNode遇到child占位符时，根据attrs属性进行规范校验，最后以propsData形式传入Vnode构造器中。<br>通过proxy为props做了一层代理，可通过vue实例代理访问到props的值，本质上是利用Object.defineProperty对数据的getter和setter方法进行重写。<br>总结：props以propsData的形式在Vnode的属性存在，通过proxy进行代理，然后实例访问。</p>
+<h2 id="3-initMethods"><a href="#3-initMethods" class="headerlink" title="3. initMethods"></a>3. initMethods</h2><p>methods方法定义必须是函数，命名不能与props重复。定义的方法都将挂载在根实例上。</p>
+<h2 id="4-initData"><a href="#4-initData" class="headerlink" title="4. initData"></a>4. initData</h2><p>核心方法是observe，在observe方法中将数据对象标记为响应式对象，然后进行响应式处理。同props，通过proxy对data做一层处理，可通过实例访问对象属性。</p>
+<h2 id="5-initComputed"><a href="#5-initComputed" class="headerlink" title="5. initComputed"></a>5. initComputed</h2><p>1.computed可以是对象，也可以是函数，函数必须有getter。<br>2.针对每个computed属性都需要创建一个监听的依赖(watcher)。<br>computed的命名防止与props，data冲突</p>
+<h2 id="6-响应式系统"><a href="#6-响应式系统" class="headerlink" title="6. 响应式系统"></a>6. 响应式系统</h2><p>observe：挂载组件，引入observe类，通过Object.defineProperty，对数据的getter和setter进行改写，读取getter进行依赖手机，在setter时进行依赖更新。<br>watcher：一个watcher实例急速一个依赖，watcher记录这个依赖监听的状态以及如何更新操作的方法。渲染数据到真实DOM时会创建watcher。</p>
+<h2 id="7-小结"><a href="#7-小结" class="headerlink" title="7. 小结"></a>7. 小结</h2><p>最终都是调用Object.defineProperty进行数据拦截。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/15/CSS%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/15/CSS%E5%9F%BA%E7%A1%80/" itemprop="url">CSS基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-15T10:26:23+08:00">
+                2021-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B5%E9%9D%A2%E6%A0%B7%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">页面样式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.7k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-盒模型？"><a href="#1-盒模型？" class="headerlink" title="1. 盒模型？"></a>1. 盒模型？</h3><p>盒模型：框模型，包含content(内容)、padding(内边距)、border(边框)、margin(外边距)。</p>
+<h2 id="1-IE模型和标准模型的区别？"><a href="#1-IE模型和标准模型的区别？" class="headerlink" title="1. IE模型和标准模型的区别？"></a>1. IE模型和标准模型的区别？</h2><p>IE模型：width=content+padding，height=content+padding<br>标准模型：width=content，height=content</p>
+<h2 id="2-CSS设置方式"><a href="#2-CSS设置方式" class="headerlink" title="2. CSS设置方式"></a>2. CSS设置方式</h2><p>可通过CSS3新增的属性box-sizing设置盒模型的模式，content-box(标准模型)，IE模型(border-box)。</p>
+<h2 id="3-JavaScript设置盒模型的宽高"><a href="#3-JavaScript设置盒模型的宽高" class="headerlink" title="3. JavaScript设置盒模型的宽高"></a>3. JavaScript设置盒模型的宽高</h2><p>1.dom.style.width/height //只能取到行内样式的宽和高，style标签中的link外链取不到。<br>2.dom.currentStyle.width/height //取到的是最终渲染后的宽高，只IE支持<br>3.window.getComputedStyle(dom).width/height //同(2)，IE9以上支持，其他浏览器支持<br>4.dom.getBoundingClientRect().width/height //同(3)，还可取到对于视窗的上下左右的距离</p>
+<h2 id="4-外边距重叠"><a href="#4-外边距重叠" class="headerlink" title="4. 外边距重叠"></a>4. 外边距重叠</h2><p>当两个垂直外边距相遇时，会形成外边距，合并后的外边距高度等于两个发生合并的外边距的高度中的较大者。普通文档流才会发生，行内框，浮动框和绝对定位之间的外边距不会合并。</p>
+<h2 id="5-BFC"><a href="#5-BFC" class="headerlink" title="5. BFC"></a>5. BFC</h2><p>BFC：块级格式化上下文</p>
+<ul>
+<li>BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。</li>
+<li>BFC的区域不会与浮动元素的布局重叠。</li>
+<li>BFC元素是一个独立的容器，外面的元素不会影响里面的元素。里面的元素也不会影响外面的元素。</li>
+<li>计算BFC高度的时候，浮动元素也会参与计算（清楚浮动）。<h2 id="6-触发条件"><a href="#6-触发条件" class="headerlink" title="6. 触发条件"></a>6. 触发条件</h2></li>
+<li>overflow部位visible；</li>
+<li>float的值不为none；</li>
+<li>position的值不为static或relative；</li>
+<li>display属性为inline-block，table，table-cell，table-caption，flex，inline-flex<br>当子元素浮动不会影响父元素时，可以给父元素触发BFC。</li>
+</ul>
+<hr>
+<h3 id="2-CSS选择器"><a href="#2-CSS选择器" class="headerlink" title="2. CSS选择器"></a>2. CSS选择器</h3><p>选择器类型：</p>
+<ul>
+<li>简单选择器：通过元素类型(元素名)、class(.)或id(#)匹配一个或多个元素</li>
+<li>属性选择器：通过属性/属性值匹配一个或多个元素</li>
+<li>伪类：匹配处于确定状态的一个或多个元素，比如被鼠标指针悬停的元素，或当前被选中或未选中的复选框，或元素是DOM树中一父节点的第一个子节点(:)</li>
+<li>伪元素：匹配处于相关的确定位置的一个或多个元素(::)</li>
+<li>组合器：不仅是选择器本身，还以有效的方式组合老两个或更多的选择器用于非常特定的选择的方法。(嵌套)</li>
+<li>多用选择器：以逗号分隔开的多个选择器放在一个CSS规则下面</li>
+</ul>
+<hr>
+<h3 id="3-BFC"><a href="#3-BFC" class="headerlink" title="3. BFC"></a>3. BFC</h3><p>块级格式化上下文，独立的容器，不影响外面的布局。<br>触发条件：</p>
+<ul>
+<li>body根元素</li>
+<li>浮动元素</li>
+<li>绝对定位元素</li>
+<li>display(inline-block、table-cells、flex)</li>
+<li>overflow(hidden、auto、scroll)<br>特性：</li>
+<li>在同一个BFC中，外边距会发生折叠</li>
+<li>BFC可以包含浮动的元素(清除浮动)</li>
+<li>可以阻止元素被浮动元素覆盖</li>
+</ul>
+<hr>
+<h3 id="4-position"><a href="#4-position" class="headerlink" title="4. position"></a>4. position</h3><ul>
+<li>默认是static(静态定位)</li>
+<li>相对定位(relative)</li>
+<li>绝对定位(absolute)</li>
+<li>固定定位(fixed)</li>
+<li>sticky(fixed和relative的混合)<br>元素根据z-index决定显示层级</li>
+</ul>
+<hr>
+<h3 id="4-flex布局"><a href="#4-flex布局" class="headerlink" title="4. flex布局"></a>4. flex布局</h3><p>根据主轴和交叉轴进行排列<br>align-items(交叉轴方向)：对齐方式<br>justify-content(主轴方向)：对齐方式</p>
+<hr>
+<h3 id="5-CSS优先级"><a href="#5-CSS优先级" class="headerlink" title="5. CSS优先级"></a>5. CSS优先级</h3><p>根据权重决定</p>
+<ul>
+<li>行内样式+1000</li>
+<li>id选择器+100</li>
+<li>属性,class选择器,伪类+10</li>
+<li>元素选择器,伪元素+1</li>
+<li>通配符+0</li>
+<li>!important提升样式优先级(最高)，最好不用<br>css样式单线程，依次从上向下加载，优先级和加载顺序有关<br>!important&gt;行内&gt;内联and外联<br>权重相等时，靠近目标的优先<br>总结：</li>
+<li>!important &gt; id &gt; class &gt; tag</li>
+<li>!important可以提升，不建议使用，会影响子属性</li>
+<li>同样的!important，按权重决定</li>
+<li>同一个CSS样式写两次，前面会被覆盖</li>
+<li>样式指向同一元素，权重规则生效，权重大的被应用</li>
+<li>样式指向同一元素，权重规则生效，权重相同，就近原则，后面的样式应用</li>
+<li>样式不指向同一元素，权重失效，就近原则，离目标近的样式应用</li>
+</ul>
+<hr>
+<h3 id="6-双飞翼-圣杯布局"><a href="#6-双飞翼-圣杯布局" class="headerlink" title="6. 双飞翼/圣杯布局"></a>6. 双飞翼/圣杯布局</h3><h2 id="6-1-圣杯"><a href="#6-1-圣杯" class="headerlink" title="6.1 圣杯"></a>6.1 圣杯</h2><p>1.给left、middle、right设置float:left，脱离文档流<br>2.给container设置overflow:hidden，形成BFC撑开文档<br>3.left，right设置上各自的宽度<br>4.middle设置width:100%<br>5.给left,middle,right设置positon:relative<br>6.left设置left:-leftWidth,right设置right:-rightWidth<br>7.container设置padding:0,rightWidth,0,leftWidth</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.left middle right &#123;position:relative;float:left;word-break:break-all&#125;</span><br><span class="line">.left&#123;margin-left:-100%;left:-200px;width:200px;&#125;</span><br><span class="line">.right&#123;margin-left:-220px;right:-220px;width:220px;&#125;</span><br><span class="line">.middle&#123;width:100%&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-双飞翼布局"><a href="#6-2-双飞翼布局" class="headerlink" title="6.2 双飞翼布局"></a>6.2 双飞翼布局</h2><p>1.middle增加inner<br>2.给left,middle,right设置float:left脱离文档流<br>3.container加上overflow:hidden,触发BFC<br>4.left,right设置宽度<br>5.middle设置width:100%<br>6.left设置margin-left:-100%,right设置right:-rightWidth;<br>7.container设置padding:0,rightWidth,0,leftWidth;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.left middle right &#123;float:left;word-break:break-all&#125;</span><br><span class="line">.left&#123;margin-left:-100%;width:200px&#125;</span><br><span class="line">.right&#123;margin-left:-220px;width:220px;&#125;</span><br><span class="line">.middle&#123;width:100%;height:100%&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width-gt-LeftWidth-RightWidth"><a href="#由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width-gt-LeftWidth-RightWidth" class="headerlink" title="由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width&gt;LeftWidth+RightWidth"></a>由于双飞翼布局会压缩中间部分的宽度，所以需要设置min-width&gt;LeftWidth+RightWidth</h2><h3 id="7-CSS3新特性"><a href="#7-CSS3新特性" class="headerlink" title="7. CSS3新特性"></a>7. CSS3新特性</h3><h2 id="7-1-过渡"><a href="#7-1-过渡" class="headerlink" title="7.1 过渡"></a>7.1 过渡</h2><p>transition: CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)<br>transition:width,.5s,ease,.2s</p>
+<h2 id="7-2-动画"><a href="#7-2-动画" class="headerlink" title="7.2 动画"></a>7.2 动画</h2><p>animation:动画名称，花费时间，运动曲线，动画延迟，播放次数，是否反向动画，是否暂停动画<br>animation:logo2-line 2s linear;</p>
+<h2 id="7-3-形状转换"><a href="#7-3-形状转换" class="headerlink" title="7.3 形状转换"></a>7.3 形状转换</h2><p>tranform:适用于2D或3D转换的元素<br>transform:rotate(30deg);</p>
+<h2 id="7-4-选择器"><a href="#7-4-选择器" class="headerlink" title="7.4 选择器"></a>7.4 选择器</h2><p><a href="https://www.w3school.com.cn/cssref/css_selectors.asp" target="_blank" rel="noopener">CSS选择器参考手册</a></p>
+<h2 id="7-5-阴影"><a href="#7-5-阴影" class="headerlink" title="7.5 阴影"></a>7.5 阴影</h2><p>box-shadow:水平阴影位置 垂直阴影位置 模糊距离 阴影大小 阴影颜色等<br>box-shadow:10px 10px 5px #888888</p>
+<h2 id="7-6-边框"><a href="#7-6-边框" class="headerlink" title="7.6 边框"></a>7.6 边框</h2><p>border-image:..//边框图<br>border-radius:..//边框圆角</p>
+<h2 id="7-7-背景"><a href="#7-7-背景" class="headerlink" title="7.7 背景"></a>7.7 背景</h2><p>background-clip:padding-box;//content-box</p>
+<h2 id="7-8-反射"><a href="#7-8-反射" class="headerlink" title="7.8 反射"></a>7.8 反射</h2><p>-webkit-box-reflect:方向[above-上|below-下|right-右|left-左]</p>
+<h2 id="7-9-文字"><a href="#7-9-文字" class="headerlink" title="7.9 文字"></a>7.9 文字</h2><p>单行文本溢出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">text-overflow:显示省略号 clip(溢出裁剪) ellipsis(溢出显示省略)</span><br><span class="line">white-space:不能换行</span><br><span class="line">overflow:隐藏超出内容</span><br></pre></td></tr></table></figure>
+<p>多行文本溢出：<br>伪元素+定位：基于高于截断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">position:relative;</span><br><span class="line">overflow:hidden;</span><br><span class="line">position:absolute;省略号定位</span><br><span class="line">line-height:20px&#x2F;&#x2F;结合元素高度</span><br><span class="line">height:40px&#x2F;&#x2F;元素高度</span><br><span class="line">::after&#123;&#125; &#x2F;&#x2F;设置省略号样式</span><br></pre></td></tr></table></figure>
+<p>兼容性较好<br>纯CSS实现：基于行数截断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-line-clamp:2&#x2F;&#x2F;限制行数</span><br><span class="line">display:-webkit-box&#x2F;&#x2F;作为弹性盒子模型显示</span><br><span class="line">-webkit-box-orient:vertical&#x2F;&#x2F;排列方式</span><br><span class="line">overflow:hidden&#x2F;&#x2F;溢出隐藏</span><br><span class="line">text-overflow:ellipsis&#x2F;&#x2F;省略号</span><br></pre></td></tr></table></figure>
+<p>如果为英文或数字，需添加word-wrap:break-word</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/26/JavaScript%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DarylWxc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Aren.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DarylWXC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/26/JavaScript%E5%9F%BA%E7%A1%80/" itemprop="url">JavaScript基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-26T15:17:21+08:00">
+                2021-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.5k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  10 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-原型链"><a href="#1-原型链" class="headerlink" title="1. 原型链"></a>1. 原型链</h2><p>每个函数都有prototype，指向了一个对象，该对象为实例的原型。<br>每个JS对象（除了null）都具有_proto_属性，指向该对象的原型。<br>每个原型都具有constructor属性，指向关联的构造函数。<br>Object.prototype._proto_为null代表该对象没有原型。</p>
+<h2 id="2-继承"><a href="#2-继承" class="headerlink" title="2. 继承"></a>2. 继承</h2><ul>
+<li>原型链继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.name &#x3D; &#39;kevin&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent();</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child1.getName()) &#x2F;&#x2F; kevin</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(); &#x2F;&#x2F; 引用类型的属性被所有实例共享</span><br><span class="line"></span><br><span class="line">child1.names.push(&#39;yayu&#39;); </span><br><span class="line"></span><br><span class="line">console.log(child1.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(); &#x2F;&#x2F; 创建child实例时无法向Parent传参</span><br><span class="line"></span><br><span class="line">console.log(child2.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br></pre></td></tr></table></figure></li>
+<li>借用构造函数（经典继承）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.names &#x3D; [&#39;kevin&#39;, &#39;daisy&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line">    Parent.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">child1.names.push(&#39;yayu&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child2.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;]</span><br><span class="line"></span><br><span class="line">function Parent (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child (name) &#123;</span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.name); &#x2F;&#x2F; kevin</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(&#39;daisy&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child2.name); &#x2F;&#x2F; daisy</span><br></pre></td></tr></table></figure>
+优点：<br>1.避免了引用类型的属性被所有实例共享<br>2.可以在Child中向Parent传参<br>缺点：<br>方法都在构造函数中定义，每次创建实例都会创建一遍方法。</li>
+<li>组合继承<br>原型链继承和经典继承合并。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function Parent (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.colors &#x3D; [&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child (name, age) &#123;</span><br><span class="line"></span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">    </span><br><span class="line">    this.age &#x3D; age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent();</span><br><span class="line">Child.prototype.constructor &#x3D; Child;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;, &#39;18&#39;);</span><br><span class="line"></span><br><span class="line">child1.colors.push(&#39;black&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.name); &#x2F;&#x2F; kevin</span><br><span class="line">console.log(child1.age); &#x2F;&#x2F; 18</span><br><span class="line">console.log(child1.colors); &#x2F;&#x2F; [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;black&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(&#39;daisy&#39;, &#39;20&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child2.name); &#x2F;&#x2F; daisy</span><br><span class="line">console.log(child2.age); &#x2F;&#x2F; 20</span><br><span class="line">console.log(child2.colors); &#x2F;&#x2F; [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]</span><br></pre></td></tr></table></figure>
+融合原型链和构造函数的优点，最常用的继承模式。</li>
+<li>原型式继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function createObj(o) &#123;</span><br><span class="line">    function F()&#123;&#125;</span><br><span class="line">    F.prototype &#x3D; o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原型。<br>缺点：<br>包含引用类型的属性值始终会共享相应的值，与原型链继承一样。</li>
+<li>寄生式继承<br>创建一个仅用与封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function createObj (o) &#123;</span><br><span class="line">    var clone &#x3D; Object.create(o);</span><br><span class="line">    clone.sayName &#x3D; function () &#123;</span><br><span class="line">        console.log(&#39;hi&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    return clone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法。</li>
+<li>寄生组合式继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function Child (name, age) &#123;</span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">    this.age &#x3D; age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关键的三步</span><br><span class="line">var F &#x3D; function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">F.prototype &#x3D; Parent.prototype;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new F();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;, &#39;18&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1);</span><br><span class="line">&#x2F;&#x2F;封装</span><br><span class="line">function object(o) &#123;</span><br><span class="line">    function F() &#123;&#125;</span><br><span class="line">    F.prototype &#x3D; o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function prototype(child, parent) &#123;</span><br><span class="line">    var prototype &#x3D; object(parent.prototype);</span><br><span class="line">    prototype.constructor &#x3D; child;</span><br><span class="line">    child.prototype &#x3D; prototype;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 当我们使用的时候：</span><br><span class="line">prototype(Child, Parent);</span><br></pre></td></tr></table></figure>
+普遍认为是最理想的继承范式。<h2 id="3-作用域"><a href="#3-作用域" class="headerlink" title="3. 作用域"></a>3. 作用域</h2>对于每个执行上下文，都有三个重要属性：</li>
+<li>变量对象（Variable）</li>
+<li>作用域链（Scope）</li>
+<li>this<br>全局作用域：<br>window对象的上下文<br>块级作用域：<br>用let声明的代码块{}内<br>函数作用域：<br>函数上下文的作用域{}内<br>作用域链：<br>不断向上访问，直到全局作用域<h2 id="4-闭包"><a href="#4-闭包" class="headerlink" title="4. 闭包"></a>4. 闭包</h2>理解：引用另一个函数作用域中变量的函数。<br>闭包可以传入this对象作为参数，通过该对象访问this上下文的值。<br>由于闭包会保留他们包含函数的作用域，所以使用闭包要注意，内存的回收。<h2 id="5-变量提升"><a href="#5-变量提升" class="headerlink" title="5. 变量提升"></a>5. 变量提升</h2>var声明的变量和方法，都会提升到全局对象上。<br>全局对象就是由Object构造函数实例化的一个对象。<br>函数上下文的变量对象初始化只包括Arguments对象<br>在进入执行上下文时会给变量对象添加形参(arguments)、函数声明(func)、变量声明(var)等初始化的属性值<br>在代码执行阶段，会再次修改变量对象的属性值<br>进入执行上下文中，首先会处理函数声明，其次处理变量声明，如果变量名称跟已声明的元素相同，则声明不会干扰已经存在的这类属性。<h2 id="6-this的指向"><a href="#6-this的指向" class="headerlink" title="6. this的指向"></a>6. this的指向</h2>执行上下文都有this属性<br>标准函数中，this引用的是把函数当成方法调用的上下值。<br>箭头函数会保留定义它时的上下文<h2 id="7-立即执行函数"><a href="#7-立即执行函数" class="headerlink" title="7. 立即执行函数"></a>7. 立即执行函数</h2>调用需要在后面添加()，也需要在前面将函数用()包裹。<br>后面的()可以用来传值，立即执行会保存闭包的状态。<br>前面的()包裹函数则被解析成表达式，匿名函数后面的()被用于调用，将前面的函数当成声明。<br>IIFE（立即自执行）<br>模块模式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var counter &#x3D; (function()&#123;</span><br><span class="line">    var i &#x3D; 0;</span><br><span class="line">    return &#123;</span><br><span class="line">        get: function()&#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: function(val)&#123;</span><br><span class="line">            i &#x3D; val;</span><br><span class="line">        &#125;,</span><br><span class="line">        increment: function()&#123;</span><br><span class="line">            return ++i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;());</span><br><span class="line">    counter.get();&#x2F;&#x2F;0</span><br><span class="line">    counter.set(3);</span><br><span class="line">    counter.increment();&#x2F;&#x2F;4</span><br><span class="line">    counter.increment();&#x2F;&#x2F;5</span><br><span class="line"></span><br><span class="line">    conuter.i;&#x2F;&#x2F;undefined (&#96;i&#96; is not a property of the returned object)</span><br><span class="line">    i;&#x2F;&#x2F;ReferenceError: i is not defined (it only exists inside the closure)</span><br></pre></td></tr></table></figure>
+最小化了全局变量的污染，创造了使用变量。<h2 id="8-instanceof原理"><a href="#8-instanceof原理" class="headerlink" title="8. instanceof原理"></a>8. instanceof原理</h2>typeof也可用于判断object类型，但判断null会显示object。(typeof用于判断基本数据类型，包括symbol都是没问题的，避免null)<br>instanceof用于判断object类型，判断null时会报错，显示null不是object。<br>也可使用Object.prototype.toString来判断一个变量的类型（比较准确）。<br>原理：<br>根据原型链判断，遍历原型链查找相同的类型。<br>一边查找函数的原型，一边查找实例的原型。<br>总结：准确判断对象实例类型，可以使用Object.prototype.toString.call，<br>typeof只适合判断基本数据类型，instanceof判断null为Object。<h2 id="9-bind的实现"><a href="#9-bind的实现" class="headerlink" title="9. bind的实现"></a>9. bind的实现</h2>bind()方法会创建一个新的函数，当这个新函数被调用时，bind()的第一个参数将作为它运行时的this，之后的一序列参数将会在传递的实参前传入作为它的参数。<br>bind特点：</li>
+<li>返回一个函数</li>
+<li>可以传入参数<br>当bind返回的函数作为构造函数时，bind指定的this会失效，但参数生效。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind2 &#x3D; function (context) &#123;</span><br><span class="line"></span><br><span class="line">    if (typeof this !&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">      throw new Error(&quot;Function.prototype.bind - what is trying to be bound is not callable&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var self &#x3D; this;</span><br><span class="line">    var args &#x3D; Array.prototype.slice.call(arguments, 1);</span><br><span class="line"></span><br><span class="line">    var fNOP &#x3D; function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    var fBound &#x3D; function () &#123;</span><br><span class="line">        var bindArgs &#x3D; Array.prototype.slice.call(arguments);</span><br><span class="line">        return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fNOP.prototype &#x3D; this.prototype;</span><br><span class="line">    fBound.prototype &#x3D; new fNOP();</span><br><span class="line">    return fBound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="10-apply和call"><a href="#10-apply和call" class="headerlink" title="10. apply和call"></a>10. apply和call</h2>共同点：</li>
+<li>改变上下文tihs</li>
+<li>必须是函数调用<br>区别：</li>
+<li>call传入多个参数</li>
+<li>apply传入参数数组或类数组(具有length和for遍历)<br>call使用场景：<br>1.继承对象<br>2.借用方法<br>apply使用场景：<br>1.Math.max<br>2.两个数组合并<br>3.实现bind<h2 id="11-柯里化"><a href="#11-柯里化" class="headerlink" title="11. 柯里化"></a>11. 柯里化</h2>定义：将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。<br>用途：参数复用，降低通用性，提高适用性。<br>实现：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var curry &#x3D; function (fn) &#123;</span><br><span class="line">    var args &#x3D; [].slice.call(arguments, 1);</span><br><span class="line">    return function() &#123;</span><br><span class="line">        var newArgs &#x3D; args.concat([].slice.call(arguments));</span><br><span class="line">        return fn.apply(this, newArgs);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+本质上是用函数包裹原函数，给原函数传入之前的参数，当执行func()()时，执行包裹函数，返回原函数，调用sub_curry再包裹原函数，然后将新的参数混合旧的参数再传入原函数，知道函数参数的书目达到要求为止。<h2 id="12-v8垃圾回收机制"><a href="#12-v8垃圾回收机制" class="headerlink" title="12. v8垃圾回收机制"></a>12. v8垃圾回收机制</h2>1.为什么要垃圾回收？<br>避免内存泄漏，性能下降<br>2.V8引擎内存限制<br>64位系统，1.4G<br>32位系统，0.7G<br>由于JS单线程机制，垃圾回收会影响程序执行。为了减少对应用的性能影响，V8直接限制内存大小。<br>3.V8的垃圾回收策略<br>分代式垃圾回收机制，根据存活时间将内存的垃圾回收进行不同的分代，然后对不同的分代采用不同的垃圾回收算法。<br>V8有如下内存结构：</li>
+<li>新生代：一般分配内存，一般用于垃圾回收时保存保留对象</li>
+<li>老生代：新生代对象一段时候后转移的地方</li>
+<li>大对象区：存放体积较大的对象，垃圾回收不会移动该区</li>
+<li>代码区：代码对象，会被分配在这里，唯一拥有执行权限的内存区域</li>
+<li>map区：存放cell和map，区域存放相同大小<br>新生代回收算法：<br>Scavenge算法：Cheney算法，二分空间From和To，先From，回收时复制到To，然后将To变成From，From清空变为To。<br>对象晋升：<br>多次存活后转到老生代的对象，过程称为对象晋升。<br>条件：</li>
+<li>经过过一次Scavenge算法</li>
+<li>To空间的内存占比超过25%<br>老生代回收算法：<br>采用Mark-Sweep标记清除和Mark-Compact标记清理算法<br>引用计数，如果对象没有被指针引用，则被视为垃圾回收。<ol start="4">
+<li>避免内存泄漏</li>
+</ol>
+</li>
+<li>尽可能减少全局变量</li>
+<li>手动清除计时器</li>
+<li>少用闭包</li>
+<li>清除DOM引用</li>
+<li>弱引用<ol start="5">
+<li>总结<br>新生代，老生代，算法，垃圾回收机制，避免内存泄漏。<h2 id="13-浮点数精度"><a href="#13-浮点数精度" class="headerlink" title="13. 浮点数精度"></a>13. 浮点数精度</h2><h2 id="14-new操作符"><a href="#14-new操作符" class="headerlink" title="14. new操作符"></a>14. new操作符</h2><h2 id="15-事件循环机制"><a href="#15-事件循环机制" class="headerlink" title="15. 事件循环机制"></a>15. 事件循环机制</h2><h2 id="16-promise原理"><a href="#16-promise原理" class="headerlink" title="16. promise原理"></a>16. promise原理</h2><h2 id="17-generator原理"><a href="#17-generator原理" class="headerlink" title="17. generator原理"></a>17. generator原理</h2></li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/26/vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1297,7 +1949,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  13.1k words
+                  16.3k words
                 </span>
               
 
@@ -1313,7 +1965,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  51 min
+                  64 min
                 </span>
               
             </div>
@@ -1490,7 +2142,77 @@
 <h3 id="8-3-5-寄生式继承"><a href="#8-3-5-寄生式继承" class="headerlink" title="8.3.5 寄生式继承"></a>8.3.5 寄生式继承</h3><p>创建一个对象，给对象添加属性和值，返回这个对象。</p>
 <h3 id="8-3-6-寄生式组合继承"><a href="#8-3-6-寄生式组合继承" class="headerlink" title="8.3.6 寄生式组合继承"></a>8.3.6 寄生式组合继承</h3><p>会调用两次构造函数。</p>
 <h2 id="8-4-类"><a href="#8-4-类" class="headerlink" title="8.4 类"></a>8.4 类</h2><h3 id="8-4-1-类定义"><a href="#8-4-1-类定义" class="headerlink" title="8.4.1 类定义"></a>8.4.1 类定义</h3><p>class Person{} // 类声明<br>class Animal = class {} // 类表达式<br>类定义无法声明提升，类受块作用域限制。<br>class Foo{<br>constructor(){} //构造函数<br>get myBaz(){} //有获取函数<br>static myQue(){} // 有静态方法<br>}<br>外部无法访问类名(标识符)</p>
-<h3 id="8-4-2-类构造函数"><a href="#8-4-2-类构造函数" class="headerlink" title="8.4.2 类构造函数"></a>8.4.2 类构造函数</h3><p>P250</p>
+<h3 id="8-4-2-类构造函数"><a href="#8-4-2-类构造函数" class="headerlink" title="8.4.2 类构造函数"></a>8.4.2 类构造函数</h3><p>new实例化步骤：<br>1.在内存中创建一个新对象<br>2.这个对象内部的[[Prototype]]指针被赋值为构造函数的prototype属性<br>3.构造函数内部的this被赋值为这个新对象<br>4.执行构造函数内部的代码<br>5.如果构造函数返回非空对象，则返回该对象；否则，返回刚创建的新对象<br>调用类构造函数一定需要带new，可以类当成特殊函数。<br>类有prototype属性，typeof判断为function，原型也有一个constructor指向自身，也可以用instanceof检查是否存在于实例的原型链中。<br>但是类构造函数无法当做普通构造函数来使用。</p>
+<h3 id="8-4-3-实例-原型和类成员"><a href="#8-4-3-实例-原型和类成员" class="headerlink" title="8.4.3 实例-原型和类成员"></a>8.4.3 实例-原型和类成员</h3><p>每个实例都对应唯一的成员对象，所有成员都不会在原型上共享。<br>类块中定义的方法作为原型方法，可以再实例间共享方法。<br>类也支持访问器，可以访问和获取类的属性。<br>静态类方法非常适合作为实例工厂。<br>类里支持定义迭代器和生成器方法。</p>
+<h3 id="8-4-4-继承"><a href="#8-4-4-继承" class="headerlink" title="8.4.4 继承"></a>8.4.4 继承</h3><p>ES6中类支持单继承，使用extends继承构造函数(在原型链中)和原型。<br>子类可以通过super访问原型，super只能在子类中使用。仅限于构造函数，实例方法和静态方法内部。<br>类构造函数和静态方法添加了内部特性[[HomeObject]]，为一个指针，指向定义该方法的原型。<br>在类构造函数中，不能在调用super之前引用this。<br>在子类中定义了构造函数，则必须调用super或返回一个对象。<br>有一种类为抽象基类，可以被继承，但自身无法实例化。<br>P262</p>
+<h1 id="9-代理与反射"><a href="#9-代理与反射" class="headerlink" title="9. 代理与反射"></a>9. 代理与反射</h1><h2 id="9-1-代理基础"><a href="#9-1-代理基础" class="headerlink" title="9.1 代理基础"></a>9.1 代理基础</h2><h3 id="9-1-1-创建空代理"><a href="#9-1-1-创建空代理" class="headerlink" title="9.1.1 创建空代理"></a>9.1.1 创建空代理</h3><p>使用Proxy构造函数创建代理。该函数接收两个参数：目标对象和处理程序对象。<br>代理对象与目标对象访问相同属性，赋值，但无原型。<br>可用===来区别代理和目标。</p>
+<h3 id="9-1-2-定义捕获器"><a href="#9-1-2-定义捕获器" class="headerlink" title="9.1.2 定义捕获器"></a>9.1.2 定义捕获器</h3><p>使用代理的主要目的是可以定义捕获器。捕获器类似异步交互，在通过代理对象执行操作时，会触发捕获器(函数)的程序，捕获器会拦截方法。</p>
+<h3 id="9-1-3-捕获器参数和反射API"><a href="#9-1-3-捕获器参数和反射API" class="headerlink" title="9.1.3 捕获器参数和反射API"></a>9.1.3 捕获器参数和反射API</h3><p>每个捕获器都有三个参数分别为目标对象，查询属性，代理对象。<br>可以捕获的方法都有对应的反射API(Reflect)，可以通过Reflect反射到目标对象上，通过该API访问目标对象的属性或函数。</p>
+<h3 id="9-1-4-捕获器不变式"><a href="#9-1-4-捕获器不变式" class="headerlink" title="9.1.4 捕获器不变式"></a>9.1.4 捕获器不变式</h3><h3 id="9-1-5-可撤销代理"><a href="#9-1-5-可撤销代理" class="headerlink" title="9.1.5 可撤销代理"></a>9.1.5 可撤销代理</h3><h3 id="9-1-6-使用反射API"><a href="#9-1-6-使用反射API" class="headerlink" title="9.1.6 使用反射API"></a>9.1.6 使用反射API</h3><h3 id="9-1-7-代理另一个代理"><a href="#9-1-7-代理另一个代理" class="headerlink" title="9.1.7 代理另一个代理"></a>9.1.7 代理另一个代理</h3><h3 id="9-1-8-代理的问题与不足"><a href="#9-1-8-代理的问题与不足" class="headerlink" title="9.1.8 代理的问题与不足"></a>9.1.8 代理的问题与不足</h3><h2 id="9-2-代理捕获器与反射方法"><a href="#9-2-代理捕获器与反射方法" class="headerlink" title="9.2 代理捕获器与反射方法"></a>9.2 代理捕获器与反射方法</h2><h2 id="9-3-代理模式"><a href="#9-3-代理模式" class="headerlink" title="9.3 代理模式"></a>9.3 代理模式</h2><h2 id="9-4-小结"><a href="#9-4-小结" class="headerlink" title="9.4 小结"></a>9.4 小结</h2><h1 id="10-函数"><a href="#10-函数" class="headerlink" title="10. 函数"></a>10. 函数</h1><p>把函数名想象成指针，指向函数对象的指针。</p>
+<h2 id="10-1-箭头函数"><a href="#10-1-箭头函数" class="headerlink" title="10.1 箭头函数"></a>10.1 箭头函数</h2><p>没有参数或多个参数需要括号，一个参数可以不用括号。<br>无大括号，函数只能有一行代码，并且会隐式返回这行代码的值。<br>箭头函数不能使用argument、super、new.target，也不能作构造函数，且没有原型。</p>
+<h2 id="10-2-函数名"><a href="#10-2-函数名" class="headerlink" title="10.2 函数名"></a>10.2 函数名</h2><p>由于函数名是指针，所以一个函数可能有多个名称。<br>函数没有名称的话，他的名称为空字符串。<br>如果是获取函数，设置函数，或使用bind()实例化，那么名称前会加前缀。</p>
+<h2 id="10-3-理解参数"><a href="#10-3-理解参数" class="headerlink" title="10.3 理解参数"></a>10.3 理解参数</h2><p>参数内部表现为一个数组，可以再函数内部访问arguments对象，获取参数值。<br>arguments是一个类数组对象，但不是Array的实例。<br>arguments可以跟命名参数一起用，如果改了有传值的参数对应的arguments，也会更改对应的命名参数。<br>箭头函数可以包装在普通函数中，提供arguments。</p>
+<h2 id="10-4-没有重载"><a href="#10-4-没有重载" class="headerlink" title="10.4 没有重载"></a>10.4 没有重载</h2><p>同名函数，后面会覆盖前面的。</p>
+<h2 id="10-5-默认参数值"><a href="#10-5-默认参数值" class="headerlink" title="10.5 默认参数值"></a>10.5 默认参数值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func name(name &#x3D; &#39;Henry&#39;,numerals&#x3D; name)&#123;return &#96;$&#123;name&#125;&#96;&#125;;</span><br></pre></td></tr></table></figure>
+<p>//如上写不传第一个参数会报错</p>
+<h2 id="10-6-参数扩展与收集"><a href="#10-6-参数扩展与收集" class="headerlink" title="10.6 参数扩展与收集"></a>10.6 参数扩展与收集</h2><p>扩展运算符可以用于参数内，且扩展的参数数组不能放第一位。<br>使用扩展运算符不影响arguments对象。</p>
+<h2 id="10-7-函数声明与函数表达式"><a href="#10-7-函数声明与函数表达式" class="headerlink" title="10.7 函数声明与函数表达式"></a>10.7 函数声明与函数表达式</h2><p>函数声明会有函数提升，函数表达式不会提升。</p>
+<h2 id="10-8-把函数作为值"><a href="#10-8-把函数作为值" class="headerlink" title="10.8 把函数作为值"></a>10.8 把函数作为值</h2><p>可以用做参数传入回调。<br>callSomeFunction(func,arguments)//默认调用func，arguments为调用的参数</p>
+<h2 id="10-9-函数内部"><a href="#10-9-函数内部" class="headerlink" title="10.9 函数内部"></a>10.9 函数内部</h2><p>arguments有一个callee属性，指向arguments对象所在函数的指针。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function factorial(num)&#123;</span><br><span class="line">if(num &lt;&#x3D; 1)&#123;</span><br><span class="line">    return 1</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">    return num*arguments.callee(num-1) &#x2F;&#x2F;函数阶乘</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在标准函数中，this为调用该函数的上下文对象。<br>在箭头函数中，this为定义箭头函数的上下文。<br>caller为调用当前函数的函数。<br>new.target在当函数被当做构造函数调用时，它指向被调用的构造函数。</p>
+<h2 id="10-10-函数属性与方法"><a href="#10-10-函数属性与方法" class="headerlink" title="10.10 函数属性与方法"></a>10.10 函数属性与方法</h2><p>length为函数命名参数的个数，prototype为原型。<br>toString，valueOf，apply，call都在prototype里。</p>
+<h2 id="10-11-函数表达式"><a href="#10-11-函数表达式" class="headerlink" title="10.11 函数表达式"></a>10.11 函数表达式</h2><p>函数声明可以提升，表达式可以用于判断声明。</p>
+<h2 id="10-12-递归"><a href="#10-12-递归" class="headerlink" title="10.12 递归"></a>10.12 递归</h2><p>一个函数通过名称调用自己</p>
+<h2 id="10-13-尾调用优化"><a href="#10-13-尾调用优化" class="headerlink" title="10.13 尾调用优化"></a>10.13 尾调用优化</h2><p>func1(){return func2};嵌套函数下的栈优化。<br>在递归下优化较为明显。</p>
+<h2 id="10-14-闭包"><a href="#10-14-闭包" class="headerlink" title="10.14 闭包"></a>10.14 闭包</h2><p>引用了另一个函数作用域中变量的函数为闭包。通常在嵌套函数中。<br>闭包引用的活动对象会保存在内存中，知道函数销毁后才会被销毁。<br>引用闭包要注意内存泄漏。<br>内部函数无法直接访问this和arguments，可以将this赋值给that，保存到闭包中，用that访问。<br>每次函数的调用都会自动创建两个特殊变量，this和arguments。</p>
+<h2 id="10-15-立即调用的函数表达式"><a href="#10-15-立即调用的函数表达式" class="headerlink" title="10.15 立即调用的函数表达式"></a>10.15 立即调用的函数表达式</h2><p>IIFE，立即调用的函数表达式，表达式内部相当于一个块级作用域。<br>可以用来锁定参数值。</p>
+<h2 id="10-16-私有变量"><a href="#10-16-私有变量" class="headerlink" title="10.16 私有变量"></a>10.16 私有变量</h2><p>定义在函数或块中的变量，都可以认为是私有的。<br>通过闭包可以访问函数中的私有变量。称为特权方法(共有方法)。<br>特权方法可以再构造函数中实现(该方法为闭包)。或者在方法中定义函数，访问私有变量，形成闭包。使用构造函数模式的缺点是每个实例都会重新创建一遍新方法。<br>模块模式：单例对象需初始化，并且需要访问私有变量。<br>或者将能访问内部私有对象和方法赋值给一个对象，然后返回这个对象。</p>
+<h2 id="10-17-小结"><a href="#10-17-小结" class="headerlink" title="10.17 小结"></a>10.17 小结</h2><ul>
+<li>立即调用的函数表达式如果不在包含作用域中将返回值赋给一个变量，其包含的所有变量都会被销毁。</li>
+<li>可以通过闭包访问位于包含作用域中定义的变量</li>
+<li>闭包作用域链中包含自己的一个变量对象，然后是包含函数的变量对象，直到全局上下文的变量对象<h1 id="11-期约与异步函数"><a href="#11-期约与异步函数" class="headerlink" title="11. 期约与异步函数"></a>11. 期约与异步函数</h1><h2 id="11-1-异步编程"><a href="#11-1-异步编程" class="headerlink" title="11.1 异步编程"></a>11.1 异步编程</h2><h3 id="11-1-1-同步与异步"><a href="#11-1-1-同步与异步" class="headerlink" title="11.1.1 同步与异步"></a>11.1.1 同步与异步</h3>同步对应内存中顺序执行的处理器指令。<br>异步类似系统中断，当前进程外部的实体可以触发代码执行。在进程等待长时间操作的时候进行其他程序的执行。<h3 id="11-1-2-以往的异步编程"><a href="#11-1-2-以往的异步编程" class="headerlink" title="11.1.2 以往的异步编程"></a>11.1.2 以往的异步编程</h3>回调嵌套<br>给异步操作提供回调函数(包括失败回调和成功回调)<br>嵌套异步回调，反值依赖另一个异步返回值，情况复杂。<h2 id="11-2-期约"><a href="#11-2-期约" class="headerlink" title="11.2 期约"></a>11.2 期约</h2><h2 id="11-2-1-Promises-A-规范"><a href="#11-2-1-Promises-A-规范" class="headerlink" title="11.2.1 Promises/A+规范"></a>11.2.1 Promises/A+规范</h2>ES6版本的Promise规范</li>
+</ul>
+<p>P322</p>
+<h1 id="24-网络请求与远程资源"><a href="#24-网络请求与远程资源" class="headerlink" title="24. 网络请求与远程资源"></a>24. 网络请求与远程资源</h1><h2 id="24-1-XMLHttpRequest对象"><a href="#24-1-XMLHttpRequest对象" class="headerlink" title="24.1 XMLHttpRequest对象"></a>24.1 XMLHttpRequest对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let xhr &#x3D; new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<h3 id="24-1-1-使用XHR"><a href="#24-1-1-使用XHR" class="headerlink" title="24.1.1 使用XHR"></a>24.1.1 使用XHR</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#39;get&#39;);&#x2F;&#x2F;还有post等，做好请求的准备，跨域会报错</span><br><span class="line">xhr.send(null);&#x2F;&#x2F;接受一个参数，为发送的数据，如果不需则传null，不然报错</span><br></pre></td></tr></table></figure>
+<ul>
+<li>responseText:响应体返回的文本</li>
+<li>responseXML:响应数据的XML DOM文档</li>
+<li>status:响应的HTTP状态</li>
+<li>statusText:状态描述</li>
+<li>readyState:当前请求/响应过程的进行阶段</li>
+</ul>
+<ol>
+<li>0:未初始化(Uninitialized),未调用open()</li>
+<li>1:已打开(Open),已调用open(),未调用send()</li>
+<li>2:已发送(Sent),已调用send(),尚未响应</li>
+<li>3:接收中(Reveiving),已经部分响应</li>
+<li>4:完成(Complete),所有响应，可以使用<br>取消请求可以用abort()方法<br>由于内存问题不推荐用XHR<h3 id="24-1-2-HTTP头部"><a href="#24-1-2-HTTP头部" class="headerlink" title="24.1.2 HTTP头部"></a>24.1.2 HTTP头部</h3></li>
+</ol>
+<ul>
+<li>Accept：浏览器可以处理的内容类型</li>
+<li>Accept-Charset：浏览器可以显示的字符集</li>
+<li>Accept-Encoding：浏览器可以处理的压缩编码类型</li>
+<li>Accept-Language：浏览器使用的语言</li>
+<li>Connection：浏览器与服务器的连接类型</li>
+<li>Cookie：页面中设置的Cookie</li>
+<li>Host：发送请求的页面所在的域</li>
+<li>Referer：发送请求的页面的URI</li>
+<li>User-Agent：浏览器的用户代理字符串<br>也可以使用setRequestHeader()方法，传头部字段名称和值，在open之后，send之前调用，可以添加头部内容<br>可以使用getResponseHeader()或getAllResponseHeaders()获取头部<h3 id="24-1-3-GET请求"><a href="#24-1-3-GET请求" class="headerlink" title="24.1.3 GET请求"></a>24.1.3 GET请求</h3>需要在Get请求的URL后面添加查询字符串参数。查询字符串必须正确编码后添加到URL后面，再传给open()方法。<br>所有名/值对必须以和号(&amp;)分隔。//？name=value1&amp;name2=value2<h3 id="24-1-4-POST请求"><a href="#24-1-4-POST请求" class="headerlink" title="24.1.4 POST请求"></a>24.1.4 POST请求</h3>post请求可以包含非常多的数据，应该在请求体中携带提交的数据。<h3 id="24-1-5-XMLHttpRequest-Level-2"><a href="#24-1-5-XMLHttpRequest-Level-2" class="headerlink" title="24.1.5 XMLHttpRequest Level 2"></a>24.1.5 XMLHttpRequest Level 2</h3>新增了FormData类型，便于表单序列化。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let data &#x3D; new FormData();</span><br><span class="line">data.append(&quot;name&quot;,&quot;Nicholas&quot;);</span><br><span class="line">let form &#x3D; doucment.getElementbById(&quot;user-info&quot;);</span><br><span class="line">new FormData(form);</span><br></pre></td></tr></table></figure>
+timeout属性用于表示等待时间，可以设置，响应不成就中断请求。<br>可以调用ontimeout函数处理程序。<br>overrideMimeType()用于重写XHR响应的MIME类型。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.overrideMimeType(&quot;text&#x2F;xml&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="24-2-进度事件"><a href="#24-2-进度事件" class="headerlink" title="24.2 进度事件"></a>24.2 进度事件</h2></li>
+<li>loadstart：接收到响应的第一个字节时触发</li>
+<li>progress：接收响应期间反复触发<br>Mozilla在XHR对象上另一个创新是progress事件，接收三个参数：lengthComputable，position，totalSize。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.onprogress &#x3D; function(event)&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li>error：请求出错时触发</li>
+<li>abort：调用abort()终止连接时触发</li>
+<li>load：在成功接收完响应时触发<br>Firefox，Opera，Chrome，Safari都支持load事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload &#x3D; function()&#123;   &#x2F;&#x2F;需要判断XHR状态</span><br><span class="line">   if((xhr.status &gt;&#x3D; 200 &amp;&amp; xhr.status &lt; 300) || (xhr.status &#x3D;&#x3D; 304))&#123;</span><br><span class="line">      ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>loadend：通信完成后，在error,abort,load后触发<h2 id="24-3-跨源资源共享"><a href="#24-3-跨源资源共享" class="headerlink" title="24.3 跨源资源共享"></a>24.3 跨源资源共享</h2>其实就是跨域，CORS：使用自定义的HTTP头部允许浏览器和服务器互相了解，以确实请求或响应成功还是失败。<br>一般会有额外的头部叫origin，包含发送请求页面的源(协议，域名和端口)，以便服务器确定是否为其提供响应。<br>头部Access-Control-Allow-Origin包含相同的源或公开资源(*)。表明会响应请求的源。<br>浏览器可以通过XHR的open传入一个绝对URL来触发CORS，运行访问status和statusText属性，但不能使用setRequestHeader自定义头部，不能发送和接收cookie，getAllResponseHeaders方法返回空字符串。<h3 id="24-3-1-预检请求"><a href="#24-3-1-预检请求" class="headerlink" title="24.3.1 预检请求"></a>24.3.1 预检请求</h3>CORS通过预检请求验证，是否自定义头部，发送除getpost之外的方法。该请求使用OPTIONS方法发送并包含以下头部：</li>
+<li>Origin：与简单请求相同</li>
+<li>Access-Control-Request-Method：请求希望使用的方法</li>
+<li>Access-Control-Request-Headers：自定义头部列表</li>
+<li>Access-Control-Max-Age：缓存预检请求的秒数<h3 id="24-3-2-凭据请求"><a href="#24-3-2-凭据请求" class="headerlink" title="24.3.2 凭据请求"></a>24.3.2 凭据请求</h3>默认下跨源请求不提供凭据(cookie、HTTP认证和客户端SSL证书)。可以通过将withCredentials属性设置为true来表明请求会发送凭据。允许则头部包含：Access-Control-Allow-Credentials：true<h2 id="24-4-替代性跨源技术"><a href="#24-4-替代性跨源技术" class="headerlink" title="24.4 替代性跨源技术"></a>24.4 替代性跨源技术</h2><h3 id="24-4-1-图片探测"><a href="#24-4-1-图片探测" class="headerlink" title="24.4.1 图片探测"></a>24.4.1 图片探测</h3>用img标签跨域加载图片不受限制的方式，设置src后通过进度事件获取响应数据并执行程序。只能发送Get，无法获取服务器响应的内容。<br>信标(Beacon)也是该方式发送，利用标签发送数据，无需响应。<h3 id="24-4-2-JSONP"><a href="#24-4-2-JSONP" class="headerlink" title="24.4.2 JSONP"></a>24.4.2 JSONP</h3>与img相似，动态创建script元素并未src属性指定跨域URL实现的，响应后指定回调函数执行程序。<br>安全性低，不好确定请求状态。<h2 id="24-5-Fetch-API"><a href="#24-5-Fetch-API" class="headerlink" title="24.5 Fetch API"></a>24.5 Fetch API</h2>Fetch是请求的优秀工具，可以应用在服务线程中，提供拦截，重定向和修改通过fetch()生成的请求接口。<h3 id="24-5-1-基本用法"><a href="#24-5-1-基本用法" class="headerlink" title="24.5.1 基本用法"></a>24.5.1 基本用法</h3>fetch只有一个必须的参数，’URL’。返回一个Promise。<br>P723</li>
+</ul>
 
           
         
@@ -1699,563 +2421,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-11T15:44:22+08:00">
-                2020-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">Web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  732 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><hr>
-<p>1.适配器模式<br>特点：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作。其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。<br>后台返回的数据格式不同，可以通过适配器修改。例：<br>后台返回json格式的数据，通过方法检索出自己需要的数据进行显示，这个方法即为适配器。<br>通常用来避免项目迭代后数据格式或者方法名发生改变出现的错误。<br>最优解：项目开发过程中前后端协商讨论数据格式、文件名等代码规范。</p>
-<hr>
-<p>2.代理模式<br>为一个对象提供一个代用品或占位符，以便控制对他的访问。<br>在一个对象中调用其他对象的方法（函数可以实例化成对象）<br>保护代理：数据拦截（可以在函数中条件判断拦截数据从而执行不同下文）<br>虚拟代理：数据通过这些代理传递没有被拦截（可实现图片懒加载）</p>
-<hr>
-<p>3.桥接模式<br>把事物对象和其具体行为、具体特征分离开来，使它们可以各自独立的变化。<br>需要一种方式让对象和行为分离，便于随意拼接。<br>优点：分离抽象接口及其实现部分，提高可拓展性。<br>缺点：增加系统的理解和设计难度</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">boy,girl,piano,guitar</span><br><span class="line">boy-piano,boy-guitar,girl-piano,girl-guitar</span><br><span class="line"><span class="keyword">function</span> Boy(instrument) &#123;</span><br><span class="line">      this.sayHi = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          console.log(<span class="string">'hi, 我是男生'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      this.playInstrument = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          instrument.play()</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> Girl(instrument) &#123;</span><br><span class="line">      this.sayHi = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          console.log(<span class="string">'hi, 我是女生'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      this.playInstrument = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          instrument.play()</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">Piano</span></span>() &#123;</span><br><span class="line">      this.play = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          console.log(<span class="string">'钢琴开始演奏'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">Guitar</span></span>() &#123;</span><br><span class="line">      this.play = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">          console.log(<span class="string">'吉他开始演奏'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">let</span> piano = new Piano()</span><br><span class="line">  <span class="built_in">let</span> guitar = new Guitar()</span><br><span class="line">  <span class="built_in">let</span> pianoBoy = new Boy(piano)</span><br><span class="line">  pianoBoy.playInstrument()</span><br><span class="line">  <span class="built_in">let</span> guitarGirl = new Girl(guitar)</span><br><span class="line">  guitarGirl.playInstrument()</span><br></pre></td></tr></table></figure>
-<hr>
-<p>4.装饰模式<br>动态地给一个对象添加一些额外的职责。（类似魂斗罗的子弹种类变化，原来子弹还在）<br>优点：装饰类和被装饰类可以独立发展，不会相互耦合，继承的一个替代模式。<br>缺点：多层装饰，比较复杂。<br>类似闭包，在函数对象中添加调用其他函数，给对象增加功能</p>
-<hr>
-<p>5.组合模式<br>由小对象构建大对象，常和装饰者模式一起使用<br>优点：通过对象的多态表现，使对单个对象和组合对象的使用具有一致性<br>缺点：系统负担，性能<br>小函数添加进一个对象（可以是实例化的函数），通过该函数去调用各种小函数，囊括这些功能。</p>
-<hr>
-<h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><hr>
-<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/11/%E5%B7%A5%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/11/%E5%B7%A5%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" itemprop="url">工作注意事项</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-11T10:53:39+08:00">
-                2020-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">工作注意事项</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  279 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="项目流程："><a href="#项目流程：" class="headerlink" title="项目流程："></a>项目流程：</h2><p>项目路线图-&gt;<br>项目评估确认阶段<br>项目立项<br>需求开发<br>设计阶段<br>研发及生产<br>测试及缺陷修复<br>生产环境实施部署<br>系统验收<br>项目结项</p>
-<pre><code class="以上为项目完整流程。">---
-前端工作流程：
-立项--项目研讨--需求确认--产品出原型--后台开发，UI设计--前端开发--测试提bug--改bug--重复N次--产品验收
-
-注意工作内容，个人职责，只负责职责相关部分。
-需要讨论好工作分配。在职责范围内，与UI（页面），产品（功能），项目（需求）进行沟通完成后进行开发。
-需要注意以下几点：
-1.深刻理解需求，清楚需求的动机和缘由。
-2.换位思考
-3.不放过细节
-4.换一种方式说“不能实现”
-5.当遇到不合理的需求时，寻找替换方案
-6.必须遵循文档精神
-7.对自己的程序有一颗艺术的心
-
-归根结底：解决问题！！！！
-责任划分要清晰：口头确认---发email到责任人确认---通知上级
-
-</code></pre>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DarylWxc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/Aren.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DarylWXC的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/25/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%83%A8%E7%BD%B2/" itemprop="url">Nginx服务器的部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-25T16:05:41+08:00">
-                2020-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">环境配置</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  405 words
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Nginx服务器对Vue项目的部署"><a href="#Nginx服务器对Vue项目的部署" class="headerlink" title="Nginx服务器对Vue项目的部署"></a>Nginx服务器对Vue项目的部署</h3><h2 id="1-在本地下载Nginx"><a href="#1-在本地下载Nginx" class="headerlink" title="1.在本地下载Nginx"></a>1.在本地下载Nginx</h2><p>直接百度nginx，进入官网，选择Stable（稳定版），windows（版本）下载</p>
-<h2 id="2-解压下载的压缩包"><a href="#2-解压下载的压缩包" class="headerlink" title="2.解压下载的压缩包"></a>2.解压下载的压缩包</h2><p>解压压缩包在磁盘（合理规划磁盘）</p>
-<h2 id="3-配置nginx文件"><a href="#3-配置nginx文件" class="headerlink" title="3.配置nginx文件"></a>3.配置nginx文件</h2><p>在解压出的文件夹中有conf文件，进入，选择nginx.conf文件进行配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen       8100; //此为端口,如果端口有被占用请更改</span><br><span class="line">       server_name  localhost;//服务器名</span><br><span class="line"></span><br><span class="line">       location ^~ /wms &#123; // 配置，用到正则表达式</span><br><span class="line">           <span class="built_in">alias</span>   E:/nginx-1.18.0/html/dist//如使用<span class="built_in">alias</span>，则不会进行路径拼接，会进行替换，直接在该绝对路径中寻找index下的文件</span><br><span class="line">           root   E:/nginx-1.18.0/html/dist;//根目录，root代表路径，会跟上面的/wms进行拼接，为绝对路径</span><br><span class="line">           index  index.html index.htm;//从上面得到的绝对路径中寻找index.html文件，如查找不到则报403 forbidden错误，即为文件不存在</span><br><span class="line">       &#125;</span><br><span class="line">       location /dev-api/&#123; //webpack不会打包代理请求路径，需自己配置</span><br><span class="line">           proxy_pass http://192.168.1.58:8888/; // 在nginx上部署的项目请求服务器地址代理</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="history模式下的问题"><a href="#history模式下的问题" class="headerlink" title="history模式下的问题"></a>history模式下的问题</h2><p>在router使用history模式下，部署nginx的项目刷新会出现404，找不到页面的情况<br>这时候需要进行重定位</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">　　root  /；</span><br><span class="line">　　index index.html;</span><br><span class="line">　　try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html //根目录的情况下</span><br><span class="line">&#125;</span><br><span class="line">location /xx/xx/ &#123;</span><br><span class="line">　　root  /；</span><br><span class="line">　　index index.html;</span><br><span class="line">　　try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /xx/xx/index.html //特定目录情况下</span><br><span class="line">&#125;</span><br><span class="line">location /payfor/ &#123;</span><br><span class="line">       root /home/web;</span><br><span class="line">       index index.html;</span><br><span class="line">       try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /payfor/index.html; //例子</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="参考链接：匹配规则"><a href="#参考链接：匹配规则" class="headerlink" title="参考链接：匹配规则"></a><a href="https://www.cnblogs.com/jpfss/p/10418150.html" target="_blank" rel="noopener">参考链接：匹配规则</a></h2><p>重点：路径配置规则需了解</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2309,7 +2474,7 @@
               <div class="site-state-item site-state-posts">
                 <a href="/archives/%7C%7Carchive">
                 <a href="/archives">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2320,7 +2485,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2331,7 +2496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

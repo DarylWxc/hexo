@@ -1130,12 +1130,188 @@ P262
 # 10. 函数
 把函数名想象成指针，指向函数对象的指针。
 ## 10.1 箭头函数
+没有参数或多个参数需要括号，一个参数可以不用括号。
+无大括号，函数只能有一行代码，并且会隐式返回这行代码的值。
+箭头函数不能使用argument、super、new.target，也不能作构造函数，且没有原型。
+## 10.2 函数名
+由于函数名是指针，所以一个函数可能有多个名称。
+函数没有名称的话，他的名称为空字符串。
+如果是获取函数，设置函数，或使用bind()实例化，那么名称前会加前缀。
+## 10.3 理解参数
+参数内部表现为一个数组，可以再函数内部访问arguments对象，获取参数值。
+arguments是一个类数组对象，但不是Array的实例。
+arguments可以跟命名参数一起用，如果改了有传值的参数对应的arguments，也会更改对应的命名参数。
+箭头函数可以包装在普通函数中，提供arguments。
+## 10.4 没有重载
+同名函数，后面会覆盖前面的。
+## 10.5 默认参数值
+```
+func name(name = 'Henry',numerals= name){return `${name}`};
+```
+//如上写不传第一个参数会报错
+## 10.6 参数扩展与收集
+扩展运算符可以用于参数内，且扩展的参数数组不能放第一位。
+使用扩展运算符不影响arguments对象。
+## 10.7 函数声明与函数表达式
+函数声明会有函数提升，函数表达式不会提升。
+## 10.8 把函数作为值
+可以用做参数传入回调。
+callSomeFunction(func,arguments)//默认调用func，arguments为调用的参数
+## 10.9 函数内部
+arguments有一个callee属性，指向arguments对象所在函数的指针。
+```
+function factorial(num){
+if(num <= 1){
+    return 1
+ } else {
+    return num*arguments.callee(num-1) //函数阶乘
+ }
+}
+```
+在标准函数中，this为调用该函数的上下文对象。
+在箭头函数中，this为定义箭头函数的上下文。
+caller为调用当前函数的函数。
+new.target在当函数被当做构造函数调用时，它指向被调用的构造函数。
+## 10.10 函数属性与方法
+length为函数命名参数的个数，prototype为原型。
+toString，valueOf，apply，call都在prototype里。
+## 10.11 函数表达式
+函数声明可以提升，表达式可以用于判断声明。
+## 10.12 递归
+一个函数通过名称调用自己
+## 10.13 尾调用优化
+func1(){return func2};嵌套函数下的栈优化。
+在递归下优化较为明显。
+## 10.14 闭包
+引用了另一个函数作用域中变量的函数为闭包。通常在嵌套函数中。
+闭包引用的活动对象会保存在内存中，知道函数销毁后才会被销毁。
+引用闭包要注意内存泄漏。
+内部函数无法直接访问this和arguments，可以将this赋值给that，保存到闭包中，用that访问。
+每次函数的调用都会自动创建两个特殊变量，this和arguments。
+## 10.15 立即调用的函数表达式
+IIFE，立即调用的函数表达式，表达式内部相当于一个块级作用域。
+可以用来锁定参数值。
+## 10.16 私有变量
+定义在函数或块中的变量，都可以认为是私有的。
+通过闭包可以访问函数中的私有变量。称为特权方法(共有方法)。
+特权方法可以再构造函数中实现(该方法为闭包)。或者在方法中定义函数，访问私有变量，形成闭包。使用构造函数模式的缺点是每个实例都会重新创建一遍新方法。
+模块模式：单例对象需初始化，并且需要访问私有变量。
+或者将能访问内部私有对象和方法赋值给一个对象，然后返回这个对象。
+## 10.17 小结
+* 立即调用的函数表达式如果不在包含作用域中将返回值赋给一个变量，其包含的所有变量都会被销毁。
+* 可以通过闭包访问位于包含作用域中定义的变量
+* 闭包作用域链中包含自己的一个变量对象，然后是包含函数的变量对象，直到全局上下文的变量对象
+# 11. 期约与异步函数
+## 11.1 异步编程
+### 11.1.1 同步与异步
+同步对应内存中顺序执行的处理器指令。
+异步类似系统中断，当前进程外部的实体可以触发代码执行。在进程等待长时间操作的时候进行其他程序的执行。
+### 11.1.2 以往的异步编程
+回调嵌套
+给异步操作提供回调函数(包括失败回调和成功回调)
+嵌套异步回调，反值依赖另一个异步返回值，情况复杂。
+## 11.2 期约
+## 11.2.1 Promises/A+规范
+ES6版本的Promise规范
 
-
-
-
-
-
+P322
+# 24. 网络请求与远程资源
+## 24.1 XMLHttpRequest对象
+```
+let xhr = new XMLHttpRequest();
+```
+### 24.1.1 使用XHR
+```
+xhr.open('get');//还有post等，做好请求的准备，跨域会报错
+xhr.send(null);//接受一个参数，为发送的数据，如果不需则传null，不然报错
+```
+* responseText:响应体返回的文本
+* responseXML:响应数据的XML DOM文档
+* status:响应的HTTP状态
+* statusText:状态描述
+* readyState:当前请求/响应过程的进行阶段
+1. 0:未初始化(Uninitialized),未调用open()
+2. 1:已打开(Open),已调用open(),未调用send()
+3. 2:已发送(Sent),已调用send(),尚未响应
+4. 3:接收中(Reveiving),已经部分响应
+5. 4:完成(Complete),所有响应，可以使用
+取消请求可以用abort()方法
+由于内存问题不推荐用XHR
+### 24.1.2 HTTP头部
+* Accept：浏览器可以处理的内容类型
+* Accept-Charset：浏览器可以显示的字符集
+* Accept-Encoding：浏览器可以处理的压缩编码类型
+* Accept-Language：浏览器使用的语言
+* Connection：浏览器与服务器的连接类型
+* Cookie：页面中设置的Cookie
+* Host：发送请求的页面所在的域
+* Referer：发送请求的页面的URI
+*User-Agent：浏览器的用户代理字符串
+也可以使用setRequestHeader()方法，传头部字段名称和值，在open之后，send之前调用，可以添加头部内容
+可以使用getResponseHeader()或getAllResponseHeaders()获取头部
+### 24.1.3 GET请求
+需要在Get请求的URL后面添加查询字符串参数。查询字符串必须正确编码后添加到URL后面，再传给open()方法。
+所有名/值对必须以和号(&)分隔。//？name=value1&name2=value2
+### 24.1.4 POST请求
+post请求可以包含非常多的数据，应该在请求体中携带提交的数据。
+### 24.1.5 XMLHttpRequest Level 2
+新增了FormData类型，便于表单序列化。
+```
+let data = new FormData();
+data.append("name","Nicholas");
+let form = doucment.getElementbById("user-info");
+new FormData(form);
+```
+timeout属性用于表示等待时间，可以设置，响应不成就中断请求。
+可以调用ontimeout函数处理程序。
+overrideMimeType()用于重写XHR响应的MIME类型。
+```
+xhr.overrideMimeType("text/xml")
+```
+## 24.2 进度事件
+* loadstart：接收到响应的第一个字节时触发
+* progress：接收响应期间反复触发
+Mozilla在XHR对象上另一个创新是progress事件，接收三个参数：lengthComputable，position，totalSize。
+```
+xhr.onprogress = function(event){...}
+```
+* error：请求出错时触发
+* abort：调用abort()终止连接时触发
+* load：在成功接收完响应时触发
+Firefox，Opera，Chrome，Safari都支持load事件
+```
+xhr.onload = function(){   //需要判断XHR状态
+   if((xhr.status >= 200 && xhr.status < 300) || (xhr.status == 304)){
+      ...
+   }
+}
+```
+* loadend：通信完成后，在error,abort,load后触发
+## 24.3 跨源资源共享
+其实就是跨域，CORS：使用自定义的HTTP头部允许浏览器和服务器互相了解，以确实请求或响应成功还是失败。
+一般会有额外的头部叫origin，包含发送请求页面的源(协议，域名和端口)，以便服务器确定是否为其提供响应。
+头部Access-Control-Allow-Origin包含相同的源或公开资源(*)。表明会响应请求的源。
+浏览器可以通过XHR的open传入一个绝对URL来触发CORS，运行访问status和statusText属性，但不能使用setRequestHeader自定义头部，不能发送和接收cookie，getAllResponseHeaders方法返回空字符串。
+### 24.3.1 预检请求
+CORS通过预检请求验证，是否自定义头部，发送除getpost之外的方法。该请求使用OPTIONS方法发送并包含以下头部：
+* Origin：与简单请求相同
+* Access-Control-Request-Method：请求希望使用的方法
+* Access-Control-Request-Headers：自定义头部列表
+* Access-Control-Max-Age：缓存预检请求的秒数
+### 24.3.2 凭据请求
+默认下跨源请求不提供凭据(cookie、HTTP认证和客户端SSL证书)。可以通过将withCredentials属性设置为true来表明请求会发送凭据。允许则头部包含：Access-Control-Allow-Credentials：true
+## 24.4 替代性跨源技术
+### 24.4.1 图片探测
+用img标签跨域加载图片不受限制的方式，设置src后通过进度事件获取响应数据并执行程序。只能发送Get，无法获取服务器响应的内容。
+信标(Beacon)也是该方式发送，利用标签发送数据，无需响应。
+### 24.4.2 JSONP
+与img相似，动态创建script元素并未src属性指定跨域URL实现的，响应后指定回调函数执行程序。
+安全性低，不好确定请求状态。
+## 24.5 Fetch API
+Fetch是请求的优秀工具，可以应用在服务线程中，提供拦截，重定向和修改通过fetch()生成的请求接口。
+### 24.5.1 基本用法
+fetch只有一个必须的参数，'URL'。返回一个Promise。
+P723
 
 
 

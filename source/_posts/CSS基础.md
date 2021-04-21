@@ -142,5 +142,30 @@ background-clip:padding-box;//content-box
 ## 7.8 反射
 -webkit-box-reflect:方向[above-上|below-下|right-右|left-左]
 ## 7.9 文字
-
+单行文本溢出：
+```
+text-overflow:显示省略号 clip(溢出裁剪) ellipsis(溢出显示省略)
+white-space:不能换行
+overflow:隐藏超出内容
+```
+多行文本溢出：
+伪元素+定位：基于高于截断
+```
+position:relative;
+overflow:hidden;
+position:absolute;省略号定位
+line-height:20px//结合元素高度
+height:40px//元素高度
+::after{} //设置省略号样式
+```
+兼容性较好
+纯CSS实现：基于行数截断
+```
+-webkit-line-clamp:2//限制行数
+display:-webkit-box//作为弹性盒子模型显示
+-webkit-box-orient:vertical//排列方式
+overflow:hidden//溢出隐藏
+text-overflow:ellipsis//省略号
+```
+如果为英文或数字，需添加word-wrap:break-word
 
