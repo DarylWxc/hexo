@@ -168,4 +168,29 @@ overflow:hidden//溢出隐藏
 text-overflow:ellipsis//省略号
 ```
 如果为英文或数字，需添加word-wrap:break-word
+---
+### 8. CSS画三角
+```
+.border {
+    width: 0;
+    height: 0;
+    border-style:solid;
+    border-width: 0 50px 50px;
+    border-color: transparent transparent #d9534f;
+} //利用边框
+
+.box {   //直角三角形
+    /* 内部大小 */
+    width: 0px;
+    height: 0px;
+    /* 边框大小 只设置两条边*/
+    border-top: #4285f4 solid;
+    border-right: transparent solid;
+    border-width: 85px; 
+    /* 其他设置 */
+    margin: 50px;
+}
+```
+
+
 

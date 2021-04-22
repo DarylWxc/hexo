@@ -542,7 +542,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6 min
+                  7 min
                 </span>
               
             </div>
@@ -649,7 +649,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">position:relative;</span><br><span class="line">overflow:hidden;</span><br><span class="line">position:absolute;省略号定位</span><br><span class="line">line-height:20px&#x2F;&#x2F;结合元素高度</span><br><span class="line">height:40px&#x2F;&#x2F;元素高度</span><br><span class="line">::after&#123;&#125; &#x2F;&#x2F;设置省略号样式</span><br></pre></td></tr></table></figure>
 <p>兼容性较好<br>纯CSS实现：基于行数截断</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-line-clamp:2&#x2F;&#x2F;限制行数</span><br><span class="line">display:-webkit-box&#x2F;&#x2F;作为弹性盒子模型显示</span><br><span class="line">-webkit-box-orient:vertical&#x2F;&#x2F;排列方式</span><br><span class="line">overflow:hidden&#x2F;&#x2F;溢出隐藏</span><br><span class="line">text-overflow:ellipsis&#x2F;&#x2F;省略号</span><br></pre></td></tr></table></figure>
-<p>如果为英文或数字，需添加word-wrap:break-word</p>
+<h2 id="如果为英文或数字，需添加word-wrap-break-word"><a href="#如果为英文或数字，需添加word-wrap-break-word" class="headerlink" title="如果为英文或数字，需添加word-wrap:break-word"></a>如果为英文或数字，需添加word-wrap:break-word</h2><h3 id="8-CSS画三角"><a href="#8-CSS画三角" class="headerlink" title="8. CSS画三角"></a>8. CSS画三角</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.border &#123;</span><br><span class="line">    width: 0;</span><br><span class="line">    height: 0;</span><br><span class="line">    border-style:solid;</span><br><span class="line">    border-width: 0 50px 50px;</span><br><span class="line">    border-color: transparent transparent #d9534f;</span><br><span class="line">&#125; &#x2F;&#x2F;利用边框</span><br><span class="line"></span><br><span class="line">.box &#123;   &#x2F;&#x2F;直角三角形</span><br><span class="line">    &#x2F;* 内部大小 *&#x2F;</span><br><span class="line">    width: 0px;</span><br><span class="line">    height: 0px;</span><br><span class="line">    &#x2F;* 边框大小 只设置两条边*&#x2F;</span><br><span class="line">    border-top: #4285f4 solid;</span><br><span class="line">    border-right: transparent solid;</span><br><span class="line">    border-width: 85px; </span><br><span class="line">    &#x2F;* 其他设置 *&#x2F;</span><br><span class="line">    margin: 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
           
         
@@ -1949,7 +1952,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  16.3k words
+                  17.7k words
                 </span>
               
 
@@ -1965,7 +1968,7 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  64 min
+                  68 min
                 </span>
               
             </div>
@@ -2171,12 +2174,18 @@ ES5 Object.create的模拟实现，将传入的对象作为创建的对象的原
 <h2 id="10-17-小结"><a href="#10-17-小结" class="headerlink" title="10.17 小结"></a>10.17 小结</h2><ul>
 <li>立即调用的函数表达式如果不在包含作用域中将返回值赋给一个变量，其包含的所有变量都会被销毁。</li>
 <li>可以通过闭包访问位于包含作用域中定义的变量</li>
-<li>闭包作用域链中包含自己的一个变量对象，然后是包含函数的变量对象，直到全局上下文的变量对象<h1 id="11-期约与异步函数"><a href="#11-期约与异步函数" class="headerlink" title="11. 期约与异步函数"></a>11. 期约与异步函数</h1><h2 id="11-1-异步编程"><a href="#11-1-异步编程" class="headerlink" title="11.1 异步编程"></a>11.1 异步编程</h2><h3 id="11-1-1-同步与异步"><a href="#11-1-1-同步与异步" class="headerlink" title="11.1.1 同步与异步"></a>11.1.1 同步与异步</h3>同步对应内存中顺序执行的处理器指令。<br>异步类似系统中断，当前进程外部的实体可以触发代码执行。在进程等待长时间操作的时候进行其他程序的执行。<h3 id="11-1-2-以往的异步编程"><a href="#11-1-2-以往的异步编程" class="headerlink" title="11.1.2 以往的异步编程"></a>11.1.2 以往的异步编程</h3>回调嵌套<br>给异步操作提供回调函数(包括失败回调和成功回调)<br>嵌套异步回调，反值依赖另一个异步返回值，情况复杂。<h2 id="11-2-期约"><a href="#11-2-期约" class="headerlink" title="11.2 期约"></a>11.2 期约</h2><h2 id="11-2-1-Promises-A-规范"><a href="#11-2-1-Promises-A-规范" class="headerlink" title="11.2.1 Promises/A+规范"></a>11.2.1 Promises/A+规范</h2>ES6版本的Promise规范</li>
-</ul>
-<p>P322</p>
-<h1 id="24-网络请求与远程资源"><a href="#24-网络请求与远程资源" class="headerlink" title="24. 网络请求与远程资源"></a>24. 网络请求与远程资源</h1><h2 id="24-1-XMLHttpRequest对象"><a href="#24-1-XMLHttpRequest对象" class="headerlink" title="24.1 XMLHttpRequest对象"></a>24.1 XMLHttpRequest对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let xhr &#x3D; new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
-<h3 id="24-1-1-使用XHR"><a href="#24-1-1-使用XHR" class="headerlink" title="24.1.1 使用XHR"></a>24.1.1 使用XHR</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#39;get&#39;);&#x2F;&#x2F;还有post等，做好请求的准备，跨域会报错</span><br><span class="line">xhr.send(null);&#x2F;&#x2F;接受一个参数，为发送的数据，如果不需则传null，不然报错</span><br></pre></td></tr></table></figure>
-<ul>
+<li>闭包作用域链中包含自己的一个变量对象，然后是包含函数的变量对象，直到全局上下文的变量对象<h1 id="11-期约与异步函数"><a href="#11-期约与异步函数" class="headerlink" title="11. 期约与异步函数"></a>11. 期约与异步函数</h1><h2 id="11-1-异步编程"><a href="#11-1-异步编程" class="headerlink" title="11.1 异步编程"></a>11.1 异步编程</h2><h3 id="11-1-1-同步与异步"><a href="#11-1-1-同步与异步" class="headerlink" title="11.1.1 同步与异步"></a>11.1.1 同步与异步</h3>同步对应内存中顺序执行的处理器指令。<br>异步类似系统中断，当前进程外部的实体可以触发代码执行。在进程等待长时间操作的时候进行其他程序的执行。<h3 id="11-1-2-以往的异步编程"><a href="#11-1-2-以往的异步编程" class="headerlink" title="11.1.2 以往的异步编程"></a>11.1.2 以往的异步编程</h3>回调嵌套<br>给异步操作提供回调函数(包括失败回调和成功回调)<br>嵌套异步回调，反值依赖另一个异步返回值，情况复杂。<h2 id="11-2-期约"><a href="#11-2-期约" class="headerlink" title="11.2 期约"></a>11.2 期约</h2><h3 id="11-2-1-Promises-A-规范"><a href="#11-2-1-Promises-A-规范" class="headerlink" title="11.2.1 Promises/A+规范"></a>11.2.1 Promises/A+规范</h3>ES6版本的Promise规范<h3 id="11-2-2-期约基础"><a href="#11-2-2-期约基础" class="headerlink" title="11.2.2 期约基础"></a>11.2.2 期约基础</h3>用new初始化，创建时传入执行器函数作为参数。<br>期约有三种状态：</li>
+<li>待定(pending)</li>
+<li>兑现(fulfilled,resolved)</li>
+<li>拒绝(rejected)<br>待定为最初状态，变成兑现和拒绝后都不可逆。期约的状态是私有的，无法通过JS检测到。<br>只要状态从待定切换，总会有一个私有的内部值。兑现则为值，拒绝则为理由。默认为undefined，达到落定状态都会收到该值。<br>期约通过resolve()和reject()转换状态，reject()会抛出错误。<br>避免期约卡在待定状态，可以添加一个定时退出功能。如setTimeout设置回调。<br>Promise.resolve()可以实例化一个解决的期约。也可以把任何值都转换为一个期约。只转换传入的第一个参数，其他会被忽略。且这个函数会保留传入的期约的状态。<br>Promise.reject()可以实例化一个拒绝的期约并抛出一个异步错误(这个错误无法用try/catch获取，只能通过拒绝处理程序捕获)。reject与resolve不同，如果给他传一个期约对象，这个期约会成为它拒绝的理由。<br>与期约交互只能使用异步结构(期约的方法)。<h3 id="11-2-3-期约的实例方法"><a href="#11-2-3-期约的实例方法" class="headerlink" title="11.2.3 期约的实例方法"></a>11.2.3 期约的实例方法</h3>ES的异步结构中，任何对象都有一个then()方法，实现了Thenable接口。</li>
+<li>Promise.prototype.then()，<br>最多接收两个参数，onResolved，onRejected两个处理程序，并且传给then的非函数类型的参数会被忽略。<br>Promise.prototype.then返回一个新的期约实例，所以传入时onResolve/Reject时如果不需要，得传null，避免创建多余的对象。<br>onResolve：如果没有显示的返回语句，then会默认返回undefined。如果有显示的返回值，则Promise.resolve会包装这个值。抛出异常会返回拒绝的期约。<br>onReject：也会用Promise.resolve包装，与onResolve一样。</li>
+<li>Promise.prototype.catch()<br>用于给期约添加拒绝处理程序，只接收一个参数：onRejected处理程序。相当于调用Promise.prototype.then(null,onRejected)</li>
+<li>Promise.prototype/finally()<br>用于给期约添加onFinally处理程序，这个处理程序在状态改变时都会执行，可以避免onResolve/Reject出现冗余代码。但没办法知道状态，主要用于添加清理代码。这个方法返回一个新的实例期约，但这个期约为父期约的传递(父期约的状态与值)，如果传入一个期约，保留传入的期约。<br>Promise.then()会在同步代码后执行。为非重入方法，都是异步执行。<br>处理程序的执行顺序按添加他们的顺序。<br>拒绝与错误处理都会返回一个错误对象。且有一个副作用，异步抛出错误，并不会阻塞同步程序。错误只能通过onRejected获取。<h3 id="11-2-4-期约连锁与期约合成"><a href="#11-2-4-期约连锁与期约合成" class="headerlink" title="11.2.4 期约连锁与期约合成"></a>11.2.4 期约连锁与期约合成</h3>连串处理程序为期约连锁。<br>可以定义一个函数返回期约然后在then中调用。可以将异步串行化。<br>Promise.all()和Promise.race()可以将期约实例组合成一个期约的静态方法。</li>
+<li>Promise.all()<br>该方法会在一组期约全部解决之后再解决。这个静态方法接收一个可迭代对象，返回一个新期约。必须要传参，如果有一个拒绝，则合成的期约拒绝。如果有一个期约待定，那么合成的期约也会待定。一次拒绝会直接导致最终期约拒绝。拒绝理由为第一次拒绝的期约的理由。但其他拒绝也会处理。</li>
+<li>Promise.race()<br>该方法返回一个包装期约，是一组集合中最先解决或拒绝的期约的镜像。接收一个可迭代对象，也返回一个新期约。其余与all()相同。<h3 id="11-2-5-期约扩展"><a href="#11-2-5-期约扩展" class="headerlink" title="11.2.5 期约扩展"></a>11.2.5 期约扩展</h3>可以运用一个类添加方法取消期约。<br>扩展Promise类，添加notify()方法提醒进度。<h2 id="11-3-异步函数"><a href="#11-3-异步函数" class="headerlink" title="11.3 异步函数"></a>11.3 异步函数</h2>async/await(ES8)<h2 id="11-3-1-异步函数"><a href="#11-3-1-异步函数" class="headerlink" title="11.3.1 异步函数"></a>11.3.1 异步函数</h2></li>
+<li>async<br>async用于声明异步函数，可以用在函数声明、函数表达式、箭头函数和方法上。如果异步函数使用return返回了值，则会被Promise.resolve()包装成一个期约对象。<br>如果异步函数中抛出错误会返回错误的期约，但期约不会被异步函数捕获。</li>
+<li>await<br>await用于暂停异步函数代码的执行，如果等待一个值，那么该值为已经解决的期约。等待错误，会返回拒绝的期约。await必须在异步函数中使用。<h3 id="11-3-2-停止和恢复执行"><a href="#11-3-2-停止和恢复执行" class="headerlink" title="11.3.2 停止和恢复执行"></a>11.3.2 停止和恢复执行</h3>只要使用await则会触发异步求值，如果后面是一个期约，则比直接可用的值排后。<h3 id="11-3-3-异步函数策略"><a href="#11-3-3-异步函数策略" class="headerlink" title="11.3.3 异步函数策略"></a>11.3.3 异步函数策略</h3>可以使用异步函数实现sleep<br>async function sleep(delay){return new Promise((resolve) =&gt; setTimeout(resolve,delay));}<br>await sleep(1500)<br>平行执行，一起初始化，然后依次执行。<br>使用await实现串行执行期约。<br>await相对setTimeout有一定的性能提升<h2 id="11-4-小结"><a href="#11-4-小结" class="headerlink" title="11.4 小结"></a>11.4 小结</h2>期约与异步函数都是非常重要的工具。<br>期约可以被序列化、连锁使用、符合、扩展和重组。<br>P357<h1 id="24-网络请求与远程资源"><a href="#24-网络请求与远程资源" class="headerlink" title="24. 网络请求与远程资源"></a>24. 网络请求与远程资源</h1><h2 id="24-1-XMLHttpRequest对象"><a href="#24-1-XMLHttpRequest对象" class="headerlink" title="24.1 XMLHttpRequest对象"></a>24.1 XMLHttpRequest对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let xhr &#x3D; new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<h3 id="24-1-1-使用XHR"><a href="#24-1-1-使用XHR" class="headerlink" title="24.1.1 使用XHR"></a>24.1.1 使用XHR</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#39;get&#39;);&#x2F;&#x2F;还有post等，做好请求的准备，跨域会报错</span><br><span class="line">xhr.send(null);&#x2F;&#x2F;接受一个参数，为发送的数据，如果不需则传null，不然报错</span><br></pre></td></tr></table></figure></li>
 <li>responseText:响应体返回的文本</li>
 <li>responseXML:响应数据的XML DOM文档</li>
 <li>status:响应的HTTP状态</li>
