@@ -1271,7 +1271,74 @@ await相对setTimeout有一定的性能提升
 ## 11.4 小结
 期约与异步函数都是非常重要的工具。
 期约可以被序列化、连锁使用、符合、扩展和重组。
-P357
+### 12. BOM
+浏览器对象模型(BOM,Browser Object Model)
+## 12.1 window对象
+BOM的核心是window对象，表示浏览器的实例。window对象在浏览器中有两重身份，一个是ES的Global对象，一个就是浏览器窗口的JS接口。
+### 12.1.1 Global作用域
+window对象被复用为ES的Global对象，var声明的所有全局变量和函数都会变成window对象的属性和方法。let和const声明则不会把变量添加给全局对象。
+### 12.1.2 窗口关系
+top对象指最上层窗口，parent对象指向当前窗口的父窗口。如果当前窗口为最上层窗口，top=parent。最上层的window如果不是通过window.open()打开，那么name属性不会包含值。self始终指向window。
+* window.parent
+* window.top
+* window.self
+* window.parent.parent
+### 12.1.3 窗口位置与像素比
+* window.screenLeft:窗口相对于屏幕左侧的位置，返回CSS像素值
+* window.screenTop:窗口相对于屏幕顶部的位置，返回CSS像素值
+* window.moveTo():窗口上移
+* window.moveBy():窗口相对当前位置在两个方向上移动的像素数
+像素比：不同像素密度的屏幕下会有不同的缩放系数。
+* window.devicePixeRatio:物理像素与CSS像素直接的转换比率，实际上与每英寸像素数(DPI)是对应的，物理像素与逻辑像素直接的缩放系数
+### 12.1.4 窗口大小
+* window.innerWidth:窗口页面视口宽度
+* window.innerHeight:窗口页面视口高度
+* window.outerWidth:浏览器自身宽度
+* window.outerHeight:浏览器自身高度
+缩放窗口的方法只能应用到最上层window对象
+* window.resizeTo(100,100):缩放到100x100
+* window.resizeBy(100,50):缩放到200x150
+### 12.1.5 视口位置
+* window.pageXoffset:相对视口滚动距离
+* window.scrollX:相对视口滚动距离
+* window.pageYoffset:相对视口滚动距离
+* window.scrollY:相对视口滚动距离
+* window.scrollBy(0,100):相对于视口向下滚动100像素
+* window.scrollTo(100,100):滚动到距离屏幕左边及顶边各100像素的位置
+并且可以通过设置behavior属性决定正常滚动和平滑滚动window.scrollTo({left:100,top:100,behavior:'smooth'});
+### 12.1.6 导航与打开新窗口
+window.open():用于导航到指定URL，也可打开新窗口，该方法有四个参数：
+* URL
+* 目标窗口：可以为字符串，也可以为_self,_parent,_top,_blank
+* 特性字符串:fullscreen(最大化否),height(高度),left(x轴左边>=0),location(是否显示地址栏),Menubar(是否显示菜单栏),resizable(可否拖动改变窗口大小),scrollbars(内容过长是否可滚动),status(显示状态栏否),toolbar(显示工具栏否),top(y轴坐标>=0),width(宽度)
+* 在历史记录中是否代替当前加载页
+open出的窗口，与window对象一样，可以使用该对象操作。并且有close()方法用于关闭新打开的窗口。
+由于安全的限制，可能没法在网页中调用window.open()
+所有浏览器都有屏蔽弹窗的程序，window.open()如果为null，就可以知道是否被屏蔽了。还需要使用try/catch包装起来。
+### 12.1.7 定时器
+setTimeout,setInterval。
+### 12.1.8 系统对话框
+调用alert(),confirm(),prompt()可以浏览器调用系统对话框向用户显示消息，这些对话框与网页无关。
+alert只能看，confirm有取消和确认，prompt有输入框。
+window.print()//显示打印对话框，window.find()//显示查找对话框。
+## 12.2 location对象
+location提供了当前窗口中加载文档的信息，以及通常的导航功能。
+它既是window的属性，也是document的属性。
+* location.hash //URL散列值
+* location.host //服务器名及端口号
+* location.hostname //服务器名
+* location.href //当前加载页面的完整URL
+* location.pathname //URL中的路径和文件名
+* location.port //请求的端口
+* location.protocol //页面使用的协议
+* location.search //URL的查询字符串
+* location.usename //域名前指定的用户名
+* location.password //域名前指定的密码
+* location.origin // URL的源地址，只读
+### 12.2.1 查询字符串
+
+P367
+
 # 24. 网络请求与远程资源
 ## 24.1 XMLHttpRequest对象
 ```
