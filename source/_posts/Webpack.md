@@ -153,3 +153,96 @@ output: {
 在Compiler开始生成文件前，钩子emit会被执行，这是修改最终文件的最后一个机会。打包过程结束。
 ## 4.4 小结
 ![Webpack打包流程](webpack打包流程.png)
+### 5. loader
+## 5.1 是什么？
+loader用于对模块的源代码进行转换，在import或加载模块时预处理文件。
+默认情况下只打包js文件，css、sass、png等类型文件，需要配置对应的loader进行解析，在碰到该类型文件则会在配置中找解析规则。
+配置loader方式：
+* 配置方式(推荐)：在webpack.config.js文件中指定loader
+rules是一个数组的形式，我们可以配置很多个loader
+每一个loader对应一个对象的形式，对象属性test为匹配的规则，一般情况为正则表达式
+属性use针对匹配到文件类型，调用对应的loader进行处理
+```
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          { loader: 'sass-loader' }
+        ]
+      }
+    ]
+  }
+};
+```
+* 内联方式：在每个import语句中显式指定loader
+* CLI方式：在shell命令中指定它们
+## 5.2 特性
+loader支持链式调用，链中的每个loader会处理之前已处理过的资源，最终变为JS代码。顺序为相反的顺序执行(sass-css-style)。
+* loader可以是同步的，也可以是异步的
+* loader运行在node.js中，并且能够执行任何操作
+* 除了常见的通过package.json的main来讲一个npm模块导出为loader，还可以在module.rules中使用loader字段直接引用一个模块
+* 插件(plugin)可以为loader带来更多特性
+* loader能够产生额外的任意文件
+## 5.3 常见的loader
+* style-loader：将css添加到DOM的内联样式标签style里
+* css-loader：允许将css文件通过require的方式引入，并返回css代码
+* less-loader：处理less
+* sass-loader：处理sass
+* postcss-loader：用postcss来处理CSS
+* autoprefixer-loader：处理CSS3属性前缀，已弃用
+* file-loader：分发文件到output目录，并返回相对路径
+* url-loader：和file-loader相似，文件小于设定可以返回一个Data url
+* html-minify-loader：压缩HTML
+* babel-loader：用babel来转换ES6到ES
+* 具体例子详看loader篇
+### 6. Plugin
+## 6.1 是什么？
+Plugin是一种计算机应用程序，和主应用程序互相交互，以提供特定的功能。
+遵循一定规范的应用程序编写的程序，运行在程序规定的系统下，调用原系统提供的函数库或者数据。用于解决loader无法实现的事。
+## 6.2 配置方式
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
+const webpack = require('webpack'); // 访问内置的插件
+module.exports = { 
+  ...
+  plugins: [ //通过配置文件导出对象中plugins属性传入new实例对象
+    new webpack.ProgressPlugin(),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+  ],
+};
+```
+## 6.3 特性
+本质是一个具有apply方法的js对象，apply被webpack compiler调用，并且在整个编译生命周期都可以访问compiler对象
+```
+const pluginName = 'ConsoleOnBuildWebpackPlugin';
+class ConsoleLogOnBuildWebpackPlugin {
+  apply(compiler) {
+    compiler.hooks.run.tap(pluginName, (compilation) => { //tap方法的第一个函数，应该是驼峰式命名的插件
+      console.log('webpack 构建过程开始！');
+    });
+  }
+}
+
+module.exports = ConsoleLogOnBuildWebpackPlugin;
+```
+编译声明周期钩子：
+* entry-option：初始化option
+* run
+* compile：真正开始的编译，在创建compilation对象之前
+* compilation：生成好了compilation
+* make从entry开始递归分析依赖，准备对每个模块进行build
+* after-emit：在将内存中assets内容写到磁盘文件夹之后
+* done：完成所有的编译过程
+* failed：编译失败的时候
+## 6.4 常见Plugin
+![常见Plugins](plugin.jpg)
+常见用法详看plugin篇
