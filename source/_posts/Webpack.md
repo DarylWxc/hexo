@@ -246,3 +246,55 @@ module.exports = ConsoleLogOnBuildWebpackPlugin;
 ## 6.4 常见Plugin
 ![常见Plugins](plugin.jpg)
 常见用法详看plugin篇
+### 7. Loader与Plugin的区别
+## 7.1 区别
+Loader：文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中
+Plugin：赋予了webpack各种灵活的功能，例如打包优化、资源管理、环境变量注入等，目的是解决loader无法实现的其他事
+## 7.2 编写loader
+loader本质为函数，this作为上下文会被webpack填充，不能将loader设为一个箭头函数，loader接收一个source参数，为文件源内容。this是webpack提供的对象，能获取当前loader所需要的各种信息，函数中有异步或同步操作，异步操作通过this.callback返回，返回值要求为string或者Buffer
+```
+module.exports = function(source) {
+    const content = doSomeThing2JsString(source);
+    
+    // 如果 loader 配置了 options 对象，那么this.query将指向 options
+    const options = this.query;
+    
+    // 可以用作解析其他模块路径的上下文
+    console.log('this.context');
+    
+    /*
+     * this.callback 参数：
+     * error：Error | null，当 loader 出错时向外抛出一个 error
+     * content：String | Buffer，经过 loader 编译后需要导出的内容
+     * sourceMap：为方便调试生成的编译后内容的 source map
+     * ast：本次编译生成的 AST 静态语法树，之后执行的 loader 可以直接使用这个 AST，进而省去重复生成 AST 的过程
+     */
+    this.callback(null, content); // 异步
+    return content; // 同步
+}
+```
+一般编写loader，保持功能单一，避免做多种功能，如less文件转换成css也是经过几个loader的链式调用才能完成转换
+## 7.3 编写plugin
+webpack基于发布订阅模式，在生命周期通过监听执行插件任务。
+webpack编译会创建两个核心对象：
+compiler：包含了环境所有的配置信息
+compilation：plugin内置事件回调函数的参数，包含了模块资源等，检测到变化则创建新的compilation
+实现plugin也需要一定规范：
+插件必须是一个函数或者是一个包含apply方法的对象，这样才能访问compiler实例
+传给每个插件的compiler和compilation对象都是同一个引用，不建议修改
+异步的事件需要在插件处理完任务时调用回调函数进入下一个流程
+```
+class MyPlugin {
+    // Webpack 会调用 MyPlugin 实例的 apply 方法给插件实例传入 compiler 对象
+  apply (compiler) {
+    // 找到合适的事件钩子，实现自己的插件功能
+    compiler.hooks.emit.tap('MyPlugin', compilation => {
+        // compilation: 当前打包构建流程的上下文
+        console.log(compilation);
+        
+        // do something...
+    })
+  }
+}
+```
+在emit事件发生时，代表源文件的转换和组装已经完成，可以读取到最终将输出的资源、代码块、模块及其依赖，并且可以修改输出资源的内容

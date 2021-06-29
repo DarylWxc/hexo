@@ -1338,6 +1338,86 @@ location提供了当前窗口中加载文档的信息，以及通常的导航功
 ### 12.2.1 查询字符串
 
 P367
+# 14. DOM
+## 14.1 节点层级
+HTML节点为文档元素，是最外层的元素。所有元素都在这个元素之内。
+### 14.1.1 Node类型
+每个节点都有nodeType属性，表示该节点的类型。
+节点类型看P402，共有12种。
+nodeName和nodeValue保存着有关节点的信息。这两个属性的值取决于节点类型。nodeName始终等于元素的标签名。
+文档中所有节点都与其他节点有关系，类家族关系。每个节点都有一个childNodes属性(并非都有子节点)，包含一个NodeList实例。NodeList是一个类数组对象，用于存储可以按位置存取的有序节点。NodeList是对DOM结构的查询。
+访问nodeList的元素用中阔号或item()方法都可。(childNodes[0],.item(0))
+NodeList可以被转成数组,let array = Array.prototype.slice.call(NodeList);
+每个节点都有一个parentNode属性。previousSibling和nextSibling可以在这个列表的节点间导航。类似迭代器。
+hasChildNodes()可以查询是否有子节点。
+ownerDocument属性是指向整个文档节点的指针。
+操纵节点：(1-4使用前必须获得父节点)
+1.appendChild(),传入后成父节点的最后一个子节点
+2.insertBefore(newNode,a),作为a之前的子节点之前插入
+3.replaceChild(newNode,a),替换a节点插入
+4.removeChild(node),删除节点
+5.cloneNode(Boolean),是否深复制，返回一个孤儿节点，如果未指定父节点，可通过上述1-3方法添加到文档
+6.normalize(),处理文档子树中的文本节点。检测这个节点的所有后代，搜索文本节点，空则删除，相邻则合并。
+14.1.2 Document类型
+document是HTMLDocument的实例，表示HTML页面，是window对象的属性。是一个全局对象。
+访问子节点，DocumentType，Element，Processing-Instruction，Comment，documentElement(指向HTML)
+document.title(标题)
+document.URL(完整的URL)
+document.domain(域名)只有域名可以设置,不同情况下可以设置
+document.referrer(来源)
+定位元素：
+getElementById():传入元素ID，返回这个元素
+getElementsByTagName():传入标签命，返回HTMLCollection对象，该对象类似NodeList，可用item()方法获取特定元素，也可以通过namedItem()获取某一项引用
+getElementsByName(),返回给定name属性的元素
+特殊集合：
+document.anchors,文档中所有带name属性的a元素
+document.forms->form元素
+document.images->img元素
+document.links->带href的元素的a元素
+文档写入：
+write(),writeIn(),open(),close()
+### 14.1.3 Element类型
+Element类型表示XML或HTML元素，对外暴露出访问元素标签命、子节点和属性的能力。所有HTML元素通过HTMLElement类型表示，都具有属性：
+id:唯一标识符
+title：额外信息
+lang:元素内容的语言代码
+dir：语言的书写方法
+className：class属性
+HTML元素对应类型见P415
+属性获取：
+getAttribute('class')
+DOM返回的style和事件处理程序与getAttribute不同，一个可以修改，一个是字符串
+属性设置：
+setAttribute('class','111')有则覆盖，无则添加。
+removeAttribute()用于删除属性
+Element类型是唯一使用attributes属性的DOM节点类型。attributes包含NameNodeMap实例，类似NodeList的集合。
+元素创建：
+createElement()
+### 14.1.4 Text类型
+纯文本或转义后的HTML字符
+appendData(text),添加文本text
+deleteData(offset,count),从offset开始删除count个字符
+insertData(offset,text),从offset插入text
+replaceData(offset,count,text),替换文本
+splitText(offset),拆分两个
+substringData(offset,count)提取文本
+创建文本节点:
+document.createTextNode()
+### 14.1.5 Comment类型
+注释节点
+### 14.1.6 CDATASection类型
+### 14.1.7 DocumentType类型
+### 14.1.8 DocumentFragment类型
+### 14.1.9 Attr类型
+## 14.2 DOM编程
+P426
+
+
+
+
+
+
+
 
 # 24. 网络请求与远程资源
 ## 24.1 XMLHttpRequest对象
